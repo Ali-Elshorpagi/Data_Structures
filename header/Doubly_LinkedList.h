@@ -43,7 +43,8 @@ public:
     ~Doubly_LinkedList();
     Doubly_LinkedList(const Doubly_LinkedList &) = delete;
     Doubly_LinkedList &operator=(const Doubly_LinkedList &another) = delete;
-
+    void print();
+	void print_reversed();
 
 
 

@@ -60,3 +60,20 @@ void Doubly_LinkedList<type>::delete_and_link_v2(D_Node<type> *cur)
     link(cur->prev, cur->next);
     delete_node(cur);
 }
+
+
+template <class type>
+void Doubly_LinkedList<type>::print() 
+{
+	for (D_Node<type>* cur(head); cur; cur = cur->next)
+		cout << cur->data << " ";
+	cout << edl;
+}
+
+template <class type>
+void Doubly_LinkedList<type>::print_reversed() 
+{
+	for (D_Node<type>* cur(tail); cur; cur = cur->prev)
+		cout << cur->data << " ";
+	cout << edl;
+}
