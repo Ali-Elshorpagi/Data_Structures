@@ -164,3 +164,18 @@ S_Node<type>* Singly_LinkedList<type>::get_nth_from_back(ll idx)
         return nullptr;
     return get_nth(length - idx + 1);
 }
+
+template <class type>
+bool Singly_LinkedList<type>::is_same(const Singly_LinkedList<type>& list)
+{
+    if (length != list.length)
+        return false;
+    S_Node<type>* temp = list.head;
+    for (S_Node<type>* cur(head); cur; cur = cur->next)
+    {
+        if (cur->data != temp->data)
+            return false;
+        temp = temp->next;
+    }
+    return true;
+}
