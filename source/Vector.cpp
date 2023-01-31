@@ -105,3 +105,31 @@ void Vector<type>::right_rotate()
         arr[p + 1] = arr[p];
     arr[0] = last_element;
 }
+
+template <class type>
+void Vector<type>::left_rotate()
+{
+    type first_element = arr[0];
+    for (int p(1); p < size; ++p)
+        arr[p - 1] = arr[p];
+    arr[size - 1] = first_element;
+}
+
+template <class type>
+void Vector<type>::right_rotate(ll times)
+{
+    times %= size;
+    while (times--)
+        right_rotate();
+}
+
+template <class type>
+type Vector<type>::pop(ll idx)
+{
+    assert(idx >= 0 && idx < size);
+    type val = arr[idx];
+    for (ll p(idx + 1); p < size; ++p)
+        arr[p - 1] = arr[p];
+    --size;
+    return val;
+}
