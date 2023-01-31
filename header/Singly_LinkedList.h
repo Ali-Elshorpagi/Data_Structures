@@ -40,7 +40,8 @@ public:
     void print();
 	void print_recr(S_Node<type>* h);
 	void print_recr_rever(S_Node<type>* h);
-	
+	unsigned long long get_size();
+	S_Node<type>* get_nth(ll n);
 
 
 

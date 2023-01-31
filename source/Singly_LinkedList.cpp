@@ -82,3 +82,18 @@ void Singly_LinkedList<type>::print_recr_rever(S_Node<type> *h)
     print_recr(h->next);
     cout << h->data << ' ';
 }
+
+template <class type>
+unsigned long long Singly_LinkedList<type>::get_size()
+{
+    return length;
+}
+
+template <class type>
+S_Node<type> *Singly_LinkedList<type>::get_nth(ll n)
+{
+    for (S_Node<type> *cur(head); cur; cur = cur->next)
+        if (--n == 0)
+            return cur;
+    return nullptr;
+}
