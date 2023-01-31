@@ -35,4 +35,5 @@ public:
     ~Singly_LinkedList();
     S_Node<type>* get_head();
 	unsigned long long get_length();
+    void insert_end(type val);
 };

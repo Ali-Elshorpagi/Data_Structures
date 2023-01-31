@@ -25,3 +25,17 @@ S_Node<type> *Singly_LinkedList<type>::get_head()
 {
     return head;
 }
+
+template <class type>
+void Singly_LinkedList<type>::insert_end(type val) 
+{
+    S_Node<type>* item = new S_Node<type>(val);
+    if (!head)
+        head = tail = item;
+    else
+    {
+        tail->next = item;
+        tail = item;
+    }
+    ++length;
+}
