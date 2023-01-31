@@ -419,17 +419,15 @@ void Singly_LinkedList<type>::delete_last_occurrence_not_sorted(type key)
     }
 }
 
-
-
 template <class type>
-S_Node<type>* Singly_LinkedList<type>::move_to_end(S_Node<type>* cur, S_Node<type>* prv)
+S_Node<type> *Singly_LinkedList<type>::move_to_end(S_Node<type> *cur, S_Node<type> *prv)
 {
-    S_Node<type>* next = cur->next;
+    S_Node<type> *next = cur->next;
     tail->next = cur;
     if (prv)
         prv->next = next;
     else
-        head = next;	
+        head = next;
     tail = cur;
     tail->next = nullptr;
     return next;
@@ -438,34 +436,39 @@ S_Node<type>* Singly_LinkedList<type>::move_to_end(S_Node<type>* cur, S_Node<typ
 template <class type>
 void Singly_LinkedList<type>::move_key_occurance_to_end_not_sorted(type key)
 {
-    if (length <= 1) return;
+    if (length <= 1)
+        return;
     ll len = length;
-    for (S_Node<type>* cur(head), *prv(nullptr); len--;)
+    for (S_Node<type> *cur(head), *prv(nullptr); len--;)
     {
-        if (cur->data == key)	
+        if (cur->data == key)
             cur = move_to_end(cur, prv);
         else
-            prv = cur, cur = cur->next;	
+            prv = cur, cur = cur->next;
     }
 }
 
 template <class type>
-ll Singly_LinkedList<type>::max_node(S_Node<type>* h , S_Node<type>* mx )
+ll Singly_LinkedList<type>::max_node(S_Node<type> *h, S_Node<type> *mx)
 {
-    if (!length) return INT_MIN;
-    if (!h) return mx->data;
-    if (h->data > mx->data) mx = h;
+    if (!length)
+        return INT_MIN;
+    if (!h)
+        return mx->data;
+    if (h->data > mx->data)
+        mx = h;
     return max_node(h->next, mx);
 }
 
 template <class type>
 void Singly_LinkedList<type>::arrange_odd_pos_even_pos()
 {
-    if (length <= 2)return;
-    S_Node<type>* first_even(head->next), * cur_odd(head);
-    while (cur_odd->next && cur_odd->next->next) 
+    if (length <= 2)
+        return;
+    S_Node<type> *first_even(head->next), *cur_odd(head);
+    while (cur_odd->next && cur_odd->next->next)
     {
-        S_Node<type>* next_even = cur_odd->next;
+        S_Node<type> *next_even = cur_odd->next;
         // connect odd with odd and even with even
         cur_odd->next = cur_odd->next->next;
         next_even->next = next_even->next->next;
@@ -483,11 +486,56 @@ type Singly_LinkedList<type>::middle_value()
 {
     // based on The Tortoise and the Hare Algorithm
     assert(head);
-    S_Node<type>* fast(head), * slow(head);
+    S_Node<type> *fast(head), *slow(head);
     while (fast && fast->next)
     {
         fast = fast->next->next;
         slow = slow->next;
     }
     return slow->data;
+}
+
+template <class type>
+void Singly_LinkedList<type>::insert_after(S_Node<type> *src, S_Node<type> *target)
+{
+    assert(src && target);
+    target->next = src->next;
+    src->next = target;
+    ++length;
+}
+
+template <class type>
+void Singly_LinkedList<type>::insert_alternate(Singly_LinkedList<type> &other)
+{
+    if (!other.length)
+        return;
+    if (!length)
+    {
+        head = other.head;
+        tail = other.tail;
+        length = other.length;
+        debug_data = other.debug_data;
+    }
+    else
+    {
+        S_Node<type> *cur2(other.head);
+        for (S_Node<type> *cur1(head); cur1 && cur2;)
+        {
+            S_Node<type> *cur2_next_temp(cur2->next);
+            insert_after(cur1, cur2);
+            --other.length;
+            cur2 = cur2_next_temp;
+            if (cur1 == tail)
+            {
+                tail = other.tail;
+                cur1->next->next = cur2;
+                length += other.length;
+                break;
+            }
+            cur1 = cur1->next->next;
+        }
+    }
+    other.head = other.tail = nullptr;
+    other.length = 0;
+    other.debug_data.clear();
 }
