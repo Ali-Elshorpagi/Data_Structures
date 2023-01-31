@@ -41,3 +41,13 @@ void Deque<type>::enqueue_front(type val)
 	array[front] = val;
 	++added_elements;
 }
+
+template <class type>
+type Deque<type>::dequeue_front()
+{ 
+	assert(!is_empty());
+	type value = array[front];
+	front = next(front);
+	--added_elements;
+	return value;
+}
