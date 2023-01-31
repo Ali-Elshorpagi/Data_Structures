@@ -45,7 +45,7 @@ public:
     ll search(type val);
 	ll search_improved(type val);
 	ll search_improved_v2(type val);
-
+void insert_front(type val);
 
 
 

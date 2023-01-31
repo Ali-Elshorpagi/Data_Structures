@@ -144,3 +144,15 @@ ll Singly_LinkedList<type>::search_improved_v2(type val) // commonly used
     }
     return -1;
 }
+
+
+template <class type>
+void Singly_LinkedList<type>::insert_front(type val)
+{
+    S_Node<type>* item = new S_Node<type>(val);
+    ++length;
+    item->next = head;
+    head = item;
+    if (length == 1)
+        tail = head;
+}
