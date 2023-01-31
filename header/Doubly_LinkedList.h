@@ -44,26 +44,19 @@ public:
     Doubly_LinkedList(const Doubly_LinkedList &) = delete;
     Doubly_LinkedList &operator=(const Doubly_LinkedList &another) = delete;
     void print();
-	void print_reversed();
+    void print_reversed();
     void insert_end(type val);
-    	void insert_front(type val);
-void insert_sorted(type val);
-void delete_front();
-	void delete_end();
-	void delete_node_with_key(type val);
-	void delete_all_nodes_with_key(type val);
-void delete_even_positions();
-	void delete_odd_positions();
-    	bool is_palindrome();
-type middle_value_0();
-	type middle_value_1();
-    	void reverse();
-
-
-
-
-
-
-
-
+    void insert_front(type val);
+    void insert_sorted(type val);
+    void delete_front();
+    void delete_end();
+    void delete_node_with_key(type val);
+    void delete_all_nodes_with_key(type val);
+    void delete_even_positions();
+    void delete_odd_positions();
+    bool is_palindrome();
+    type middle_value_0();
+    type middle_value_1();
+    void reverse();
+    void merge_2sorted_lists(Doubly_LinkedList<type> &other);
 };
