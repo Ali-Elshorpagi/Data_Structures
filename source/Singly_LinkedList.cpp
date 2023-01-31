@@ -477,3 +477,17 @@ void Singly_LinkedList<type>::arrange_odd_pos_even_pos()
     // connect last odd with the first even
     cur_odd->next = first_even;
 }
+
+template <class type>
+type Singly_LinkedList<type>::middle_value()
+{
+    // based on The Tortoise and the Hare Algorithm
+    assert(head);
+    S_Node<type>* fast(head), * slow(head);
+    while (fast && fast->next)
+    {
+        fast = fast->next->next;
+        slow = slow->next;
+    }
+    return slow->data;
+}
