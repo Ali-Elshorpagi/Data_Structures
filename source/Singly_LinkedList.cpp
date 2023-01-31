@@ -458,3 +458,22 @@ ll Singly_LinkedList<type>::max_node(S_Node<type>* h , S_Node<type>* mx )
     return max_node(h->next, mx);
 }
 
+template <class type>
+void Singly_LinkedList<type>::arrange_odd_pos_even_pos()
+{
+    if (length <= 2)return;
+    S_Node<type>* first_even(head->next), * cur_odd(head);
+    while (cur_odd->next && cur_odd->next->next) 
+    {
+        S_Node<type>* next_even = cur_odd->next;
+        // connect odd with odd and even with even
+        cur_odd->next = cur_odd->next->next;
+        next_even->next = next_even->next->next;
+        cur_odd = cur_odd->next;
+        // for odd length, tail is changed to last even node
+        if (length % 2 == 1)
+            tail = next_even;
+    }
+    // connect last odd with the first even
+    cur_odd->next = first_even;
+}

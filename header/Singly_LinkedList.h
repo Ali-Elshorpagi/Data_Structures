@@ -67,6 +67,7 @@ S_Node<type>* move_to_end(S_Node<type>* cur, S_Node<type>* prv);
 	void move_key_occurance_to_end_not_sorted(type key);
 	
 	ll max_node(S_Node<type>* h, S_Node<type>* mx);
+	void arrange_odd_pos_even_pos();
 
 
 
