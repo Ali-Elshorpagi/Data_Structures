@@ -17,4 +17,6 @@ class Stack_Array_Based
 public:
     Stack_Array_Based(unsigned long long size);
     ~Stack_Array_Based();
+    bool is_full();
+	bool is_empty();
 };
