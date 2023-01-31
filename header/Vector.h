@@ -27,6 +27,24 @@ public:
     void push_back(type val);
      void insert(ll idx, type val);
       void right_rotate();
+      void left_rotate();
+    void right_rotate(ll times);
+    template <class type>
+void Vector<type>::left_rotate()
+{
+    type first_element = arr[0];
+    for (int p(1); p < size; ++p)
+        arr[p - 1] = arr[p];
+    arr[size - 1] = first_element;
+}
+
+template <class type>
+void Vector<type>::right_rotate(ll times)
+{
+    times %= size;
+    while (times--)
+        right_rotate();
+}
 
 
 };
