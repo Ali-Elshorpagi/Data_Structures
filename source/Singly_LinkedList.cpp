@@ -191,3 +191,16 @@ void Singly_LinkedList<type>::delete_node(S_Node<type>* node)
         delete node;
     }
 }
+
+template <class type>
+void Singly_LinkedList<type>::delete_first()
+{
+    if (head)
+    {
+        S_Node<type>* cur = head;
+        head = head->next;
+        delete_node(cur);
+        if (!head)
+            tail = nullptr;
+    }
+}
