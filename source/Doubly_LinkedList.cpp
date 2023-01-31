@@ -179,3 +179,23 @@ void Doubly_LinkedList<type>::delete_node_with_key(type val)
 		}
 	}
 }
+
+
+template <class type>
+void Doubly_LinkedList<type>::delete_all_nodes_with_key(type val)
+{
+	if (!length) return;
+	insert_front(-val);
+	for (D_Node<type>* cur(head); cur;)
+	{
+		if (cur->data == val)
+		{
+			cur = delete_and_link(cur);
+			if (!cur->next)
+				tail = cur;
+		}
+		else
+			cur = cur->next;
+	}
+	delete_front();
+}
