@@ -36,3 +36,16 @@ void Priority_Queue<type>::enqueue(type val, ll priority)
 		assert(false); 
 	++added_elements;
 }
+
+template <class type>
+type Priority_Queue<type>::dequeue()
+{
+	assert(!is_empty());
+	--added_elements;
+	if (!q3.is_empty())
+		return q3.dequeue();
+	else if (!q2.is_empty())
+		return q2.dequeue();
+	else
+		return q1.dequeue();
+}
