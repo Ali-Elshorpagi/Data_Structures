@@ -36,3 +36,12 @@ ll  Circular_Queue<type>::next(ll pos)
 {
 	return (pos + 1) % size;
 }
+
+template <class type>
+void  Circular_Queue<type>::enqueue(type val)
+{
+	assert(!is_full());
+	arr[rear] = val;
+	rear = next(rear);
+	++added_elements;
+}

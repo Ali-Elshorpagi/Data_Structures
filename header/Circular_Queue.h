@@ -23,4 +23,5 @@ public:
 	bool is_empty();
     ll get_size();
 	ll next(ll pos);
+    void enqueue(type val);
 };
