@@ -280,3 +280,22 @@ void Singly_LinkedList<type>::swap_repairs()
         }
     }
 }
+
+template <class type>
+void Singly_LinkedList<type>::reverse()
+{
+    if (length <= 1)
+        return;
+    tail = head;
+    S_Node<type>* prv = head;
+    head = head->next;
+    while (head) 
+    {
+        S_Node<type>* next = head->next;
+        head->next = prv;
+        prv = head;
+        head = next;
+    }
+    head = prv;
+    tail->next = nullptr;
+}
