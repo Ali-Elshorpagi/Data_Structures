@@ -33,7 +33,8 @@ public:
 
     Singly_LinkedList();
     ~Singly_LinkedList();
-    S_Node<type>* get_head();
-	unsigned long long get_length();
+    S_Node<type> *get_head();
+    unsigned long long get_length();
     void insert_end(type val);
+    S_Node<type> *find(S_Node<type> *head, type val);
 };
