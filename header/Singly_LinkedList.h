@@ -33,4 +33,6 @@ public:
 
     Singly_LinkedList();
     ~Singly_LinkedList();
+    S_Node<type>* get_head();
+	unsigned long long get_length();
 };
