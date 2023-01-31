@@ -179,3 +179,15 @@ bool Singly_LinkedList<type>::is_same(const Singly_LinkedList<type>& list)
     }
     return true;
 }
+
+template <class type>
+void Singly_LinkedList<type>::delete_node(S_Node<type>* node)
+{
+    auto it = std::find(debug_data.begin(), debug_data.end(), node);
+    if (it != debug_data.end())
+    {
+        debug_data.erase(it);
+        --length;
+        delete node;
+    }
+}
