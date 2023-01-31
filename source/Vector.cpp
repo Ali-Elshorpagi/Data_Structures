@@ -133,3 +133,17 @@ type Vector<type>::pop(ll idx)
     --size;
     return val;
 }
+
+template <class type>
+ll Vector<type>::find_transposition(type val)
+{
+    for (ll i(0); i < size; ++i)
+        if (arr[i] == val)
+        {
+            if (i == 0)
+                return 0;
+            swap(arr[i], arr[i - 1]);
+            return i - 1;
+        }
+    return -1;
+}

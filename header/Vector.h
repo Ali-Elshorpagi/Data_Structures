@@ -30,4 +30,5 @@ public:
     void left_rotate();
     void right_rotate(ll times);
     type pop(ll idx);
+    ll find_transposition(type val);
 };
