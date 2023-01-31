@@ -267,3 +267,16 @@ void Singly_LinkedList<type>::delete_node_with_key(type val)
         }
     }
 }
+
+template <class type>
+void Singly_LinkedList<type>::swap_repairs() 
+{
+    for (S_Node<type>* cur(head); cur; cur = cur->next)
+    {
+        if (cur->next) 
+        {
+            swap(cur->data, cur->next->data);
+            cur = cur->next;
+        }
+    }
+}

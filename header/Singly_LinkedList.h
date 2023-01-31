@@ -54,8 +54,7 @@ public:
     void delete_nth_node(ll n);
     void delete_next_node(S_Node<type> *node);
     void delete_node_with_key(type val);
-
-
+    void swap_repairs();
 
 
 
