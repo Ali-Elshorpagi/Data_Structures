@@ -156,3 +156,11 @@ void Singly_LinkedList<type>::insert_front(type val)
     if (length == 1)
         tail = head;
 }
+
+template <class type>
+S_Node<type>* Singly_LinkedList<type>::get_nth_from_back(ll idx)
+{
+    if (idx > length)
+        return nullptr;
+    return get_nth(length - idx + 1);
+}

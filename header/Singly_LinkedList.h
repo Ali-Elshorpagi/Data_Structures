@@ -46,6 +46,7 @@ public:
 	ll search_improved(type val);
 	ll search_improved_v2(type val);
 void insert_front(type val);
+	S_Node<type>* get_nth_from_back(ll idx);
 
 
 
