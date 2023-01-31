@@ -51,6 +51,7 @@ void insert_front(type val);
 	void delete_node(S_Node<type>* node);
 void delete_first();
 void delete_last();
+void delete_nth_node(ll n);
 
 
 

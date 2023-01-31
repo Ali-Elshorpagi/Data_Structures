@@ -218,3 +218,22 @@ void Singly_LinkedList<type>::delete_last()
     tail = previous;
     tail->next = nullptr;
 }
+
+template <class type>
+void Singly_LinkedList<type>::delete_nth_node(ll n)
+{
+    if (n < 1 || n > length)
+        cout << "Error. No such nth node" << edl;
+    else if (n == 1)
+        delete_first();
+    else
+    {
+        S_Node<type>* before_nth = get_nth(n - 1);
+        S_Node<type>* nth = before_nth->next;
+        bool is_tail = nth == tail;
+        before_nth->next = nth->next;
+        if (is_tail)
+            tail = before_nth;
+        delete_node(nth);
+    }
+}
