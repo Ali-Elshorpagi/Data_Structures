@@ -7,7 +7,7 @@ Vector<type>::Vector(ll sz)
     if (size < 0)
         size = 1;
     capacity = size + 10;
-    arr = new type[capacity] {};
+    arr = new type[capacity]{};
 }
 
 template <class type>
@@ -21,9 +21,34 @@ template <class type>
 void Vector<type>::expand_capacity()
 {
     capacity *= 2;
-    type* arr2 = new type[capacity] {};
+    type *arr2 = new type[capacity]{};
     for (ll i(0); i < size; ++i)
         arr2[i] = arr[i];
     swap(arr, arr2);
     delete[] arr2;
+}
+
+template <class type>
+ll Vector<type>::get_size()
+{
+    return size;
+}
+
+template <class type>
+type Vector<type>::get_value(ll idx)
+{
+    assert(idx >= 0 && idx < size);
+    return arr[idx];
+}
+
+template <class type>
+type Vector<type>::get_front()
+{
+    return arr[0];
+}
+
+template <class type>
+type Vector<type>::get_back()
+{
+    return arr[size - 1];
 }
