@@ -25,6 +25,7 @@ public:
     void print();
      ll find(type val);
     void push_back(type val);
+     void insert(ll idx, type val);
 
 
 };

@@ -84,3 +84,15 @@ void Vector<type>::push_back(type val)
         expand_capacity();
     arr[size++] = val;
 }
+
+template <class type>
+void Vector<type>::insert(ll idx, type val)
+{
+    assert(0 <= idx && idx < size);
+    if (size == capacity)
+        expand_capacity();
+    for (ll p(size - 1); p >= idx; --p)
+        arr[p + 1] = arr[p];
+    arr[idx] = val;
+    ++size;
+}
