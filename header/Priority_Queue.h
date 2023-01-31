@@ -15,4 +15,6 @@ public:
     ~Priority_Queue();
     bool is_empty();
 	bool is_full();
+    	void enqueue(type val, ll priority);
+
 };
