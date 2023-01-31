@@ -126,3 +126,18 @@ void Doubly_LinkedList<type>::insert_sorted(type val)
 		}
 	}
 }
+
+template <class type>
+void Doubly_LinkedList<type>::delete_front()
+{
+	if (!head)
+		return;
+	D_Node<type>* cur(head->next);
+	delete_node(head);
+	head = cur;
+	if (head)
+		head->prev = nullptr;
+	else if (!length)
+		tail = nullptr;
+
+}
