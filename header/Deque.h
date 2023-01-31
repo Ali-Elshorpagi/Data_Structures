@@ -18,4 +18,6 @@ class Deque
 public:
     Deque(int size);
     ~Deque();
+    ll next(ll pos);
+	ll prev(ll pos);
 };
