@@ -5,3 +5,58 @@ Doubly_LinkedList<type>::Doubly_LinkedList() {}
 
 template <class type>
 Doubly_LinkedList<type>::~Doubly_LinkedList() {}
+
+template <class type>
+void Doubly_LinkedList<type>::add_node(D_Node<type> *node)
+{
+    debug_data.emplace_back(node);
+    ++length;
+}
+
+template <class type>
+void Doubly_LinkedList<type>::link(D_Node<type> *first, D_Node<type> *second)
+{
+    if (first)
+        first->next = second;
+    if (second)
+        second->prev = first;
+}
+
+template <class type>
+void Doubly_LinkedList<type>::add_node_between_node_and_next(D_Node<type> *node_before, type val)
+{
+    D_Node<type> *mid = new D_Node<type>(val);
+    ++length;
+    debug_data.emplace_back(mid);
+    D_Node<type> *node_after(node_before->next);
+    link(node_before, mid);
+    link(mid, node_after);
+}
+
+template <class type>
+void Doubly_LinkedList<type>::delete_node(D_Node<type> *node)
+{
+    auto it = std::find(debug_data.begin(), debug_data.end(), node);
+    if (it == debug_data.end())
+        cout << "Node does not exist" << edl;
+    else
+        debug_data.erase(it);
+    --length;
+    delete node;
+}
+
+template <class type>
+D_Node<type> *Doubly_LinkedList<type>::delete_and_link(D_Node<type> *cur)
+{
+    D_Node<type> *ret = cur->prev;
+    link(cur->prev, cur->next);
+    delete_node(cur);
+    return ret;
+}
+
+template <class type>
+void Doubly_LinkedList<type>::delete_and_link_v2(D_Node<type> *cur)
+{
+    link(cur->prev, cur->next);
+    delete_node(cur);
+}
