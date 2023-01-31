@@ -3,8 +3,8 @@
 #include <iostream>
 
 using namespace std;
-
 typedef long long ll;
+#define edl '\n'
 
 template <class type>
 class Vector

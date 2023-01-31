@@ -65,7 +65,7 @@ void Vector<type>::print()
 {
     for (ll i(0); i < size; ++i)
         cout << arr[i] << ' ';
-    cout << '\n';
+    cout << edl;
 }
 
 template <class type>
