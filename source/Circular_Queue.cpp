@@ -24,3 +24,15 @@ bool  Circular_Queue<type>::is_empty()
 {
 	return added_elements == 0;
 }
+
+template <class type>
+ll  Circular_Queue<type>::get_size()
+{
+	return size;
+}
+
+template <class type>
+ll  Circular_Queue<type>::next(ll pos)
+{
+	return (pos + 1) % size;
+}

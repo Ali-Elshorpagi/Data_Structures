@@ -21,4 +21,6 @@ public:
     ~Circular_Queue();
     bool is_full();
 	bool is_empty();
+    ll get_size();
+	ll next(ll pos);
 };
