@@ -20,8 +20,10 @@ public:
     Circular_Queue(ll sz);
     ~Circular_Queue();
     bool is_full();
-	bool is_empty();
+    bool is_empty();
     ll get_size();
-	ll next(ll pos);
+    ll next(ll pos);
     void enqueue(type val);
+    type dequeue();
+    void print();
 };
