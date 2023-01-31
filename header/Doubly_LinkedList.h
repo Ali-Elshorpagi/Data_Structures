@@ -50,6 +50,7 @@ public:
 void insert_sorted(type val);
 void delete_front();
 	void delete_end();
+	void delete_node_with_key(type val);
 
 
 

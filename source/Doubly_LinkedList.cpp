@@ -157,3 +157,25 @@ void Doubly_LinkedList<type>::delete_end()
 		head = nullptr;
 
 }
+
+template <class type>
+void Doubly_LinkedList<type>::delete_node_with_key(type val) 
+{
+	if (!length)
+		return;
+	if (head->data == val)
+		delete_front();
+	else 
+	{
+		for (D_Node<type>* cur(head); cur; cur = cur->next)
+		{
+			if (cur->data == val)
+			{
+				cur = delete_and_link(cur);
+				if (!cur->next)	
+					tail = cur;
+				break;
+			}
+		}
+	}
+}
