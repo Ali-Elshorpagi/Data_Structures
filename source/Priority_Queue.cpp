@@ -13,39 +13,60 @@ Priority_Queue<type>::~Priority_Queue()
 template <class type>
 bool Priority_Queue<type>::is_empty()
 {
-	return added_elements == 0;
+    return added_elements == 0;
 }
 
 template <class type>
 bool Priority_Queue<type>::is_full()
 {
-	return added_elements == size;
+    return added_elements == size;
 }
 
 template <class type>
 void Priority_Queue<type>::enqueue(type val, ll priority)
 {
-	assert(!is_full());
-	if (priority == 1)
-		q1.enqueue(val);
-	else if (priority == 2)
-		q2.enqueue(val);
-	else if (priority == 3)
-		q3.enqueue(val);
-	else
-		assert(false); 
-	++added_elements;
+    assert(!is_full());
+    if (priority == 1)
+        q1.enqueue(val);
+    else if (priority == 2)
+        q2.enqueue(val);
+    else if (priority == 3)
+        q3.enqueue(val);
+    else
+        assert(false);
+    ++added_elements;
 }
 
 template <class type>
 type Priority_Queue<type>::dequeue()
 {
-	assert(!is_empty());
-	--added_elements;
-	if (!q3.is_empty())
-		return q3.dequeue();
-	else if (!q2.is_empty())
-		return q2.dequeue();
-	else
-		return q1.dequeue();
+    assert(!is_empty());
+    --added_elements;
+    if (!q3.is_empty())
+        return q3.dequeue();
+    else if (!q2.is_empty())
+        return q2.dequeue();
+    else
+        return q1.dequeue();
+}
+
+template <class type>
+void Priority_Queue<type>::print()
+{
+    if (!q3.is_empty())
+    {
+        cout << "Priority #3 tasks: ";
+        q3.print();
+    }
+    if (!q2.is_empty())
+    {
+        cout << "Priority #2 tasks: ";
+        q2.print();
+    }
+    if (!q1.is_empty())
+    {
+        cout << "Priority #1 tasks: ";
+        q1.print();
+    }
+    cout << "******************" << edl;
 }
