@@ -132,4 +132,14 @@ string Stack_Array_Based<type>::remove_all_adjacent_duplicates(string str)
 }
 
 
-
+template <class type>
+void Stack_Array_Based<type>::insert_at_bottom(type val)
+{
+	if (is_empty()) push(val);
+	else 
+	{
+		type cur(pop());
+		insert_at_bottom(val);
+		push(cur);
+	}
+}
