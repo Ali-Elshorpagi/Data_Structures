@@ -22,4 +22,5 @@ public:
     void push(type val);
 	type pop();
     type peek();
+    void print();
 };

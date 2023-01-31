@@ -44,3 +44,11 @@ type Stack_Array_Based<type>::peek()
 	assert(!is_empty());
 	return arr[top];
 }
+
+template <class type>
+void Stack_Array_Based<type>::print()
+{
+	for (ll i(top); i > -1; --i)
+		cout << arr[i] << " ";
+	cout << edl;
+}
