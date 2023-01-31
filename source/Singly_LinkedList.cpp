@@ -299,3 +299,19 @@ void Singly_LinkedList<type>::reverse()
     head = prv;
     tail->next = nullptr;
 }
+
+template <class type>
+void Singly_LinkedList<type>::delete_even_positions() 
+{
+    if (length <= 1)
+        return;
+
+    for (S_Node<type>* cur = head->next, *prv = head; cur;)
+    {
+        delete_next_node(prv);	
+        if (!prv->next)	
+            break;
+        cur = prv->next->next;
+        prv = prv->next;
+    }
+}

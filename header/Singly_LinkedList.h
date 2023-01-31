@@ -56,6 +56,7 @@ public:
     void delete_node_with_key(type val);
     void swap_repairs();
     void reverse();
+    void delete_even_positions();
 
 
 
