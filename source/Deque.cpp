@@ -61,3 +61,15 @@ type Deque<type>::dequeue_rear()
 	--added_elements;
 	return value;
 }
+
+template <class type>
+int Deque<type>::is_empty()
+{
+	return added_elements == 0;
+}
+
+template <class type>
+bool Deque<type>::is_full()
+{
+	return added_elements == size;
+}

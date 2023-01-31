@@ -24,6 +24,8 @@ public:
     	void enqueue_front(type val);
         	type dequeue_front();
 	type dequeue_rear();
+    int is_empty();
+	bool is_full();
 
 
 };
