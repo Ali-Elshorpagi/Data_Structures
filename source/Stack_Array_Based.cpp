@@ -87,5 +87,16 @@ ll Stack_Array_Based<type>::reverse_num(ll num)
 	return ans;
 }
 
+template <class type>
+char Stack_Array_Based<type>::get_open_match(char ch)
+{
+	if (ch == ')')
+		return '(';
+	if (ch == ']')
+		return '[';
+	return '{';
+}
+
+
 
 
