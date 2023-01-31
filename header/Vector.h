@@ -16,6 +16,7 @@ class Vector
 public:
     Vector(ll sz);
     ~Vector();
+    void expand_capacity();
    
 };
 
