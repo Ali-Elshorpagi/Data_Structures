@@ -18,9 +18,17 @@ public:
     Stack_Array_Based(unsigned long long size);
     ~Stack_Array_Based();
     bool is_full();
-	bool is_empty();
+    bool is_empty();
     void push(type val);
-	type pop();
+    type pop();
     type peek();
     void print();
+    string reverse_subwords(string line);
+
+
+
+
+
+
+
 };

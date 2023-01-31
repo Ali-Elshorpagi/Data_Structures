@@ -52,3 +52,25 @@ void Stack_Array_Based<type>::print()
 		cout << arr[i] << " ";
 	cout << edl;
 }
+
+template <class type>
+string Stack_Array_Based<type>::reverse_subwords(string line)
+{
+	line += ' ';
+	string ans = "";
+	ll len(line.size());
+	Stack_Array_Based<char>st(len);
+	for (ll i(0); i < len; ++i)
+	{
+		if (line[i] == ' ') {
+			while (!st.is_empty())
+				ans += st.pop();
+			ans += ' ';
+		}
+		else
+			st.push(line[i]);
+	}
+	return ans;
+}
+
+
