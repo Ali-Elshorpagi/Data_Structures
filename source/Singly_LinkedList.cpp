@@ -340,3 +340,25 @@ void Singly_LinkedList<type>::insert_sorted(type val)
         }
     }
 }
+
+template <class type>
+S_Node<type>* Singly_LinkedList<type>::get_previous(S_Node<type>* node)
+{		
+    for (S_Node<type>* cur(head), *prv(nullptr); cur; prv = cur, cur = cur->next)
+    {
+        if (cur == node)
+            return prv;
+    }
+    return nullptr;	
+}
+
+template <class type>
+void Singly_LinkedList<type>::swap_head_tail()
+{
+    if (length <= 1) return;
+    S_Node<type>* prv(get_previous(tail));
+    tail->next = head->next;
+    prv->next = head;
+    head->next = nullptr;
+    swap(tail, head);
+}

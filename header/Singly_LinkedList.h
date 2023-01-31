@@ -58,6 +58,8 @@ public:
     void reverse();
     void delete_even_positions();
     void insert_sorted(type val);
+    S_Node<type>* get_previous(S_Node<type>* node);
+	void swap_head_tail();
 
 
 
