@@ -102,7 +102,7 @@ template <class type>
 ll Singly_LinkedList<type>::search(type val)
 {
     ll idx(0);
-    for (S_Node<type>* cur(head); cur; cur = cur->next, idx++)
+    for (S_Node<type> *cur(head); cur; cur = cur->next, idx++)
         if (cur->data == val)
             return idx;
     return -1;
@@ -112,8 +112,8 @@ template <class type>
 ll Singly_LinkedList<type>::search_improved(type val)
 {
     ll idx(0);
-    S_Node<type>* prv(nullptr);
-    for (S_Node<type>* cur(head); cur; cur = cur->next, idx++)
+    S_Node<type> *prv(nullptr);
+    for (S_Node<type> *cur(head); cur; cur = cur->next, idx++)
     {
         if (cur->data == val)
         {
@@ -131,7 +131,7 @@ template <class type>
 ll Singly_LinkedList<type>::search_improved_v2(type val) // commonly used
 {
     ll idx(0);
-    for (S_Node<type>* cur(head), *prv(nullptr); cur; prv = cur, cur = cur->next)
+    for (S_Node<type> *cur(head), *prv(nullptr); cur; prv = cur, cur = cur->next)
     {
         if (cur->data == val)
         {
@@ -145,11 +145,10 @@ ll Singly_LinkedList<type>::search_improved_v2(type val) // commonly used
     return -1;
 }
 
-
 template <class type>
 void Singly_LinkedList<type>::insert_front(type val)
 {
-    S_Node<type>* item = new S_Node<type>(val);
+    S_Node<type> *item = new S_Node<type>(val);
     ++length;
     item->next = head;
     head = item;
@@ -158,7 +157,7 @@ void Singly_LinkedList<type>::insert_front(type val)
 }
 
 template <class type>
-S_Node<type>* Singly_LinkedList<type>::get_nth_from_back(ll idx)
+S_Node<type> *Singly_LinkedList<type>::get_nth_from_back(ll idx)
 {
     if (idx > length)
         return nullptr;
@@ -166,12 +165,12 @@ S_Node<type>* Singly_LinkedList<type>::get_nth_from_back(ll idx)
 }
 
 template <class type>
-bool Singly_LinkedList<type>::is_same(const Singly_LinkedList<type>& list)
+bool Singly_LinkedList<type>::is_same(const Singly_LinkedList<type> &list)
 {
     if (length != list.length)
         return false;
-    S_Node<type>* temp = list.head;
-    for (S_Node<type>* cur(head); cur; cur = cur->next)
+    S_Node<type> *temp = list.head;
+    for (S_Node<type> *cur(head); cur; cur = cur->next)
     {
         if (cur->data != temp->data)
             return false;
@@ -181,7 +180,7 @@ bool Singly_LinkedList<type>::is_same(const Singly_LinkedList<type>& list)
 }
 
 template <class type>
-void Singly_LinkedList<type>::delete_node(S_Node<type>* node)
+void Singly_LinkedList<type>::delete_node(S_Node<type> *node)
 {
     auto it = std::find(debug_data.begin(), debug_data.end(), node);
     if (it != debug_data.end())
@@ -197,7 +196,7 @@ void Singly_LinkedList<type>::delete_first()
 {
     if (head)
     {
-        S_Node<type>* cur = head;
+        S_Node<type> *cur = head;
         head = head->next;
         delete_node(cur);
         if (!head)
@@ -213,7 +212,7 @@ void Singly_LinkedList<type>::delete_last()
         delete_first();
         return;
     }
-    S_Node<type>* previous = get_nth(length - 1);
+    S_Node<type> *previous = get_nth(length - 1);
     delete_node(tail);
     tail = previous;
     tail->next = nullptr;
@@ -228,12 +227,43 @@ void Singly_LinkedList<type>::delete_nth_node(ll n)
         delete_first();
     else
     {
-        S_Node<type>* before_nth = get_nth(n - 1);
-        S_Node<type>* nth = before_nth->next;
+        S_Node<type> *before_nth = get_nth(n - 1);
+        S_Node<type> *nth = before_nth->next;
         bool is_tail = nth == tail;
         before_nth->next = nth->next;
         if (is_tail)
             tail = before_nth;
         delete_node(nth);
+    }
+}
+
+template <class type>
+void Singly_LinkedList<type>::delete_next_node(S_Node<type> *node)
+{
+    S_Node<type> *to_delete = node->next;
+    bool is_tail = to_delete == tail;
+    node->next = node->next->next;
+    delete_node(to_delete);
+    if (is_tail)
+        tail = node;
+}
+
+template <class type>
+void Singly_LinkedList<type>::delete_node_with_key(type val)
+{
+    if (!length)
+        cout << "list is Empty" << edl;
+    else if (head->data == val)
+        delete_first();
+    else
+    {
+        for (S_Node<type> *cur(head), *prev = nullptr; cur; prev = cur, cur = cur->next)
+        {
+            if (cur->data == val)
+            {
+                delete_next_node(prev);
+                break;
+            }
+        }
     }
 }

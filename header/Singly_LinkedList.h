@@ -38,20 +38,25 @@ public:
     void insert_end(type val);
     S_Node<type> *find(S_Node<type> *head, type val);
     void print();
-	void print_recr(S_Node<type>* h);
-	void print_recr_rever(S_Node<type>* h);
-	unsigned long long get_size();
-	S_Node<type>* get_nth(ll n);
+    void print_recr(S_Node<type> *h);
+    void print_recr_rever(S_Node<type> *h);
+    unsigned long long get_size();
+    S_Node<type> *get_nth(ll n);
     ll search(type val);
-	ll search_improved(type val);
-	ll search_improved_v2(type val);
-void insert_front(type val);
-	S_Node<type>* get_nth_from_back(ll idx);
-	bool is_same(const Singly_LinkedList<type>& list);
-	void delete_node(S_Node<type>* node);
-void delete_first();
-void delete_last();
-void delete_nth_node(ll n);
+    ll search_improved(type val);
+    ll search_improved_v2(type val);
+    void insert_front(type val);
+    S_Node<type> *get_nth_from_back(ll idx);
+    bool is_same(const Singly_LinkedList<type> &list);
+    void delete_node(S_Node<type> *node);
+    void delete_first();
+    void delete_last();
+    void delete_nth_node(ll n);
+    void delete_next_node(S_Node<type> *node);
+    void delete_node_with_key(type val);
+
+
+
 
 
 
