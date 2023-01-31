@@ -98,5 +98,21 @@ char Stack_Array_Based<type>::get_open_match(char ch)
 }
 
 
+template <class type>
+bool Stack_Array_Based<type>::valid_parentheses(string str)
+{
+	ll len(str.size());
+	Stack_Array_Based<char>st(len);
+	for (ll i(0); i < len; ++i)
+	{
+		if (str[i] == '(' || str[i] == '[' || str[i] == '{')
+			st.push(str[i]);
+		else if (st.is_empty() || st.pop() != st.get_open_match(str[i]))
+			return false;
+	}
+	return st.is_empty();
+}
+
+
 
 

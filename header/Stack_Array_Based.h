@@ -26,6 +26,7 @@ public:
     string reverse_subwords(string line);
 ll reverse_num(ll num);
 	char get_open_match(char ch);
+	bool valid_parentheses(string str);
 
 
 
