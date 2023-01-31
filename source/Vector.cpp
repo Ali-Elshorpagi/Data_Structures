@@ -96,3 +96,12 @@ void Vector<type>::insert(ll idx, type val)
     arr[idx] = val;
     ++size;
 }
+
+template <class type>
+void Vector<type>::right_rotate()
+{
+    type last_element = arr[size - 1];
+    for (int p(size - 2); p >= 0; --p)
+        arr[p + 1] = arr[p];
+    arr[0] = last_element;
+}
