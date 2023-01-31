@@ -32,6 +32,13 @@ void Stack_Array_Based<type>::push(type val)
 }
 
 template <class type>
+type Stack_Array_Based<type>::pop()
+{
+	assert(!is_empty());
+	return arr[top--];
+}
+
+template <class type>
 type Stack_Array_Based<type>::peek()
 {
 	assert(!is_empty());

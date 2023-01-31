@@ -20,6 +20,6 @@ public:
     bool is_full();
 	bool is_empty();
     void push(type val);
-
+	type pop();
     type peek();
 };
