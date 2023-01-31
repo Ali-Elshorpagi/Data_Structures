@@ -11,19 +11,25 @@ Queue_LinkedList_Based<type>::~Queue_LinkedList_Based()
 }
 
 template <class type>
-bool Queue_LinkedList_Based <type>::is_empty() 
+bool Queue_LinkedList_Based<type>::is_empty()
 {
-	return list.get_length == 0;
+    return list.get_length == 0;
 }
 
 template <class type>
-void Queue_LinkedList_Based <type>::enqueue(type val)
+void Queue_LinkedList_Based<type>::enqueue(type val)
 {
-	list.insert_end(val);
+    list.insert_end(val);
 }
 
 template <class type>
-void Queue_LinkedList_Based <type>::dequeue() 
+void Queue_LinkedList_Based<type>::dequeue()
 {
-	list.delete_first();
+    list.delete_first();
+}
+
+template <class type>
+void Queue_LinkedList_Based<type>::print()
+{
+    list.print();
 }
