@@ -58,12 +58,17 @@ public:
     void reverse();
     void delete_even_positions();
     void insert_sorted(type val);
-    S_Node<type>* get_previous(S_Node<type>* node);
-	void swap_head_tail();
+    S_Node<type> *get_previous(S_Node<type> *node);
+    void swap_head_tail();
     void left_rotate(ll key);
     void remove_duplicates_not_sorted();
-	void delete_last_occurrence_not_sorted(type key);
+    void delete_last_occurrence_not_sorted(type key);
+S_Node<type>* move_to_end(S_Node<type>* cur, S_Node<type>* prv);
+	void move_key_occurance_to_end_not_sorted(type key);
 	
+
+
+
 
 
 
