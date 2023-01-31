@@ -19,13 +19,12 @@ public:
     Deque(int size);
     ~Deque();
     ll next(ll pos);
-	ll prev(ll pos);
+    ll prev(ll pos);
     void enqueue_rear(type val);
-    	void enqueue_front(type val);
-        	type dequeue_front();
-	type dequeue_rear();
+    void enqueue_front(type val);
+    type dequeue_front();
+    type dequeue_rear();
     int is_empty();
-	bool is_full();
-
-
+    bool is_full();
+    void print();
 };

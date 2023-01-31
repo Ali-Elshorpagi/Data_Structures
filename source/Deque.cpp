@@ -15,61 +15,79 @@ Deque<type>::~Deque()
 template <class type>
 ll Deque<type>::next(ll pos)
 {
-	return (pos + 1) % size;
+    return (pos + 1) % size;
 }
 
 template <class type>
 ll Deque<type>::prev(ll pos)
 {
-	return (pos - 1 + size) % size;
+    return (pos - 1 + size) % size;
 }
 
 template <class type>
 void Deque<type>::enqueue_rear(type val)
-{ 
-	assert(!is_full());
-	array[rear] = val;
-	rear = next(rear);
-	++added_elements;
+{
+    assert(!is_full());
+    array[rear] = val;
+    rear = next(rear);
+    ++added_elements;
 }
 
 template <class type>
 void Deque<type>::enqueue_front(type val)
 {
-	assert(!is_full());
-	front = prev(front); 
-	array[front] = val;
-	++added_elements;
+    assert(!is_full());
+    front = prev(front);
+    array[front] = val;
+    ++added_elements;
 }
 
 template <class type>
 type Deque<type>::dequeue_front()
-{ 
-	assert(!is_empty());
-	type value = array[front];
-	front = next(front);
-	--added_elements;
-	return value;
+{
+    assert(!is_empty());
+    type value = array[front];
+    front = next(front);
+    --added_elements;
+    return value;
 }
 
 template <class type>
 type Deque<type>::dequeue_rear()
 {
-	assert(!is_empty());
-	rear = prev(rear);
-	type value = array[rear];
-	--added_elements;
-	return value;
+    assert(!is_empty());
+    rear = prev(rear);
+    type value = array[rear];
+    --added_elements;
+    return value;
 }
 
 template <class type>
 int Deque<type>::is_empty()
 {
-	return added_elements == 0;
+    return added_elements == 0;
 }
 
 template <class type>
 bool Deque<type>::is_full()
 {
-	return added_elements == size;
+    return added_elements == size;
+}
+
+template <class type>
+void Deque<type>::print()
+{
+    cout << "Front " << front << " - rear " << rear << "\t";
+    if (is_full())
+        cout << "Full";
+    else if (is_empty())
+    {
+        cout << "Empty" << edl << edl;
+        return;
+    }
+    cout << edl;
+
+    for (ll cur(front), step(0); step < added_elements; ++step, cur = next(cur))
+        cout << array[cur] << " ";
+    cout << edl << edl;
 }
