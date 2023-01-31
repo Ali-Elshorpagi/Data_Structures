@@ -57,6 +57,7 @@ public:
     void swap_repairs();
     void reverse();
     void delete_even_positions();
+    void insert_sorted(type val);
 
 
 

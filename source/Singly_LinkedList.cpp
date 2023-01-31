@@ -315,3 +315,28 @@ void Singly_LinkedList<type>::delete_even_positions()
         prv = prv->next;
     }
 }
+
+
+template <class type>
+void Singly_LinkedList<type>::insert_sorted(type val)
+{
+    if (!length || head->data >= val)
+        insert_front(val);
+    else if (tail->data <= val)
+        insert_end(val);
+    else 
+    {
+       
+       for (S_Node<type>* cur(head), *prv(nullptr); cur; prv = cur, cur = cur->next)
+        {
+            if (cur->data >= val)
+            {
+                S_Node<type>* item = new S_Node<type>(val);
+                ++length;
+                item->next = prv->next;
+                prv->next = item;
+                break;
+            }
+        }
+    }
+}
