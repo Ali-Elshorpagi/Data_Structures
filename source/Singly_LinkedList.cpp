@@ -204,3 +204,17 @@ void Singly_LinkedList<type>::delete_first()
             tail = nullptr;
     }
 }
+
+template <class type>
+void Singly_LinkedList<type>::delete_last()
+{
+    if (length <= 1)
+    {
+        delete_first();
+        return;
+    }
+    S_Node<type>* previous = get_nth(length - 1);
+    delete_node(tail);
+    tail = previous;
+    tail->next = nullptr;
+}

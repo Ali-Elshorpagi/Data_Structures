@@ -50,6 +50,7 @@ void insert_front(type val);
 	bool is_same(const Singly_LinkedList<type>& list);
 	void delete_node(S_Node<type>* node);
 void delete_first();
+void delete_last();
 
 
 
