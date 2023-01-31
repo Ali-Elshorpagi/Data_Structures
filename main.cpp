@@ -12,7 +12,7 @@ typedef long long ll;
 int main()
 {
 	Mesh_Ali;
-    
+
 	cout << edl << "DONE" << edl;
 	return 0;
 }

@@ -4,7 +4,15 @@ template <class type>
 Doubly_LinkedList<type>::Doubly_LinkedList() {}
 
 template <class type>
-Doubly_LinkedList<type>::~Doubly_LinkedList() {}
+Doubly_LinkedList<type>::~Doubly_LinkedList()
+{
+    while (head)
+    {
+        D_Node<type> *current(head->next);
+        delete head;
+        head = current;
+    }
+}
 
 template <class type>
 void Doubly_LinkedList<type>::add_node(D_Node<type> *node)
