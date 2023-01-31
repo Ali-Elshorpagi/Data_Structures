@@ -113,6 +113,23 @@ bool Stack_Array_Based<type>::valid_parentheses(string str)
 	return st.is_empty();
 }
 
+template <class type>
+string Stack_Array_Based<type>::remove_all_adjacent_duplicates(string str)
+{
+	ll len(str.size());
+	Stack_Array_Based<char>st(len);
+	for (ll i(0); i < len; ++i)
+	{
+		if (!st.is_empty() && st.peek() == str[i])
+			st.pop();
+		else
+			st.push(str[i]);
+	}
+	str = "";
+	while (!st.is_empty())
+		str = st.pop() + str;
+	return str;
+}
 
 
 
