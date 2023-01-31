@@ -46,6 +46,8 @@ public:
     void print();
 	void print_reversed();
     void insert_end(type val);
+    	void insert_front(type val);
+
 
 
 

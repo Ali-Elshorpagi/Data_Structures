@@ -91,3 +91,17 @@ void Doubly_LinkedList<type>::insert_end(type val)
 		tail = item;
 	}
 }
+
+template <class type>
+void Doubly_LinkedList<type>::insert_front(type val)
+{
+	D_Node<type>* item = new D_Node<type>(val);
+	add_node(item);
+	if (!head)
+		head = tail = item;
+	else 
+	{
+		link(item, head);
+		head = item;
+	}
+}
