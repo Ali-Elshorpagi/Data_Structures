@@ -23,3 +23,17 @@ bool Stack_Array_Based<type>::is_empty()
 {
 	return top == -1;
 }
+
+template <class type>
+void Stack_Array_Based<type>::push(type val)
+{
+	assert(!is_full());
+	arr[++top] = val;
+}
+
+template <class type>
+type Stack_Array_Based<type>::peek()
+{
+	assert(!is_empty());
+	return arr[top];
+}
