@@ -12,4 +12,6 @@ public:
 	~Queue_LinkedList_Based();
     bool is_empty();
     void enqueue(type val);
+    	void dequeue();
+
 };

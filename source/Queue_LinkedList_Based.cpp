@@ -21,3 +21,9 @@ void Queue_LinkedList_Based <type>::enqueue(type val)
 {
 	list.insert_end(val);
 }
+
+template <class type>
+void Queue_LinkedList_Based <type>::dequeue() 
+{
+	list.delete_first();
+}
