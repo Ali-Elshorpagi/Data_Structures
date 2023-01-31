@@ -141,3 +141,19 @@ void Doubly_LinkedList<type>::delete_front()
 		tail = nullptr;
 
 }
+
+
+template <class type>
+void Doubly_LinkedList<type>::delete_end() 
+{
+	if (!head)
+		return;
+	D_Node<type>* cur(tail->prev);
+	delete_node(tail);
+	tail = cur;
+	if (tail)
+		tail->next = nullptr;
+	else if (!length)
+		head = nullptr;
+
+}

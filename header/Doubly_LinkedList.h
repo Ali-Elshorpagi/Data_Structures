@@ -49,6 +49,8 @@ public:
     	void insert_front(type val);
 void insert_sorted(type val);
 void delete_front();
+	void delete_end();
+
 
 
 
