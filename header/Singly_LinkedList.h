@@ -42,6 +42,9 @@ public:
 	void print_recr_rever(S_Node<type>* h);
 	unsigned long long get_size();
 	S_Node<type>* get_nth(ll n);
+    ll search(type val);
+	ll search_improved(type val);
+	ll search_improved_v2(type val);
 
 
 

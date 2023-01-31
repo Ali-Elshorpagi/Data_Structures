@@ -97,3 +97,50 @@ S_Node<type> *Singly_LinkedList<type>::get_nth(ll n)
             return cur;
     return nullptr;
 }
+
+template <class type>
+ll Singly_LinkedList<type>::search(type val)
+{
+    ll idx(0);
+    for (S_Node<type>* cur(head); cur; cur = cur->next, idx++)
+        if (cur->data == val)
+            return idx;
+    return -1;
+}
+
+template <class type>
+ll Singly_LinkedList<type>::search_improved(type val)
+{
+    ll idx(0);
+    S_Node<type>* prv(nullptr);
+    for (S_Node<type>* cur(head); cur; cur = cur->next, idx++)
+    {
+        if (cur->data == val)
+        {
+            if (!prv)
+                return idx;
+            swap(prv->data, cur->data);
+            return idx - 1;
+        }
+        prv = cur;
+    }
+    return -1;
+}
+
+template <class type>
+ll Singly_LinkedList<type>::search_improved_v2(type val) // commonly used
+{
+    ll idx(0);
+    for (S_Node<type>* cur(head), *prv(nullptr); cur; prv = cur, cur = cur->next)
+    {
+        if (cur->data == val)
+        {
+            if (!prv)
+                return idx;
+            swap(prv->data, cur->data);
+            return idx - 1;
+        }
+        ++idx;
+    }
+    return -1;
+}
