@@ -236,3 +236,29 @@ bool Doubly_LinkedList<type>::is_palindrome()
 	}
 	return true;
 }
+
+
+
+template <class type>
+type Doubly_LinkedList<type>::middle_value_0()
+{
+	assert(head);
+	D_Node<type>* start(head), * end(tail);
+	while (start != end && start->next != end)
+		start = start->next, end = end->prev;
+	return end->data;
+}
+
+template <class type>
+type Doubly_LinkedList<type>::middle_value_1()
+{
+	// based on The Tortoise and the Hare Algorithm
+	assert(head);
+	D_Node<type>* fast(head), * slow(head);
+	while (fast && fast->next) 
+	{
+		fast = fast->next->next;
+		slow = slow->next;
+	}
+	return slow->data;
+}

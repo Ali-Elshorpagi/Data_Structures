@@ -55,7 +55,8 @@ void delete_front();
 void delete_even_positions();
 	void delete_odd_positions();
     	bool is_palindrome();
-
+type middle_value_0();
+	type middle_value_1();
 
 
 
