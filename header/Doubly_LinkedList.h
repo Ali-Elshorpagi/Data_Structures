@@ -54,6 +54,8 @@ void delete_front();
 	void delete_all_nodes_with_key(type val);
 void delete_even_positions();
 	void delete_odd_positions();
+    	bool is_palindrome();
+
 
 
 

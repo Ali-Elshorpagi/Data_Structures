@@ -220,3 +220,19 @@ void Doubly_LinkedList<type>::delete_odd_positions()
 	delete_even_positions();
 	delete_front();
 }
+
+template <class type>
+bool Doubly_LinkedList<type>::is_palindrome()
+{
+	if (length <= 1)
+		return true;
+	D_Node<type>* start(head), *end(tail);
+	ll len = length / 2;
+	while (len--)
+	{
+		if (start->data != end->data)
+			return false;
+		start = start->next, end = end->prev;
+	}
+	return true;
+}
