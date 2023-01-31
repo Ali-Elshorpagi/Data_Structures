@@ -61,6 +61,9 @@ public:
     S_Node<type>* get_previous(S_Node<type>* node);
 	void swap_head_tail();
     void left_rotate(ll key);
+    void remove_duplicates_not_sorted();
+	void delete_last_occurrence_not_sorted(type key);
+	
 
 
 

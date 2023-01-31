@@ -374,3 +374,45 @@ void Singly_LinkedList<type>::left_rotate(ll key)
     head = cur->next;
     tail->next = nullptr;
 }
+
+
+template <class type>
+void Singly_LinkedList<type>::remove_duplicates_not_sorted()
+{
+    if (length <= 1) return;
+
+    for (S_Node<type>* cur1(head); cur1; cur1 = cur1->next)
+    {
+        for (S_Node<type>* cur2(cur1->next), *prv (cur1); cur2;)
+        {
+            if (cur1->data == cur2->data) {
+                delete_next_node(prv);
+                cur2 = prv->next;
+            }
+            else
+                prv = cur2, cur2 = cur2->next;	
+        }
+    }
+}
+
+template <class type>
+void Singly_LinkedList<type>::delete_last_occurrence_not_sorted(type key)
+{
+    if (!length) return;
+    S_Node<type>* delete_node(nullptr);
+    bool flag(0);
+
+    for (S_Node<type>* cur(head), *prv(nullptr); cur; prv = cur, cur = cur->next)
+    {
+        if (cur->data == key)
+            flag = 1, delete_node = prv;
+    }
+    if (flag)
+    {
+        if (delete_node)
+            delete_next_node(delete_node);
+        else
+            delete_first();
+    }
+      
+}
