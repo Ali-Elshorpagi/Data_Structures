@@ -143,3 +143,12 @@ void Stack_Array_Based<type>::insert_at_bottom(type val)
 		push(cur);
 	}
 }
+
+template <class type>
+void Stack_Array_Based<type>::reverse()
+{
+	if (is_empty()) return;
+	type cur(pop());
+	reverse();
+	insert_at_bottom(cur);
+}

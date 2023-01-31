@@ -29,6 +29,7 @@ ll reverse_num(ll num);
 	bool valid_parentheses(string str);
 	string remove_all_adjacent_duplicates(string str);
 	void insert_at_bottom(type val);
+	void reverse();
 
 
 
