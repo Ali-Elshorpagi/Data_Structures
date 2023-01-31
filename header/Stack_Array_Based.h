@@ -24,7 +24,7 @@ public:
     type peek();
     void print();
     string reverse_subwords(string line);
-
+ll reverse_num(ll num);
 
 
 

@@ -73,4 +73,19 @@ string Stack_Array_Based<type>::reverse_subwords(string line)
 	return ans;
 }
 
+template <class type>
+ll Stack_Array_Based<type>::reverse_num(ll num)
+{
+	if (!num) return 0;
+	ll ans(0), i(1);
+	Stack_Array_Based<ll>st(51);
+	while (num)
+		st.push(num % 10), num /= 10;
+
+	while (!st.is_empty())
+		ans = st.pop() * i + ans, i *= 10;
+	return ans;
+}
+
+
 
