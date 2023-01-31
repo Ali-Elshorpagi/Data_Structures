@@ -23,6 +23,8 @@ public:
     type get_back();
     void set_value(ll idx, type val);
     void print();
+     ll find(type val);
+    void push_back(type val);
 
 
 };

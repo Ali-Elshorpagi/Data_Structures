@@ -67,3 +67,20 @@ void Vector<type>::print()
         cout << arr[i] << ' ';
     cout << '\n';
 }
+
+template <class type>
+ll Vector<type>::find(type val)
+{
+    for (ll i(0); i < size; ++i)
+        if (arr[i] == val)
+            return i;
+    return -1;
+}
+
+template <class type>
+void Vector<type>::push_back(type val)
+{
+    if (size == capacity)
+        expand_capacity();
+    arr[size++] = val;
+}
