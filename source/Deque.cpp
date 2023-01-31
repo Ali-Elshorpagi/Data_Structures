@@ -32,3 +32,12 @@ void Deque<type>::enqueue_rear(type val)
 	rear = next(rear);
 	++added_elements;
 }
+
+template <class type>
+void Deque<type>::enqueue_front(type val)
+{
+	assert(!is_full());
+	front = prev(front); 
+	array[front] = val;
+	++added_elements;
+}
