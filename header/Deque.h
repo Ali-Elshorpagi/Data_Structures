@@ -23,6 +23,7 @@ public:
     void enqueue_rear(type val);
     	void enqueue_front(type val);
         	type dequeue_front();
+	type dequeue_rear();
 
 
 };

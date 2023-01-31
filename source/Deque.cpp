@@ -51,3 +51,13 @@ type Deque<type>::dequeue_front()
 	--added_elements;
 	return value;
 }
+
+template <class type>
+type Deque<type>::dequeue_rear()
+{
+	assert(!is_empty());
+	rear = prev(rear);
+	type value = array[rear];
+	--added_elements;
+	return value;
+}
