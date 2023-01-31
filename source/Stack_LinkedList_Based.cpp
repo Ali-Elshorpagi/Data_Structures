@@ -17,3 +17,31 @@ type Stack_LinkedList_Based<type>::is_empty()
 {
 	return !head;
 }
+
+
+template <class type>
+void Stack_LinkedList_Based<type>::push(type val)
+{
+	SLL_Node* item = new SLL_Node(val);
+	item->next = head;
+	head = item;
+}
+
+template <class type>
+type Stack_LinkedList_Based<type>::pop()
+{
+	assert(!is_empty());
+	type element = head->data;
+	SLL_Node* temp = head;
+	head = head->next;
+	delete temp;
+	return element;
+}
+
+template <class type>
+type Stack_LinkedList_Based<type>::peek()
+{
+	assert(!is_empty());
+	type element = head->data;
+	return element;
+}

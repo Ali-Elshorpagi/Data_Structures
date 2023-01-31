@@ -21,5 +21,8 @@ public:
 	Stack_LinkedList_Based();
 	~Stack_LinkedList_Based();
     type is_empty();
+    void push(type val);
+	type pop();
+	type peek();
 };
 
