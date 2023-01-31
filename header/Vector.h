@@ -21,4 +21,5 @@ public:
     type get_value(ll idx);
     type get_front();
     type get_back();
+     void set_value(ll idx,  type val);
 };

@@ -52,3 +52,10 @@ type Vector<type>::get_back()
 {
     return arr[size - 1];
 }
+
+template <class type>
+void Vector<type>::set_value(ll idx, type val)
+{
+    assert(idx >= 0 && idx < size);
+    arr[idx] = val;
+}
