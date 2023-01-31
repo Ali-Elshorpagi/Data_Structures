@@ -47,7 +47,7 @@ public:
 	void print_reversed();
     void insert_end(type val);
     	void insert_front(type val);
-
+void insert_sorted(type val);
 
 
 

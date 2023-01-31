@@ -105,3 +105,24 @@ void Doubly_LinkedList<type>::insert_front(type val)
 		head = item;
 	}
 }
+
+
+template <class type>
+void Doubly_LinkedList<type>::insert_sorted(type val)
+{
+	if (!length || val <= head->data)
+		insert_front(val);
+	else if (tail->data <= val)
+		insert_end(val);
+	else
+	{
+		for (D_Node<type>* cur(head); cur; cur = cur->next)
+		{
+			if (val <= cur->data)
+			{
+				add_node_between_node_and_next(cur->prev, val);
+				break;
+			}
+		}
+	}
+}
