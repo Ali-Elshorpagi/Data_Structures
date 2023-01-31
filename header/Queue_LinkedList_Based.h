@@ -10,5 +10,6 @@ class Queue_LinkedList_Based
 public:
 	Queue_LinkedList_Based();
 	~Queue_LinkedList_Based();
-    
+    bool is_empty();
+    void enqueue(type val);
 };
