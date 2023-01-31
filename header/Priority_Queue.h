@@ -13,4 +13,6 @@ class Priority_Queue
 public:
     Priority_Queue(ll sz);
     ~Priority_Queue();
+    bool is_empty();
+	bool is_full();
 };

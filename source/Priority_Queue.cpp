@@ -9,3 +9,15 @@ template <class type>
 Priority_Queue<type>::~Priority_Queue()
 {
 }
+
+template <class type>
+bool Priority_Queue<type>::is_empty()
+{
+	return added_elements == 0;
+}
+
+template <class type>
+bool Priority_Queue<type>::is_full()
+{
+	return added_elements == size;
+}
