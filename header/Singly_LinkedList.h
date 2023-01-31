@@ -60,6 +60,7 @@ public:
     void insert_sorted(type val);
     S_Node<type>* get_previous(S_Node<type>* node);
 	void swap_head_tail();
+    void left_rotate(ll key);
 
 
 

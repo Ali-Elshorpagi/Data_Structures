@@ -362,3 +362,15 @@ void Singly_LinkedList<type>::swap_head_tail()
     head->next = nullptr;
     swap(tail, head);
 }
+
+template <class type>
+void Singly_LinkedList<type>::left_rotate(ll key)
+{
+    key %= length;
+    if (!key || length <= 1) return;
+    S_Node<type>* cur(get_nth(key));
+    tail->next = head;
+    tail = cur;
+    head = cur->next;
+    tail->next = nullptr;
+}
