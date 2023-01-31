@@ -24,17 +24,10 @@ public:
     type peek();
     void print();
     string reverse_subwords(string line);
-ll reverse_num(ll num);
-	char get_open_match(char ch);
-	bool valid_parentheses(string str);
-	string remove_all_adjacent_duplicates(string str);
-	void insert_at_bottom(type val);
-	void reverse();
-
-
-
-
-
-
-
+    ll reverse_num(ll num);
+    char get_open_match(char ch);
+    bool valid_parentheses(string str);
+    string remove_all_adjacent_duplicates(string str);
+    void insert_at_bottom(type val);
+    void reverse();
 };
