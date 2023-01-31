@@ -77,3 +77,17 @@ void Doubly_LinkedList<type>::print_reversed()
 		cout << cur->data << " ";
 	cout << edl;
 }
+
+template <class type>
+void Doubly_LinkedList<type>::insert_end(type val)
+{
+	D_Node<type>* item = new D_Node<type>(val);
+	add_node(item);
+	if (!head)
+		head = tail = item;
+	else 
+	{
+		link(tail, item);
+		tail = item;
+	}
+}

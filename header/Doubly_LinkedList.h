@@ -45,6 +45,7 @@ public:
     Doubly_LinkedList &operator=(const Doubly_LinkedList &another) = delete;
     void print();
 	void print_reversed();
+    void insert_end(type val);
 
 
 
