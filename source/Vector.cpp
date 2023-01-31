@@ -59,3 +59,11 @@ void Vector<type>::set_value(ll idx, type val)
     assert(idx >= 0 && idx < size);
     arr[idx] = val;
 }
+
+template <class type>
+void Vector<type>::print()
+{
+    for (ll i(0); i < size; ++i)
+        cout << arr[i] << ' ';
+    cout << '\n';
+}
