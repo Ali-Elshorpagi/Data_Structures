@@ -449,5 +449,12 @@ void Singly_LinkedList<type>::move_key_occurance_to_end_not_sorted(type key)
     }
 }
 
-
+template <class type>
+ll Singly_LinkedList<type>::max_node(S_Node<type>* h , S_Node<type>* mx )
+{
+    if (!length) return INT_MIN;
+    if (!h) return mx->data;
+    if (h->data > mx->data) mx = h;
+    return max_node(h->next, mx);
+}
 
