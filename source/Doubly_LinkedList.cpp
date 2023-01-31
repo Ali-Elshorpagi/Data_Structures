@@ -199,3 +199,24 @@ void Doubly_LinkedList<type>::delete_all_nodes_with_key(type val)
 	}
 	delete_front();
 }
+
+
+template <class type>
+void Doubly_LinkedList<type>::delete_even_positions()
+{
+	if (length <= 1) return;
+	for (D_Node<type>* cur(head); cur && cur->next; cur = cur->next)
+	{
+		delete_and_link_v2(cur->next);
+		if (!cur->next)
+			tail = cur;
+	}
+}
+
+template <class type>
+void Doubly_LinkedList<type>::delete_odd_positions()
+{
+	insert_front(-1);
+	delete_even_positions();
+	delete_front();
+}
