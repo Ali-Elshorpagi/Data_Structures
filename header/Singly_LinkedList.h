@@ -37,4 +37,14 @@ public:
     unsigned long long get_length();
     void insert_end(type val);
     S_Node<type> *find(S_Node<type> *head, type val);
+    void print();
+	void print_recr(S_Node<type>* h);
+	void print_recr_rever(S_Node<type>* h);
+	
+
+
+
+
+
+
 };

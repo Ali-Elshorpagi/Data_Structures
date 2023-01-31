@@ -50,3 +50,35 @@ S_Node<type> *Singly_LinkedList<type>::find(S_Node<type> *head, type val)
     }
     return nullptr;
 }
+
+template <class type>
+void Singly_LinkedList<type>::print()
+{
+    for (S_Node<type> *i(head); i; i = i->next)
+        cout << i->data << ' ';
+    cout << edl;
+}
+
+template <class type>
+void Singly_LinkedList<type>::print_recr(S_Node<type> *h)
+{
+    if (h == nullptr)
+    {
+        cout << edl;
+        return;
+    }
+    cout << h->data << ' ';
+    print_recr(h->next);
+}
+
+template <class type>
+void Singly_LinkedList<type>::print_recr_rever(S_Node<type> *h)
+{
+    if (h == nullptr)
+    {
+        cout << edl;
+        return;
+    }
+    print_recr(h->next);
+    cout << h->data << ' ';
+}
