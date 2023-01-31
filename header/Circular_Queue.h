@@ -19,4 +19,6 @@ class Circular_Queue
 public:
     Circular_Queue(ll sz);
     ~Circular_Queue();
+    bool is_full();
+	bool is_empty();
 };
