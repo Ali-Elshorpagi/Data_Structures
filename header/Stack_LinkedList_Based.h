@@ -20,5 +20,6 @@ class Stack_LinkedList_Based
 public:
 	Stack_LinkedList_Based();
 	~Stack_LinkedList_Based();
+    type is_empty();
 };
 
