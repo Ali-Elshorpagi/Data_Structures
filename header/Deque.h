@@ -20,4 +20,5 @@ public:
     ~Deque();
     ll next(ll pos);
 	ll prev(ll pos);
+    void enqueue_rear(type val);
 };

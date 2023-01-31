@@ -23,3 +23,12 @@ ll Deque<type>::prev(ll pos)
 {
 	return (pos - 1 + size) % size;
 }
+
+template <class type>
+void Deque<type>::enqueue_rear(type val)
+{ 
+	assert(!is_full());
+	array[rear] = val;
+	rear = next(rear);
+	++added_elements;
+}
