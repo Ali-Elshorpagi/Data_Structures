@@ -57,6 +57,8 @@ void delete_even_positions();
     	bool is_palindrome();
 type middle_value_0();
 	type middle_value_1();
+    	void reverse();
+
 
 
 

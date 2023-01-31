@@ -262,3 +262,18 @@ type Doubly_LinkedList<type>::middle_value_1()
 	}
 	return slow->data;
 }
+
+template <class type>
+void Doubly_LinkedList<type>::reverse()
+{
+	if (length <= 1)return;
+	D_Node<type>* first(head), * second(head->next);
+	while (second)
+	{
+		D_Node<type>* first_temp(second), * second_temp(second->next);
+		link(second, first);				
+		first = first_temp, second = second_temp;
+	}
+	swap(head, tail);
+	head->prev = tail->next = nullptr;
+}
