@@ -33,6 +33,9 @@ ll tree_height();
 ll total_nodes();
 	ll no_leaf_nodes();
     bool is_exists(type value);
+    bool is_perfect(ll h = -1);
+	bool is_perfect_fomula();
+	void print_inorder_iterative();
 
 
 

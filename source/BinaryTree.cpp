@@ -134,3 +134,51 @@ bool BinaryTree<type>::is_exists(type value)
 		res = right->is_exists(value);
 	return res;
 }
+
+template <class type>
+bool BinaryTree<type>::is_perfect_fomula()
+{
+	ll height (tree_height());
+	ll nodes (total_nodes());
+	ll res = pow(2, (height + 1)) - 1;
+	return (res == nodes);
+}
+
+
+template <class type>
+bool BinaryTree<type>::is_perfect(ll h)
+{
+	if (h == -1) // first call
+		h = tree_height();
+
+	if (!left && !right)
+		return h == 0;
+
+	if (!left && right || left && !right)
+		return false; 
+	return left->is_perfect(h - 1) && right->is_perfect(h - 1);
+}
+
+template <class type>
+void BinaryTree<type>::print_inorder_iterative()
+{
+	stack<pair<BinaryTree<type>*, bool>> nodes;
+	nodes.push(make_pair(this, false));
+	while (!nodes.empty())
+	{
+		BinaryTree<type>* current(nodes.top().first);
+		bool is_done(nodes.top().second);
+		nodes.pop();
+		if (is_done)
+			cout << current->data << ' ';
+		else
+		{
+			if (current->right)
+				nodes.push(make_pair(current->right, false));
+			nodes.push(make_pair(current, true));
+			if (current->left)
+				nodes.push(make_pair(current->left, false));
+		}
+	}
+	cout << edl;
+}
