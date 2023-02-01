@@ -12,6 +12,8 @@ Singly_LinkedList<type>::~Singly_LinkedList()
         delete head;
         head = current;
     }
+    head = nullptr;
+    tail = nullptr;
 }
 
 template <class type>

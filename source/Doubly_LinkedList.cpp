@@ -12,6 +12,8 @@ Doubly_LinkedList<type>::~Doubly_LinkedList()
         delete head;
         head = current;
     }
+    head = nullptr;
+    tail = nullptr;
 }
 
 template <class type>

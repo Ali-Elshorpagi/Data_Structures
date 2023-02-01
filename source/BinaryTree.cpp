@@ -1,4 +1,4 @@
-#include "BinaryTree.h"
+#include "..\\header\BinaryTree.h"
 
 template <class type>
 BinaryTree<type>::BinaryTree(type data) : data(data)
