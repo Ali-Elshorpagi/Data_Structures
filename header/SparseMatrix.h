@@ -4,6 +4,8 @@
 #include <cassert>
 
 using namespace std;
+#define edl '\n'
+typedef long long ll;
 
 struct Col_Node
 {
@@ -116,7 +118,7 @@ struct Row_Node
 };
 
 class SparseMatrix
-{ // With C++ templates or inheritance, much duplicates might be avoided
+{
 private:
     Row_Node *head{};
     Row_Node *tail{};
