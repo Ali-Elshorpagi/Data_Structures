@@ -182,3 +182,13 @@ void BinaryTree<type>::print_inorder_iterative()
 	}
 	cout << edl;
 }
+
+template <class type>
+void BinaryTree<type>::traverse_left_boundry()
+{
+	cout << data << ' ';
+	if (left)
+		left->traverse_left_boundry();
+	else if (right)
+		right->traverse_left_boundry();
+}

@@ -36,6 +36,7 @@ ll total_nodes();
     bool is_perfect(ll h = -1);
 	bool is_perfect_fomula();
 	void print_inorder_iterative();
+    void traverse_left_boundry();
 
 
 
