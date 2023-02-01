@@ -28,6 +28,7 @@ public:
 	void print_in_order();
     	void print_pre_order();
 void print_post_order();
+type tree_max();
 
 
 

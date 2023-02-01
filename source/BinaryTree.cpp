@@ -78,3 +78,15 @@ void BinaryTree<type>::print_post_order()
 		right->print_post_order();
 	cout << data << ' ';
 }
+
+template <class type>
+type BinaryTree<type>::tree_max()
+{
+	type mx = data;
+	if (left)
+		mx = max(mx, left->tree_max());
+	if (right)
+		mx = max(mx, right->tree_max());
+
+	return mx;
+}
