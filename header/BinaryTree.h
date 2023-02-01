@@ -38,6 +38,11 @@ ll total_nodes();
 	void print_inorder_iterative();
     void traverse_left_boundry();
     pair<ll, ll> tree_diameter();
+    void level_order_traversal_0();
+	void level_order_traversal_1();
+	void print_level_nodes(ll level);
+	void level_order_traversal_recursive();
+	void level_order_traversal_spiral();
 
 
 

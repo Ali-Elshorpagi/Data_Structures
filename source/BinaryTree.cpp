@@ -211,3 +211,108 @@ pair<ll,ll> BinaryTree<type>::tree_diameter()
 	res.second = 1 + max(left_diam.second, right_diam.second);
 	return res;
 }
+
+
+template <class type>
+void BinaryTree<type>::level_order_traversal_0()
+{
+	queue<BinaryTree<type>*> nodes_queue;
+	nodes_queue.push(this);
+	while (!nodes_queue.empty())
+	{
+		BinaryTree<type>* cur(nodes_queue.front());
+		nodes_queue.pop();
+		cout << cur->data << ' ';
+		if (cur->left)
+			nodes_queue.push(cur->left);
+		if (cur->right)
+			nodes_queue.push(cur->right);
+	}
+	cout << edl;
+}
+
+template <class type>
+void BinaryTree<type>::level_order_traversal_1()
+{
+	queue<BinaryTree*> nodes_queue;
+	nodes_queue.push(this);
+	ll level(0),sz;
+	while (!nodes_queue.empty())
+	{
+		sz = nodes_queue.size();
+		cout << "Level " << level << ": ";
+		while (sz--)
+		{
+			BinaryTree<type>* cur(nodes_queue.front());
+			nodes_queue.pop();
+			cout << cur->data << ' ';
+			if (cur->left)
+				nodes_queue.push(cur->left);
+			if (cur->right)
+				nodes_queue.push(cur->right);
+		}
+		++level;
+		cout << edl;
+	}
+}
+
+template <class type>
+void BinaryTree<type>::print_level_nodes(ll level)
+{
+	if (!level)
+		cout << data << ' ';
+	else if (level)
+	{
+		if (left)
+			left->print_level_nodes(level - 1);
+		if (right)
+			right->print_level_nodes(level - 1);
+	}
+}
+
+template <class type>
+void BinaryTree<type>::level_order_traversal_recursive() // O(N^2)
+{
+	ll height(tree_height());
+	for (ll level(0); level <= height; ++level)
+		print_level_nodes(level);
+}
+
+template <class type>
+void BinaryTree<type>::level_order_traversal_spiral()
+{
+	deque<BinaryTree*> nodes_deque;
+	nodes_deque.push_back(this);
+	ll level(0), sz;
+	bool flag(true);
+	while (!nodes_deque.empty())
+	{
+		sz = nodes_deque.size();
+		cout << "Level " << level << ": ";
+		while (sz--)
+		{
+			BinaryTree<type>* cur;
+			if (flag)
+			{
+				cur = nodes_deque.front();
+				nodes_deque.pop_front();
+				if (cur->left)
+					nodes_deque.push_back(cur->left);
+				if (cur->right)
+					nodes_deque.push_back(cur->right);
+			}
+			else 
+			{
+				cur = nodes_deque.back();
+				nodes_deque.pop_back();
+				if (cur->right)
+					nodes_deque.push_front(cur->right);
+				if (cur->left)
+					nodes_deque.push_front(cur->left);
+			}
+			cout << cur->data << ' ';
+		}
+		flag = !flag, ++level;
+		cout << edl;
+	}
+}
