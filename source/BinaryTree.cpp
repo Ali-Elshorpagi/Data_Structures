@@ -192,3 +192,22 @@ void BinaryTree<type>::traverse_left_boundry()
 	else if (right)
 		right->traverse_left_boundry();
 }
+
+template <class type>
+pair<ll,ll> BinaryTree<type>::tree_diameter() 
+{
+	pair<ll, ll> res(make_pair(0, 0));
+	if (!left && !right)
+		return res;
+	pair<ll, ll> left_diam(make_pair(0, 0));
+	pair<ll, ll> right_diam(make_pair(0, 0));
+	if (left)
+		left_diam = left->tree_diameter(), res.first += 1 + left_diam.second;
+	if (right)
+		right_diam = right->tree_diameter(), res.first += 1 + right_diam.second;
+	// diameter if in one of my children subtrees
+	res.first = max(res.first, max(left_diam.first, right_diam.first));
+	// normal height computation
+	res.second = 1 + max(left_diam.second, right_diam.second);
+	return res;
+}

@@ -37,6 +37,7 @@ ll total_nodes();
 	bool is_perfect_fomula();
 	void print_inorder_iterative();
     void traverse_left_boundry();
+    pair<ll, ll> tree_diameter();
 
 
 
