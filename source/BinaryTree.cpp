@@ -480,3 +480,30 @@ string BinaryTree<type>::parenthesize_canonical()
 	repr += ")";
 	return repr;
 }
+
+
+template <class type>
+bool BinaryTree<type>::is_mirror(BinaryTree<type>* first, BinaryTree<type>* second)
+{
+	if (!first && !second)
+		return true;
+
+	if (first && second && first->data == second->data)
+		return is_mirror(first->left, second->right) &&
+		is_mirror(first->right, second->left);
+
+	return false;
+}
+
+template <class type>
+bool BinaryTree<type>::is_symmetric()
+{
+	if (!left && !right)
+		return true;
+
+	if (!left && right || left && !right)
+		return false; 
+
+	return (left->parenthesize_0() == right->parenthesize_0(false));
+	//return is_mirror(left, right);
+}
