@@ -10,10 +10,10 @@ typedef long long ll;
 struct Col_Node
 {
     int data{};
-    int column{};
+    int col{};
     Col_Node *next{};
     Col_Node *prev{};
-    Col_Node(int data, int column) : data(data), column(column) {}
+    Col_Node(int data, int col) : data(data), col(col) {}
 };
 
 class LinkedList
@@ -45,9 +45,9 @@ private:
     Col_Node *get_col(int col, bool is_create_if_missing)
     {
         Col_Node *prev_col(head);
-        while (prev_col->next && prev_col->next->column < col)
+        while (prev_col->next && prev_col->next->col < col)
             prev_col = prev_col->next;
-        bool found = prev_col->next && prev_col->next->column == col;
+        bool found = prev_col->next && prev_col->next->col == col;
         if (found)
             return prev_col->next;
         if (!is_create_if_missing)
@@ -65,10 +65,9 @@ public:
     void print_row()
     {
         Col_Node *cur(head->next);
-
         for (int c(0); c < cols; ++c)
         {
-            if (cur && cur->column == c)
+            if (cur && cur->col == c)
             {
                 cout << cur->data << ' ';
                 cur = cur->next;
@@ -102,7 +101,7 @@ public:
         assert(cols == other.cols);
         for (Col_Node *other_cur(other.head->next); other_cur; other_cur = other_cur->next)
         {
-            Col_Node *this_col = get_col(other_cur->column, true);
+            Col_Node *this_col = get_col(other_cur->col, true);
             this_col->data += other_cur->data;
         }
     }

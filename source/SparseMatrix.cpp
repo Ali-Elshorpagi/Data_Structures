@@ -46,7 +46,6 @@ void SparseMatrix::set_value(int data, int row, int col)
 {
     assert(0 <= row && row < rows);
     assert(0 <= col && col < cols);
-
     Row_Node *node(get_row(row, true));
     node->col_list.set_value(data, col);
 }
@@ -55,7 +54,6 @@ int SparseMatrix::get_value(int row, int col)
 {
     assert(0 <= row && row < rows);
     assert(0 <= col && col < cols);
-
     Row_Node *node(get_row(row, false));
     if (!node)
         return 0;
