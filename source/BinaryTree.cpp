@@ -90,3 +90,14 @@ type BinaryTree<type>::tree_max()
 
 	return mx;
 }
+
+template <class type>
+ll BinaryTree<type>::tree_height()
+{
+	ll height(0);
+	if (left)
+		height = 1 + left->tree_height();
+	if (right)
+		height = max(height, 1 + right->tree_height());
+	return height;
+}

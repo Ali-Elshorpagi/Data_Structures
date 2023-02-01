@@ -29,6 +29,7 @@ public:
     	void print_pre_order();
 void print_post_order();
 type tree_max();
+ll tree_height();
 
 
 
