@@ -352,3 +352,71 @@ bool BinaryTree<type>::is_complete()
 	}
 	return true;
 }
+
+
+template <class type>
+BinaryTree<type>::BinaryTree(deque<ll>& preorder, deque<ll>& inorder, ll inorder_start, ll inorder_end)
+{
+	if (inorder_end == -1)
+		inorder_end = (int)inorder.size() - 1;
+	data = preorder[0];
+	preorder.pop_front();
+	for (ll split (inorder_start); split <= inorder_end; ++split)
+	{
+		if (inorder[split] == data)
+		{
+			if (inorder_start < split)
+				left = new BinaryTree(preorder, inorder, inorder_start, split - 1);
+			if (split < inorder_end)
+				right = new BinaryTree(preorder, inorder, split + 1, inorder_end);
+			break;
+		}
+	}
+}
+template <class type>
+BinaryTree<type>::BinaryTree(queue<pair<ll, ll>>& preorder_queue)
+{
+	pair<ll, ll> p = preorder_queue.front();
+	preorder_queue.pop();
+	data = p.first;
+	if (!p.second)
+	{
+		if (preorder_queue.size())
+			left = new BinaryTree(preorder_queue);
+		if (preorder_queue.size())
+			right = new BinaryTree(preorder_queue);
+	}
+}
+
+template <class type>
+void BinaryTree<type>::build_preorder(queue<pair<ll, ll>>& preorder_queue)
+{
+	preorder_queue.push(make_pair(data, !left && !right));
+	if (left)
+		left->build_preorder(preorder_queue);
+	if (right)
+		right->build_preorder(preorder_queue);
+}
+
+template <class type>
+void BinaryTree<type>::print_preorder_complete()
+{
+	cout << data << ' ';
+	if (left)
+		left->print_preorder_complete();
+	else
+		cout << "-1 "; 
+
+	if (right)
+		right->print_preorder_complete();
+	else
+		cout << "-1 "; 
+}
+
+template <class type>
+string BinaryTree<type>::to_str(ll n)
+{
+	ostringstream oss;
+	oss << n;
+	return oss.str();
+}
