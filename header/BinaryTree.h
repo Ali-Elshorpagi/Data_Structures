@@ -30,6 +30,8 @@ public:
 void print_post_order();
 type tree_max();
 ll tree_height();
+ll total_nodes();
+	ll no_leaf_nodes();
 
 
 

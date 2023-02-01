@@ -101,3 +101,25 @@ ll BinaryTree<type>::tree_height()
 		height = max(height, 1 + right->tree_height());
 	return height;
 }
+
+template <class type>
+ll BinaryTree<type>::total_nodes() 
+{
+	ll cnt(1);
+	if (left)
+		cnt += left->total_nodes();
+	if (right)
+		cnt += right->total_nodes();
+	return cnt;
+}
+
+template <class type>
+ll BinaryTree<type>::no_leaf_nodes() 
+{
+	ll cnt (!left && !right);
+	if (left)
+		cnt += left->no_leaf_nodes();
+	if (right)
+		cnt += right->no_leaf_nodes();
+	return cnt;
+}
