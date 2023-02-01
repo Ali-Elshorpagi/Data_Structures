@@ -67,3 +67,14 @@ void BinaryTree<type>::print_pre_order()
 	if (right)
 		right->print_pre_order();
 }
+
+
+template <class type>
+void BinaryTree<type>::print_post_order()
+{
+	if (left)
+		left->print_post_order();
+	if (right)
+		right->print_post_order();
+	cout << data << ' ';
+}
