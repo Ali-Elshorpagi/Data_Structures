@@ -123,3 +123,14 @@ ll BinaryTree<type>::no_leaf_nodes()
 		cnt += right->no_leaf_nodes();
 	return cnt;
 }
+
+template <class type>
+bool BinaryTree<type>::is_exists(type value)
+{
+	bool res(value == data);
+	if (!res && left)
+		res = left->is_exists(value);
+	if (!res && right)
+		res = right->is_exists(value);
+	return res;
+}
