@@ -43,6 +43,8 @@ ll total_nodes();
 	void print_level_nodes(ll level);
 	void level_order_traversal_recursive();
 	void level_order_traversal_spiral();
+    	bool is_complete();
+
 
 
 

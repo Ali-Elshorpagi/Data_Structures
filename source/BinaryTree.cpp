@@ -316,3 +316,39 @@ void BinaryTree<type>::level_order_traversal_spiral()
 		cout << edl;
 	}
 }
+
+
+template <class type>
+bool BinaryTree<type>::is_complete()
+{
+	queue<BinaryTree<type>*> nodes_queue;
+	nodes_queue.push(this);
+	bool no_more_allowed(false);
+	while (!nodes_queue.empty())
+	{
+		ll sz(nodes_queue.size());
+		while (sz--)
+		{
+			BinaryTree<type>* cur(nodes_queue.front());
+			nodes_queue.pop();
+			if (cur->left)
+			{
+				if (no_more_allowed)
+					return false;
+				nodes_queue.push(cur->left);
+			}
+			else
+				no_more_allowed = true;
+
+			if (cur->right)
+			{
+				if (no_more_allowed)
+					return false;
+				nodes_queue.push(cur->right);
+			}
+			else
+				no_more_allowed = true;
+		}
+	}
+	return true;
+}
