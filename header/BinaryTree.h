@@ -24,4 +24,16 @@ public:
     BinaryTree(type data);
     ~BinaryTree();
     void clear();
+    void add(vector<type> values, vector<char> direction);
+	void print_in_order();
+
+
+
+
+
+
+
+
+
+
 };
