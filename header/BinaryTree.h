@@ -44,7 +44,12 @@ ll total_nodes();
 	void level_order_traversal_recursive();
 	void level_order_traversal_spiral();
     	bool is_complete();
+BinaryTree(deque<ll>& preorder, deque<ll>& inorder, ll inorder_start = 0, ll inorder_end = -1);
+	BinaryTree(queue<pair<ll, ll>>& preorder_queue);
+	void build_preorder(queue<pair<ll, ll>>& preorder_queue);
 
+	void print_preorder_complete();
+	string to_str(ll n);
 
 
 
