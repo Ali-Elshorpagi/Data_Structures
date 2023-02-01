@@ -50,7 +50,8 @@ BinaryTree(deque<ll>& preorder, deque<ll>& inorder, ll inorder_start = 0, ll ino
 
 	void print_preorder_complete();
 	string to_str(ll n);
-
+string parenthesize_0(bool left_first = true);
+	string parenthesize_canonical();
 
 
 

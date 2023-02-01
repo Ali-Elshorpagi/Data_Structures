@@ -420,3 +420,63 @@ string BinaryTree<type>::to_str(ll n)
 	oss << n;
 	return oss.str();
 }
+
+
+template <class type>
+string BinaryTree<type>::parenthesize_0(bool left_first)
+{
+	string repr("(" + to_str(data));
+
+	if(left_first)
+	{
+		if (left)
+			repr += left->parenthesize_0(left_first);
+		else
+			repr += "()"; // null: no child
+
+		if (right)
+			repr += right->parenthesize_0(left_first);
+		else
+			repr += "()"; // null: no child
+	}
+	else 
+	{
+		if (right)
+			repr += right->parenthesize_0(left_first);
+		else
+			repr += "()"; // null: no child
+
+		if (left)
+			repr += left->parenthesize_0(left_first);
+		else
+			repr += "()"; // null: no child
+	}
+	repr += ")";
+	return repr;
+}
+
+template <class type>
+string BinaryTree<type>::parenthesize_canonical()
+{
+	string repr("(" + to_str(data));
+	vector<string> v;
+	if (left)
+		v.push_back(left->parenthesize_canonical());
+	else
+		v.push_back("()");
+
+	if (right)
+		v.push_back(right->parenthesize_canonical());
+	else
+		v.push_back("()");
+
+	sort(v.begin(), v.end());
+
+	ll len((int)v.size());
+
+	for (ll i(0);i < len; ++i)
+		repr += v[i];
+
+	repr += ")";
+	return repr;
+}
