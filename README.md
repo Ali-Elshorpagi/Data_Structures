@@ -1,4 +1,4 @@
-# Data_Structures in C++
+# Data Structures in C++
 
 * Vector
 * Singly LinkedList
@@ -10,7 +10,3 @@
 * Priority Queue
 * Deque
 * Binary Tree
-
-
-
-
