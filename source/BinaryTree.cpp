@@ -507,3 +507,47 @@ bool BinaryTree<type>::is_symmetric()
 	return (left->parenthesize_0() == right->parenthesize_0(false));
 	//return is_mirror(left, right);
 }
+
+
+template <class type>
+bool BinaryTree<type>::is_flip_equiv_0(BinaryTree<type>* other)
+{
+	return parenthesize_canonical() == other->parenthesize_canonical();
+}
+
+template <class type>
+bool BinaryTree<type>::is_flip_equiv_1(BinaryTree<type>* first, BinaryTree<type>* second)
+{
+	if (!first && !second)
+		return true;
+	if (!first || !second)
+		return false;
+	if(first->data != second->data)
+		return false;
+	bool y, x(is_flip_equiv_1(first->left, second->left) && is_flip_equiv_1(first->right, second->right));
+	if (!x)
+		y(is_flip_equiv_1(first->left, second->right) && is_flip_equiv_1(first->right, second->left));
+	return (x || y);
+}
+
+
+template <class type>
+string BinaryTree<type>::parenthesize_1(vector<string>& all_repres)
+{
+	string repr("(" + to_str(data));
+	if (left)
+		repr += left->parenthesize_1(all_repres);
+	else
+		repr += "()";
+
+	if (right)
+		repr += right->parenthesize_1(all_repres);
+	else
+		repr += "()";
+
+	repr += ")";
+
+	if (left || right) // nodes > 1
+		all_repres.push_back(repr);
+	return repr;
+}

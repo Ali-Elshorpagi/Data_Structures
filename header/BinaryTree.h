@@ -54,6 +54,11 @@ string parenthesize_0(bool left_first = true);
 	string parenthesize_canonical();
     bool is_mirror(BinaryTree<type>* first, BinaryTree<type>* second);
 	bool is_symmetric();
+    bool is_flip_equiv_0(BinaryTree<type>* other);
+	bool is_flip_equiv_1(BinaryTree<type>* first, BinaryTree<type>* second);
+
+	string parenthesize_1(vector<string>& all_repres);
+	
 
 
 
