@@ -26,6 +26,8 @@ public:
     void clear();
     void add(vector<type> values, vector<char> direction);
 	void print_in_order();
+    	void print_pre_order();
+
 
 
 
