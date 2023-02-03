@@ -1,17 +1,21 @@
 #include "..\\header\SparseMatrix.h"
 
 template <class type>
-SparseMatrix<type>::SparseMatrix(int rows, int cols) : rows(rows), cols(cols)
+SparseMatrix<type>::SparseMatrix(ll rows, ll cols) : rows(rows), cols(cols)
 {
     tail = head = new Row_Node<type>(-1, cols);
     ++length;
 }
 
 template <class type>
-SparseMatrix<type>::~SparseMatrix() {}
+SparseMatrix<type>::~SparseMatrix()
+{
+    for (Row_Node<type> *cur(head->next); cur; cur = cur->next)
+        cur->list.~SpareArray();
+}
 
 template <class type>
-Row_Node<type> *SparseMatrix<type>::get_row(int row, bool flag)
+Row_Node<type> *SparseMatrix<type>::get_row(ll row, bool flag)
 {
     Row_Node<type> *prev_row(head);
     while (prev_row->next && prev_row->next->row < row)
@@ -34,7 +38,7 @@ void SparseMatrix<type>::link(Row_Node<type> *first, Row_Node<type> *second)
 }
 
 template <class type>
-Row_Node<type> *SparseMatrix<type>::add_node_between_node_and_next(Row_Node<type> *node_before, int row)
+Row_Node<type> *SparseMatrix<type>::add_node_between_node_and_next(Row_Node<type> *node_before, ll row)
 {
     Row_Node<type> *middle(new Row_Node<type>(row, cols));
     ++length;
@@ -48,7 +52,7 @@ Row_Node<type> *SparseMatrix<type>::add_node_between_node_and_next(Row_Node<type
 }
 
 template <class type>
-void SparseMatrix<type>::set_value(type data, int row, int col)
+void SparseMatrix<type>::set_value(type data, ll row, ll col)
 {
     assert(0 <= row && row < rows);
     assert(0 <= col && col < cols);
@@ -57,7 +61,7 @@ void SparseMatrix<type>::set_value(type data, int row, int col)
 }
 
 template <class type>
-type SparseMatrix<type>::get_value(int row, int col)
+type SparseMatrix<type>::get_value(ll row, ll col)
 {
     assert(0 <= row && row < rows);
     assert(0 <= col && col < cols);
@@ -83,7 +87,7 @@ void SparseMatrix<type>::print_matrix()
 {
     cout << edl << "Print Matrix: " << rows << " x " << cols << edl;
     Row_Node<type> *cur(head->next);
-    for (int i(0); i < rows; ++i)
+    for (ll i(0); i < rows; ++i)
     {
         if (cur && cur->row == i)
         {
@@ -92,7 +96,7 @@ void SparseMatrix<type>::print_matrix()
         }
         else
         {
-            for (int j(0); j < cols; ++j)
+            for (ll j(0); j < cols; ++j)
                 cout << "0 ";
             cout << edl;
         }
