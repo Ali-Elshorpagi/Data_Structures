@@ -80,4 +80,12 @@ template <class type>
 void SpareCube<type>::print_cube_nonzero() {}
 
 template <class type>
-void SpareCube<type>::add(SpareCube<type> &other) {}
+void SpareCube<type>::add(SpareCube<type> &other)
+{
+    assert(depths == other.depths && rows == other.rows && cols == other.cols);
+    for (Depth_Node<type> *other_cur(other.head->next); other_cur; other_cur = other_cur->next)
+    {
+        Depth_Node<type> *this_depth(get_depth(other_cur->depth, true));
+        this_depth->matrix.add(other_cur->matrix);
+    }
+}

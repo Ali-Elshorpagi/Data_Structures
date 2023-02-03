@@ -77,7 +77,7 @@ void SparseMatrix<type>::add(SparseMatrix<type> &other)
     assert(rows == other.rows && cols == other.cols);
     for (Row_Node<type> *other_cur(other.head->next); other_cur; other_cur = other_cur->next)
     {
-        Row_Node<type> *this_row = get_row(other_cur->row, true);
+        Row_Node<type> *this_row(get_row(other_cur->row, true));
         this_row->list.add(other_cur->list);
     }
 }
