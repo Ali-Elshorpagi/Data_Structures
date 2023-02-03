@@ -10,7 +10,7 @@ struct Depth_Node
     SparseMatrix<T> matrix;
     Depth_Node *next{};
     Depth_Node *prev{};
-    Depth_Node(int d, int r) : depth(d), matrix(r) {}
+    Depth_Node(int d, int r, int c) : depth(d), matrix(r, c) {}
 };
 
 template <class type>

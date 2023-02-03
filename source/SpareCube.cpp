@@ -3,7 +3,7 @@
 template <class type>
 SpareCube<type>::SpareCube(int row, int col, int depth) : rows(row), cols(col), depths(depth)
 {
-    tail = head = Depth_Node<type>(0, 0, -1);
+    tail = head = new Depth_Node<type>(0, 0, -1);
     ++length;
 }
 
@@ -11,16 +11,16 @@ template <class type>
 SpareCube<type>::~SpareCube()
 {
     for (Depth_Node<type> *cur(head->next); cur; cur = cur->next)
-        cur->matrix->list.~SpareArray();
+        cur->matrix.~SparseMatrix();
 }
 
 template <class type>
 Depth_Node<type> *SpareCube<type>::get_depth(ll depth, bool flag)
 {
     Depth_Node<type> *prev_row(head);
-    while (prev_row->next && prev_row->next->row < depth)
+    while (prev_row->next && prev_row->next->depth < depth)
         prev_row = prev_row->next;
-    bool found(prev_row->next && (prev_row->next->row == depth));
+    bool found(prev_row->next && (prev_row->next->depth == depth));
     if (found)
         return prev_row->next;
     if (!flag)
@@ -40,7 +40,7 @@ void SpareCube<type>::link(Depth_Node<type> *first, Depth_Node<type> *second)
 template <class type>
 Depth_Node<type> *SpareCube<type>::add_node_between_node_and_next(Depth_Node<type> *node_before, ll depth)
 {
-    Depth_Node<type> *middle(new Depth_Node<type>(depth, rows));
+    Depth_Node<type> *middle(new Depth_Node<type>(depth, rows, cols));
     ++length;
     Depth_Node<type> *node_after(node_before->next);
     link(node_before, middle);
@@ -58,7 +58,7 @@ void SpareCube<type>::set_value(type data, int row, int col, int depth)
     assert(0 <= col && col < cols);
     assert(0 <= depth && depth < depths);
     Depth_Node<type> *item(get_depth(depth, true));
-    item->matrix.set_value(data, row);
+    item->matrix.set_value(data, row, col);
 }
 
 template <class type>
