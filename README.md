@@ -1,5 +1,7 @@
 # Data Structures in C++
 
+> All of these Data Structures were built using Templates
+
 * Vector
 * Singly LinkedList
 * Doubly LinkedList
