@@ -74,12 +74,6 @@ type SpareCube<type>::get_value(int row, int col, int depth)
 }
 
 template <class type>
-void SpareCube<type>::print_cube() {}
-
-template <class type>
-void SpareCube<type>::print_cube_nonzero() {}
-
-template <class type>
 void SpareCube<type>::add(SpareCube<type> &other)
 {
     assert(depths == other.depths && rows == other.rows && cols == other.cols);
@@ -88,4 +82,17 @@ void SpareCube<type>::add(SpareCube<type> &other)
         Depth_Node<type> *this_depth(get_depth(other_cur->depth, true));
         this_depth->matrix.add(other_cur->matrix);
     }
+}
+
+template <class type>
+void SpareCube<type>::print_cube()
+{
+}
+
+template <class type>
+void SpareCube<type>::print_cube_nonzero()
+{
+    cout << edl << "Print Cube: " << rows << " x " << cols << " x " << depths << edl;
+    for (Depth_Node<type> *cur(head->next); cur; cur = cur->next)
+        cur->matrix.print_matrix_nonzero();
 }

@@ -31,7 +31,7 @@ public:
     ~SpareCube();
     void set_value(type data, int row, int col, int depth);
     type get_value(int row, int col, int depth);
+    void add(SpareCube<type> &other);
     void print_cube();
     void print_cube_nonzero();
-    void add(SpareCube<type> &other);
 };
