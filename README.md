@@ -7,6 +7,7 @@
 * Doubly LinkedList
 * Spare Array Using LinkedList
 * Spare Matrix Using LinkedList
+* Spare Cube Using LinkedList
 * Stack Array Based
 * Stack LinkedList Based
 * Circular Queue

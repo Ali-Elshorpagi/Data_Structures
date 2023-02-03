@@ -1,3 +1,4 @@
+#pragma once
 
 #include "SpareArray.h"
 #include "../source/SpareArray.cpp"
