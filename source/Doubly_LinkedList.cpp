@@ -35,12 +35,15 @@ void Doubly_LinkedList<type>::link(D_Node<type> *first, D_Node<type> *second)
 template <class type>
 void Doubly_LinkedList<type>::add_node_between_node_and_next(D_Node<type> *node_before, type val)
 {
-    D_Node<type> *mid = new D_Node<type>(val);
+    D_Node<type> *middle = new D_Node<type>(val);
     ++length;
-    debug_data.emplace_back(mid);
+    debug_data.emplace_back(middle);
     D_Node<type> *node_after(node_before->next);
-    link(node_before, mid);
-    link(mid, node_after);
+    link(node_before, middle);
+    if (!node_after)
+        tail = middle;
+    else
+        link(middle, node_after);
 }
 
 template <class type>
