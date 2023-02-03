@@ -87,6 +87,23 @@ void SpareCube<type>::add(SpareCube<type> &other)
 template <class type>
 void SpareCube<type>::print_cube()
 {
+    cout << edl << "Print Cube: " << rows << " x " << cols << " x " << depths << edl;
+
+    Depth_Node<type> *cur(head->next);
+    for (ll i(0); i < depths; ++i)
+    {
+        if (cur && cur->depth == i)
+        {
+            cur->matrix.print_matrix();
+            cur = cur->next;
+        }
+        else
+        {
+            for (ll j(0); j < rows; ++j)
+                cout << "0 ";
+            cout << edl;
+        }
+    }
 }
 
 template <class type>
