@@ -50,3 +50,34 @@ Depth_Node<type> *SpareCube<type>::add_node_between_node_and_next(Depth_Node<typ
         link(middle, node_after);
     return middle;
 }
+
+template <class type>
+void SpareCube<type>::set_value(type data, int row, int col, int depth)
+{
+    assert(0 <= row && row < rows);
+    assert(0 <= col && col < cols);
+    assert(0 <= depth && depth < depths);
+    Depth_Node<type> *item(get_depth(depth, true));
+    item->matrix.set_value(data, row);
+}
+
+template <class type>
+type SpareCube<type>::get_value(int row, int col, int depth)
+{
+    assert(0 <= row && row < rows);
+    assert(0 <= col && col < cols);
+    assert(0 <= depth && depth < depths);
+    Depth_Node<type> *item(get_depth(depth, false));
+    if (!item)
+        return 0;
+    return item->matrix.get_value(row, col);
+}
+
+template <class type>
+void SpareCube<type>::print_cube() {}
+
+template <class type>
+void SpareCube<type>::print_cube_nonzero() {}
+
+template <class type>
+void SpareCube<type>::add(SpareCube<type> &other) {}

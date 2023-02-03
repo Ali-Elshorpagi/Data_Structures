@@ -29,4 +29,9 @@ class SpareCube
 public:
     SpareCube(int row, int col, int depth);
     ~SpareCube();
+    void set_value(type data, int row, int col, int depth);
+    type get_value(int row, int col, int depth);
+    void print_cube();
+    void print_cube_nonzero();
+    void add(SpareCube<type> &other);
 };
