@@ -1,14 +1,31 @@
 #include "..\\header\SparseMatrix.h"
 
-SparseMatrix::SparseMatrix(int rows, int cols) : rows(rows), cols(cols)
+template <class type>
+SparseMatrix<type>::SparseMatrix(int rows, int cols) : rows(rows), cols(cols)
 {
-    tail = head = new Row_Node(-1, cols);
+    tail = head = new Row_Node<type>(-1, cols);
     ++length;
 }
 
-SparseMatrix::~SparseMatrix() {}
+template <class type>
+SparseMatrix<type>::~SparseMatrix() {}
 
-void SparseMatrix::link(Row_Node *first, Row_Node *second)
+template <class type>
+Row_Node<type> *SparseMatrix<type>::get_row(int row, bool flag)
+{
+    Row_Node<type> *prev_row(head);
+    while (prev_row->next && prev_row->next->row < row)
+        prev_row = prev_row->next;
+    bool found(prev_row->next && (prev_row->next->row == row));
+    if (found)
+        return prev_row->next;
+    if (!flag)
+        return nullptr;
+    return add_node_between_node_and_next(prev_row, row);
+}
+
+template <class type>
+void SparseMatrix<type>::link(Row_Node<type> *first, Row_Node<type> *second)
 {
     if (first)
         first->next = second;
@@ -16,11 +33,12 @@ void SparseMatrix::link(Row_Node *first, Row_Node *second)
         second->prev = first;
 }
 
-Row_Node *SparseMatrix::embed_after(Row_Node *node_before, int row)
+template <class type>
+Row_Node<type> *SparseMatrix<type>::add_node_between_node_and_next(Row_Node<type> *node_before, int row)
 {
-    Row_Node *middle = new Row_Node(row, cols);
+    Row_Node<type> *middle(new Row_Node<type>(row, cols));
     ++length;
-    Row_Node *node_after(node_before->next);
+    Row_Node<type> *node_after(node_before->next);
     link(node_before, middle);
     if (!node_after)
         tail = middle;
@@ -29,46 +47,47 @@ Row_Node *SparseMatrix::embed_after(Row_Node *node_before, int row)
     return middle;
 }
 
-Row_Node *SparseMatrix::get_row(int row, bool is_create_if_missing)
-{
-    Row_Node *prev_row(head);
-    while (prev_row->next && prev_row->next->row < row)
-        prev_row = prev_row->next;
-    bool found = prev_row->next && prev_row->next->row == row;
-    if (found)
-        return prev_row->next;
-    if (!is_create_if_missing)
-        return nullptr;
-    return embed_after(prev_row, row);
-}
-
-void SparseMatrix::set_value(int data, int row, int col)
+template <class type>
+void SparseMatrix<type>::set_value(type data, int row, int col)
 {
     assert(0 <= row && row < rows);
     assert(0 <= col && col < cols);
-    Row_Node *node(get_row(row, true));
-    node->col_list.set_value(data, col);
+    Row_Node<type> *item(get_row(row, true));
+    item->list.set_value(data, col);
 }
 
-int SparseMatrix::get_value(int row, int col)
+template <class type>
+type SparseMatrix<type>::get_value(int row, int col)
 {
     assert(0 <= row && row < rows);
     assert(0 <= col && col < cols);
-    Row_Node *node(get_row(row, false));
-    if (!node)
+    Row_Node<type> *item(get_row(row, false));
+    if (!item)
         return 0;
-    return node->col_list.get_value(col);
+    return item->list.get_col(col);
 }
 
-void SparseMatrix::print_matrix()
+template <class type>
+void SparseMatrix<type>::add(SparseMatrix<type> &other)
+{
+    assert(rows == other.rows && cols == other.cols);
+    for (Row_Node<type> *other_cur(other.head->next); other_cur; other_cur = other_cur->next)
+    {
+        Row_Node<type> *this_row = get_row(other_cur->row, true);
+        this_row->list.add(other_cur->list);
+    }
+}
+
+template <class type>
+void SparseMatrix<type>::print_matrix()
 {
     cout << edl << "Print Matrix: " << rows << " x " << cols << edl;
-    Row_Node *cur(head->next);
-    for (int r(0); r < rows; ++r)
+    Row_Node<type> *cur(head->next);
+    for (int i(0); i < rows; ++i)
     {
-        if (cur && cur->row == r)
+        if (cur && cur->row == i)
         {
-            cur->col_list.print_row();
+            cur->list.print_row();
             cur = cur->next;
         }
         else
@@ -79,19 +98,11 @@ void SparseMatrix::print_matrix()
         }
     }
 }
-void SparseMatrix::print_matrix_nonzero()
+
+template <class type>
+void SparseMatrix<type>::print_matrix_nonzero()
 {
     cout << edl << "Print Matrix: " << rows << " x " << cols << edl;
-    for (Row_Node *cur(head->next); cur; cur = cur->next)
-        cur->col_list.print_row_nonzero();
-}
-
-void SparseMatrix::add(SparseMatrix &other)
-{
-    assert(rows == other.rows && cols == other.cols);
-    for (Row_Node *other_cur(other.head->next); other_cur; other_cur = other_cur->next)
-    {
-        Row_Node *this_row = get_row(other_cur->row, true);
-        this_row->col_list.add(other_cur->col_list);
-    }
+    for (Row_Node<type> *cur(head->next); cur; cur = cur->next)
+        cur->list.print_row_nonzero();
 }
