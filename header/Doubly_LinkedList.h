@@ -58,5 +58,4 @@ public:
     type middle_value_0();
     type middle_value_1();
     void reverse();
-    void merge_2sorted_lists(Doubly_LinkedList<type> &other);
 };

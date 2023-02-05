@@ -284,10 +284,3 @@ void Doubly_LinkedList<type>::reverse()
     swap(head, tail);
     head->prev = tail->next = nullptr;
 }
-
-template <class type>
-void Doubly_LinkedList<type>::merge_2sorted_lists(Doubly_LinkedList<type> &other)
-{
-    if (!other.head)
-        return;
-}

@@ -23,7 +23,7 @@ template <class type>
 void BinaryTree<type>::add(vector<type> values, vector<char> direction)
 {
     assert(values.size() == direction.size());
-    BinaryTree *current = this;
+    BinaryTree *current(this);
     ll len((int)values.size());
     for (ll i(0); i < len; ++i)
     {
@@ -79,12 +79,11 @@ void BinaryTree<type>::print_post_order()
 template <class type>
 type BinaryTree<type>::tree_max()
 {
-    type mx = data;
+    type mx(data);
     if (left)
         mx = max(mx, left->tree_max());
     if (right)
         mx = max(mx, right->tree_max());
-
     return mx;
 }
 
@@ -135,9 +134,8 @@ bool BinaryTree<type>::is_exists(type value)
 template <class type>
 bool BinaryTree<type>::is_perfect_fomula()
 {
-    ll height(tree_height());
-    ll nodes(total_nodes());
-    ll res = pow(2, (height + 1)) - 1;
+    ll height(tree_height()), nodes(total_nodes());
+    ll res(pow(2, (height + 1)) - 1);
     return (res == nodes);
 }
 
