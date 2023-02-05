@@ -1,9 +1,8 @@
 #include "..\\header\Vector.h"
 
 template <class type>
-Vector<type>::Vector(ll sz)
+Vector<type>::Vector(ll sz) : size(sz)
 {
-    size = sz;
     if (size < 0)
         size = 1;
     capacity = size + 10;
@@ -100,8 +99,8 @@ void Vector<type>::insert(ll idx, type val)
 template <class type>
 void Vector<type>::right_rotate()
 {
-    type last_element = arr[size - 1];
-    for (int p(size - 2); p >= 0; --p)
+    type last_element(arr[size - 1]);
+    for (ll p(size - 2); p >= 0; --p)
         arr[p + 1] = arr[p];
     arr[0] = last_element;
 }
@@ -109,8 +108,8 @@ void Vector<type>::right_rotate()
 template <class type>
 void Vector<type>::left_rotate()
 {
-    type first_element = arr[0];
-    for (int p(1); p < size; ++p)
+    type first_element(arr[0]);
+    for (ll p(1); p < size; ++p)
         arr[p - 1] = arr[p];
     arr[size - 1] = first_element;
 }
@@ -127,7 +126,7 @@ template <class type>
 type Vector<type>::pop(ll idx)
 {
     assert(idx >= 0 && idx < size);
-    type val = arr[idx];
+    type val(arr[idx]);
     for (ll p(idx + 1); p < size; ++p)
         arr[p - 1] = arr[p];
     --size;

@@ -30,8 +30,8 @@ template <class type>
 type Stack_LinkedList_Based<type>::pop()
 {
     assert(!is_empty());
-    type element = head->data;
-    SLL_Node *temp = head;
+    type element(head->data);
+    SLL_Node *temp(head);
     head = head->next;
     delete temp;
     return element;
@@ -41,7 +41,7 @@ template <class type>
 type Stack_LinkedList_Based<type>::peek()
 {
     assert(!is_empty());
-    type element = head->data;
+    type element(head->data);
     return element;
 }
 

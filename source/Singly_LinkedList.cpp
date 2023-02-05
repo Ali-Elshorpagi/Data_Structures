@@ -8,7 +8,7 @@ Singly_LinkedList<type>::~Singly_LinkedList()
 {
     while (head)
     {
-        S_Node<type> *current = head->next;
+        S_Node<type> *current(head->next);
         delete head;
         head = current;
     }
@@ -171,7 +171,7 @@ bool Singly_LinkedList<type>::is_same(const Singly_LinkedList<type> &list)
 {
     if (length != list.length)
         return false;
-    S_Node<type> *temp = list.head;
+    S_Node<type> *temp(list.head);
     for (S_Node<type> *cur(head); cur; cur = cur->next)
     {
         if (cur->data != temp->data)
@@ -198,7 +198,7 @@ void Singly_LinkedList<type>::delete_first()
 {
     if (head)
     {
-        S_Node<type> *cur = head;
+        S_Node<type> *cur(head);
         head = head->next;
         delete_node(cur);
         if (!head)
@@ -214,7 +214,7 @@ void Singly_LinkedList<type>::delete_last()
         delete_first();
         return;
     }
-    S_Node<type> *previous = get_nth(length - 1);
+    S_Node<type> *previous(get_nth(length - 1));
     delete_node(tail);
     tail = previous;
     tail->next = nullptr;
@@ -229,9 +229,9 @@ void Singly_LinkedList<type>::delete_nth_node(ll n)
         delete_first();
     else
     {
-        S_Node<type> *before_nth = get_nth(n - 1);
-        S_Node<type> *nth = before_nth->next;
-        bool is_tail = nth == tail;
+        S_Node<type> *before_nth(get_nth(n - 1));
+        S_Node<type> *nth(before_nth->next);
+        bool is_tail(nth == tail);
         before_nth->next = nth->next;
         if (is_tail)
             tail = before_nth;
@@ -242,8 +242,8 @@ void Singly_LinkedList<type>::delete_nth_node(ll n)
 template <class type>
 void Singly_LinkedList<type>::delete_next_node(S_Node<type> *node)
 {
-    S_Node<type> *to_delete = node->next;
-    bool is_tail = to_delete == tail;
+    S_Node<type> *to_delete(node->next);
+    bool is_tail(to_delete == tail);
     node->next = node->next->next;
     delete_node(to_delete);
     if (is_tail)
@@ -289,11 +289,11 @@ void Singly_LinkedList<type>::reverse()
     if (length <= 1)
         return;
     tail = head;
-    S_Node<type> *prv = head;
+    S_Node<type> *prv(head);
     head = head->next;
     while (head)
     {
-        S_Node<type> *next = head->next;
+        S_Node<type> *next(head->next);
         head->next = prv;
         prv = head;
         head = next;
@@ -308,7 +308,7 @@ void Singly_LinkedList<type>::delete_even_positions()
     if (length <= 1)
         return;
 
-    for (S_Node<type> *cur = head->next, *prv = head; cur;)
+    for (S_Node<type> *cur(head->next), *prv = head; cur;)
     {
         delete_next_node(prv);
         if (!prv->next)
@@ -424,7 +424,7 @@ void Singly_LinkedList<type>::delete_last_occurrence_not_sorted(type key)
 template <class type>
 S_Node<type> *Singly_LinkedList<type>::move_to_end(S_Node<type> *cur, S_Node<type> *prv)
 {
-    S_Node<type> *next = cur->next;
+    S_Node<type> *next(cur->next);
     tail->next = cur;
     if (prv)
         prv->next = next;
@@ -440,7 +440,7 @@ void Singly_LinkedList<type>::move_key_occurance_to_end_not_sorted(type key)
 {
     if (length <= 1)
         return;
-    ll len = length;
+    ll len(length);
     for (S_Node<type> *cur(head), *prv(nullptr); len--;)
     {
         if (cur->data == key)
@@ -470,7 +470,7 @@ void Singly_LinkedList<type>::arrange_odd_pos_even_pos()
     S_Node<type> *first_even(head->next), *cur_odd(head);
     while (cur_odd->next && cur_odd->next->next)
     {
-        S_Node<type> *next_even = cur_odd->next;
+        S_Node<type> *next_even(cur_odd->next);
         // connect odd with odd and even with even
         cur_odd->next = cur_odd->next->next;
         next_even->next = next_even->next->next;

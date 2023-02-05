@@ -46,7 +46,7 @@ template <class type>
 type Deque<type>::dequeue_front()
 {
     assert(!is_empty());
-    type value = array[front];
+    type value(array[front]);
     front = next(front);
     --added_elements;
     return value;
@@ -57,7 +57,7 @@ type Deque<type>::dequeue_rear()
 {
     assert(!is_empty());
     rear = prev(rear);
-    type value = array[rear];
+    type value(array[rear]);
     --added_elements;
     return value;
 }

@@ -61,7 +61,7 @@ void Doubly_LinkedList<type>::delete_node(D_Node<type> *node)
 template <class type>
 D_Node<type> *Doubly_LinkedList<type>::delete_and_link(D_Node<type> *cur)
 {
-    D_Node<type> *ret = cur->prev;
+    D_Node<type> *ret(cur->prev);
     link(cur->prev, cur->next);
     delete_node(cur);
     return ret;
@@ -235,7 +235,7 @@ bool Doubly_LinkedList<type>::is_palindrome()
     if (length <= 1)
         return true;
     D_Node<type> *start(head), *end(tail);
-    ll len = length / 2;
+    ll len(length / 2);
     while (len--)
     {
         if (start->data != end->data)

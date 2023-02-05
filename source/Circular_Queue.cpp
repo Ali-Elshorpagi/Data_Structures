@@ -49,7 +49,7 @@ template <class type>
 type Circular_Queue<type>::dequeue()
 {
     assert(!is_empty());
-    type value = arr[front];
+    type value(arr[front]);
     front = next(front);
     --added_elements;
     return value;
