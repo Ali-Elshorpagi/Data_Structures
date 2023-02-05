@@ -12,6 +12,15 @@ typedef long long ll;
 int main()
 {
 	Mesh_Ali;
+	Binary_Search_Tree<int> tree(4);
+	tree.insert(1);
+	tree.insert(7);
+	tree.insert(5);
+	tree.insert(8);
+	tree.insert(2);
+	tree.insert(0);
+	tree.print_in_order();
+	cout << edl;
 
 	cout << edl << "DONE" << edl;
 	return 0;

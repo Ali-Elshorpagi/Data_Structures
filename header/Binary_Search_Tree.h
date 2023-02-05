@@ -19,7 +19,8 @@ public:
     Binary_Search_Tree(type data);
     ~Binary_Search_Tree();
     void clear();
-    void print_inorder();
-    void insert(type target);
-    bool search(type target);
+    void print_in_order();
+    void insert(type val);
+    bool search(type val);
+    bool search_iterative(type val);
 };

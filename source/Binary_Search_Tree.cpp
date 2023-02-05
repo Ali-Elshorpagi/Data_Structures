@@ -20,40 +20,56 @@ void Binary_Search_Tree<type>::clear()
 }
 
 template <class type>
-void Binary_Search_Tree<type>::print_inorder()
+void Binary_Search_Tree<type>::print_in_order()
 {
     if (left)
-        left->print_inorder();
+        left->print_in_order();
     cout << data << ' ';
     if (right)
-        right->print_inorder();
+        right->print_in_order();
 }
 
 template <class type>
-void Binary_Search_Tree<type>::insert(type target)
+void Binary_Search_Tree<type>::insert(type val)
 {
-    if (target < data)
+    if (val < data)
     {
         if (!left)
-            left = new Binary_Search_Tree(target);
+            left = new Binary_Search_Tree(val);
         else
-            left->insert(target);
+            left->insert(val);
     }
-    else if (target > data)
+    else if (val > data)
     {
         if (!right)
-            right = new Binary_Search_Tree(target);
+            right = new Binary_Search_Tree(val);
         else
-            right->insert(target);
+            right->insert(val);
     }
 }
 
 template <class type>
-bool Binary_Search_Tree<type>::search(type target)
+bool Binary_Search_Tree<type>::search(type val)
 {
-    if (target == data)
+    if (val == data)
         return true;
-    if (target < data)
-        return left && left->search(target);
-    return right && right->search(target);
+    if (val < data)
+        return left && left->search(val);
+    return right && right->search(val);
+}
+
+template <class type>
+bool Binary_Search_Tree<type>::search_iterative(type val)
+{
+    Binary_Search_Tree<type> *root(this);
+    while (root)
+    {
+        if (val == root->data)
+            return true;
+        if (root->data < val)
+            root = root->right;
+        else if (root->data > val)
+            root = root->left;
+    }
+    return false;
 }
