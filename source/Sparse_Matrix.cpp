@@ -1,21 +1,21 @@
-#include "..\\header\SparseMatrix.h"
+#include "..\\header\Sparse_Matrix.h"
 
 template <class type>
-SparseMatrix<type>::SparseMatrix(ll rows, ll cols) : rows(rows), cols(cols)
+Sparse_Matrix<type>::Sparse_Matrix(ll rows, ll cols) : rows(rows), cols(cols)
 {
     tail = head = new Row_Node<type>(-1, cols);
     ++length;
 }
 
 template <class type>
-SparseMatrix<type>::~SparseMatrix()
+Sparse_Matrix<type>::~Sparse_Matrix()
 {
     for (Row_Node<type> *cur(head->next); cur; cur = cur->next)
-        cur->list.~SpareArray();
+        cur->list.~Spare_Array();
 }
 
 template <class type>
-Row_Node<type> *SparseMatrix<type>::get_row(ll row, bool flag)
+Row_Node<type> *Sparse_Matrix<type>::get_row(ll row, bool flag)
 {
     Row_Node<type> *prev_row(head);
     while (prev_row->next && prev_row->next->row < row)
@@ -29,7 +29,7 @@ Row_Node<type> *SparseMatrix<type>::get_row(ll row, bool flag)
 }
 
 template <class type>
-void SparseMatrix<type>::link(Row_Node<type> *first, Row_Node<type> *second)
+void Sparse_Matrix<type>::link(Row_Node<type> *first, Row_Node<type> *second)
 {
     if (first)
         first->next = second;
@@ -38,7 +38,7 @@ void SparseMatrix<type>::link(Row_Node<type> *first, Row_Node<type> *second)
 }
 
 template <class type>
-Row_Node<type> *SparseMatrix<type>::add_node_between_node_and_next(Row_Node<type> *node_before, ll row)
+Row_Node<type> *Sparse_Matrix<type>::add_node_between_node_and_next(Row_Node<type> *node_before, ll row)
 {
     Row_Node<type> *middle(new Row_Node<type>(row, cols));
     ++length;
@@ -52,7 +52,7 @@ Row_Node<type> *SparseMatrix<type>::add_node_between_node_and_next(Row_Node<type
 }
 
 template <class type>
-void SparseMatrix<type>::set_value(type data, ll row, ll col)
+void Sparse_Matrix<type>::set_value(type data, ll row, ll col)
 {
     assert(0 <= row && row < rows);
     assert(0 <= col && col < cols);
@@ -61,7 +61,7 @@ void SparseMatrix<type>::set_value(type data, ll row, ll col)
 }
 
 template <class type>
-type SparseMatrix<type>::get_value(ll row, ll col)
+type Sparse_Matrix<type>::get_value(ll row, ll col)
 {
     assert(0 <= row && row < rows);
     assert(0 <= col && col < cols);
@@ -72,7 +72,7 @@ type SparseMatrix<type>::get_value(ll row, ll col)
 }
 
 template <class type>
-void SparseMatrix<type>::add(SparseMatrix<type> &other)
+void Sparse_Matrix<type>::add(Sparse_Matrix<type> &other)
 {
     assert(rows == other.rows && cols == other.cols);
     for (Row_Node<type> *other_cur(other.head->next); other_cur; other_cur = other_cur->next)
@@ -83,7 +83,7 @@ void SparseMatrix<type>::add(SparseMatrix<type> &other)
 }
 
 template <class type>
-void SparseMatrix<type>::print_matrix()
+void Sparse_Matrix<type>::print_matrix()
 {
     cout << edl << "Print Matrix: " << rows << " x " << cols << edl;
     Row_Node<type> *cur(head->next);
@@ -104,7 +104,7 @@ void SparseMatrix<type>::print_matrix()
 }
 
 template <class type>
-void SparseMatrix<type>::print_matrix_nonzero()
+void Sparse_Matrix<type>::print_matrix_nonzero()
 {
     cout << edl << "Print Matrix: " << rows << " x " << cols << edl;
     for (Row_Node<type> *cur(head->next); cur; cur = cur->next)

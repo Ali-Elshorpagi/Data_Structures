@@ -1,14 +1,14 @@
-#include "..\\header\SpareArray.h"
+#include "..\\header\Spare_Array.h"
 
 template <class type>
-SpareArray<type>::SpareArray(ll cols) : cols(cols)
+Spare_Array<type>::Spare_Array(ll cols) : cols(cols)
 {
     tail = head = new Col_Node<type>(0, -1);
     ++length;
 }
 
 template <class type>
-SpareArray<type>::~SpareArray()
+Spare_Array<type>::~Spare_Array()
 {
     while (head)
     {
@@ -21,7 +21,7 @@ SpareArray<type>::~SpareArray()
 }
 
 template <class type>
-void SpareArray<type>::link(Col_Node<type> *first, Col_Node<type> *second)
+void Spare_Array<type>::link(Col_Node<type> *first, Col_Node<type> *second)
 {
     if (first)
         first->next = second;
@@ -30,7 +30,7 @@ void SpareArray<type>::link(Col_Node<type> *first, Col_Node<type> *second)
 }
 
 template <class type>
-Col_Node<type> *SpareArray<type>::add_node_between_node_and_next(Col_Node<type> *node_before, type data, ll col)
+Col_Node<type> *Spare_Array<type>::add_node_between_node_and_next(Col_Node<type> *node_before, type data, ll col)
 {
     Col_Node<type> *middle = new Col_Node<type>(data, col);
     ++length;
@@ -44,7 +44,7 @@ Col_Node<type> *SpareArray<type>::add_node_between_node_and_next(Col_Node<type> 
 }
 
 template <class type>
-Col_Node<type> *SpareArray<type>::get_col(ll col, bool is_create_if_missing)
+Col_Node<type> *Spare_Array<type>::get_col(ll col, bool is_create_if_missing)
 {
     Col_Node<type> *prev_col(head);
     while (prev_col->next && prev_col->next->col < col)
@@ -58,7 +58,7 @@ Col_Node<type> *SpareArray<type>::get_col(ll col, bool is_create_if_missing)
 }
 
 template <class type>
-void SpareArray<type>::print_row()
+void Spare_Array<type>::print_row()
 {
     Col_Node<type> *cur(head->next);
     for (ll c(0); c < cols; ++c)
@@ -75,7 +75,7 @@ void SpareArray<type>::print_row()
 }
 
 template <class type>
-void SpareArray<type>::print_row_nonzero()
+void Spare_Array<type>::print_row_nonzero()
 {
     for (Col_Node<type> *cur(head->next); cur; cur = cur->next)
         cout << cur->data << ' ';
@@ -83,13 +83,13 @@ void SpareArray<type>::print_row_nonzero()
 }
 
 template <class type>
-void SpareArray<type>::set_value(type data, ll col)
+void Spare_Array<type>::set_value(type data, ll col)
 {
     get_col(col, true)->data = data;
 }
 
 template <class type>
-type SpareArray<type>::get_value(ll col)
+type Spare_Array<type>::get_value(ll col)
 {
     Col_Node<type> *node(get_col(col, false));
     if (!node)
@@ -98,7 +98,7 @@ type SpareArray<type>::get_value(ll col)
 }
 
 template <class type>
-void SpareArray<type>::add(SpareArray<type> &other)
+void Spare_Array<type>::add(Spare_Array<type> &other)
 {
     assert(cols == other.cols);
     for (Col_Node<type> *other_cur(other.head->next); other_cur; other_cur = other_cur->next)

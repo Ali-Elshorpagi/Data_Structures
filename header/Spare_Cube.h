@@ -1,20 +1,20 @@
 #pragma once
 
-#include "SparseMatrix.h"
-#include "../source/SparseMatrix.cpp"
+#include "Sparse_Matrix.h"
+#include "../source/Sparse_Matrix.cpp"
 
 template <class T>
 struct Depth_Node
 {
     ll depth;
-    SparseMatrix<T> matrix;
+    Sparse_Matrix<T> matrix;
     Depth_Node *next{};
     Depth_Node *prev{};
     Depth_Node(int d, int r, int c) : depth(d), matrix(r, c) {}
 };
 
 template <class type>
-class SpareCube
+class Spare_Cube
 {
     Depth_Node<type> *head{};
     Depth_Node<type> *tail{};
@@ -27,11 +27,11 @@ class SpareCube
     Depth_Node<type> *add_node_between_node_and_next(Depth_Node<type> *node_before, ll depth);
 
 public:
-    SpareCube(int row, int col, int depth);
-    ~SpareCube();
+    Spare_Cube(int row, int col, int depth);
+    ~Spare_Cube();
     void set_value(type data, int row, int col, int depth);
     type get_value(int row, int col, int depth);
-    void add(SpareCube<type> &other);
+    void add(Spare_Cube<type> &other);
     void print_cube();
     void print_cube_nonzero();
 };

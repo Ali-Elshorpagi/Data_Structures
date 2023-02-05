@@ -1,21 +1,21 @@
-#include "..\\header\SpareCube.h"
+#include "..\\header\Spare_Cube.h"
 
 template <class type>
-SpareCube<type>::SpareCube(int row, int col, int depth) : rows(row), cols(col), depths(depth)
+Spare_Cube<type>::Spare_Cube(int row, int col, int depth) : rows(row), cols(col), depths(depth)
 {
     tail = head = new Depth_Node<type>(0, 0, -1);
     ++length;
 }
 
 template <class type>
-SpareCube<type>::~SpareCube()
+Spare_Cube<type>::~Spare_Cube()
 {
     for (Depth_Node<type> *cur(head->next); cur; cur = cur->next)
         cur->matrix.~SparseMatrix();
 }
 
 template <class type>
-Depth_Node<type> *SpareCube<type>::get_depth(ll depth, bool flag)
+Depth_Node<type> *Spare_Cube<type>::get_depth(ll depth, bool flag)
 {
     Depth_Node<type> *prev_row(head);
     while (prev_row->next && prev_row->next->depth < depth)
@@ -29,7 +29,7 @@ Depth_Node<type> *SpareCube<type>::get_depth(ll depth, bool flag)
 }
 
 template <class type>
-void SpareCube<type>::link(Depth_Node<type> *first, Depth_Node<type> *second)
+void Spare_Cube<type>::link(Depth_Node<type> *first, Depth_Node<type> *second)
 {
     if (first)
         first->next = second;
@@ -38,7 +38,7 @@ void SpareCube<type>::link(Depth_Node<type> *first, Depth_Node<type> *second)
 }
 
 template <class type>
-Depth_Node<type> *SpareCube<type>::add_node_between_node_and_next(Depth_Node<type> *node_before, ll depth)
+Depth_Node<type> *Spare_Cube<type>::add_node_between_node_and_next(Depth_Node<type> *node_before, ll depth)
 {
     Depth_Node<type> *middle(new Depth_Node<type>(depth, rows, cols));
     ++length;
@@ -52,7 +52,7 @@ Depth_Node<type> *SpareCube<type>::add_node_between_node_and_next(Depth_Node<typ
 }
 
 template <class type>
-void SpareCube<type>::set_value(type data, int row, int col, int depth)
+void Spare_Cube<type>::set_value(type data, int row, int col, int depth)
 {
     assert(0 <= row && row < rows);
     assert(0 <= col && col < cols);
@@ -62,7 +62,7 @@ void SpareCube<type>::set_value(type data, int row, int col, int depth)
 }
 
 template <class type>
-type SpareCube<type>::get_value(int row, int col, int depth)
+type Spare_Cube<type>::get_value(int row, int col, int depth)
 {
     assert(0 <= row && row < rows);
     assert(0 <= col && col < cols);
@@ -74,7 +74,7 @@ type SpareCube<type>::get_value(int row, int col, int depth)
 }
 
 template <class type>
-void SpareCube<type>::add(SpareCube<type> &other)
+void Spare_Cube<type>::add(Spare_Cube<type> &other)
 {
     assert(depths == other.depths && rows == other.rows && cols == other.cols);
     for (Depth_Node<type> *other_cur(other.head->next); other_cur; other_cur = other_cur->next)
@@ -85,7 +85,7 @@ void SpareCube<type>::add(SpareCube<type> &other)
 }
 
 template <class type>
-void SpareCube<type>::print_cube()
+void Spare_Cube<type>::print_cube()
 {
     cout << edl << "Print Cube: " << rows << " x " << cols << " x " << depths << edl;
 
@@ -107,7 +107,7 @@ void SpareCube<type>::print_cube()
 }
 
 template <class type>
-void SpareCube<type>::print_cube_nonzero()
+void Spare_Cube<type>::print_cube_nonzero()
 {
     cout << edl << "Print Cube: " << rows << " x " << cols << " x " << depths << edl;
     for (Depth_Node<type> *cur(head->next); cur; cur = cur->next)

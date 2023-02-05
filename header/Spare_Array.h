@@ -18,7 +18,7 @@ struct Col_Node
 };
 
 template <class type>
-class SpareArray
+class Spare_Array
 {
 private:
     Col_Node<type> *head{};
@@ -30,11 +30,11 @@ private:
     Col_Node<type> *get_col(ll col, bool is_create_if_missing);
 
 public:
-    SpareArray(ll cols);
-    ~SpareArray();
+    Spare_Array(ll cols);
+    ~Spare_Array();
     void print_row();
     void print_row_nonzero();
     void set_value(type data, ll col);
     type get_value(ll col);
-    void add(SpareArray<type> &other);
+    void add(Spare_Array<type> &other);
 };

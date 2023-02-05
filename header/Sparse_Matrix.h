@@ -1,20 +1,20 @@
 #pragma once
 
-#include "SpareArray.h"
-#include "../source/SpareArray.cpp"
+#include "Spare_Array.h"
+#include "../source/Spare_Array.cpp"
 
 template <class T>
 struct Row_Node
 {
     ll row;
-    SpareArray<T> list;
+    Spare_Array<T> list;
     Row_Node *next{};
     Row_Node *prev{};
     Row_Node(int r, int c) : row(r), list(c) {}
 };
 
 template <class type>
-class SparseMatrix
+class Sparse_Matrix
 {
 private:
     Row_Node<type> *head{};
@@ -27,11 +27,11 @@ private:
     Row_Node<type> *add_node_between_node_and_next(Row_Node<type> *node_before, ll row);
 
 public:
-    SparseMatrix(ll rows, ll cols);
-    ~SparseMatrix();
+    Sparse_Matrix(ll rows, ll cols);
+    ~Sparse_Matrix();
     void set_value(type data, ll row, ll col);
     type get_value(ll row, ll col);
-    void add(SparseMatrix<type> &other);
+    void add(Sparse_Matrix<type> &other);
     void print_matrix();
     void print_matrix_nonzero();
 };

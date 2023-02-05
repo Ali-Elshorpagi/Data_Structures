@@ -5,9 +5,9 @@
 #include "source/Priority_Queue.cpp"
 #include "source/Queue_Linkedlist_Based.cpp"
 // #include "source/Singly_Linkedlist.cpp" // this file was compiled in another file
-// #include "source/SpareArray.cpp" // this file was compiled in another file
-#include "source/SpareCube.cpp"
-// #include "source/SparseMatrix.cpp"  // this file was compiled in another file
+// #include "source/Spare_Array.cpp" // this file was compiled in another file
+#include "source/Spare_Cube.cpp"
+// #include "source/Sparse_Matrix.cpp"  // this file was compiled in another file
 #include "source/Stack_Array_Based.cpp"
 #include "source/Stack_Linkedlist_Based.cpp"
 #include "source/Vector.cpp"
