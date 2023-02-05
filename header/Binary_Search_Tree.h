@@ -22,7 +22,8 @@ public:
     void print_in_order();
     void insert(type val);
     bool search(type val);
-    bool search_iterative(type val);
     type min_value();
     type max_value();
+    bool search_iterative(type val);
+    bool is_bst_0();
 };

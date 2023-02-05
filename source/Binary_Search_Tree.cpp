@@ -59,6 +59,24 @@ bool Binary_Search_Tree<type>::search(type val)
 }
 
 template <class type>
+type Binary_Search_Tree<type>::min_value()
+{
+    if (!left || !left->left)
+        return left->data;
+    else
+        return left->min_value();
+}
+
+template <class type>
+type Binary_Search_Tree<type>::max_value()
+{
+    if (!right || !right->right)
+        return right->data;
+    else
+        return right->max_value();
+}
+
+template <class type>
 bool Binary_Search_Tree<type>::search_iterative(type val)
 {
     Binary_Search_Tree<type> *root(this);
@@ -75,19 +93,11 @@ bool Binary_Search_Tree<type>::search_iterative(type val)
 }
 
 template <class type>
-type Binary_Search_Tree<type>::min_value()
+bool Binary_Search_Tree<type>::is_bst_0()
 {
-    if (!left || !left->left)
-        return left->data;
-    else
-        return left->min_value();
-}
-
-template <class type>
-type Binary_Search_Tree<type>::max_value()
-{
-    if (!right || !right->right)
-        return right->data;
-    else
-        return right->max_value();
+    bool left_bst(!left || (data > left->data && left->is_bst_0()));
+    if (!left_bst)
+        return false;
+    bool right_bst(!right || (data < right->data && right->is_bst_0()));
+    return right_bst;
 }
