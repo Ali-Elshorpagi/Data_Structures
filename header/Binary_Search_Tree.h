@@ -15,11 +15,12 @@ private:
     type data{};
     Binary_Search_Tree<type> *left{};
     Binary_Search_Tree<type> *right{};
+    void get_in_order(vector<type> &inorder_values);
+    void clear();
 
 public:
     Binary_Search_Tree(type data);
     ~Binary_Search_Tree();
-    void clear();
     void print_in_order();
     void insert(type val);
     bool search(type val);
@@ -27,6 +28,5 @@ public:
     type max_value();
     bool search_iterative(type val);
     bool is_bst_0();
-    void get_inorder(vector<type> &inorder_values);
     bool is_bst_1();
 };
