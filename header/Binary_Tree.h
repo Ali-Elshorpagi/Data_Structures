@@ -18,8 +18,8 @@ template <class type>
 class Binary_Tree
 {
     type data{};
-    Binary_Tree *left{};
-    Binary_Tree *right{};
+    Binary_Tree<type> *left{};
+    Binary_Tree<type> *right{};
 
 public:
     Binary_Tree(type data);

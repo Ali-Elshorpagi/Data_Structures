@@ -227,7 +227,7 @@ void Binary_Tree<type>::level_order_traversal_0()
 template <class type>
 void Binary_Tree<type>::level_order_traversal_1()
 {
-    queue<Binary_Tree *> nodes_queue;
+    queue<Binary_Tree<type> *> nodes_queue;
     nodes_queue.push(this);
     ll level(0), sz;
     while (!nodes_queue.empty())
@@ -274,7 +274,7 @@ void Binary_Tree<type>::level_order_traversal_recursive() // O(N^2)
 template <class type>
 void Binary_Tree<type>::level_order_traversal_spiral()
 {
-    deque<Binary_Tree *> nodes_deque;
+    deque<Binary_Tree<type> *> nodes_deque;
     nodes_deque.push_back(this);
     ll level(0), sz;
     bool flag(true);
@@ -357,9 +357,9 @@ Binary_Tree<type>::Binary_Tree(deque<ll> &preorder, deque<ll> &inorder, ll inord
         if (inorder[split] == data)
         {
             if (inorder_start < split)
-                left = new Binary_Tree(preorder, inorder, inorder_start, split - 1);
+                left = new Binary_Tree<type>(preorder, inorder, inorder_start, split - 1);
             if (split < inorder_end)
-                right = new Binary_Tree(preorder, inorder, split + 1, inorder_end);
+                right = new Binary_Tree<type>(preorder, inorder, split + 1, inorder_end);
             break;
         }
     }
@@ -373,9 +373,9 @@ Binary_Tree<type>::Binary_Tree(queue<pair<ll, ll>> &preorder_queue)
     if (!p.second)
     {
         if (preorder_queue.size())
-            left = new Binary_Tree(preorder_queue);
+            left = new Binary_Tree<type>(preorder_queue);
         if (preorder_queue.size())
-            right = new Binary_Tree(preorder_queue);
+            right = new Binary_Tree<type>(preorder_queue);
     }
 }
 

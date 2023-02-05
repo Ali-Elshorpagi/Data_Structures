@@ -16,12 +16,13 @@ int main()
 	tree.insert(1);
 	tree.insert(7);
 	tree.insert(5);
-	tree.insert(8);
+	tree.insert(47);
 	tree.insert(2);
-	tree.insert(0);
+	tree.insert(-34);
 	tree.print_in_order();
 	cout << edl;
 
+	cout << tree.max_value() << ' ' << tree.min_value() << edl;
 	cout << edl << "DONE" << edl;
 	return 0;
 }

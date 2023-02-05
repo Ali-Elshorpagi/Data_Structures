@@ -73,3 +73,21 @@ bool Binary_Search_Tree<type>::search_iterative(type val)
     }
     return false;
 }
+
+template <class type>
+type Binary_Search_Tree<type>::min_value()
+{
+    if (!left || !left->left)
+        return left->data;
+    else
+        return left->min_value();
+}
+
+template <class type>
+type Binary_Search_Tree<type>::max_value()
+{
+    if (!right || !right->right)
+        return right->data;
+    else
+        return right->max_value();
+}

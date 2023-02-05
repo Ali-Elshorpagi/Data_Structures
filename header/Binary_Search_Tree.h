@@ -12,8 +12,8 @@ class Binary_Search_Tree
 {
 private:
     type data{};
-    Binary_Search_Tree *left{};
-    Binary_Search_Tree *right{};
+    Binary_Search_Tree<type> *left{};
+    Binary_Search_Tree<type> *right{};
 
 public:
     Binary_Search_Tree(type data);
@@ -23,4 +23,6 @@ public:
     void insert(type val);
     bool search(type val);
     bool search_iterative(type val);
+    type min_value();
+    type max_value();
 };
