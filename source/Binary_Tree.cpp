@@ -1,16 +1,16 @@
-#include "..\\header\BinaryTree.h"
+#include "..\\header\Binary_Tree.h"
 
 template <class type>
-BinaryTree<type>::BinaryTree(type data) : data(data) {}
+Binary_Tree<type>::Binary_Tree(type data) : data(data) {}
 
 template <class type>
-BinaryTree<type>::~BinaryTree()
+Binary_Tree<type>::~Binary_Tree()
 {
     clear();
 }
 
 template <class type>
-void BinaryTree<type>::clear()
+void Binary_Tree<type>::clear()
 {
     // Don't try to call clear for children and also delete. This deletes twice!
     if (left)
@@ -20,17 +20,17 @@ void BinaryTree<type>::clear()
 }
 
 template <class type>
-void BinaryTree<type>::add(vector<type> values, vector<char> direction)
+void Binary_Tree<type>::add(vector<type> values, vector<char> direction)
 {
     assert(values.size() == direction.size());
-    BinaryTree *current(this);
+    Binary_Tree *current(this);
     ll len((int)values.size());
     for (ll i(0); i < len; ++i)
     {
         if (direction[i] == 'L')
         {
             if (!current->left)
-                current->left = new BinaryTree<type>(values[i]);
+                current->left = new Binary_Tree<type>(values[i]);
             else
                 assert(current->left->data == values[i]);
             current = current->left;
@@ -38,7 +38,7 @@ void BinaryTree<type>::add(vector<type> values, vector<char> direction)
         else
         {
             if (!current->right)
-                current->right = new BinaryTree<type>(values[i]);
+                current->right = new Binary_Tree<type>(values[i]);
             else
                 assert(current->right->data == values[i]);
             current = current->right;
@@ -47,7 +47,7 @@ void BinaryTree<type>::add(vector<type> values, vector<char> direction)
 }
 
 template <class type>
-void BinaryTree<type>::print_in_order()
+void Binary_Tree<type>::print_in_order()
 {
     if (left)
         left->print_in_order();
@@ -57,7 +57,7 @@ void BinaryTree<type>::print_in_order()
 }
 
 template <class type>
-void BinaryTree<type>::print_pre_order()
+void Binary_Tree<type>::print_pre_order()
 {
     cout << data << ' ';
     if (left)
@@ -67,7 +67,7 @@ void BinaryTree<type>::print_pre_order()
 }
 
 template <class type>
-void BinaryTree<type>::print_post_order()
+void Binary_Tree<type>::print_post_order()
 {
     if (left)
         left->print_post_order();
@@ -77,7 +77,7 @@ void BinaryTree<type>::print_post_order()
 }
 
 template <class type>
-type BinaryTree<type>::tree_max()
+type Binary_Tree<type>::tree_max()
 {
     type mx(data);
     if (left)
@@ -88,7 +88,7 @@ type BinaryTree<type>::tree_max()
 }
 
 template <class type>
-ll BinaryTree<type>::tree_height()
+ll Binary_Tree<type>::tree_height()
 {
     ll height(0);
     if (left)
@@ -99,7 +99,7 @@ ll BinaryTree<type>::tree_height()
 }
 
 template <class type>
-ll BinaryTree<type>::total_nodes()
+ll Binary_Tree<type>::total_nodes()
 {
     ll cnt(1);
     if (left)
@@ -110,7 +110,7 @@ ll BinaryTree<type>::total_nodes()
 }
 
 template <class type>
-ll BinaryTree<type>::no_leaf_nodes()
+ll Binary_Tree<type>::no_leaf_nodes()
 {
     ll cnt(!left && !right);
     if (left)
@@ -121,7 +121,7 @@ ll BinaryTree<type>::no_leaf_nodes()
 }
 
 template <class type>
-bool BinaryTree<type>::is_exists(type value)
+bool Binary_Tree<type>::is_exists(type value)
 {
     bool res(value == data);
     if (!res && left)
@@ -132,7 +132,7 @@ bool BinaryTree<type>::is_exists(type value)
 }
 
 template <class type>
-bool BinaryTree<type>::is_perfect_fomula()
+bool Binary_Tree<type>::is_perfect_fomula()
 {
     ll height(tree_height()), nodes(total_nodes());
     ll res(pow(2, (height + 1)) - 1);
@@ -140,7 +140,7 @@ bool BinaryTree<type>::is_perfect_fomula()
 }
 
 template <class type>
-bool BinaryTree<type>::is_perfect(ll h)
+bool Binary_Tree<type>::is_perfect(ll h)
 {
     if (h == -1) // first call
         h = tree_height();
@@ -154,13 +154,13 @@ bool BinaryTree<type>::is_perfect(ll h)
 }
 
 template <class type>
-void BinaryTree<type>::print_inorder_iterative()
+void Binary_Tree<type>::print_inorder_iterative()
 {
-    stack<pair<BinaryTree<type> *, bool>> nodes;
+    stack<pair<Binary_Tree<type> *, bool>> nodes;
     nodes.push(make_pair(this, false));
     while (!nodes.empty())
     {
-        BinaryTree<type> *current(nodes.top().first);
+        Binary_Tree<type> *current(nodes.top().first);
         bool is_done(nodes.top().second);
         nodes.pop();
         if (is_done)
@@ -178,7 +178,7 @@ void BinaryTree<type>::print_inorder_iterative()
 }
 
 template <class type>
-void BinaryTree<type>::traverse_left_boundry()
+void Binary_Tree<type>::traverse_left_boundry()
 {
     cout << data << ' ';
     if (left)
@@ -188,7 +188,7 @@ void BinaryTree<type>::traverse_left_boundry()
 }
 
 template <class type>
-pair<ll, ll> BinaryTree<type>::tree_diameter()
+pair<ll, ll> Binary_Tree<type>::tree_diameter()
 {
     pair<ll, ll> res(make_pair(0, 0));
     if (!left && !right)
@@ -207,13 +207,13 @@ pair<ll, ll> BinaryTree<type>::tree_diameter()
 }
 
 template <class type>
-void BinaryTree<type>::level_order_traversal_0()
+void Binary_Tree<type>::level_order_traversal_0()
 {
-    queue<BinaryTree<type> *> nodes_queue;
+    queue<Binary_Tree<type> *> nodes_queue;
     nodes_queue.push(this);
     while (!nodes_queue.empty())
     {
-        BinaryTree<type> *cur(nodes_queue.front());
+        Binary_Tree<type> *cur(nodes_queue.front());
         nodes_queue.pop();
         cout << cur->data << ' ';
         if (cur->left)
@@ -225,9 +225,9 @@ void BinaryTree<type>::level_order_traversal_0()
 }
 
 template <class type>
-void BinaryTree<type>::level_order_traversal_1()
+void Binary_Tree<type>::level_order_traversal_1()
 {
-    queue<BinaryTree *> nodes_queue;
+    queue<Binary_Tree *> nodes_queue;
     nodes_queue.push(this);
     ll level(0), sz;
     while (!nodes_queue.empty())
@@ -236,7 +236,7 @@ void BinaryTree<type>::level_order_traversal_1()
         cout << "Level " << level << ": ";
         while (sz--)
         {
-            BinaryTree<type> *cur(nodes_queue.front());
+            Binary_Tree<type> *cur(nodes_queue.front());
             nodes_queue.pop();
             cout << cur->data << ' ';
             if (cur->left)
@@ -250,7 +250,7 @@ void BinaryTree<type>::level_order_traversal_1()
 }
 
 template <class type>
-void BinaryTree<type>::print_level_nodes(ll level)
+void Binary_Tree<type>::print_level_nodes(ll level)
 {
     if (!level)
         cout << data << ' ';
@@ -264,7 +264,7 @@ void BinaryTree<type>::print_level_nodes(ll level)
 }
 
 template <class type>
-void BinaryTree<type>::level_order_traversal_recursive() // O(N^2)
+void Binary_Tree<type>::level_order_traversal_recursive() // O(N^2)
 {
     ll height(tree_height());
     for (ll level(0); level <= height; ++level)
@@ -272,9 +272,9 @@ void BinaryTree<type>::level_order_traversal_recursive() // O(N^2)
 }
 
 template <class type>
-void BinaryTree<type>::level_order_traversal_spiral()
+void Binary_Tree<type>::level_order_traversal_spiral()
 {
-    deque<BinaryTree *> nodes_deque;
+    deque<Binary_Tree *> nodes_deque;
     nodes_deque.push_back(this);
     ll level(0), sz;
     bool flag(true);
@@ -284,7 +284,7 @@ void BinaryTree<type>::level_order_traversal_spiral()
         cout << "Level " << level << ": ";
         while (sz--)
         {
-            BinaryTree<type> *cur;
+            Binary_Tree<type> *cur;
             if (flag)
             {
                 cur = nodes_deque.front();
@@ -311,9 +311,9 @@ void BinaryTree<type>::level_order_traversal_spiral()
 }
 
 template <class type>
-bool BinaryTree<type>::is_complete()
+bool Binary_Tree<type>::is_complete()
 {
-    queue<BinaryTree<type> *> nodes_queue;
+    queue<Binary_Tree<type> *> nodes_queue;
     nodes_queue.push(this);
     bool no_more_allowed(false);
     while (!nodes_queue.empty())
@@ -321,7 +321,7 @@ bool BinaryTree<type>::is_complete()
         ll sz(nodes_queue.size());
         while (sz--)
         {
-            BinaryTree<type> *cur(nodes_queue.front());
+            Binary_Tree<type> *cur(nodes_queue.front());
             nodes_queue.pop();
             if (cur->left)
             {
@@ -346,7 +346,7 @@ bool BinaryTree<type>::is_complete()
 }
 
 template <class type>
-BinaryTree<type>::BinaryTree(deque<ll> &preorder, deque<ll> &inorder, ll inorder_start, ll inorder_end)
+Binary_Tree<type>::Binary_Tree(deque<ll> &preorder, deque<ll> &inorder, ll inorder_start, ll inorder_end)
 {
     if (inorder_end == -1)
         inorder_end = (int)inorder.size() - 1;
@@ -357,15 +357,15 @@ BinaryTree<type>::BinaryTree(deque<ll> &preorder, deque<ll> &inorder, ll inorder
         if (inorder[split] == data)
         {
             if (inorder_start < split)
-                left = new BinaryTree(preorder, inorder, inorder_start, split - 1);
+                left = new Binary_Tree(preorder, inorder, inorder_start, split - 1);
             if (split < inorder_end)
-                right = new BinaryTree(preorder, inorder, split + 1, inorder_end);
+                right = new Binary_Tree(preorder, inorder, split + 1, inorder_end);
             break;
         }
     }
 }
 template <class type>
-BinaryTree<type>::BinaryTree(queue<pair<ll, ll>> &preorder_queue)
+Binary_Tree<type>::Binary_Tree(queue<pair<ll, ll>> &preorder_queue)
 {
     pair<ll, ll> p = preorder_queue.front();
     preorder_queue.pop();
@@ -373,14 +373,14 @@ BinaryTree<type>::BinaryTree(queue<pair<ll, ll>> &preorder_queue)
     if (!p.second)
     {
         if (preorder_queue.size())
-            left = new BinaryTree(preorder_queue);
+            left = new Binary_Tree(preorder_queue);
         if (preorder_queue.size())
-            right = new BinaryTree(preorder_queue);
+            right = new Binary_Tree(preorder_queue);
     }
 }
 
 template <class type>
-void BinaryTree<type>::build_preorder(queue<pair<ll, ll>> &preorder_queue)
+void Binary_Tree<type>::build_preorder(queue<pair<ll, ll>> &preorder_queue)
 {
     preorder_queue.push(make_pair(data, !left && !right));
     if (left)
@@ -390,7 +390,7 @@ void BinaryTree<type>::build_preorder(queue<pair<ll, ll>> &preorder_queue)
 }
 
 template <class type>
-void BinaryTree<type>::print_preorder_complete()
+void Binary_Tree<type>::print_preorder_complete()
 {
     cout << data << ' ';
     if (left)
@@ -405,7 +405,7 @@ void BinaryTree<type>::print_preorder_complete()
 }
 
 template <class type>
-string BinaryTree<type>::to_str(ll n)
+string Binary_Tree<type>::to_str(ll n)
 {
     ostringstream oss;
     oss << n;
@@ -413,7 +413,7 @@ string BinaryTree<type>::to_str(ll n)
 }
 
 template <class type>
-string BinaryTree<type>::parenthesize_0(bool left_first)
+string Binary_Tree<type>::parenthesize_0(bool left_first)
 {
     string repr("(" + to_str(data));
 
@@ -446,7 +446,7 @@ string BinaryTree<type>::parenthesize_0(bool left_first)
 }
 
 template <class type>
-string BinaryTree<type>::parenthesize_canonical()
+string Binary_Tree<type>::parenthesize_canonical()
 {
     string repr("(" + to_str(data));
     vector<string> v;
@@ -472,7 +472,7 @@ string BinaryTree<type>::parenthesize_canonical()
 }
 
 template <class type>
-bool BinaryTree<type>::is_mirror(BinaryTree<type> *first, BinaryTree<type> *second)
+bool Binary_Tree<type>::is_mirror(Binary_Tree<type> *first, Binary_Tree<type> *second)
 {
     if (!first && !second)
         return true;
@@ -485,7 +485,7 @@ bool BinaryTree<type>::is_mirror(BinaryTree<type> *first, BinaryTree<type> *seco
 }
 
 template <class type>
-bool BinaryTree<type>::is_symmetric()
+bool Binary_Tree<type>::is_symmetric()
 {
     if (!left && !right)
         return true;
@@ -498,13 +498,13 @@ bool BinaryTree<type>::is_symmetric()
 }
 
 template <class type>
-bool BinaryTree<type>::is_flip_equiv_0(BinaryTree<type> *other)
+bool Binary_Tree<type>::is_flip_equiv_0(Binary_Tree<type> *other)
 {
     return parenthesize_canonical() == other->parenthesize_canonical();
 }
 
 template <class type>
-bool BinaryTree<type>::is_flip_equiv_1(BinaryTree<type> *first, BinaryTree<type> *second)
+bool Binary_Tree<type>::is_flip_equiv_1(Binary_Tree<type> *first, Binary_Tree<type> *second)
 {
     if (!first && !second)
         return true;
@@ -519,7 +519,7 @@ bool BinaryTree<type>::is_flip_equiv_1(BinaryTree<type> *first, BinaryTree<type>
 }
 
 template <class type>
-string BinaryTree<type>::parenthesize_1(vector<string> &all_repres)
+string Binary_Tree<type>::parenthesize_1(vector<string> &all_repres)
 {
     string repr("(" + to_str(data));
     if (left)
@@ -540,7 +540,7 @@ string BinaryTree<type>::parenthesize_1(vector<string> &all_repres)
 }
 
 template <class type>
-void BinaryTree<type>::print_duplicate_subtrees()
+void Binary_Tree<type>::print_duplicate_subtrees()
 {
     vector<string> all_repres;
     parenthesize_1(all_repres);

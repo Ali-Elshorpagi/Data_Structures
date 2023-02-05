@@ -1,4 +1,5 @@
 #pragma once
+
 #include <iostream>
 #include <cassert>
 #include <vector>
@@ -14,15 +15,15 @@ using namespace std;
 typedef long long ll;
 
 template <class type>
-class BinaryTree
+class Binary_Tree
 {
     type data{};
-    BinaryTree *left{};
-    BinaryTree *right{};
+    Binary_Tree *left{};
+    Binary_Tree *right{};
 
 public:
-    BinaryTree(type data);
-    ~BinaryTree();
+    Binary_Tree(type data);
+    ~Binary_Tree();
     void clear();
     void add(vector<type> values, vector<char> direction);
     void print_in_order();
@@ -44,18 +45,18 @@ public:
     void level_order_traversal_recursive();
     void level_order_traversal_spiral();
     bool is_complete();
-    BinaryTree(deque<ll> &preorder, deque<ll> &inorder, ll inorder_start = 0, ll inorder_end = -1);
-    BinaryTree(queue<pair<ll, ll>> &preorder_queue);
+    Binary_Tree(deque<ll> &preorder, deque<ll> &inorder, ll inorder_start = 0, ll inorder_end = -1);
+    Binary_Tree(queue<pair<ll, ll>> &preorder_queue);
     void build_preorder(queue<pair<ll, ll>> &preorder_queue);
 
     void print_preorder_complete();
     string to_str(ll n);
     string parenthesize_0(bool left_first = true);
     string parenthesize_canonical();
-    bool is_mirror(BinaryTree<type> *first, BinaryTree<type> *second);
+    bool is_mirror(Binary_Tree<type> *first, Binary_Tree<type> *second);
     bool is_symmetric();
-    bool is_flip_equiv_0(BinaryTree<type> *other);
-    bool is_flip_equiv_1(BinaryTree<type> *first, BinaryTree<type> *second);
+    bool is_flip_equiv_0(Binary_Tree<type> *other);
+    bool is_flip_equiv_1(Binary_Tree<type> *first, Binary_Tree<type> *second);
 
     string parenthesize_1(vector<string> &all_repres);
     void print_duplicate_subtrees();

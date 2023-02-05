@@ -1,4 +1,5 @@
-#include "source/BinaryTree.cpp"
+#include "source/Binary_Search_Tree.cpp"
+#include "source/Binary_Tree.cpp"
 // #include "source/Circular_Queue.cpp" // this file was compiled in another file
 #include "source/Deque.cpp"
 #include "source/Doubly_Linkedlist.cpp"
