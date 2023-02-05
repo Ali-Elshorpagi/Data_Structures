@@ -20,7 +20,8 @@ int main()
 	tree.print_in_order();
 	cout << edl;
 
-	cout << (tree.is_bst_0() ? "YES" : "NO") << edl;
+	cout << (tree.is_bst_0() ? "YES" : "NO") << edl
+		 << (tree.is_bst_1() ? "YES" : "NO") << edl;
 
 	cout << edl << "DONE" << edl;
 	return 0;

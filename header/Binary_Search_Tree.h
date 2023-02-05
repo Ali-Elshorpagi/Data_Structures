@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <vector>
 #include <cassert>
 
 using namespace std;
@@ -26,4 +27,6 @@ public:
     type max_value();
     bool search_iterative(type val);
     bool is_bst_0();
+    void get_inorder(vector<type> &inorder_values);
+    bool is_bst_1();
 };

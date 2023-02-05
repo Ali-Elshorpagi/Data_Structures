@@ -101,3 +101,26 @@ bool Binary_Search_Tree<type>::is_bst_0()
     bool right_bst(!right || (data < right->data && right->is_bst_0()));
     return right_bst;
 }
+
+template <class type>
+void Binary_Search_Tree<type>::get_inorder(vector<type> &inorder_values)
+{
+    if (left)
+        left->get_inorder(inorder_values);
+    inorder_values.emplace_back(data);
+    if (right)
+        right->get_inorder(inorder_values);
+}
+
+template <class type>
+bool Binary_Search_Tree<type>::is_bst_1()
+{
+    vector<type> inorder_values;
+    ll len((int)inorder_values.size());
+    for (ll i(1); i < len; ++i)
+    {
+        if (inorder_values[i] < inorder_values[i - 1])
+            return false;
+    }
+    return true;
+}
