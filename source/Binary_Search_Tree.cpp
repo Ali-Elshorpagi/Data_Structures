@@ -103,12 +103,15 @@ bool Binary_Search_Tree<type>::search_iterative(type val)
 }
 
 template <class type>
-bool Binary_Search_Tree<type>::is_bst_0()
+bool Binary_Search_Tree<type>::is_bst_0(type mn, type mx)
 {
-    bool left_bst(!left || (data > left->data && left->is_bst_0()));
+    bool status((mn < data) && (data < mx));
+    if (!status)
+        return false;
+    bool left_bst(!left || left->is_bst_0(mn, data));
     if (!left_bst)
         return false;
-    bool right_bst(!right || (data < right->data && right->is_bst_0()));
+    bool right_bst(!right || right->is_bst_0(data, mx));
     return right_bst;
 }
 
@@ -123,4 +126,18 @@ bool Binary_Search_Tree<type>::is_bst_1()
             return false;
 
     return true;
+}
+
+template <class type>
+Binary_Search_Tree<type> *Binary_Search_Tree<type>::build_balanced_bst_tree(vector<type> &values, ll str, ll end)
+{
+    if (end == -1)
+        end = (int)values.size() - 1;
+    if (str > end)
+        return nullptr;
+    ll mid((str + end) >> 1);
+    Binary_Search_Tree<type> *left(build_balanced_bst_tree(values, str, mid - 1));
+    Binary_Search_Tree<type> *right(build_balanced_bst_tree(values, mid + 1, end));
+    Binary_Search_Tree<type> *root(new Binary_Search_Tree<type>(values[mid], left, right));
+    return root;
 }

@@ -11,7 +11,6 @@ typedef long long ll;
 template <class type>
 class Binary_Search_Tree
 {
-private:
     type data{};
     Binary_Search_Tree<type> *left{};
     Binary_Search_Tree<type> *right{};
@@ -27,6 +26,7 @@ public:
     type min_value();
     type max_value();
     bool search_iterative(type val);
-    bool is_bst_0();
+    bool is_bst_0(type mn = INT_MIN, type mx = INT_MAX);
     bool is_bst_1();
+    Binary_Search_Tree<type> *build_balanced_bst_tree(vector<type> &values, ll str = 0, ll end = -1);
 };

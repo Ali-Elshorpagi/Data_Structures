@@ -632,6 +632,7 @@ pair<S_Node<type> *, pair<S_Node<type> *, S_Node<type> *>> Singly_LinkedList<typ
         prv = cur_head;
         cur_head = next;
     }
+    // return: current chain head, current chain tail, next head
     return make_pair(prv, make_pair(cur_tail, cur_head));
 }
 

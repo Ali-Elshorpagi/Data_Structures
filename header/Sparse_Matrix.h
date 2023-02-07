@@ -16,7 +16,6 @@ struct Row_Node
 template <class type>
 class Sparse_Matrix
 {
-private:
     Row_Node<type> *head{};
     Row_Node<type> *tail{};
     ll length = 0;

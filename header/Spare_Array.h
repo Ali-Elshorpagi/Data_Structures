@@ -20,7 +20,6 @@ struct Col_Node
 template <class type>
 class Spare_Array
 {
-private:
     Col_Node<type> *head{};
     Col_Node<type> *tail{};
     ll length = 0;
