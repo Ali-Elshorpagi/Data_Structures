@@ -73,4 +73,6 @@ public:
     void insert_alternate(Singly_LinkedList<type> &other);
     void add_num(Singly_LinkedList<type> &other);
     void remove_all_repeated_from_sorted_list();
+    pair<S_Node<type> *, pair<S_Node<type> *, S_Node<type> *>> reverse_subchain(S_Node<type> *cur_head, ll k);
+    void reverse_chains(ll k);
 };

@@ -618,3 +618,44 @@ void Singly_LinkedList<type>::remove_all_repeated_from_sorted_list()
     if (!head)
         tail = head;
 }
+
+template <class type>
+pair<S_Node<type> *, pair<S_Node<type> *, S_Node<type> *>> Singly_LinkedList<type>::reverse_subchain(S_Node<type> *cur_head, ll k)
+{
+    S_Node<type> *cur_tail(cur_head);
+    S_Node<type> *prv(cur_head);
+    cur_head = cur_head->next;
+    for (ll s(0); s < k - 1 && cur_head; ++s)
+    {
+        S_Node<type> *next(cur_head->next);
+        cur_head->next = prv;
+        prv = cur_head;
+        cur_head = next;
+    }
+    return make_pair(prv, make_pair(cur_tail, cur_head));
+}
+
+template <class type>
+void Singly_LinkedList<type>::reverse_chains(ll k)
+{
+    if (length <= 1 || k == 1)
+        return;
+    S_Node<type> *last_tail(nullptr);
+    S_Node<type> *next_chain_head(head);
+    head = nullptr;
+
+    while (next_chain_head)
+    {
+        pair<S_Node<type> *, pair<S_Node<type> *, S_Node<type> *>> p(reverse_subchain(next_chain_head, k));
+        S_Node<type> *chain_head(p.first);
+        S_Node<type> *chain_tail(p.second.first);
+        next_chain_head = p.second.second;
+        tail = chain_tail;
+        if (!head)
+            head = chain_head;
+        else
+            last_tail->next = chain_head;
+        last_tail = chain_tail;
+    }
+    tail->next = nullptr;
+}
