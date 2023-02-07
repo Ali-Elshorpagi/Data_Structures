@@ -29,4 +29,6 @@ public:
     bool is_bst_0(type mn = INT_MIN, type mx = INT_MAX);
     bool is_bst_1();
     Binary_Search_Tree<type> *build_balanced_bst_tree(vector<type> &values, ll str = 0, ll end = -1);
+    type kth_smallest_0(ll &k);
+    type kth_smallest_1(ll &k);
 };

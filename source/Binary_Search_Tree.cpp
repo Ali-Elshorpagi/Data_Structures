@@ -141,3 +141,34 @@ Binary_Search_Tree<type> *Binary_Search_Tree<type>::build_balanced_bst_tree(vect
     Binary_Search_Tree<type> *root(new Binary_Search_Tree<type>(values[mid], left, right));
     return root;
 }
+
+template <class type>
+type Binary_Search_Tree<type>::kth_smallest_0(ll &k)
+{
+    vector<type> vals;
+    get_in_order(vals);
+    ll len((int)vals.size());
+    if (k >= len)
+        return -1234;
+    else
+        return vals[k - 1];
+}
+
+template <class type>
+type Binary_Search_Tree<type>::kth_smallest_1(ll &k)
+{
+    if (k == 0)
+        return -1234;
+    if (left)
+    {
+        type res(left->kth_smallest_1(k));
+        if (k == 0)
+            return res;
+    }
+    --k; // for current node
+    if (k == 0)
+        return data;
+    if (right)
+        return right->kth_smallest_1(k);
+    return -1234;
+}
