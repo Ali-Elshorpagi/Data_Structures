@@ -165,10 +165,20 @@ type Binary_Search_Tree<type>::kth_smallest_1(ll &k)
         if (k == 0)
             return res;
     }
-    --k; // for current node
+    --k;
     if (k == 0)
         return data;
     if (right)
         return right->kth_smallest_1(k);
     return -1234;
+}
+
+template <class type>
+type Binary_Search_Tree<type>::LCA(type x, type y)
+{
+    if (data > x && data > y)
+        return left->LCA(x, y);
+    if (data < x && data < y)
+        return right->LCA(x, y);
+    return data;
 }
