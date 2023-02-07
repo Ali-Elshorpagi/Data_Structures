@@ -541,3 +541,29 @@ void Singly_LinkedList<type>::insert_alternate(Singly_LinkedList<type> &other)
     other.length = 0;
     other.debug_data.clear();
 }
+
+template <class type>
+void Singly_LinkedList<type>::add_num(Singly_LinkedList<type> &other)
+{
+    if (!other.length)
+        return;
+    S_Node<type> *my_cur(head), *his_cur(other.head);
+    ll carry(0), my_val, his_val;
+    while (my_cur || his_cur)
+    {
+        my_val = 0, his_val = 0;
+        if (my_cur)
+            my_val = my_cur->data;
+        if (his_cur)
+            his_val = his_cur->data, his_cur = his_cur->next;
+        my_val += his_val + carry;
+        carry = my_val / 10;
+        my_val %= 10;
+        if (my_cur)
+            my_cur->data = my_val, my_cur = my_cur->next;
+        else
+            insert_end(my_val);
+    }
+    if (carry)
+        insert_end(carry);
+}

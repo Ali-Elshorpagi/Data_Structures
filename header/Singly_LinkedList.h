@@ -70,4 +70,5 @@ public:
     type middle_value();
     void insert_after(S_Node<type> *src, S_Node<type> *target);
     void insert_alternate(Singly_LinkedList<type> &other);
+    void add_num(Singly_LinkedList<type> &other);
 };
