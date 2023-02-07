@@ -182,6 +182,14 @@ bool Singly_LinkedList<type>::is_same(const Singly_LinkedList<type> &list)
 }
 
 template <class type>
+S_Node<type> *Singly_LinkedList<type>::move_and_delete(S_Node<type> *node)
+{
+    S_Node<type> *tmp(node->next);
+    delete_node(node);
+    return tmp;
+}
+
+template <class type>
 void Singly_LinkedList<type>::delete_node(S_Node<type> *node)
 {
     auto it = std::find(debug_data.begin(), debug_data.end(), node);
@@ -566,4 +574,47 @@ void Singly_LinkedList<type>::add_num(Singly_LinkedList<type> &other)
     }
     if (carry)
         insert_end(carry);
+}
+
+template <class type>
+void Singly_LinkedList<type>::remove_all_repeated_from_sorted_list()
+{
+    if (length <= 1)
+        return;
+    // Add dummy head for easier prv linking
+    insert_front(-1234);
+    tail = head;
+    S_Node<type> *previous(head);
+    S_Node<type> *cur(head->next);
+
+    while (cur)
+    {
+
+        bool any_removed(false);
+        while (cur && cur->next && cur->data == cur->next->data)
+        {
+            type block_value(cur->data);
+            any_removed = true;
+            while (cur && cur->data == block_value)
+                cur = move_and_delete(cur);
+        }
+        if (any_removed)
+        {
+            if (!cur)
+                tail = previous;
+            previous->next = cur;
+            previous = cur;
+        }
+        else
+        {
+            tail = cur;
+            previous = cur;
+            cur = cur->next;
+        }
+    }
+    previous = head->next;
+    delete_first();
+    head = previous;
+    if (!head)
+        tail = head;
 }

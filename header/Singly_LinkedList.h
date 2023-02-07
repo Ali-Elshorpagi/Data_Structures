@@ -48,6 +48,7 @@ public:
     void insert_front(type val);
     S_Node<type> *get_nth_from_back(ll idx);
     bool is_same(const Singly_LinkedList<type> &list);
+    S_Node<type> *move_and_delete(S_Node<type> *node);
     void delete_node(S_Node<type> *node);
     void delete_first();
     void delete_last();
@@ -71,4 +72,5 @@ public:
     void insert_after(S_Node<type> *src, S_Node<type> *target);
     void insert_alternate(Singly_LinkedList<type> &other);
     void add_num(Singly_LinkedList<type> &other);
+    void remove_all_repeated_from_sorted_list();
 };
