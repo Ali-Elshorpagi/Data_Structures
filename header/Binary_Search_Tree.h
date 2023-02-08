@@ -16,6 +16,8 @@ class Binary_Search_Tree
     Binary_Search_Tree<type> *right{};
     void get_in_order(vector<type> &inorder_values);
     void clear();
+    bool find_chain(vector<Binary_Search_Tree<type> *> &ancestors, type val);
+    Binary_Search_Tree<type> *get_next(vector<Binary_Search_Tree<type> *> &ancestors);
 
 public:
     Binary_Search_Tree(type data);
@@ -32,4 +34,5 @@ public:
     type kth_smallest_0(ll &k);
     type kth_smallest_1(ll &k);
     type LCA(type x, type y);
+    pair<bool, type> successor(type val);
 };

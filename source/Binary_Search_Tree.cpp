@@ -71,19 +71,19 @@ bool Binary_Search_Tree<type>::search(type val)
 template <class type>
 type Binary_Search_Tree<type>::min_value()
 {
-    if (!left || !left->left)
-        return left->data;
-    else
-        return left->min_value();
+    Binary_Search_Tree<type> *cur(this);
+    while (cur && cur->left)
+        cur = cur->left;
+    return cur->data;
 }
 
 template <class type>
 type Binary_Search_Tree<type>::max_value()
 {
-    if (!right || !right->right)
-        return right->data;
-    else
-        return right->max_value();
+    Binary_Search_Tree<type> *cur(this);
+    while (cur && cur->right)
+        cur = cur->right;
+    return cur->data;
 }
 
 template <class type>
@@ -181,4 +181,48 @@ type Binary_Search_Tree<type>::LCA(type x, type y)
     if (data < x && data < y)
         return right->LCA(x, y);
     return data;
+}
+
+template <class type>
+bool Binary_Search_Tree<type>::find_chain(vector<Binary_Search_Tree<type> *> &ancestors, type val)
+{
+    ancestors.push_back(this);
+    if (val == data)
+        return true;
+    if (val < data)
+        return left && left->find_chain(ancestors, val);
+    return right && right->find_chain(ancestors, val);
+}
+
+template <class type>
+Binary_Search_Tree<type> *Binary_Search_Tree<type>::get_next(vector<Binary_Search_Tree<type> *> &ancestors)
+{
+    if (ancestors.size() == 0)
+        return nullptr;
+    Binary_Search_Tree<type> *node(ancestors.back());
+    ancestors.pop_back();
+    return node;
+}
+
+template <class type>
+pair<bool, type> Binary_Search_Tree<type>::successor(type val)
+{
+    vector<Binary_Search_Tree<type> *> ancestors;
+
+    if (!find_chain(ancestors, val))
+        return make_pair(false, -1);
+
+    Binary_Search_Tree<type> *child(get_next(ancestors));
+
+    if (child->right)
+        return make_pair(true, child->right->min_value());
+
+    Binary_Search_Tree<type> *parent(get_next(ancestors));
+
+    while (parent && parent->right == child)
+        child = parent, parent = get_next(ancestors);
+
+    if (parent)
+        return make_pair(true, parent->data);
+    return make_pair(false, -1);
 }
