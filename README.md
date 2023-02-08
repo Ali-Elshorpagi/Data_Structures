@@ -15,3 +15,4 @@
 * Priority Queue
 * Deque
 * Binary Tree
+* Binary Search Tree
