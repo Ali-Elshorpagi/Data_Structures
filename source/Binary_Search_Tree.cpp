@@ -4,22 +4,14 @@ template <class type>
 Binary_Search_Tree<type>::Binary_Search_Tree(type data) : data(data) {}
 
 template <class type>
-Binary_Search_Tree<type>::Binary_Search_Tree(deque<type> &preorder, ll start, ll end)
+Binary_Search_Tree<type>::Binary_Search_Tree(deque<type> &preorder, type min, type max)
 {
-    if (end == -1)
-        end = (int)preorder.size() - 1;
-    data = preorder[start];
-    for (ll split(start + 1); split <= end + 1; ++split)
-    {
-        if (split == end + 1 || preorder[split] > data)
-        {
-            if (start + 1 <= split - 1)
-                left = new Binary_Search_Tree<type>(preorder, start + 1, split - 1);
-            if (split <= end)
-                right = new Binary_Search_Tree<type>(preorder, split, end);
-            break;
-        }
-    }
+    data = preorder[0];
+    preorder.pop_front();
+    if (next_between(preorder, min, data))
+        left = new Binary_Search_Tree<type>(preorder, min, data);
+    if (next_between(preorder, data, max))
+        right = new Binary_Search_Tree<type>(preorder, data, max);
 }
 
 template <class type>
@@ -49,13 +41,22 @@ void Binary_Search_Tree<type>::get_in_order(vector<type> &inorder_values)
 }
 
 template <class type>
-void Binary_Search_Tree<type>::get_pre_order(deque<type> &preorder_queue)
+void Binary_Search_Tree<type>::get_pre_order(deque<type> &preorder_values)
 {
-    preorder_queue.push_back(data);
+    preorder_values.push_back(data);
     if (left)
-        left->get_pre_order(preorder_queue);
+        left->get_pre_order(preorder_values);
     if (right)
-        right->get_pre_order(preorder_queue);
+        right->get_pre_order(preorder_values);
+}
+
+// Check if the next element in the preorder is in the range
+template <class type>
+bool Binary_Search_Tree<type>::next_between(deque<type> &preorder, type min, type max)
+{
+    if (preorder.empty())
+        return false;
+    return ((min < preorder[0]) && (preorder[0] < max));
 }
 
 template <class type>

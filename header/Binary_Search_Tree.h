@@ -21,10 +21,11 @@ class Binary_Search_Tree
     void clear();
     bool find_chain(vector<Binary_Search_Tree<type> *> &ancestors, type val);
     Binary_Search_Tree<type> *get_next(vector<Binary_Search_Tree<type> *> &ancestors);
+    bool next_between(deque<type> &preorder, type min, type max);
 
 public:
     Binary_Search_Tree(type data);
-    Binary_Search_Tree(deque<type> &preorder, ll start = 0, ll end = -1);
+    Binary_Search_Tree(deque<type> &preorder, type min = INT_MIN, type max = INT_MAX);
     ~Binary_Search_Tree();
     void print_in_order();
     void insert(type val);
