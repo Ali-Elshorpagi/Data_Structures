@@ -346,7 +346,7 @@ bool Binary_Tree<type>::is_complete()
 }
 
 template <class type>
-Binary_Tree<type>::Binary_Tree(deque<ll> &preorder, deque<ll> &inorder, ll inorder_start, ll inorder_end)
+Binary_Tree<type>::Binary_Tree(deque<type> &preorder, deque<type> &inorder, ll inorder_start, ll inorder_end)
 {
     if (inorder_end == -1)
         inorder_end = (int)inorder.size() - 1;
@@ -364,10 +364,11 @@ Binary_Tree<type>::Binary_Tree(deque<ll> &preorder, deque<ll> &inorder, ll inord
         }
     }
 }
+
 template <class type>
-Binary_Tree<type>::Binary_Tree(queue<pair<ll, ll>> &preorder_queue)
+Binary_Tree<type>::Binary_Tree(queue<pair<type, type>> &preorder_queue)
 {
-    pair<ll, ll> p = preorder_queue.front();
+    pair<type, type> p = preorder_queue.front();
     preorder_queue.pop();
     data = p.first;
     if (!p.second)
@@ -380,7 +381,7 @@ Binary_Tree<type>::Binary_Tree(queue<pair<ll, ll>> &preorder_queue)
 }
 
 template <class type>
-void Binary_Tree<type>::build_preorder(queue<pair<ll, ll>> &preorder_queue)
+void Binary_Tree<type>::build_preorder(queue<pair<type, type>> &preorder_queue)
 {
     preorder_queue.push(make_pair(data, !left && !right));
     if (left)
@@ -405,7 +406,7 @@ void Binary_Tree<type>::print_preorder_complete()
 }
 
 template <class type>
-string Binary_Tree<type>::to_str(ll n)
+string Binary_Tree<type>::to_str(type n)
 {
     ostringstream oss;
     oss << n;

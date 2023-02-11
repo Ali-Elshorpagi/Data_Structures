@@ -45,12 +45,12 @@ public:
     void level_order_traversal_recursive();
     void level_order_traversal_spiral();
     bool is_complete();
-    Binary_Tree(deque<ll> &preorder, deque<ll> &inorder, ll inorder_start = 0, ll inorder_end = -1);
-    Binary_Tree(queue<pair<ll, ll>> &preorder_queue);
-    void build_preorder(queue<pair<ll, ll>> &preorder_queue);
+    Binary_Tree(deque<type> &preorder, deque<type> &inorder, ll inorder_start = 0, ll inorder_end = -1);
+    Binary_Tree(queue<pair<type, type>> &preorder_queue);
+    void build_preorder(queue<pair<type, type>> &preorder_queue);
 
     void print_preorder_complete();
-    string to_str(ll n);
+    string to_str(type n);
     string parenthesize_0(bool left_first = true);
     string parenthesize_canonical();
     bool is_mirror(Binary_Tree<type> *first, Binary_Tree<type> *second);

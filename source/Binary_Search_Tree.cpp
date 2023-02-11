@@ -4,6 +4,25 @@ template <class type>
 Binary_Search_Tree<type>::Binary_Search_Tree(type data) : data(data) {}
 
 template <class type>
+Binary_Search_Tree<type>::Binary_Search_Tree(deque<type> &preorder, ll start, ll end)
+{
+    if (end == -1)
+        end = (int)preorder.size() - 1;
+    data = preorder[start];
+    for (ll split(start + 1); split <= end + 1; ++split)
+    {
+        if (split == end + 1 || preorder[split] > data)
+        {
+            if (start + 1 <= split - 1)
+                left = new Binary_Search_Tree<type>(preorder, start + 1, split - 1);
+            if (split <= end)
+                right = new Binary_Search_Tree<type>(preorder, split, end);
+            break;
+        }
+    }
+}
+
+template <class type>
 Binary_Search_Tree<type>::~Binary_Search_Tree()
 {
     clear();
@@ -30,6 +49,16 @@ void Binary_Search_Tree<type>::get_in_order(vector<type> &inorder_values)
 }
 
 template <class type>
+void Binary_Search_Tree<type>::get_pre_order(deque<type> &preorder_queue)
+{
+    preorder_queue.push_back(data);
+    if (left)
+        left->get_pre_order(preorder_queue);
+    if (right)
+        right->get_pre_order(preorder_queue);
+}
+
+template <class type>
 void Binary_Search_Tree<type>::print_in_order()
 {
     if (left)
@@ -45,14 +74,14 @@ void Binary_Search_Tree<type>::insert(type val)
     if (val < data)
     {
         if (!left)
-            left = new Binary_Search_Tree(val);
+            left = new Binary_Search_Tree<type>(val);
         else
             left->insert(val);
     }
     else if (val > data)
     {
         if (!right)
-            right = new Binary_Search_Tree(val);
+            right = new Binary_Search_Tree<type>(val);
         else
             right->insert(val);
     }

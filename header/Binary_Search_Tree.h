@@ -3,6 +3,8 @@
 #include <iostream>
 #include <vector>
 #include <cassert>
+#include <deque>
+#include <vector>
 
 using namespace std;
 #define edl '\n'
@@ -15,12 +17,14 @@ class Binary_Search_Tree
     Binary_Search_Tree<type> *left{};
     Binary_Search_Tree<type> *right{};
     void get_in_order(vector<type> &inorder_values);
+    void get_pre_order(deque<type> &preorder_queue);
     void clear();
     bool find_chain(vector<Binary_Search_Tree<type> *> &ancestors, type val);
     Binary_Search_Tree<type> *get_next(vector<Binary_Search_Tree<type> *> &ancestors);
 
 public:
     Binary_Search_Tree(type data);
+    Binary_Search_Tree(deque<type> &preorder, ll start = 0, ll end = -1);
     ~Binary_Search_Tree();
     void print_in_order();
     void insert(type val);
