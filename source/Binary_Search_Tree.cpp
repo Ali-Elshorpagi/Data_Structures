@@ -15,6 +15,42 @@ Binary_Search_Tree<type>::Binary_Search_Tree(deque<type> &preorder, type min, ty
 }
 
 template <class type>
+Binary_Search_Tree<type>::Binary_Search_Tree(deque<type> level_order)
+{
+    queue<pair<Binary_Search_Tree<type> *, pair<int, int>>> nodes_queue;
+    data = level_order[0];
+    level_order.pop_front();
+    nodes_queue.push(range(this, INT_MIN, INT_MAX));
+    while (!nodes_queue.empty())
+    {
+        int sz(nodes_queue.size());
+        while (sz--)
+        {
+            Binary_Search_Tree<type> *cur(nodes_queue.front().first);
+            type mn(nodes_queue.front().second.first);
+            type mx(nodes_queue.front().second.second);
+            type data(cur->data);
+            nodes_queue.pop();
+            if (next_between(level_order, mn, data))
+            {
+                type new_data(level_order[0]);
+                level_order.pop_front();
+                cur->left = new Binary_Search_Tree<type>(new_data);
+                nodes_queue.push(range(cur->left, mn, data));
+            }
+            if (next_between(level_order, data, mx))
+            {
+                type new_data(level_order[0]);
+                level_order.pop_front();
+                cur->right = new Binary_Search_Tree<type>(new_data);
+                nodes_queue.push(range(cur->right, data, mx));
+            }
+        }
+    }
+    assert(is_bst_1());
+}
+
+template <class type>
 Binary_Search_Tree<type>::~Binary_Search_Tree()
 {
     clear();
@@ -60,6 +96,13 @@ bool Binary_Search_Tree<type>::next_between(deque<type> &preorder, type min, typ
 }
 
 template <class type>
+pair<Binary_Search_Tree<type> *, pair<type, type>> Binary_Search_Tree<type>::range(Binary_Search_Tree<type> *node, type mn, type mx)
+{
+    pair<type, type> range = make_pair(mn, mx);
+    return make_pair(node, range);
+}
+
+template <class type>
 void Binary_Search_Tree<type>::print_in_order()
 {
     if (left)
@@ -96,6 +139,31 @@ bool Binary_Search_Tree<type>::search(type val)
     if (val < data)
         return left && left->search(val);
     return right && right->search(val);
+}
+
+template <class type>
+deque<type> Binary_Search_Tree<type>::level_order_traversal()
+{
+    queue<Binary_Search_Tree<type> *> nodes_queue;
+    nodes_queue.push(this);
+    deque<type> level_order;
+    ll level(0);
+    while (!nodes_queue.empty())
+    {
+        ll sz(nodes_queue.size());
+        while (sz--)
+        {
+            Binary_Search_Tree<type> *cur(nodes_queue.front());
+            nodes_queue.pop();
+            level_order.push_back(cur->data);
+            if (cur->left)
+                nodes_queue.push(cur->left);
+            if (cur->right)
+                nodes_queue.push(cur->right);
+        }
+        level++;
+    }
+    return level_order;
 }
 
 template <class type>

@@ -5,6 +5,8 @@
 #include <cassert>
 #include <deque>
 #include <vector>
+#include <queue>
+#include <utility>
 
 using namespace std;
 #define edl '\n'
@@ -22,14 +24,17 @@ class Binary_Search_Tree
     bool find_chain(vector<Binary_Search_Tree<type> *> &ancestors, type val);
     Binary_Search_Tree<type> *get_next(vector<Binary_Search_Tree<type> *> &ancestors);
     bool next_between(deque<type> &preorder, type min, type max);
+    pair<Binary_Search_Tree<type> *, pair<type, type>> range(Binary_Search_Tree<type> *node, type mn, type mx);
 
 public:
     Binary_Search_Tree(type data);
     Binary_Search_Tree(deque<type> &preorder, type min = INT_MIN, type max = INT_MAX);
+    Binary_Search_Tree(deque<type> level_order);
     ~Binary_Search_Tree();
     void print_in_order();
     void insert(type val);
     bool search(type val);
+    deque<type> level_order_traversal();
     type min_value();
     type max_value();
     bool search_iterative(type val);
