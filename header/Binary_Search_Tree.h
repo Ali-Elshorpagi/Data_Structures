@@ -18,19 +18,22 @@ class Binary_Search_Tree
     type data{};
     Binary_Search_Tree<type> *left{};
     Binary_Search_Tree<type> *right{};
-    void get_in_order(vector<type> &inorder_values);
-    void get_pre_order(deque<type> &preorder_queue);
     void clear();
     bool find_chain(vector<Binary_Search_Tree<type> *> &ancestors, type val);
     Binary_Search_Tree<type> *get_next(vector<Binary_Search_Tree<type> *> &ancestors);
     bool next_between(deque<type> &preorder, type min, type max);
     pair<Binary_Search_Tree<type> *, pair<type, type>> range(Binary_Search_Tree<type> *node, type mn, type mx);
+    void special_delete(Binary_Search_Tree<type> *child);
+    Binary_Search_Tree<type> *delete_node(type target, Binary_Search_Tree<type> *node);
+    Binary_Search_Tree<type> *min_node();
 
 public:
     Binary_Search_Tree(type data);
     Binary_Search_Tree(deque<type> &preorder, type min = INT_MIN, type max = INT_MAX);
     Binary_Search_Tree(deque<type> level_order);
     ~Binary_Search_Tree();
+    void get_in_order(vector<type> &inorder_values);
+    void get_pre_order(deque<type> &preorder_queue);
     void print_in_order();
     void insert(type val);
     bool search(type val);
@@ -45,4 +48,5 @@ public:
     type kth_smallest_1(ll &k);
     type LCA(type x, type y);
     pair<bool, type> successor(type val);
+    void delete_value(type val);
 };

@@ -23,7 +23,7 @@ Binary_Search_Tree<type>::Binary_Search_Tree(deque<type> level_order)
     nodes_queue.push(range(this, INT_MIN, INT_MAX));
     while (!nodes_queue.empty())
     {
-        int sz(nodes_queue.size());
+        ll sz(nodes_queue.size());
         while (sz--)
         {
             Binary_Search_Tree<type> *cur(nodes_queue.front().first);
@@ -66,6 +66,69 @@ void Binary_Search_Tree<type>::clear()
         delete right, left = right;
 }
 
+// Check if the next element in the preorder is in the range
+template <class type>
+bool Binary_Search_Tree<type>::next_between(deque<type> &preorder, type min, type max)
+{
+    if (preorder.empty())
+        return false;
+    return ((min < preorder[0]) && (preorder[0] < max));
+}
+
+template <class type>
+pair<Binary_Search_Tree<type> *, pair<type, type>> Binary_Search_Tree<type>::range(Binary_Search_Tree<type> *node, type mn, type mx)
+{
+    pair<type, type> range = make_pair(mn, mx);
+    return make_pair(node, range);
+}
+
+template <class type>
+Binary_Search_Tree<type> *Binary_Search_Tree<type>::min_node()
+{
+    Binary_Search_Tree<type> *cur(this);
+    while (cur && cur->left)
+        cur = cur->left;
+    return cur;
+}
+
+template <class type>
+void Binary_Search_Tree<type>::special_delete(Binary_Search_Tree<type> *child)
+{
+    data = child->data;
+    left = child->left;
+    right = child->right;
+    delete child;
+}
+template <class type>
+Binary_Search_Tree<type> *Binary_Search_Tree<type>::delete_node(type target, Binary_Search_Tree<type> *node)
+{
+    if (!node)
+        return nullptr;
+    if (target < node->data)
+        node->left = delete_node(target, node->left);
+    else if (target > node->data)
+        node->right = delete_node(target, node->right);
+    else
+    {
+        if (!node->left && !node->right)
+        {
+            delete node;
+            node = nullptr;
+        }
+        else if (!node->right)                // case 2: has left only
+            node->special_delete(node->left); // connect with child
+        else if (!node->left)                 // case 2: has right only
+            node->special_delete(node->right);
+        else // 2 children: Use successor
+        {
+            Binary_Search_Tree<type> *mn(node->right->min_node());
+            node->data = mn->data; // copy & go delete
+            node->right = delete_node(node->data, node->right);
+        }
+    }
+    return node;
+}
+
 template <class type>
 void Binary_Search_Tree<type>::get_in_order(vector<type> &inorder_values)
 {
@@ -84,22 +147,6 @@ void Binary_Search_Tree<type>::get_pre_order(deque<type> &preorder_values)
         left->get_pre_order(preorder_values);
     if (right)
         right->get_pre_order(preorder_values);
-}
-
-// Check if the next element in the preorder is in the range
-template <class type>
-bool Binary_Search_Tree<type>::next_between(deque<type> &preorder, type min, type max)
-{
-    if (preorder.empty())
-        return false;
-    return ((min < preorder[0]) && (preorder[0] < max));
-}
-
-template <class type>
-pair<Binary_Search_Tree<type> *, pair<type, type>> Binary_Search_Tree<type>::range(Binary_Search_Tree<type> *node, type mn, type mx)
-{
-    pair<type, type> range = make_pair(mn, mx);
-    return make_pair(node, range);
 }
 
 template <class type>
@@ -323,4 +370,12 @@ pair<bool, type> Binary_Search_Tree<type>::successor(type val)
     if (parent)
         return make_pair(true, parent->data);
     return make_pair(false, -1);
+}
+
+template <class type>
+void Binary_Search_Tree<type>::delete_value(type val)
+{
+    if (val == data && !left && !right)
+        return; // can't remove root in this structure
+    delete_node(val, this);
 }
