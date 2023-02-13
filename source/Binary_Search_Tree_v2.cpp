@@ -75,14 +75,14 @@ void Binary_Search_Tree_v2<type>::insert_node(type val, BST_Node<type> *node)
         if (!node->left)
             node->left = new BST_Node<type>(val);
         else
-            insert_value(val, node->left);
+            insert_node(val, node->left);
     }
     else if (val > node->data)
     {
         if (!node->right)
             node->right = new BST_Node<type>(val);
         else
-            insert_value(val, node->right);
+            insert_node(val, node->right);
     }
 }
 
@@ -94,8 +94,8 @@ bool Binary_Search_Tree_v2<type>::search_node(type val, BST_Node<type> *node)
     if (val == node->data)
         return true;
     if (val < node->data)
-        return search(val, node->left);
-    return search(val, node->right);
+        return search_node(val, node->left);
+    return search_node(val, node->right);
 }
 
 template <class type>
@@ -103,9 +103,9 @@ void Binary_Search_Tree_v2<type>::print_in_order_node(BST_Node<type> *node)
 {
     if (!node)
         return;
-    print_in_order(node->left);
+    print_in_order_node(node->left);
     cout << node->data << ' ';
-    print_in_order(node->right);
+    print_in_order_node(node->right);
 }
 
 template <class type>
@@ -143,16 +143,12 @@ void Binary_Search_Tree_v2<type>::print_in_order()
 template <class type>
 type Binary_Search_Tree_v2<type>::min_value()
 {
-    // BST_Node<type> *tmp(min_node(root));
-    // return tmp->data;
     return min_node(root)->data;
 }
 
 template <class type>
 type Binary_Search_Tree_v2<type>::max_value()
 {
-    // BST_Node<type> *tmp(max_node(root));
-    // return tmp->data;
     return max_node(root)->data;
 }
 
@@ -163,7 +159,30 @@ void Binary_Search_Tree_v2<type>::delete_value(type val)
         root = delete_node(val, root), is_bst(root);
 }
 
-// template <class type>
-// void Binary_Search_Tree_v2<type>::level_order_traversal()
-// {
-// }
+template <class type>
+void Binary_Search_Tree_v2<type>::level_order_traversal()
+{
+    if (!root)
+        return;
+    cout << "********************" << edl;
+    queue<BST_Node<type> *> nodes_queue;
+    nodes_queue.push(root);
+    ll level(0);
+    while (!nodes_queue.empty())
+    {
+        ll sz(nodes_queue.size());
+        cout << "Level " << level << ": ";
+        while (sz--)
+        {
+            BST_Node<type> *cur(nodes_queue.front());
+            nodes_queue.pop();
+            cout << cur->data << ' ';
+            if (cur->left)
+                nodes_queue.push(cur->left);
+            if (cur->right)
+                nodes_queue.push(cur->right);
+        }
+        ++level;
+        cout << edl;
+    }
+}

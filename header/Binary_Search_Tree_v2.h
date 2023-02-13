@@ -37,13 +37,11 @@ class Binary_Search_Tree_v2
 public:
     Binary_Search_Tree_v2();
     ~Binary_Search_Tree_v2();
-
     void insert_value(type val);
     bool search(type val);
     void print_in_order();
     type min_value();
     type max_value();
     void delete_value(type val);
-
-    // void level_order_traversal();
+    void level_order_traversal();
 };
