@@ -16,4 +16,4 @@
 * Deque
 * Binary Tree
 * Binary Search Tree
-* Binary Search Tree ( Using BST_Node )
+* Binary Search Tree ( Binary_Node )
