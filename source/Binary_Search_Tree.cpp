@@ -92,6 +92,15 @@ Binary_Search_Tree<type> *Binary_Search_Tree<type>::min_node()
 }
 
 template <class type>
+Binary_Search_Tree<type> *Binary_Search_Tree<type>::max_node()
+{
+    Binary_Search_Tree<type> *cur(this);
+    while (cur && cur->right)
+        cur = cur->right;
+    return cur;
+}
+
+template <class type>
 void Binary_Search_Tree<type>::special_delete(Binary_Search_Tree<type> *child)
 {
     data = child->data;
@@ -100,14 +109,14 @@ void Binary_Search_Tree<type>::special_delete(Binary_Search_Tree<type> *child)
     delete child;
 }
 template <class type>
-Binary_Search_Tree<type> *Binary_Search_Tree<type>::delete_node(type target, Binary_Search_Tree<type> *node)
+Binary_Search_Tree<type> *Binary_Search_Tree<type>::delete_node_s(type target, Binary_Search_Tree<type> *node)
 {
     if (!node)
         return nullptr;
     if (target < node->data)
-        node->left = delete_node(target, node->left);
+        node->left = delete_node_s(target, node->left);
     else if (target > node->data)
-        node->right = delete_node(target, node->right);
+        node->right = delete_node_s(target, node->right);
     else
     {
         if (!node->left && !node->right)
@@ -123,7 +132,37 @@ Binary_Search_Tree<type> *Binary_Search_Tree<type>::delete_node(type target, Bin
         {
             Binary_Search_Tree<type> *mn(node->right->min_node());
             node->data = mn->data; // copy & go delete
-            node->right = delete_node(node->data, node->right);
+            node->right = delete_node_s(node->data, node->right);
+        }
+    }
+    return node;
+}
+
+template <class type>
+Binary_Search_Tree<type> *Binary_Search_Tree<type>::delete_node_p(type target, Binary_Search_Tree<type> *node)
+{
+    if (!node)
+        return nullptr;
+    if (target < node->data)
+        node->left = delete_node_p(target, node->left);
+    else if (target > node->data)
+        node->right = delete_node_p(target, node->right);
+    else
+    {
+        if (!node->left && !node->right)
+        {
+            delete node;
+            node = nullptr;
+        }
+        else if (!node->right)                // case 2: has left only
+            node->special_delete(node->left); // connect with child
+        else if (!node->left)                 // case 2: has right only
+            node->special_delete(node->right);
+        else // 2 children: Use predecessor
+        {
+            Binary_Search_Tree<type> *mx(node->left->max_node());
+            node->data = mx->data; // copy & go delete
+            node->left = delete_node_p(node->data, node->left);
         }
     }
     return node;
@@ -373,9 +412,17 @@ pair<bool, type> Binary_Search_Tree<type>::successor(type val)
 }
 
 template <class type>
-void Binary_Search_Tree<type>::delete_value(type val)
+void Binary_Search_Tree<type>::delete_value_successor(type val)
 {
     if (val == data && !left && !right)
         return; // can't remove root in this structure
     delete_node(val, this);
+}
+
+template <class type>
+void Binary_Search_Tree<type>::delete_value_predecessor(type val)
+{
+    if (val == data && !left && !right)
+        return; // can't remove root in this structure
+    delete_node_p(val, this);
 }

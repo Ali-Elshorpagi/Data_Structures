@@ -24,8 +24,10 @@ class Binary_Search_Tree
     bool next_between(deque<type> &preorder, type min, type max);
     pair<Binary_Search_Tree<type> *, pair<type, type>> range(Binary_Search_Tree<type> *node, type mn, type mx);
     void special_delete(Binary_Search_Tree<type> *child);
-    Binary_Search_Tree<type> *delete_node(type target, Binary_Search_Tree<type> *node);
+    Binary_Search_Tree<type> *delete_node_s(type target, Binary_Search_Tree<type> *node);
+    Binary_Search_Tree<type> *delete_node_p(type target, Binary_Search_Tree<type> *node);
     Binary_Search_Tree<type> *min_node();
+    Binary_Search_Tree<type> *max_node();
 
 public:
     Binary_Search_Tree(type data);
@@ -48,5 +50,6 @@ public:
     type kth_smallest_1(ll &k);
     type LCA(type x, type y);
     pair<bool, type> successor(type val);
-    void delete_value(type val);
+    void delete_value_successor(type val);
+    void delete_value_predecessor(type val);
 };
