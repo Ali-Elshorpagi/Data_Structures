@@ -133,6 +133,34 @@ string Stack_Array_Based<type>::remove_all_adjacent_duplicates(string str)
 }
 
 template <class type>
+void Stack_Array_Based<type>::asteroid_collision(vector<type> &asteroids)
+{
+    ll len(asteroids.size());
+    Stack_Array_Based<type> st(len);
+    for (ll i(0); i < len; ++i)
+    {
+        int flag(0);
+        while (!st.is_empty() && asteroids[i] < 0 && st.peek() >= 0)
+        {
+            if (st.peek() < -asteroids[i])
+            {
+                st.pop();
+                continue;
+            }
+            else if (st.peek() == -asteroids[i])
+                st.pop();
+            flag = 1;
+            break;
+        }
+        if (!flag)
+            st.push(asteroids[i]);
+    }
+    for (ll i(0); i <= top; ++i)
+        cout << st.arr[i] << ' ';
+    cout << edl;
+}
+
+template <class type>
 void Stack_Array_Based<type>::insert_at_bottom(type val)
 {
     if (is_empty())

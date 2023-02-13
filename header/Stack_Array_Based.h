@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <cassert>
+#include <vector>
 
 using namespace std;
 typedef long long ll;
@@ -28,6 +29,7 @@ public:
     char get_open_match(char ch);
     bool valid_parentheses(string str);
     string remove_all_adjacent_duplicates(string str);
+    void asteroid_collision(vector<type> &asteroids);
     void insert_at_bottom(type val);
     void reverse();
 };

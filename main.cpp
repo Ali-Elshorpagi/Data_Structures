@@ -11,7 +11,7 @@ typedef long long ll;
 int main()
 {
 	Mesh_Ali;
-	// freopen("output.txt", "w", stdout);
+	freopen("output.txt", "w", stdout);
 
 	cout << edl << "DONE" << edl;
 	return 0;
