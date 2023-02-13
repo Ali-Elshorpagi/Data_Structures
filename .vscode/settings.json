@@ -1,0 +1,12 @@
+{
+    "files.associations": {
+        "xutility": "cpp",
+        "ios": "cpp",
+        "chrono": "cpp",
+        "functional": "cpp",
+        "xiosbase": "cpp",
+        "array": "cpp",
+        "vector": "cpp",
+        "xstring": "cpp"
+    }
+}
