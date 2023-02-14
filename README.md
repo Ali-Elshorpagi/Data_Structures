@@ -17,3 +17,4 @@
 * Binary Tree
 * Binary Search Tree
 * Binary Search Tree ( Binary_Node )
+* Min Binary Heap
