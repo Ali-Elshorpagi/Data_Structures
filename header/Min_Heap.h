@@ -15,11 +15,12 @@ class Min_Heap
     int right(int pos);
     int parent(int pos);
     void heapify_up(int child_pos);
-
+    void heapify_down(int parent_pos);
 public:
     Min_Heap();
     ~Min_Heap();
     void push(type val);
+    void pop();
     type top();
     bool is_empty();
 };

@@ -45,11 +45,38 @@ void Min_Heap<type>::heapify_up(int child_pos)
 }
 
 template <class type>
+void Min_Heap<type>::heapify_down(int parent_pos) // O(logn)
+{
+    int child_pos(left(parent_pos));
+    int right_child(right(parent_pos));
+
+    if (child_pos == -1)
+        return;
+
+    if (right_child != -1 && array[right_child] < array[child_pos])
+        child_pos = right_child;
+
+    if (array[parent_pos] > array[child_pos])
+    {
+        swap(array[parent_pos], array[child_pos]);
+        heapify_down(child_pos);
+    }
+}
+
+template <class type>
 void Min_Heap<type>::push(type val)
 {
     assert(size + 1 <= capacity);
     array[size++] = val;
     heapify_up(size - 1);
+}
+
+template <class type>
+void Min_Heap<type>::pop()
+{
+    assert(!is_empty());
+    array[0] = array[--size];
+    heapify_down(0);
 }
 
 template <class type>
