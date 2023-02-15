@@ -82,6 +82,24 @@ void Min_Heap<type>::heapify() // O(n)
 }
 
 template <class type>
+bool Min_Heap<type>::is_heap(int parent_pos) // O(n)
+{
+    if (parent_pos == -1)
+        return true;
+
+    int left_child(left(parent_pos));
+    int right_child(right(parent_pos));
+
+    if (left_child != -1 && array[parent_pos] > array[left_child])
+        return false;
+
+    if (right_child != -1 && array[parent_pos] > array[right_child])
+        return false;
+
+    return is_heap(left_child) && is_heap(right_child);
+}
+
+template <class type>
 void Min_Heap<type>::push(type val)
 {
     assert(size + 1 <= capacity);
@@ -118,4 +136,17 @@ void Min_Heap<type>::print_less_than(type val, int pos)
     cout << array[pos] << ' ';
     print_less_than(val, left(pos));
     print_less_than(val, right(pos));
+}
+
+template <class type>
+bool Min_Heap<type>::is_heap_array(type *p, int n)
+{
+    type *old_arr = array;
+    int old_size = size;
+    array = p;
+    size = n;
+    bool result(is_heap(0));
+    size = old_size;
+    array = old_arr;
+    return result;
 }

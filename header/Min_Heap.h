@@ -18,6 +18,7 @@ class Min_Heap
     void heapify_up(int child_pos);
     void heapify_down(int parent_pos);
     void heapify();
+    bool is_heap(int parent_pos);
 
 public:
     Min_Heap();
@@ -28,4 +29,5 @@ public:
     type top();
     bool is_empty();
     void print_less_than(type val, int pos = 0);
+    bool is_heap_array(type *p, int n);
 };
