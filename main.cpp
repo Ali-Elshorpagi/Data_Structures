@@ -14,5 +14,5 @@ int main()
 	freopen("output.txt", "w", stdout);
 
 	cout << edl << "DONE" << edl;
-	return 0;
+	return (0);
 }

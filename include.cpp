@@ -5,6 +5,7 @@
 // #include "source/Circular_Queue.cpp" // this file was compiled in another file
 #include "source/Deque.cpp"
 #include "source/Doubly_Linkedlist.cpp"
+#include "source/Max_Heap.cpp"
 #include "source/Min_Heap.cpp"
 #include "source/Priority_Queue.cpp"
 #include "source/Queue_Linkedlist_Based.cpp"
