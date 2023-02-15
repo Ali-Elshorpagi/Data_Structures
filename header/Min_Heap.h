@@ -27,4 +27,5 @@ public:
     void pop();
     type top();
     bool is_empty();
+    void print_less_than(type val, int pos = 0);
 };

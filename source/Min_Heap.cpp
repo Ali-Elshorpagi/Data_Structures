@@ -109,3 +109,13 @@ bool Min_Heap<type>::is_empty()
 {
     return size == 0;
 }
+
+template <class type>
+void Min_Heap<type>::print_less_than(type val, int pos)
+{
+    if (array[pos] >= val || pos == -1)
+        return;
+    cout << array[pos] << ' ';
+    print_less_than(val, left(pos));
+    print_less_than(val, right(pos));
+}
