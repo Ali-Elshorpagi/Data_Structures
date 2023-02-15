@@ -30,4 +30,6 @@ public:
     bool is_empty();
     void print_less_than(type val, int pos = 0);
     bool is_heap_array(type *p, int n);
+    void heap_sort_0(type *p, int n);
+    void heap_sort_1(type *p, int n);
 };

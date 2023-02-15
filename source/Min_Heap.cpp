@@ -150,3 +150,46 @@ bool Min_Heap<type>::is_heap_array(type *p, int n)
     array = old_arr;
     return result;
 }
+
+template <class type>
+void Min_Heap<type>::heap_sort_0(type *p, int n)
+{
+    if (n <= 1)
+        return;
+    type *old_arr = array;
+    int old_size = size;
+
+    for (int i(0); i < n; ++i)
+        push(p[i]);
+
+    int j(0);
+    while (!is_empty())
+        p[j++] = top(), pop();
+
+    size = old_size;
+    array = old_arr;
+}
+
+template <class type>
+void Min_Heap<type>::heap_sort_1(type *p, int n) // O(nlogn)
+{
+    if (n <= 1)
+        return;
+    type *old_arr = array;
+    int old_size = size;
+    size = n;
+    array = p;
+
+    heapify();     // O(n)
+    while (size--) // O(nlogn)
+    {
+        swap(array[0], array[size]);
+        heapify_down(0);
+    }
+
+    for (int i(0); i < (n >> 1); ++i)
+        swap(array[i], array[n - i - 1]);
+
+    size = old_size;
+    array = old_arr;
+}
