@@ -12,7 +12,7 @@ int main()
 {
 	Mesh_Ali;
 	freopen("output.txt", "w", stdout);
-	
+
 	cout << edl << "DONE" << edl;
 	return 0;
 }

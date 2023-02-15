@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <cassert>
+#include <vector>
 
 using namespace std;
 #define edl '\n'
@@ -16,8 +17,11 @@ class Min_Heap
     int parent(int pos);
     void heapify_up(int child_pos);
     void heapify_down(int parent_pos);
+    void heapify();
+
 public:
     Min_Heap();
+    Min_Heap(const vector<type> &v);
     ~Min_Heap();
     void push(type val);
     void pop();

@@ -8,6 +8,17 @@ Min_Heap<type>::Min_Heap()
 }
 
 template <class type>
+Min_Heap<type>::Min_Heap(const vector<type> &vec)
+{
+    assert((int)vec.size() <= capacity);
+    array = new type[capacity]{};
+    size = vec.size();
+    for (int i(0); i < (int)vec.size(); ++i)
+        array[i] = vec[i];
+    heapify();
+}
+
+template <class type>
 Min_Heap<type>::~Min_Heap()
 {
     delete[] array;
@@ -61,6 +72,13 @@ void Min_Heap<type>::heapify_down(int parent_pos) // O(logn)
         swap(array[parent_pos], array[child_pos]);
         heapify_down(child_pos);
     }
+}
+
+template <class type>
+void Min_Heap<type>::heapify() // O(n)
+{
+    for (int i((size >> 1) - 1); i >= 0; --i)
+        heapify_down(i);
 }
 
 template <class type>
