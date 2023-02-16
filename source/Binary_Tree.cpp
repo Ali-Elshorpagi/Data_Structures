@@ -264,6 +264,33 @@ void Binary_Tree<type>::print_level_nodes(ll level)
 }
 
 template <class type>
+void Binary_Tree<type>::level_order_traversal_sorted()
+{
+    priority_queue<pair<type, Binary_Tree<type> *>> heaps[2];
+
+    ll flag(0);
+    heaps[flag].push(make_pair(data, this));
+
+    while (!heaps[flag].empty())
+    {
+        ll sz(heaps[flag].size());
+        while (sz--)
+        {
+            pair<type, Binary_Tree<type> *> cur_pair(heaps[flag].top());
+            heaps[flag].pop();
+            Binary_Tree<type> *cur(cur_pair.second);
+            cout << cur_pair.first << ' ';
+            if (cur->left)
+                heaps[!flag].push(make_pair(cur->left->data, cur->left));
+            if (cur->right)
+                heaps[!flag].push(make_pair(cur->right->data, cur->right));
+        }
+        cout << edl;
+        flag = !flag;
+    }
+}
+
+template <class type>
 void Binary_Tree<type>::level_order_traversal_recursive() // O(N^2)
 {
     ll height(tree_height());

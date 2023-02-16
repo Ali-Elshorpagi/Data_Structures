@@ -41,6 +41,7 @@ public:
     pair<ll, ll> tree_diameter();
     void level_order_traversal_0();
     void level_order_traversal_1();
+    void level_order_traversal_sorted();
     void print_level_nodes(ll level);
     void level_order_traversal_recursive();
     void level_order_traversal_spiral();
