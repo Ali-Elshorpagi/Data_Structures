@@ -16,6 +16,6 @@
 * Deque
 * Binary Tree
 * Binary Search Tree
-* Binary Search Tree ( Binary_Node )
+* Binary Search Tree ( Binary Node )
 * Min Binary Heap
 * Max Binary Heap
