@@ -268,7 +268,7 @@ void Binary_Tree<type>::level_order_traversal_sorted()
 {
     priority_queue<pair<type, Binary_Tree<type> *>> heaps[2];
 
-    ll flag(0);
+    int flag(0);
     heaps[flag].push(make_pair(data, this));
 
     while (!heaps[flag].empty())

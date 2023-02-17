@@ -12,7 +12,7 @@ template <class type>
 class Min_Heap
 {
     type *array{};
-    ll size{}, capacity{1000};
+    ll size{}, capacity{1000}; // we can make expand the capacity
     ll left(ll pos);
     ll right(ll pos);
     ll parent(ll pos);
@@ -23,7 +23,7 @@ class Min_Heap
 
 public:
     Min_Heap();
-    Min_Heap(const vector<type> &v);
+    Min_Heap(const vector<type> &vec);
     ~Min_Heap();
     void push(type val);
     void pop();

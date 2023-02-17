@@ -49,7 +49,7 @@ template <class type>
 void Max_Heap<type>::heapify_up(ll child_pos)
 {
     ll par_pos(parent(child_pos));
-    if (!child_pos || array[par_pos] >= array[child_pos])
+    if (!child_pos || array[par_pos] > array[child_pos])
         return;
     swap(array[child_pos], array[par_pos]);
     heapify_up(par_pos);
@@ -63,7 +63,7 @@ void Max_Heap<type>::heapify_down(ll parent_pos) // O(logn)
     if (child_pos == -1)
         return;
 
-    if (right_child != -1 && array[right_child] >= array[child_pos])
+    if (right_child != -1 && array[right_child] > array[child_pos])
         child_pos = right_child;
 
     if (array[parent_pos] < array[child_pos])

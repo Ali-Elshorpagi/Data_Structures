@@ -12,7 +12,7 @@ template <class type>
 class Max_Heap
 {
     type *array{};
-    ll size{}, capacity{1000};
+    ll size{}, capacity{1000}; // we can make expand the capacity
     ll left(ll pos);
     ll right(ll pos);
     ll parent(ll pos);

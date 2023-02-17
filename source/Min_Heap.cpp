@@ -49,7 +49,7 @@ template <class type>
 void Min_Heap<type>::heapify_up(ll child_pos)
 {
     ll par_pos(parent(child_pos));
-    if (!child_pos || array[par_pos] <= array[child_pos])
+    if (!child_pos || array[par_pos] < array[child_pos])
         return;
     swap(array[child_pos], array[par_pos]);
     heapify_up(par_pos);
@@ -58,13 +58,12 @@ void Min_Heap<type>::heapify_up(ll child_pos)
 template <class type>
 void Min_Heap<type>::heapify_down(ll parent_pos) // O(logn)
 {
-    ll child_pos(left(parent_pos));
-    ll right_child(right(parent_pos));
+    ll child_pos(left(parent_pos)), right_child(right(parent_pos));
 
     if (child_pos == -1)
         return;
 
-    if (right_child != -1 && array[right_child] <= array[child_pos])
+    if (right_child != -1 && array[right_child] < array[child_pos])
         child_pos = right_child;
 
     if (array[parent_pos] > array[child_pos])
@@ -146,8 +145,8 @@ void Min_Heap<type>::print_less_than(type val, ll pos)
 template <class type>
 bool Min_Heap<type>::is_heap_array(type *p, ll n)
 {
-    type *old_arr = array;
-    ll old_size = size;
+    type *old_arr(array);
+    ll old_size(size);
     array = p;
     size = n;
     bool result(is_heap(0));
@@ -161,8 +160,8 @@ void Min_Heap<type>::heap_sort_0(type *p, ll n)
 {
     if (n <= 1)
         return;
-    type *old_arr = array;
-    ll old_size = size;
+    type *old_arr(array);
+    ll old_size(size);
 
     for (ll i(0); i < n; ++i)
         push(p[i]);
@@ -180,8 +179,8 @@ void Min_Heap<type>::heap_sort_1(type *p, ll n) // O(nlogn)
 {
     if (n <= 1)
         return;
-    type *old_arr = array;
-    ll old_size = size;
+    type *old_arr(array);
+    ll old_size(size);
     size = n;
     array = p;
 
