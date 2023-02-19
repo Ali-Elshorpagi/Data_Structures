@@ -59,4 +59,5 @@ public:
     type min_value();
     type max_value();
     void delete_value(type val);
+    void level_order_traversal();
 };

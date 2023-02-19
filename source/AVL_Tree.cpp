@@ -220,3 +220,30 @@ void AVL_Tree<type>::delete_value(type val)
         verify();
     }
 }
+
+template <class type>
+void AVL_Tree<type>::level_order_traversal()
+{
+    if (!root)
+        return;
+    queue<AVL_Node<type> *> nodes_queue;
+    nodes_queue.push(root);
+    ll level(0);
+    while (!nodes_queue.empty())
+    {
+        ll sz(nodes_queue.size());
+        cout << "Level " << level << ": ";
+        while (sz--)
+        {
+            AVL_Node<type> *cur(nodes_queue.front());
+            nodes_queue.pop();
+            cout << cur->data << ' ';
+            if (cur->left)
+                nodes_queue.push(cur->left);
+            if (cur->right)
+                nodes_queue.push(cur->right);
+        }
+        ++level;
+        cout << edl;
+    }
+}
