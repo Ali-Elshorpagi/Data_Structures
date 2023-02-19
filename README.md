@@ -19,3 +19,4 @@
 * Binary Search Tree ( Binary Node )
 * Min Binary Heap
 * Max Binary Heap
+* AVL Tree
