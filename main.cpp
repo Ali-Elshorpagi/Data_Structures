@@ -1,4 +1,4 @@
-#include "include.cpp"
+#include "test/include.cpp"
 
 using namespace std;
 
@@ -11,8 +11,8 @@ typedef long long ll;
 int main()
 {
 	Mesh_Ali;
-	// freopen("input.txt", "r", stdin);
-	freopen("output.txt", "w", stdout);
+	// freopen("test/input.txt", "r", stdin);
+	freopen("test/output.txt", "w", stdout);
 
 	cout << edl << "DONE" << edl;
 	return (0);
