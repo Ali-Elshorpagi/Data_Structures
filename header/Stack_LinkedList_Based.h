@@ -7,16 +7,18 @@ using namespace std;
 #define edl '\n'
 typedef long long ll;
 
+template <class T>
+struct SDL_Node
+{
+    T data{};
+    SDL_Node<T> *next{};
+    SDL_Node(T val) : data(val) {}
+};
+
 template <class type>
 class Stack_LinkedList_Based
 {
-    struct SLL_Node
-    {
-        type data{};
-        SLL_Node *next{};
-        SLL_Node(type val) : data(val) {}
-    };
-    SLL_Node *head{};
+    SDL_Node<type> *head{};
 
 public:
     Stack_LinkedList_Based();

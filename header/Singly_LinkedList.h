@@ -13,7 +13,7 @@ template <class T>
 struct S_Node
 {
     T data{};
-    S_Node *next{};
+    S_Node<T> *next{};
     S_Node(T data) : data(data) {}
     // ~Node() { cout << "Value Deleted: " << data << " at Address: " << this << '\n'; }
 };

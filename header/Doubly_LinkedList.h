@@ -13,10 +13,10 @@ template <class T>
 struct D_Node
 {
     T data{};
-    D_Node *next{};
-    D_Node *prev{};
+    D_Node<T> *next{};
+    D_Node<T> *prev{};
     D_Node(T data) : data(data) {}
-    void set(D_Node *next, D_Node *prev)
+    void set(D_Node<T> *next, D_Node<T> *prev)
     {
         this->next = next;
         this->prev = prev;

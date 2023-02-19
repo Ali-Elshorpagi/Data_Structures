@@ -12,8 +12,8 @@ struct Col_Node
 {
     T data{};
     ll col{};
-    Col_Node *next{};
-    Col_Node *prev{};
+    Col_Node<T> *next{};
+    Col_Node<T> *prev{};
     Col_Node(T data, ll col) : data(data), col(col) {}
 };
 

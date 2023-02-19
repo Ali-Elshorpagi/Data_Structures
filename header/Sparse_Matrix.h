@@ -8,9 +8,9 @@ struct Row_Node
 {
     ll row;
     Spare_Array<T> list;
-    Row_Node *next{};
-    Row_Node *prev{};
-    Row_Node(int r, int c) : row(r), list(c) {}
+    Row_Node<T> *next{};
+    Row_Node<T> *prev{};
+    Row_Node(ll r, ll c) : row(r), list(c) {}
 };
 
 template <class type>
