@@ -142,6 +142,42 @@ AVL_Node<type> *AVL_Tree<type>::max_node(AVL_Node<type> *cur)
 }
 
 template <class type>
+AVL_Node<type> *AVL_Tree<type>::delete_node(type val, AVL_Node<type> *node)
+{
+    if (!node)
+        return nullptr;
+    if (val < node->data)
+        node->left = delete_node(val, node->left);
+    else if (val > node->data)
+        node->right = delete_node(val, node->right);
+    else
+    {
+        AVL_Node<type> *tmp(node);
+        if (!node->left && !node->right) // case 1: no child
+            node = nullptr;
+        else if (!node->right) // case 2: has left only
+            node = node->left; // connect with child
+        else if (!node->left)  // case 2: has right only
+            node = node->right;
+        else // 2 children: Use successor
+        {
+            AVL_Node<type> *mn(min_node(node->right));
+            node->data = mn->data; // copy & go delete
+            node->right = delete_node(node->data, node->right);
+            tmp = nullptr; // Don't delete me. Successor will be deleted
+        }
+        if (tmp)
+            delete tmp;
+    }
+    if (node)
+    {
+        node->update_height();
+        node = balance(node);
+    }
+    return node;
+}
+
+template <class type>
 void AVL_Tree<type>::insert_value(type val)
 {
     if (!root)
@@ -173,4 +209,14 @@ template <class type>
 type AVL_Tree<type>::max_value()
 {
     return max_node(root)->data;
+}
+
+template <class type>
+void AVL_Tree<type>::delete_value(type val)
+{
+    if (root)
+    {
+        root = delete_node(val, root);
+        verify();
+    }
 }

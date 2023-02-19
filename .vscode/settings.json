@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "xiosbase": "cpp",
+        "chrono": "cpp",
+        "functional": "cpp"
+    }
+}

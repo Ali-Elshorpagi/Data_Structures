@@ -46,6 +46,7 @@ class AVL_Tree
     void print_in_order_node(AVL_Node<type> *node);
     AVL_Node<type> *min_node(AVL_Node<type> *cur);
     AVL_Node<type> *max_node(AVL_Node<type> *cur);
+    AVL_Node<type> *delete_node(type val, AVL_Node<type> *node);
 
     void clear(AVL_Node<type> *node);
 
@@ -57,4 +58,5 @@ public:
     void print_in_order();
     type min_value();
     type max_value();
+    void delete_value(type val);
 };

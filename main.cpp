@@ -15,8 +15,12 @@ int main()
 	freopen("output.txt", "w", stdout);
 	AVL_Tree<int> tree;
 
-	for (int i(0); i < 33; ++i)
+	for (int i(0); i < 11; ++i)
 		tree.insert_value(i);
+
+	tree.print_in_order();
+	cout << edl;
+	tree.print_in_order();
 
 	cout << edl << "DONE" << edl;
 	return (0);
