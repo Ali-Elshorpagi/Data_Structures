@@ -47,7 +47,8 @@ class AVL_Tree
     AVL_Node<type> *min_node(AVL_Node<type> *cur);
     AVL_Node<type> *max_node(AVL_Node<type> *cur);
     AVL_Node<type> *delete_node(type val, AVL_Node<type> *node);
-
+    AVL_Node<type> *lower_bound_node(type val, AVL_Node<type> *node);
+    AVL_Node<type> *upper_bound_node(type val, AVL_Node<type> *node);
     void clear(AVL_Node<type> *node);
 
 public:
@@ -60,6 +61,8 @@ public:
     type max_value();
     void delete_value(type val);
     void level_order_traversal();
+    pair<bool, type> lower_bound(type val);
+    pair<bool, type> upper_bound(type val);
     ll avl_nodes_recursive(ll height);
     ll avl_nodes_iterative(ll height);
 };

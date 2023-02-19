@@ -178,6 +178,36 @@ AVL_Node<type> *AVL_Tree<type>::delete_node(type val, AVL_Node<type> *node)
 }
 
 template <class type>
+AVL_Node<type> *AVL_Tree<type>::lower_bound_node(type val, AVL_Node<type> *node)
+{
+    if (!node)
+        return nullptr;
+    if (node->data >= val)
+    {
+        AVL_Node<type> *ans(lower_bound_node(val, node->left));
+        if (ans)
+            return ans;
+        return node;
+    }
+    return lower_bound_node(val, node->right);
+}
+
+template <class type>
+AVL_Node<type> *AVL_Tree<type>::upper_bound_node(type val, AVL_Node<type> *node)
+{
+    if (!node)
+        return nullptr;
+    if (node->data > val)
+    {
+        AVL_Node<type> *ans(upper_bound_node(val, node->left));
+        if (ans)
+            return ans;
+        return node;
+    }
+    return upper_bound_node(val, node->right);
+}
+
+template <class type>
 void AVL_Tree<type>::insert_value(type val)
 {
     if (!root)
@@ -246,6 +276,32 @@ void AVL_Tree<type>::level_order_traversal()
         ++level;
         cout << edl;
     }
+}
+
+template <class type>
+pair<bool, type> AVL_Tree<type>::lower_bound(type val)
+{
+    if (root)
+    {
+        AVL_Node<type> *ans(lower_bound_node(val, root));
+        if (!ans)
+            return make_pair(false, -123);
+        return make_pair(true, ans->data);
+    }
+    return make_pair(false, -123);
+}
+
+template <class type>
+pair<bool, type> AVL_Tree<type>::upper_bound(type val)
+{
+    if (root)
+    {
+        AVL_Node<type> *ans(upper_bound_node(val, root));
+        if (!ans)
+            return make_pair(false, -123);
+        return make_pair(true, ans->data);
+    }
+    return make_pair(false, -123);
 }
 
 template <class type>
