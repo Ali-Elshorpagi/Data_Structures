@@ -126,6 +126,22 @@ void AVL_Tree<type>::print_in_order_node(AVL_Node<type> *node)
 }
 
 template <class type>
+AVL_Node<type> *AVL_Tree<type>::min_node(AVL_Node<type> *cur)
+{
+    while (cur && cur->left)
+        cur = cur->left;
+    return cur;
+}
+
+template <class type>
+AVL_Node<type> *AVL_Tree<type>::max_node(AVL_Node<type> *cur)
+{
+    while (cur && cur->right)
+        cur = cur->right;
+    return cur;
+}
+
+template <class type>
 void AVL_Tree<type>::insert_value(type val)
 {
     if (!root)
@@ -145,4 +161,16 @@ template <class type>
 void AVL_Tree<type>::print_in_order()
 {
     print_in_order_node(root);
+}
+
+template <class type>
+type AVL_Tree<type>::min_value()
+{
+    return min_node(root)->data;
+}
+
+template <class type>
+type AVL_Tree<type>::max_value()
+{
+    return max_node(root)->data;
 }

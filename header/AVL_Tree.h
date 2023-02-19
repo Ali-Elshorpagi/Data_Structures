@@ -44,6 +44,9 @@ class AVL_Tree
     bool is_bst(AVL_Node<type> *node);
     void verify();
     void print_in_order_node(AVL_Node<type> *node);
+    AVL_Node<type> *min_node(AVL_Node<type> *cur);
+    AVL_Node<type> *max_node(AVL_Node<type> *cur);
+
     void clear(AVL_Node<type> *node);
 
 public:
@@ -52,4 +55,6 @@ public:
     void insert_value(type val);
     bool search(type val);
     void print_in_order();
+    type min_value();
+    type max_value();
 };
