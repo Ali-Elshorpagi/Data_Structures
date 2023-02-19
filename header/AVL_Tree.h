@@ -60,4 +60,6 @@ public:
     type max_value();
     void delete_value(type val);
     void level_order_traversal();
+    ll avl_nodes_recursive(ll height);
+    ll avl_nodes_iterative(ll height);
 };

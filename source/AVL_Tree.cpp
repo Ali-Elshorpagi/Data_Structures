@@ -247,3 +247,28 @@ void AVL_Tree<type>::level_order_traversal()
         cout << edl;
     }
 }
+
+template <class type>
+ll AVL_Tree<type>::avl_nodes_recursive(ll height)
+{
+    // no(h) = 1 + no(h - 1) + no(h - 2);
+    if (!height)
+        return 1;
+    else if (height == 1)
+        return 2;
+    return 1 + avl_nodes_recursive(height - 1) + avl_nodes_recursive(height - 2);
+}
+
+template <class type>
+ll AVL_Tree<type>::avl_nodes_iterative(ll height)
+{
+    if (!height)
+        return 1;
+    if (height == 1)
+        return 2;
+    --height;
+    ll a(1), b(2), c;
+    while (height--)
+        c = a + b + 1, a = b, b = c;
+    return c;
+}
