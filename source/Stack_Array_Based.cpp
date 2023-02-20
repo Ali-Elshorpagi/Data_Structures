@@ -1,7 +1,7 @@
 #include "..\\header\Stack_Array_Based.h"
 
 template <class type>
-Stack_Array_Based<type>::Stack_Array_Based(unsigned long long sz) : size(sz), top(-1)
+Stack_Array_Based<type>::Stack_Array_Based(int sz) : size(sz), top(-1)
 {
     arr = new type[size];
 }
@@ -48,7 +48,7 @@ type Stack_Array_Based<type>::peek()
 template <class type>
 void Stack_Array_Based<type>::print()
 {
-    for (ll i(top); i > -1; --i)
+    for (int i(top); i > -1; --i)
         cout << arr[i] << " ";
     cout << edl;
 }
@@ -58,9 +58,9 @@ string Stack_Array_Based<type>::reverse_subwords(string line)
 {
     line += ' ';
     string ans = "";
-    ll len(line.size());
+    int len(line.size());
     Stack_Array_Based<char> st(len);
-    for (ll i(0); i < len; ++i)
+    for (int i(0); i < len; ++i)
     {
         if (line[i] == ' ')
         {
@@ -75,12 +75,12 @@ string Stack_Array_Based<type>::reverse_subwords(string line)
 }
 
 template <class type>
-ll Stack_Array_Based<type>::reverse_num(ll num)
+int Stack_Array_Based<type>::reverse_num(int num)
 {
     if (!num)
         return 0;
-    ll ans(0), i(1);
-    Stack_Array_Based<ll> st(51);
+    int ans(0), i(1);
+    Stack_Array_Based<int> st(51);
     while (num)
         st.push(num % 10), num /= 10;
 
@@ -102,9 +102,9 @@ char Stack_Array_Based<type>::get_open_match(char ch)
 template <class type>
 bool Stack_Array_Based<type>::valid_parentheses(string str)
 {
-    ll len(str.size());
+    int len(str.size());
     Stack_Array_Based<char> st(len);
-    for (ll i(0); i < len; ++i)
+    for (int i(0); i < len; ++i)
     {
         if (str[i] == '(' || str[i] == '[' || str[i] == '{')
             st.push(str[i]);
@@ -117,9 +117,9 @@ bool Stack_Array_Based<type>::valid_parentheses(string str)
 template <class type>
 string Stack_Array_Based<type>::remove_all_adjacent_duplicates(string str)
 {
-    ll len(str.size());
+    int len(str.size());
     Stack_Array_Based<char> st(len);
-    for (ll i(0); i < len; ++i)
+    for (int i(0); i < len; ++i)
     {
         if (!st.is_empty() && st.peek() == str[i])
             st.pop();
@@ -135,9 +135,9 @@ string Stack_Array_Based<type>::remove_all_adjacent_duplicates(string str)
 template <class type>
 void Stack_Array_Based<type>::asteroid_collision(vector<type> &asteroids)
 {
-    ll len(asteroids.size());
+    int len(asteroids.size());
     Stack_Array_Based<type> st(len);
-    for (ll i(0); i < len; ++i)
+    for (int i(0); i < len; ++i)
     {
         int flag(0);
         while (!st.is_empty() && asteroids[i] < 0 && st.peek() >= 0)
@@ -155,7 +155,7 @@ void Stack_Array_Based<type>::asteroid_collision(vector<type> &asteroids)
         if (!flag)
             st.push(asteroids[i]);
     }
-    for (ll i(0); i <= top; ++i)
+    for (int i(0); i <= top; ++i)
         cout << st.arr[i] << ' ';
     cout << edl;
 }

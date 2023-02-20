@@ -235,7 +235,7 @@ bool Doubly_LinkedList<type>::is_palindrome()
     if (length <= 1)
         return true;
     D_Node<type> *start(head), *end(tail);
-    ll len(length / 2);
+    int len(length / 2);
     while (len--)
     {
         if (start->data != end->data)

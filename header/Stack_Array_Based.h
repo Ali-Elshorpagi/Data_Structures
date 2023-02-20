@@ -10,12 +10,12 @@ using namespace std;
 template <class type>
 class Stack_Array_Based
 {
-    unsigned long long size{};
+    int size{};
     type *arr{};
     int top{};
 
 public:
-    Stack_Array_Based(unsigned long long size);
+    Stack_Array_Based(int sz);
     ~Stack_Array_Based();
     bool is_full();
     bool is_empty();

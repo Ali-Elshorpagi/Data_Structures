@@ -15,7 +15,7 @@ Spare_Cube<type>::~Spare_Cube()
 }
 
 template <class type>
-Depth_Node<type> *Spare_Cube<type>::get_depth(ll depth, bool flag)
+Depth_Node<type> *Spare_Cube<type>::get_depth(int depth, bool flag)
 {
     Depth_Node<type> *prev_row(head);
     while (prev_row->next && prev_row->next->depth < depth)
@@ -38,7 +38,7 @@ void Spare_Cube<type>::link(Depth_Node<type> *first, Depth_Node<type> *second)
 }
 
 template <class type>
-Depth_Node<type> *Spare_Cube<type>::add_node_between_node_and_next(Depth_Node<type> *node_before, ll depth)
+Depth_Node<type> *Spare_Cube<type>::add_node_between_node_and_next(Depth_Node<type> *node_before, int depth)
 {
     Depth_Node<type> *middle(new Depth_Node<type>(depth, rows, cols));
     ++length;
@@ -90,7 +90,7 @@ void Spare_Cube<type>::print_cube()
     cout << edl << "Print Cube: " << rows << " x " << cols << " x " << depths << edl;
 
     Depth_Node<type> *cur(head->next);
-    for (ll i(0); i < depths; ++i)
+    for (int i(0); i < depths; ++i)
     {
         if (cur && cur->depth == i)
         {
@@ -99,7 +99,7 @@ void Spare_Cube<type>::print_cube()
         }
         else
         {
-            for (ll j(0); j < rows; ++j)
+            for (int j(0); j < rows; ++j)
                 cout << "0 ";
             cout << edl;
         }

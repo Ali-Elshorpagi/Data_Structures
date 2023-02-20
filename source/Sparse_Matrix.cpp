@@ -1,7 +1,7 @@
 #include "..\\header\Sparse_Matrix.h"
 
 template <class type>
-Sparse_Matrix<type>::Sparse_Matrix(ll rows, ll cols) : rows(rows), cols(cols)
+Sparse_Matrix<type>::Sparse_Matrix(int rows, int cols) : rows(rows), cols(cols)
 {
     tail = head = new Row_Node<type>(-1, cols);
     ++length;
@@ -15,7 +15,7 @@ Sparse_Matrix<type>::~Sparse_Matrix()
 }
 
 template <class type>
-Row_Node<type> *Sparse_Matrix<type>::get_row(ll row, bool flag)
+Row_Node<type> *Sparse_Matrix<type>::get_row(int row, bool flag)
 {
     Row_Node<type> *prev_row(head);
     while (prev_row->next && prev_row->next->row < row)
@@ -38,7 +38,7 @@ void Sparse_Matrix<type>::link(Row_Node<type> *first, Row_Node<type> *second)
 }
 
 template <class type>
-Row_Node<type> *Sparse_Matrix<type>::add_node_between_node_and_next(Row_Node<type> *node_before, ll row)
+Row_Node<type> *Sparse_Matrix<type>::add_node_between_node_and_next(Row_Node<type> *node_before, int row)
 {
     Row_Node<type> *middle(new Row_Node<type>(row, cols));
     ++length;
@@ -52,7 +52,7 @@ Row_Node<type> *Sparse_Matrix<type>::add_node_between_node_and_next(Row_Node<typ
 }
 
 template <class type>
-void Sparse_Matrix<type>::set_value(type data, ll row, ll col)
+void Sparse_Matrix<type>::set_value(type data, int row, int col)
 {
     assert(0 <= row && row < rows);
     assert(0 <= col && col < cols);
@@ -61,7 +61,7 @@ void Sparse_Matrix<type>::set_value(type data, ll row, ll col)
 }
 
 template <class type>
-type Sparse_Matrix<type>::get_value(ll row, ll col)
+type Sparse_Matrix<type>::get_value(int row, int col)
 {
     assert(0 <= row && row < rows);
     assert(0 <= col && col < cols);
@@ -87,7 +87,7 @@ void Sparse_Matrix<type>::print_matrix()
 {
     cout << edl << "Print Matrix: " << rows << " x " << cols << edl;
     Row_Node<type> *cur(head->next);
-    for (ll i(0); i < rows; ++i)
+    for (int i(0); i < rows; ++i)
     {
         if (cur && cur->row == i)
         {
@@ -96,7 +96,7 @@ void Sparse_Matrix<type>::print_matrix()
         }
         else
         {
-            for (ll j(0); j < cols; ++j)
+            for (int j(0); j < cols; ++j)
                 cout << "0 ";
             cout << edl;
         }

@@ -10,10 +10,10 @@ Max_Heap<type>::Max_Heap()
 template <class type>
 Max_Heap<type>::Max_Heap(const vector<type> &vec)
 {
-    assert((ll)vec.size() <= capacity);
+    assert((int)vec.size() <= capacity);
     array = new type[capacity]{};
     size = vec.size();
-    for (ll i(0); i < (ll)vec.size(); ++i)
+    for (int i(0); i < (int)vec.size(); ++i)
         array[i] = vec[i];
     heapify();
 }
@@ -26,29 +26,29 @@ Max_Heap<type>::~Max_Heap()
 }
 
 template <class type>
-ll Max_Heap<type>::left(ll pos)
+int Max_Heap<type>::left(int pos)
 {
-    ll p((pos << 1) + 1);
+    int p((pos << 1) + 1);
     return p >= size ? -1 : p;
 }
 
 template <class type>
-ll Max_Heap<type>::right(ll pos)
+int Max_Heap<type>::right(int pos)
 {
-    ll p((pos << 1) + 2);
+    int p((pos << 1) + 2);
     return p >= size ? -1 : p;
 }
 
 template <class type>
-ll Max_Heap<type>::parent(ll pos)
+int Max_Heap<type>::parent(int pos)
 {
     return pos == 0 ? -1 : ((pos - 1) >> 1);
 }
 
 template <class type>
-void Max_Heap<type>::heapify_up(ll child_pos)
+void Max_Heap<type>::heapify_up(int child_pos)
 {
-    ll par_pos(parent(child_pos));
+    int par_pos(parent(child_pos));
     if (!child_pos || array[par_pos] > array[child_pos])
         return;
     swap(array[child_pos], array[par_pos]);
@@ -56,9 +56,9 @@ void Max_Heap<type>::heapify_up(ll child_pos)
 }
 
 template <class type>
-void Max_Heap<type>::heapify_down(ll parent_pos) // O(logn)
+void Max_Heap<type>::heapify_down(int parent_pos) // O(logn)
 {
-    ll child_pos(left(parent_pos)), right_child(right(parent_pos));
+    int child_pos(left(parent_pos)), right_child(right(parent_pos));
 
     if (child_pos == -1)
         return;
@@ -76,7 +76,7 @@ void Max_Heap<type>::heapify_down(ll parent_pos) // O(logn)
 template <class type>
 void Max_Heap<type>::heapify() // O(n)
 {
-    for (ll i((size >> 1) - 1); i >= 0; --i)
+    for (int i((size >> 1) - 1); i >= 0; --i)
         heapify_down(i);
 }
 
@@ -104,7 +104,7 @@ type Max_Heap<type>::top()
 }
 
 template <class type>
-ll Max_Heap<type>::get_size()
+int Max_Heap<type>::get_size()
 {
     return size;
 }

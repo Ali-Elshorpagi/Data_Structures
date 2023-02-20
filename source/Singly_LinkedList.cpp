@@ -92,7 +92,7 @@ unsigned long long Singly_LinkedList<type>::get_size()
 }
 
 template <class type>
-S_Node<type> *Singly_LinkedList<type>::get_nth(ll n)
+S_Node<type> *Singly_LinkedList<type>::get_nth(int n)
 {
     for (S_Node<type> *cur(head); cur; cur = cur->next)
         if (--n == 0)
@@ -101,9 +101,9 @@ S_Node<type> *Singly_LinkedList<type>::get_nth(ll n)
 }
 
 template <class type>
-ll Singly_LinkedList<type>::search(type val)
+int Singly_LinkedList<type>::search(type val)
 {
-    ll idx(0);
+    int idx(0);
     for (S_Node<type> *cur(head); cur; cur = cur->next, idx++)
         if (cur->data == val)
             return idx;
@@ -111,9 +111,9 @@ ll Singly_LinkedList<type>::search(type val)
 }
 
 template <class type>
-ll Singly_LinkedList<type>::search_improved(type val)
+int Singly_LinkedList<type>::search_improved(type val)
 {
-    ll idx(0);
+    int idx(0);
     S_Node<type> *prv(nullptr);
     for (S_Node<type> *cur(head); cur; cur = cur->next, idx++)
     {
@@ -130,9 +130,9 @@ ll Singly_LinkedList<type>::search_improved(type val)
 }
 
 template <class type>
-ll Singly_LinkedList<type>::search_improved_v2(type val) // commonly used
+int Singly_LinkedList<type>::search_improved_v2(type val) // commonly used
 {
-    ll idx(0);
+    int idx(0);
     for (S_Node<type> *cur(head), *prv(nullptr); cur; prv = cur, cur = cur->next)
     {
         if (cur->data == val)
@@ -159,7 +159,7 @@ void Singly_LinkedList<type>::insert_front(type val)
 }
 
 template <class type>
-S_Node<type> *Singly_LinkedList<type>::get_nth_from_back(ll idx)
+S_Node<type> *Singly_LinkedList<type>::get_nth_from_back(int idx)
 {
     if (idx > length)
         return nullptr;
@@ -229,7 +229,7 @@ void Singly_LinkedList<type>::delete_last()
 }
 
 template <class type>
-void Singly_LinkedList<type>::delete_nth_node(ll n)
+void Singly_LinkedList<type>::delete_nth_node(int n)
 {
     if (n < 1 || n > length)
         cout << "Error. No such nth node" << edl;
@@ -374,7 +374,7 @@ void Singly_LinkedList<type>::swap_head_tail()
 }
 
 template <class type>
-void Singly_LinkedList<type>::left_rotate(ll key)
+void Singly_LinkedList<type>::left_rotate(int key)
 {
     key %= length;
     if (!key || length <= 1)
@@ -448,7 +448,7 @@ void Singly_LinkedList<type>::move_key_occurance_to_end_not_sorted(type key)
 {
     if (length <= 1)
         return;
-    ll len(length);
+    int len(length);
     for (S_Node<type> *cur(head), *prv(nullptr); len--;)
     {
         if (cur->data == key)
@@ -459,7 +459,7 @@ void Singly_LinkedList<type>::move_key_occurance_to_end_not_sorted(type key)
 }
 
 template <class type>
-ll Singly_LinkedList<type>::max_node(S_Node<type> *h, S_Node<type> *mx)
+int Singly_LinkedList<type>::max_node(S_Node<type> *h, S_Node<type> *mx)
 {
     if (!length)
         return INT_MIN;
@@ -556,7 +556,7 @@ void Singly_LinkedList<type>::add_num(Singly_LinkedList<type> &other)
     if (!other.length)
         return;
     S_Node<type> *my_cur(head), *his_cur(other.head);
-    ll carry(0), my_val, his_val;
+    int carry(0), my_val, his_val;
     while (my_cur || his_cur)
     {
         my_val = 0, his_val = 0;
@@ -620,12 +620,12 @@ void Singly_LinkedList<type>::remove_all_repeated_from_sorted_list()
 }
 
 template <class type>
-pair<S_Node<type> *, pair<S_Node<type> *, S_Node<type> *>> Singly_LinkedList<type>::reverse_subchain(S_Node<type> *cur_head, ll k)
+pair<S_Node<type> *, pair<S_Node<type> *, S_Node<type> *>> Singly_LinkedList<type>::reverse_subchain(S_Node<type> *cur_head, int k)
 {
     S_Node<type> *cur_tail(cur_head);
     S_Node<type> *prv(cur_head);
     cur_head = cur_head->next;
-    for (ll s(0); s < k - 1 && cur_head; ++s)
+    for (int s(0); s < k - 1 && cur_head; ++s)
     {
         S_Node<type> *next(cur_head->next);
         cur_head->next = prv;
@@ -637,7 +637,7 @@ pair<S_Node<type> *, pair<S_Node<type> *, S_Node<type> *>> Singly_LinkedList<typ
 }
 
 template <class type>
-void Singly_LinkedList<type>::reverse_chains(ll k)
+void Singly_LinkedList<type>::reverse_chains(int k)
 {
     if (length <= 1 || k == 1)
         return;

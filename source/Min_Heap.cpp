@@ -10,10 +10,10 @@ Min_Heap<type>::Min_Heap()
 template <class type>
 Min_Heap<type>::Min_Heap(const vector<type> &vec)
 {
-    assert((ll)vec.size() <= capacity);
+    assert((int)vec.size() <= capacity);
     array = new type[capacity]{};
     size = vec.size();
-    for (ll i(0); i < (ll)vec.size(); ++i)
+    for (int i(0); i < (int)vec.size(); ++i)
         array[i] = vec[i];
     heapify();
 }
@@ -26,29 +26,29 @@ Min_Heap<type>::~Min_Heap()
 }
 
 template <class type>
-ll Min_Heap<type>::left(ll pos)
+int Min_Heap<type>::left(int pos)
 {
-    ll p((pos << 1) + 1);
+    int p((pos << 1) + 1);
     return p >= size ? -1 : p;
 }
 
 template <class type>
-ll Min_Heap<type>::right(ll pos)
+int Min_Heap<type>::right(int pos)
 {
-    ll p((pos << 1) + 2);
+    int p((pos << 1) + 2);
     return p >= size ? -1 : p;
 }
 
 template <class type>
-ll Min_Heap<type>::parent(ll pos)
+int Min_Heap<type>::parent(int pos)
 {
     return pos == 0 ? -1 : ((pos - 1) >> 1);
 }
 
 template <class type>
-void Min_Heap<type>::heapify_up(ll child_pos)
+void Min_Heap<type>::heapify_up(int child_pos)
 {
-    ll par_pos(parent(child_pos));
+    int par_pos(parent(child_pos));
     if (!child_pos || array[par_pos] < array[child_pos])
         return;
     swap(array[child_pos], array[par_pos]);
@@ -56,9 +56,9 @@ void Min_Heap<type>::heapify_up(ll child_pos)
 }
 
 template <class type>
-void Min_Heap<type>::heapify_down(ll parent_pos) // O(logn)
+void Min_Heap<type>::heapify_down(int parent_pos) // O(logn)
 {
-    ll child_pos(left(parent_pos)), right_child(right(parent_pos));
+    int child_pos(left(parent_pos)), right_child(right(parent_pos));
 
     if (child_pos == -1)
         return;
@@ -76,17 +76,17 @@ void Min_Heap<type>::heapify_down(ll parent_pos) // O(logn)
 template <class type>
 void Min_Heap<type>::heapify() // O(n)
 {
-    for (ll i((size >> 1) - 1); i >= 0; --i)
+    for (int i((size >> 1) - 1); i >= 0; --i)
         heapify_down(i);
 }
 
 template <class type>
-bool Min_Heap<type>::is_heap(ll parent_pos) // O(n)
+bool Min_Heap<type>::is_heap(int parent_pos) // O(n)
 {
     if (parent_pos == -1)
         return true;
 
-    ll left_child(left(parent_pos)), right_child(right(parent_pos));
+    int left_child(left(parent_pos)), right_child(right(parent_pos));
 
     if (left_child != -1 && array[parent_pos] > array[left_child])
         return false;
@@ -121,7 +121,7 @@ type Min_Heap<type>::top()
 }
 
 template <class type>
-ll Min_Heap<type>::get_size()
+int Min_Heap<type>::get_size()
 {
     return size;
 }
@@ -133,7 +133,7 @@ bool Min_Heap<type>::is_empty()
 }
 
 template <class type>
-void Min_Heap<type>::print_less_than(type val, ll pos)
+void Min_Heap<type>::print_less_than(type val, int pos)
 {
     if (array[pos] >= val || pos == -1)
         return;
@@ -143,10 +143,10 @@ void Min_Heap<type>::print_less_than(type val, ll pos)
 }
 
 template <class type>
-bool Min_Heap<type>::is_heap_array(type *p, ll n)
+bool Min_Heap<type>::is_heap_array(type *p, int n)
 {
     type *old_arr(array);
-    ll old_size(size);
+    int old_size(size);
     array = p;
     size = n;
     bool result(is_heap(0));
@@ -156,17 +156,17 @@ bool Min_Heap<type>::is_heap_array(type *p, ll n)
 }
 
 template <class type>
-void Min_Heap<type>::heap_sort_0(type *p, ll n)
+void Min_Heap<type>::heap_sort_0(type *p, int n)
 {
     if (n <= 1)
         return;
     type *old_arr(array);
-    ll old_size(size);
+    int old_size(size);
 
-    for (ll i(0); i < n; ++i)
+    for (int i(0); i < n; ++i)
         push(p[i]);
 
-    ll j(0);
+    int j(0);
     while (!is_empty())
         p[j++] = top(), pop();
 
@@ -175,12 +175,12 @@ void Min_Heap<type>::heap_sort_0(type *p, ll n)
 }
 
 template <class type>
-void Min_Heap<type>::heap_sort_1(type *p, ll n) // O(nlogn)
+void Min_Heap<type>::heap_sort_1(type *p, int n) // O(nlogn)
 {
     if (n <= 1)
         return;
     type *old_arr(array);
-    ll old_size(size);
+    int old_size(size);
     size = n;
     array = p;
 
@@ -191,7 +191,7 @@ void Min_Heap<type>::heap_sort_1(type *p, ll n) // O(nlogn)
         heapify_down(0);
     }
 
-    for (ll i(0); i < (n >> 1); ++i)
+    for (int i(0); i < (n >> 1); ++i)
         swap(array[i], array[n - i - 1]);
 
     size = old_size;

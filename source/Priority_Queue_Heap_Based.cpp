@@ -16,29 +16,29 @@ Priority_Queue_Heap_Based<type>::~Priority_Queue_Heap_Based()
 }
 
 template <class type>
-ll Priority_Queue_Heap_Based<type>::left(ll pos)
+int Priority_Queue_Heap_Based<type>::left(int pos)
 {
-    ll p((pos << 1) + 1);
+    int p((pos << 1) + 1);
     return p >= size ? -1 : p;
 }
 
 template <class type>
-ll Priority_Queue_Heap_Based<type>::right(ll pos)
+int Priority_Queue_Heap_Based<type>::right(int pos)
 {
-    ll p((pos << 1) + 2);
+    int p((pos << 1) + 2);
     return p >= size ? -1 : p;
 }
 
 template <class type>
-ll Priority_Queue_Heap_Based<type>::parent(ll pos)
+int Priority_Queue_Heap_Based<type>::parent(int pos)
 {
     return pos == 0 ? -1 : ((pos - 1) >> 1);
 }
 
 template <class type>
-void Priority_Queue_Heap_Based<type>::heapify_up(ll child_pos)
+void Priority_Queue_Heap_Based<type>::heapify_up(int child_pos)
 {
-    ll par_pos(parent(child_pos));
+    int par_pos(parent(child_pos));
     if (!child_pos || key[par_pos] > key[child_pos])
         return;
     swap(key[child_pos], key[par_pos]);
@@ -47,9 +47,9 @@ void Priority_Queue_Heap_Based<type>::heapify_up(ll child_pos)
 }
 
 template <class type>
-void Priority_Queue_Heap_Based<type>::heapify_down(ll parent_pos) // O(logn)
+void Priority_Queue_Heap_Based<type>::heapify_down(int parent_pos) // O(logn)
 {
-    ll child_pos(left(parent_pos)), right_child(right(parent_pos));
+    int child_pos(left(parent_pos)), right_child(right(parent_pos));
 
     if (child_pos == -1)
         return;
@@ -72,7 +72,7 @@ bool Priority_Queue_Heap_Based<type>::is_empty()
 }
 
 template <class type>
-void Priority_Queue_Heap_Based<type>::enqueue(type val, ll priority)
+void Priority_Queue_Heap_Based<type>::enqueue(type val, int priority)
 {
     assert(size + 1 <= capacity);
     value[size] = val;

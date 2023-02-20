@@ -13,13 +13,13 @@ Deque<type>::~Deque()
 }
 
 template <class type>
-ll Deque<type>::next(ll pos)
+int Deque<type>::next(int pos)
 {
     return (pos + 1) % size;
 }
 
 template <class type>
-ll Deque<type>::prev(ll pos)
+int Deque<type>::prev(int pos)
 {
     return (pos - 1 + size) % size;
 }
@@ -87,7 +87,7 @@ void Deque<type>::print()
     }
     cout << edl;
 
-    for (ll cur(front), step(0); step < added_elements; ++step, cur = next(cur))
+    for (int cur(front), step(0); step < added_elements; ++step, cur = next(cur))
         cout << array[cur] << " ";
     cout << edl << edl;
 }
