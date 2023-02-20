@@ -1,7 +1,7 @@
 #include "..\\header\Circular_Queue.h"
 
 template <class type>
-Circular_Queue<type>::Circular_Queue(ll sz) : size(sz)
+Circular_Queue<type>::Circular_Queue(int sz) : size(sz)
 {
     arr = new type[size];
 }
@@ -25,13 +25,13 @@ bool Circular_Queue<type>::is_empty()
 }
 
 template <class type>
-ll Circular_Queue<type>::get_size()
+int Circular_Queue<type>::get_size()
 {
     return size;
 }
 
 template <class type>
-ll Circular_Queue<type>::next(ll pos)
+int Circular_Queue<type>::next(int pos)
 {
     return (pos + 1) % size;
 }
@@ -67,7 +67,7 @@ void Circular_Queue<type>::print()
         return;
     }
     cout << edl;
-    for (ll cur(front), step(0); step < added_elements; ++step, cur = next(cur))
+    for (int cur(front), step(0); step < added_elements; ++step, cur = next(cur))
         cout << arr[cur] << " ";
     cout << edl << edl;
 }

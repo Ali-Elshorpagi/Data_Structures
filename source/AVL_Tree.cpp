@@ -269,10 +269,10 @@ void AVL_Tree<type>::level_order_traversal()
         return;
     queue<AVL_Node<type> *> nodes_queue;
     nodes_queue.push(root);
-    ll level(0);
+    int level(0);
     while (!nodes_queue.empty())
     {
-        ll sz(nodes_queue.size());
+        int sz(nodes_queue.size());
         cout << "Level " << level << ": ";
         while (sz--)
         {
@@ -316,7 +316,7 @@ pair<bool, type> AVL_Tree<type>::upper_bound(type val)
 }
 
 template <class type>
-ll AVL_Tree<type>::avl_nodes_recursive(ll height)
+int AVL_Tree<type>::avl_nodes_recursive(int height)
 {
     // no(h) = 1 + no(h - 1) + no(h - 2);
     if (!height)
@@ -327,14 +327,14 @@ ll AVL_Tree<type>::avl_nodes_recursive(ll height)
 }
 
 template <class type>
-ll AVL_Tree<type>::avl_nodes_iterative(ll height)
+int AVL_Tree<type>::avl_nodes_iterative(int height)
 {
     if (!height)
         return 1;
     if (height == 1)
         return 2;
     --height;
-    ll a(1), b(2), c;
+    int a(1), b(2), c;
     while (height--)
         c = a + b + 1, a = b, b = c;
     return c;

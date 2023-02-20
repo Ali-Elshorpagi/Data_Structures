@@ -5,7 +5,6 @@
 
 using namespace std;
 #define edl '\n'
-typedef long long ll;
 
 template <class T>
 struct SDL_Node

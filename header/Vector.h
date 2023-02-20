@@ -4,32 +4,31 @@
 #include <cassert>
 
 using namespace std;
-typedef long long ll;
 #define edl '\n'
 
 template <class type>
 class Vector
 {
     type *arr{nullptr};
-    ll size{0};
-    ll capacity{};
+    int size{0};
+    int capacity{};
 
 public:
-    Vector(ll sz);
+    Vector(int sz);
     ~Vector();
     void expand_capacity();
-    ll get_size();
-    type get_value(ll idx);
+    int get_size();
+    type get_value(int idx);
     type get_front();
     type get_back();
-    void set_value(ll idx, type val);
+    void set_value(int idx, type val);
     void print();
-    ll find(type val);
+    int find(type val);
     void push_back(type val);
-    void insert(ll idx, type val);
+    void insert(int idx, type val);
     void right_rotate();
     void left_rotate();
-    void right_rotate(ll times);
-    type pop(ll idx);
-    ll find_transposition(type val);
+    void right_rotate(int times);
+    type pop(int idx);
+    int find_transposition(type val);
 };

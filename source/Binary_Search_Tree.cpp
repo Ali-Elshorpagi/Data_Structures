@@ -23,7 +23,7 @@ Binary_Search_Tree<type>::Binary_Search_Tree(deque<type> level_order)
     nodes_queue.push(range(this, INT_MIN, INT_MAX));
     while (!nodes_queue.empty())
     {
-        ll sz(nodes_queue.size());
+        int sz(nodes_queue.size());
         while (sz--)
         {
             Binary_Search_Tree<type> *cur(nodes_queue.front().first);
@@ -233,10 +233,10 @@ deque<type> Binary_Search_Tree<type>::level_order_traversal()
     queue<Binary_Search_Tree<type> *> nodes_queue;
     nodes_queue.push(this);
     deque<type> level_order;
-    ll level(0);
+    int level(0);
     while (!nodes_queue.empty())
     {
-        ll sz(nodes_queue.size());
+        int sz(nodes_queue.size());
         while (sz--)
         {
             Binary_Search_Tree<type> *cur(nodes_queue.front());
@@ -304,8 +304,8 @@ bool Binary_Search_Tree<type>::is_bst_1()
 {
     vector<type> inorder_values;
     get_in_order(inorder_values);
-    ll len((int)inorder_values.size());
-    for (ll i(1); i < len; ++i)
+    int len((int)inorder_values.size());
+    for (int i(1); i < len; ++i)
         if (inorder_values[i] < inorder_values[i - 1])
             return false;
 
@@ -313,13 +313,13 @@ bool Binary_Search_Tree<type>::is_bst_1()
 }
 
 template <class type>
-Binary_Search_Tree<type> *Binary_Search_Tree<type>::build_balanced_bst_tree(vector<type> &values, ll str, ll end)
+Binary_Search_Tree<type> *Binary_Search_Tree<type>::build_balanced_bst_tree(vector<type> &values, int str, int end)
 {
     if (end == -1)
         end = (int)values.size() - 1;
     if (str > end)
         return nullptr;
-    ll mid((str + end) >> 1);
+    int mid((str + end) >> 1);
     Binary_Search_Tree<type> *left(build_balanced_bst_tree(values, str, mid - 1));
     Binary_Search_Tree<type> *right(build_balanced_bst_tree(values, mid + 1, end));
     Binary_Search_Tree<type> *root(new Binary_Search_Tree<type>(values[mid], left, right));
@@ -327,11 +327,11 @@ Binary_Search_Tree<type> *Binary_Search_Tree<type>::build_balanced_bst_tree(vect
 }
 
 template <class type>
-type Binary_Search_Tree<type>::kth_smallest_0(ll &k)
+type Binary_Search_Tree<type>::kth_smallest_0(int &k)
 {
     vector<type> vals;
     get_in_order(vals);
-    ll len((int)vals.size());
+    int len((int)vals.size());
     if (k >= len)
         return -1234;
     else
@@ -339,7 +339,7 @@ type Binary_Search_Tree<type>::kth_smallest_0(ll &k)
 }
 
 template <class type>
-type Binary_Search_Tree<type>::kth_smallest_1(ll &k)
+type Binary_Search_Tree<type>::kth_smallest_1(int &k)
 {
     if (k == 0)
         return -1234;

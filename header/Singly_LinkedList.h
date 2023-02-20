@@ -7,7 +7,6 @@
 
 using namespace std;
 #define edl '\n'
-typedef long long ll;
 
 template <class T>
 struct S_Node
@@ -23,7 +22,7 @@ class Singly_LinkedList
 {
     S_Node<type> *head{};
     S_Node<type> *tail{};
-    unsigned long long length = 0;
+    int length = 0;
     vector<S_Node<type> *> debug_data;
 
 public:
@@ -41,18 +40,18 @@ public:
     void print_recr(S_Node<type> *h);
     void print_recr_rever(S_Node<type> *h);
     unsigned long long get_size();
-    S_Node<type> *get_nth(ll n);
-    ll search(type val);
-    ll search_improved(type val);
-    ll search_improved_v2(type val);
+    S_Node<type> *get_nth(int n);
+    int search(type val);
+    int search_improved(type val);
+    int search_improved_v2(type val);
     void insert_front(type val);
-    S_Node<type> *get_nth_from_back(ll idx);
+    S_Node<type> *get_nth_from_back(int idx);
     bool is_same(const Singly_LinkedList<type> &list);
     S_Node<type> *move_and_delete(S_Node<type> *node);
     void delete_node(S_Node<type> *node);
     void delete_first();
     void delete_last();
-    void delete_nth_node(ll n);
+    void delete_nth_node(int n);
     void delete_next_node(S_Node<type> *node);
     void delete_node_with_key(type val);
     void swap_repairs();
@@ -61,18 +60,18 @@ public:
     void insert_sorted(type val);
     S_Node<type> *get_previous(S_Node<type> *node);
     void swap_head_tail();
-    void left_rotate(ll key);
+    void left_rotate(int key);
     void remove_duplicates_not_sorted();
     void delete_last_occurrence_not_sorted(type key);
     S_Node<type> *move_to_end(S_Node<type> *cur, S_Node<type> *prv);
     void move_key_occurance_to_end_not_sorted(type key);
-    ll max_node(S_Node<type> *h, S_Node<type> *mx);
+    int max_node(S_Node<type> *h, S_Node<type> *mx);
     void arrange_odd_pos_even_pos();
     type middle_value();
     void insert_after(S_Node<type> *src, S_Node<type> *target);
     void insert_alternate(Singly_LinkedList<type> &other);
     void add_num(Singly_LinkedList<type> &other);
     void remove_all_repeated_from_sorted_list();
-    pair<S_Node<type> *, pair<S_Node<type> *, S_Node<type> *>> reverse_subchain(S_Node<type> *cur_head, ll k);
-    void reverse_chains(ll k);
+    pair<S_Node<type> *, pair<S_Node<type> *, S_Node<type> *>> reverse_subchain(S_Node<type> *cur_head, int k);
+    void reverse_chains(int k);
 };

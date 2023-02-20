@@ -12,7 +12,8 @@
 - Stack LinkedList Based
 - Circular Queue
 - Queue LinkedList Based
-- Priority Queue
+- Priority Queue Heap Based
+- Priority Queue AVL Tree Based
 - Deque
 - Binary Tree
 - Binary Search Tree

@@ -5,24 +5,23 @@
 
 using namespace std;
 #define edl '\n'
-typedef long long ll;
 
 template <class type>
 class Circular_Queue
 {
-    ll front{};
-    ll rear{};
-    ll size{};
-    ll added_elements{};
+    int front{};
+    int rear{};
+    int size{};
+    int added_elements{};
     type *arr{};
 
 public:
-    Circular_Queue(ll sz);
+    Circular_Queue(int sz);
     ~Circular_Queue();
     bool is_full();
     bool is_empty();
-    ll get_size();
-    ll next(ll pos);
+    int get_size();
+    int next(int pos);
     void enqueue(type val);
     type dequeue();
     void print();

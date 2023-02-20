@@ -1,7 +1,7 @@
-#include "..\\header\Priority_Queue.h"
+#include "..\\header\Priority_Queue_Heap_Based.h"
 
 template <class type>
-Priority_Queue<type>::Priority_Queue()
+Priority_Queue_Heap_Based<type>::Priority_Queue_Heap_Based()
 {
     key = new type[capacity]{};
     value = new type[capacity]{};
@@ -9,34 +9,34 @@ Priority_Queue<type>::Priority_Queue()
 }
 
 template <class type>
-Priority_Queue<type>::~Priority_Queue()
+Priority_Queue_Heap_Based<type>::~Priority_Queue_Heap_Based()
 {
     delete[] key;
     delete[] value;
 }
 
 template <class type>
-ll Priority_Queue<type>::left(ll pos)
+ll Priority_Queue_Heap_Based<type>::left(ll pos)
 {
     ll p((pos << 1) + 1);
     return p >= size ? -1 : p;
 }
 
 template <class type>
-ll Priority_Queue<type>::right(ll pos)
+ll Priority_Queue_Heap_Based<type>::right(ll pos)
 {
     ll p((pos << 1) + 2);
     return p >= size ? -1 : p;
 }
 
 template <class type>
-ll Priority_Queue<type>::parent(ll pos)
+ll Priority_Queue_Heap_Based<type>::parent(ll pos)
 {
     return pos == 0 ? -1 : ((pos - 1) >> 1);
 }
 
 template <class type>
-void Priority_Queue<type>::heapify_up(ll child_pos)
+void Priority_Queue_Heap_Based<type>::heapify_up(ll child_pos)
 {
     ll par_pos(parent(child_pos));
     if (!child_pos || key[par_pos] > key[child_pos])
@@ -47,7 +47,7 @@ void Priority_Queue<type>::heapify_up(ll child_pos)
 }
 
 template <class type>
-void Priority_Queue<type>::heapify_down(ll parent_pos) // O(logn)
+void Priority_Queue_Heap_Based<type>::heapify_down(ll parent_pos) // O(logn)
 {
     ll child_pos(left(parent_pos)), right_child(right(parent_pos));
 
@@ -66,13 +66,13 @@ void Priority_Queue<type>::heapify_down(ll parent_pos) // O(logn)
 }
 
 template <class type>
-bool Priority_Queue<type>::is_empty()
+bool Priority_Queue_Heap_Based<type>::is_empty()
 {
     return size == 0;
 }
 
 template <class type>
-void Priority_Queue<type>::enqueue(type val, ll priority)
+void Priority_Queue_Heap_Based<type>::enqueue(type val, ll priority)
 {
     assert(size + 1 <= capacity);
     value[size] = val;
@@ -81,7 +81,7 @@ void Priority_Queue<type>::enqueue(type val, ll priority)
 }
 
 template <class type>
-type Priority_Queue<type>::dequeue()
+type Priority_Queue_Heap_Based<type>::dequeue()
 {
     assert(!is_empty());
     type ret(value[0]);
@@ -92,7 +92,7 @@ type Priority_Queue<type>::dequeue()
 }
 
 template <class type>
-type Priority_Queue<type>::top()
+type Priority_Queue_Heap_Based<type>::top()
 {
     assert(!is_empty());
     return value[0];

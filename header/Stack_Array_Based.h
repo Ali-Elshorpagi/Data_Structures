@@ -5,7 +5,6 @@
 #include <vector>
 
 using namespace std;
-typedef long long ll;
 #define edl '\n'
 
 template <class type>
@@ -13,7 +12,7 @@ class Stack_Array_Based
 {
     unsigned long long size{};
     type *arr{};
-    ll top{};
+    int top{};
 
 public:
     Stack_Array_Based(unsigned long long size);
@@ -25,7 +24,7 @@ public:
     type peek();
     void print();
     string reverse_subwords(string line);
-    ll reverse_num(ll num);
+    int reverse_num(int num);
     char get_open_match(char ch);
     bool valid_parentheses(string str);
     string remove_all_adjacent_duplicates(string str);

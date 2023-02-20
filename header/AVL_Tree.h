@@ -6,27 +6,26 @@
 
 using namespace std;
 #define edl '\n'
-typedef long long ll;
 
 template <class T>
 struct AVL_Node
 {
     T data{};
-    ll height{};
+    int height{};
     AVL_Node<T> *left{};
     AVL_Node<T> *right{};
     AVL_Node(T data) : data(data) {}
-    ll ch_height(AVL_Node<T> *node)
+    int ch_height(AVL_Node<T> *node)
     {
         if (!node)
             return -1;
         return node->height;
     }
-    ll update_height()
+    int update_height()
     {
         return height = 1 + max(ch_height(left), ch_height(right));
     }
-    ll balance_factor()
+    int balance_factor()
     {
         return ch_height(left) - ch_height(right);
     }
@@ -64,7 +63,7 @@ public:
     void level_order_traversal();
     pair<bool, type> lower_bound(type val);
     pair<bool, type> upper_bound(type val);
-    ll avl_nodes_recursive(ll height);
-    ll avl_nodes_iterative(ll height);
+    int avl_nodes_recursive(int height);
+    int avl_nodes_iterative(int height);
     bool prefix_exist(string prefix);
 };

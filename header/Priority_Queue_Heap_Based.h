@@ -8,7 +8,7 @@ using namespace std;
 typedef long long ll;
 
 template <class type>
-class Priority_Queue
+class Priority_Queue_Heap_Based
 {
     ll capacity{1000};
     type *key{};
@@ -22,8 +22,8 @@ class Priority_Queue
     void heapify_down(ll parent_pos);
 
 public:
-    Priority_Queue();
-    ~Priority_Queue();
+    Priority_Queue_Heap_Based();
+    ~Priority_Queue_Heap_Based();
     bool is_empty();
     void enqueue(type val, ll priority);
     type dequeue();

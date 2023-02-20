@@ -8,7 +8,8 @@
 #include "..\\source/Doubly_Linkedlist.cpp"
 #include "..\\source/Max_Heap.cpp"
 #include "..\\source/Min_Heap.cpp"
-#include "..\\source/Priority_Queue.cpp"
+#include "..\\source/Priority_Queue_AVLT_Based.cpp"
+#include "..\\source/Priority_Queue_Heap_Based.cpp"
 #include "..\\source/Queue_Linkedlist_Based.cpp"
 // #include "..\\source/Singly_Linkedlist.cpp" // this file was compiled in another file
 // #include "..\\source/Spare_Array.cpp" // this file was compiled in another file

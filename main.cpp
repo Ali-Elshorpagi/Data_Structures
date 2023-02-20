@@ -13,7 +13,7 @@ int main()
 	Mesh_Ali;
 	// freopen("test/input.txt", "r", stdin);
 	freopen("test/output.txt", "w", stdout);
-
+	
 	cout << edl << "DONE" << edl;
 	return (0);
 }

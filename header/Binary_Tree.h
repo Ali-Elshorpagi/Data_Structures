@@ -12,7 +12,6 @@
 
 using namespace std;
 #define edl '\n'
-typedef long long ll;
 
 template <class type>
 class Binary_Tree
@@ -30,23 +29,23 @@ public:
     void print_pre_order();
     void print_post_order();
     type tree_max();
-    ll tree_height();
-    ll total_nodes();
-    ll no_leaf_nodes();
+    int tree_height();
+    int total_nodes();
+    int no_leaf_nodes();
     bool is_exists(type value);
-    bool is_perfect(ll h = -1);
+    bool is_perfect(int h = -1);
     bool is_perfect_fomula();
     void print_inorder_iterative();
     void traverse_left_boundry();
-    pair<ll, ll> tree_diameter();
+    pair<int, int> tree_diameter();
     void level_order_traversal_0();
     void level_order_traversal_1();
     void level_order_traversal_sorted();
-    void print_level_nodes(ll level);
+    void print_level_nodes(int level);
     void level_order_traversal_recursive();
     void level_order_traversal_spiral();
     bool is_complete();
-    Binary_Tree(deque<type> &preorder, deque<type> &inorder, ll inorder_start = 0, ll inorder_end = -1);
+    Binary_Tree(deque<type> &preorder, deque<type> &inorder, int inorder_start = 0, int inorder_end = -1);
     Binary_Tree(queue<pair<type, type>> &preorder_queue);
     void build_preorder(queue<pair<type, type>> &preorder_queue);
 
