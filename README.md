@@ -22,3 +22,4 @@
 - AVL Tree ( Binary Node )
 - AVL Tree 
 - Priority Queue AVL Tree Based
+- Letter Tree ( Trie )
