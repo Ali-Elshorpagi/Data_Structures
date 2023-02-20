@@ -49,6 +49,7 @@ class AVL_Tree
     AVL_Node<type> *delete_node(type val, AVL_Node<type> *node);
     AVL_Node<type> *lower_bound_node(type val, AVL_Node<type> *node);
     AVL_Node<type> *upper_bound_node(type val, AVL_Node<type> *node);
+    bool prefix_exist_node(string prefix, AVL_Node<type> *node);
     void clear(AVL_Node<type> *node);
 
 public:
@@ -65,4 +66,5 @@ public:
     pair<bool, type> upper_bound(type val);
     ll avl_nodes_recursive(ll height);
     ll avl_nodes_iterative(ll height);
+    bool prefix_exist(string prefix);
 };

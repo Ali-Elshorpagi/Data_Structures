@@ -208,6 +208,17 @@ AVL_Node<type> *AVL_Tree<type>::upper_bound_node(type val, AVL_Node<type> *node)
 }
 
 template <class type>
+bool AVL_Tree<type>::prefix_exist_node(string prefix, AVL_Node<type> *node)
+{
+    string str(node->data.substr(0, min(node->data.size(), prefix.size())));
+    if (prefix == str)
+        return true;
+    if (prefix < str)
+        return node->left && prefix_exist_node(prefix, node->left);
+    return node->right && prefix_exist_node(prefix, node->right);
+}
+
+template <class type>
 void AVL_Tree<type>::insert_value(type val)
 {
     if (!root)
@@ -327,4 +338,12 @@ ll AVL_Tree<type>::avl_nodes_iterative(ll height)
     while (height--)
         c = a + b + 1, a = b, b = c;
     return c;
+}
+
+template <class type>
+bool AVL_Tree<type>::prefix_exist(string prefix)
+{
+    if (root)
+        return prefix_exist_node(prefix, root);
+    return false;
 }
