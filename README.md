@@ -12,12 +12,13 @@
 - Stack LinkedList Based
 - Circular Queue
 - Queue LinkedList Based
-- Priority Queue Heap Based
-- Priority Queue AVL Tree Based
 - Deque
 - Binary Tree
-- Binary Search Tree
 - Binary Search Tree ( Binary Node )
+- Binary Search Tree 
 - Min Binary Heap
 - Max Binary Heap
-- AVL Tree
+- Priority Queue Heap Based
+- AVL Tree ( Binary Node )
+- AVL Tree 
+- Priority Queue AVL Tree Based

@@ -1,5 +1,8 @@
 {
     "files.associations": {
-        "utility": "cpp"
+        "utility": "cpp",
+        "chrono": "cpp",
+        "functional": "cpp",
+        "queue": "cpp"
     }
 }
