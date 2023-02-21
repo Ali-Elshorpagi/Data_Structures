@@ -94,8 +94,35 @@ string Letter_Tree::first_word_prefix(const string &str)
 void Letter_Tree::get_all_strings(vector<string> &res, string cur_str)
 {
     if (is_leaf)
-        res.push_back(cur_str);
+        res.emplace_back(cur_str);
     for (auto &it : child)
         if (it.second)
             it.second->get_all_strings(res, cur_str + (char)(it.first + 'a'));
+}
+
+void Letter_Tree::auto_complete_0(const string &str, vector<string> &res)
+{
+    vector<string> tmp;
+    get_all_strings(tmp);
+    int len((int)str.size());
+    for (auto &it : tmp)
+    {
+        string s(it.substr(0, len));
+        if (s == str)
+            res.emplace_back(it);
+    }
+}
+
+void Letter_Tree::auto_complete_1(const string &str, vector<string> &res)
+{
+    Letter_Tree *cur(this);
+    int len((int)str.size());
+    for (auto &it : str)
+    {
+        int idx(it - 'a');
+        if (!cur->child[idx])
+            return;
+        cur = cur->child[idx];
+    }
+    cur->get_all_strings(res, str);
 }

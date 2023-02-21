@@ -24,4 +24,6 @@ public:
     bool prefix_exist(string str, int idx = 0);
     string first_word_prefix(const string &str);
     void get_all_strings(vector<string> &res, string cur_str = "");
+    void auto_complete_0(const string &str, vector<string> &res);
+    void auto_complete_1(const string &str, vector<string> &res);
 };
