@@ -15,7 +15,9 @@ class Letter_Tree
 public:
     Letter_Tree();
     ~Letter_Tree();
-    void insert(string str, int idx = 0);
-    bool word_exist(string str, int idx = 0);
+    void insert_recursive(string str, int idx = 0);
+    void insert_iterative(string str);
+    bool word_exist_recursive(string str, int idx = 0);
+    bool word_exist_iterative(string str);
     bool prefix_exist(string str, int idx = 0);
 };

@@ -15,20 +15,34 @@ Letter_Tree::~Letter_Tree()
     }
 }
 
-void Letter_Tree::insert(string str, int idx)
+void Letter_Tree::insert_recursive(string str, int idx)
 {
     if (idx == (int)str.size())
         is_leaf = 1;
     else
     {
         int cur(str[idx] - 'a');
-        if (child[cur] == 0)
+        if (!child[cur])
             child[cur] = new Letter_Tree();
-        child[cur]->insert(str, idx + 1);
+        child[cur]->insert_recursive(str, idx + 1);
     }
 }
 
-bool Letter_Tree::word_exist(string str, int idx)
+void Letter_Tree::insert_iterative(string str)
+{
+    Letter_Tree *cur(this);
+    int len((int)str.size());
+    for (int i(0); i < len; ++i)
+    {
+        int idx(str[i] - 'a');
+        if (!cur->child[idx])
+            cur->child[idx] = new Letter_Tree();
+        cur = cur->child[idx];
+    }
+    cur->is_leaf = true;
+}
+
+bool Letter_Tree::word_exist_recursive(string str, int idx)
 {
     if (idx == (int)str.size())
         return is_leaf;
@@ -37,7 +51,21 @@ bool Letter_Tree::word_exist(string str, int idx)
     if (!child[cur])
         return false;
 
-    return child[cur]->word_exist(str, idx + 1);
+    return child[cur]->word_exist_recursive(str, idx + 1);
+}
+
+bool Letter_Tree::word_exist_iterative(string str)
+{
+    Letter_Tree *cur(this);
+    int len((int)str.size());
+    for (int i(0); i < len; ++i)
+    {
+        int idx(str[i] - 'a');
+        if (!cur->child[idx])
+            return false;
+        cur = cur->child[idx];
+    }
+    return cur->is_leaf;
 }
 
 bool Letter_Tree::prefix_exist(string str, int idx)
