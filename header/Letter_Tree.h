@@ -11,7 +11,7 @@ using namespace std;
 
 class Letter_Tree
 {
-    map<char, Letter_Tree *> child;
+    map<int, Letter_Tree *> child;
     bool is_leaf{};
 
 public:
@@ -23,4 +23,5 @@ public:
     bool word_exist_iterative(string str);
     bool prefix_exist(string str, int idx = 0);
     string first_word_prefix(const string &str);
+    void get_all_strings(vector<string> &res, string cur_str = "");
 };

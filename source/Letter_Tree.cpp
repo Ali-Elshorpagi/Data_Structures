@@ -90,3 +90,12 @@ string Letter_Tree::first_word_prefix(const string &str)
     }
     return str;
 }
+
+void Letter_Tree::get_all_strings(vector<string> &res, string cur_str)
+{
+    if (is_leaf)
+        res.push_back(cur_str);
+    for (auto &it : child)
+        if (it.second)
+            it.second->get_all_strings(res, cur_str + (char)(it.first + 'a'));
+}
