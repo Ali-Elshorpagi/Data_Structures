@@ -126,3 +126,21 @@ void Letter_Tree::auto_complete_1(const string &str, vector<string> &res)
     }
     cur->get_all_strings(res, str);
 }
+
+bool Letter_Tree::word_exist_with_1_change(string str)
+{
+    for (auto &it : str)
+    {
+        char cpy(it);
+        for (char ch('a'); ch <= 'z'; ++ch)
+        {
+            if (ch == cpy) // Must do a change
+                continue;
+            it = ch;
+            if (word_exist_iterative(str))
+                return true;
+        }
+        it = cpy; // copy back
+    }
+    return false;
+}
