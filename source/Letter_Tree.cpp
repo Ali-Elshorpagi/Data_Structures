@@ -1,17 +1,13 @@
 #include "..\\header\Letter_Tree.h"
 
-Letter_Tree::Letter_Tree()
-{
-    // set an array to 0s. Here pointers to null
-    memset(child, 0, sizeof(child));
-}
+Letter_Tree::Letter_Tree() {}
 
 Letter_Tree::~Letter_Tree()
 {
-    for (int i(0); i < MAX_CHAR; ++i)
+    for (auto &it : child)
     {
-        delete child[i];
-        child[i] = nullptr;
+        delete it.second;
+        it.second = nullptr;
     }
 }
 
@@ -31,10 +27,9 @@ void Letter_Tree::insert_recursive(string str, int idx)
 void Letter_Tree::insert_iterative(string str)
 {
     Letter_Tree *cur(this);
-    int len((int)str.size());
-    for (int i(0); i < len; ++i)
+    for (auto &it : str)
     {
-        int idx(str[i] - 'a');
+        int idx(it - 'a');
         if (!cur->child[idx])
             cur->child[idx] = new Letter_Tree();
         cur = cur->child[idx];
@@ -57,10 +52,9 @@ bool Letter_Tree::word_exist_recursive(string str, int idx)
 bool Letter_Tree::word_exist_iterative(string str)
 {
     Letter_Tree *cur(this);
-    int len((int)str.size());
-    for (int i(0); i < len; ++i)
+    for (auto &it : str)
     {
-        int idx(str[i] - 'a');
+        int idx(it - 'a');
         if (!cur->child[idx])
             return false;
         cur = cur->child[idx];
@@ -78,4 +72,21 @@ bool Letter_Tree::prefix_exist(string str, int idx)
         return false;
 
     return child[cur]->prefix_exist(str, idx + 1);
+}
+
+string Letter_Tree::first_word_prefix(const string &str)
+{
+    Letter_Tree *cur(this);
+    int len((int)str.size());
+    for (int i(0); i < len; ++i)
+    {
+        int ch(str[i] - 'a');
+        if (!cur->child[ch])
+            break;
+
+        if (cur->child[ch]->is_leaf)
+            return str.substr(0, i + 1);
+        cur = cur->child[ch];
+    }
+    return str;
 }
