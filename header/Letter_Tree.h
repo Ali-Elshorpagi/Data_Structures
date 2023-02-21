@@ -1,11 +1,13 @@
 #pragma once
 
 #include <iostream>
-#include <cstring> // memset
 #include <map>
 
 using namespace std;
 #define edl '\n'
+
+// if you need to build a Suffix Trie
+// it's same idea but just need to reverse the input
 
 class Letter_Tree
 {
