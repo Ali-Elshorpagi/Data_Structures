@@ -18,17 +18,40 @@ int hash_string(string str, int n)
     return sum % m;
 }
 
+int hash_string_lower_upper_digits(string str, int n = 65407)
+{
+    int base(2 * 26 + 10); // 26-lower, 26-upper and 10-digits
+    long long m(n), sum(0);
+
+    for (int i(0); i < (int)str.size(); ++i)
+    {
+        // lowers from [0-25], upper [26-51] and digits [52-61]
+        int value(0);
+        if (islower(str[i]))
+            value = str[i] - 'a'; // [0, 25]
+        else if (isupper(str[i]))
+            value = 26 + str[i] - 'A'; // [26, 51]
+        else if (isdigit(str[i]))
+            value = 26 + 26 + str[i] - '0'; // [52, 61]
+        else
+            assert(false); // invalid input
+        sum = sum * base + value;
+        sum %= m; // reduce to minimize overflows
+    }
+    return sum;
+}
+
 struct Hash_Node
 {
     // can change
-    const static int INTERNAL_LIMIT = 65407;
+    const static int INTERNAL_LIMIT = 2147483647;
     string key;
     string data;
     Hash_Node(string k, string d) : key(k), data(d) {}
 
     int hash()
     {
-        return hash_string(key, INTERNAL_LIMIT);
+        return hash_string_lower_upper_digits(key, INTERNAL_LIMIT);
     }
     void print()
     {

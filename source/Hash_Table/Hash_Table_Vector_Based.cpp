@@ -23,7 +23,7 @@ int hash_string(string str, int n)
 
 int hash_string_lower_upper_digits(string str, int n = 65407)
 {
-    int base(2 * 26 + 10); // lower, upper and 10 digits
+    int base(2 * 26 + 10); // 26-lower, 26-upper and 10-digits
     long long m(n), sum(0);
 
     for (int i(0); i < (int)str.size(); ++i)
@@ -37,9 +37,9 @@ int hash_string_lower_upper_digits(string str, int n = 65407)
         else if (isdigit(str[i]))
             value = 26 + 26 + str[i] - '0'; // [52, 61]
         else
-            assert(false);        // invalid input
-        sum = sum * base + value; // base 26 number
-        sum %= m;                 // reduce to minimize overflows
+            assert(false); // invalid input
+        sum = sum * base + value;
+        sum %= m; // reduce to minimize overflows
     }
     return sum;
 }
@@ -77,8 +77,8 @@ class Hash_Table
 {
 private:
     int table_size{};
-    double limit_load_factor{};
     int added_elements{};
+    double limit_load_factor{};
     vector<vector<Hash_Node>> table;
     // we can use others: e.g. list<Hash_Node>
 public:
@@ -127,8 +127,8 @@ public:
         {
             if (!table[i].size())
                 continue;
-            for (int j(0); j < (int)table[i].size(); ++j)
-                tmp.put(table[i][j]);
+            for (auto &it : table[i])
+                tmp.put(it);
         }
         table_size <<= 1;
         table = tmp.table;

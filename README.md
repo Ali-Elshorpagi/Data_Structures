@@ -23,5 +23,5 @@
 - AVL Tree 
 - Priority Queue AVL Tree Based
 - Letter Tree ( Trie )
-- Hash Table LinkedList Based
-- Hash Table Vector Based
+- Hash Table LinkedList Based ( Chaining Implementation )
+- Hash Table Vector Based ( Chaining Implementation )
