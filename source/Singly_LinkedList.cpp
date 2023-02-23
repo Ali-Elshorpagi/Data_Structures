@@ -43,6 +43,40 @@ void Singly_LinkedList<type>::insert_end(type val)
 }
 
 template <class type>
+void Singly_LinkedList<type>::insert_front(type val)
+{
+    S_Node<type> *item = new S_Node<type>(val);
+    ++length;
+    item->next = head;
+    head = item;
+    if (length == 1)
+        tail = head;
+}
+
+template <class type>
+void Singly_LinkedList<type>::insert_sorted(type val)
+{
+    if (!length || head->data >= val)
+        insert_front(val);
+    else if (tail->data <= val)
+        insert_end(val);
+    else
+    {
+        for (S_Node<type> *cur(head), *prv(nullptr); cur; prv = cur, cur = cur->next)
+        {
+            if (cur->data >= val)
+            {
+                S_Node<type> *item = (new S_Node<type>(val));
+                ++length;
+                item->next = prv->next;
+                prv->next = item;
+                break;
+            }
+        }
+    }
+}
+
+template <class type>
 S_Node<type> *Singly_LinkedList<type>::find(S_Node<type> *head, type val)
 {
     for (S_Node<type> *i(head); i; i = i->next)
@@ -145,17 +179,6 @@ int Singly_LinkedList<type>::search_improved_v2(type val) // commonly used
         ++idx;
     }
     return -1;
-}
-
-template <class type>
-void Singly_LinkedList<type>::insert_front(type val)
-{
-    S_Node<type> *item = new S_Node<type>(val);
-    ++length;
-    item->next = head;
-    head = item;
-    if (length == 1)
-        tail = head;
 }
 
 template <class type>
@@ -323,30 +346,6 @@ void Singly_LinkedList<type>::delete_even_positions()
             break;
         cur = prv->next->next;
         prv = prv->next;
-    }
-}
-
-template <class type>
-void Singly_LinkedList<type>::insert_sorted(type val)
-{
-    if (!length || head->data >= val)
-        insert_front(val);
-    else if (tail->data <= val)
-        insert_end(val);
-    else
-    {
-
-        for (S_Node<type> *cur(head), *prv(nullptr); cur; prv = cur, cur = cur->next)
-        {
-            if (cur->data >= val)
-            {
-                S_Node<type> *item = new S_Node<type>(val);
-                ++length;
-                item->next = prv->next;
-                prv->next = item;
-                break;
-            }
-        }
     }
 }
 

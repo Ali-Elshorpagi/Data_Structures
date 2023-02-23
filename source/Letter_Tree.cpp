@@ -140,7 +140,7 @@ bool Letter_Tree::word_exist_with_1_change(string str)
             if (word_exist_iterative(str))
                 return true;
         }
-        it = cpy; // copy back
+        it = cpy;
     }
     return false;
 }

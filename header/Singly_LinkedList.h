@@ -35,6 +35,9 @@ public:
     S_Node<type> *get_head();
     unsigned long long get_length();
     void insert_end(type val);
+    void insert_front(type val);
+    void insert_sorted(type val);
+
     S_Node<type> *find(S_Node<type> *head, type val);
     void print();
     void print_recr(S_Node<type> *h);
@@ -44,7 +47,7 @@ public:
     int search(type val);
     int search_improved(type val);
     int search_improved_v2(type val);
-    void insert_front(type val);
+
     S_Node<type> *get_nth_from_back(int idx);
     bool is_same(const Singly_LinkedList<type> &list);
     S_Node<type> *move_and_delete(S_Node<type> *node);
@@ -57,7 +60,6 @@ public:
     void swap_repairs();
     void reverse();
     void delete_even_positions();
-    void insert_sorted(type val);
     S_Node<type> *get_previous(S_Node<type> *node);
     void swap_head_tail();
     void left_rotate(int key);
