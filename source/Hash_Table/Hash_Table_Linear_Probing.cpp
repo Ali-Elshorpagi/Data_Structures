@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <cassert>
+#include <unordered_set>
 
 using namespace std;
 #define edl '\n'
@@ -144,3 +145,53 @@ public:
         cout << "******************" << edl;
     }
 };
+
+int count_unique_substrings(const string &str) // O(L^2) but insert function takes O(log(L))
+{
+    unordered_set<string> us;
+    for (int i(0); i < (int)str.size(); ++i)
+    {
+        string ans("");
+        for (int j(i); j < (int)str.size(); ++j)
+            ans = ans + str[j], us.insert(ans);
+    }
+    return (int)us.size();
+
+    /* Another Solution Using Letter Tree */
+    // Note: Using a trie: we can efficiently solve it in O(L^2)
+    // Don't create the string and add to trie
+    // For every stating position: let the second loop keep inserting
+    // In trie letter by letter and mark as leaf
+    // Hence overall only 2 loops
+}
+
+int count_substrings_match(const string &str1, const string &str2)
+{
+    unordered_set<string> us_str1, us_str2;
+    for (int i(0); i < (int)str1.size(); ++i)
+    {
+        string ans("");
+        for (int j(i); j < (int)str1.size(); ++j)
+            ans = ans + str1[j], us_str1.insert(ans);
+    }
+    for (int i(0); i < (int)str2.size(); ++i)
+    {
+        string ans("");
+        for (int j(i); j < (int)str2.size(); ++j)
+            ans = ans + str2[j], us_str2.insert(ans);
+    }
+    int cnt(0);
+    for (auto &it : us_str1)
+        cnt += us_str2.count(it);
+    return cnt;
+}
+
+int main()
+{
+    cout << count_substrings_match("aaab", "aa") << "\n";     // 2
+    cout << count_substrings_match("aaab", "ab") << "\n";     // 3
+    cout << count_substrings_match("aaaaa", "xy") << "\n";    // 0
+    cout << count_substrings_match("aaaaa", "aaaaa") << "\n"; // 5
+
+    return 0;
+}
