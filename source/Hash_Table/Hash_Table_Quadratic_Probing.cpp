@@ -1,17 +1,10 @@
 #include <iostream>
 #include <vector>
+#include <set>
 #include <cassert>
-#include <unordered_set>
-#include <algorithm>
 
 using namespace std;
 #define edl '\n'
-
-/* Probing techniques:
- * Linear Probing : index = (init_hash + i) % table_size
- * Quadratic Probing : index = (init_hash + i*i) % table_size
- * Double Hashing (use 2 independent hash functions) : index = (init_hash1 + init_hash2 * i) % table_size
- */
 
 int hash_string_lower_upper_digits(string str, int n = 65407)
 {
@@ -42,11 +35,12 @@ struct Hash_Node
     string key;
     string data;
 
-    Hash_Node(string key, string data) : key(key), data(data) {}
     int hash()
     {
         return hash_string_lower_upper_digits(key, INTERNAL_LIMIT);
     }
+
+    Hash_Node(string key, string data) : key(key), data(data) {}
     void print()
     {
         cout << "(" << key << ", " << data << ")  ";
@@ -62,37 +56,39 @@ private:
     Hash_Node *deleted{};
 
 public:
-    Hash_Table(int sz) : table_size(sz)
+    Hash_Table(int table_size) : table_size(table_size)
     {
         table.resize(table_size);
         deleted = new Hash_Node("", "");
     }
-    bool put(Hash_Node phone)
+    void put(Hash_Node phone)
     {
-        int idx(phone.hash() % table_size);
-        // We max move table_size steps
-        for (int step(0); step < table_size; ++step)
+        int idx(phone.hash() % table_size), step(0), original_idx(idx);
+        do
         {
-            if (table[idx] == deleted || !table[idx]) // empty
+            if (table[idx] == deleted || !table[idx])
             {
                 table[idx] = new Hash_Node(phone.key, phone.data);
-                return true;
+                return;
             }
             else if (table[idx]->key == phone.key)
             {
                 table[idx]->data = phone.data; // update
-                return true;
+                return;
             }
-            idx = (idx + 1) % table_size; // move next
-        }
-        return false; // can't insert. Full table
+            ++step;
+            idx = (original_idx + step * step) % table_size;
+        } while (idx != original_idx); // catch that we repeated
+
+        // If we failed: rehash to increase size, then add this element
+        rehashing();
+        put(phone);
     }
 
     bool remove(Hash_Node phone)
     {
-        int idx(phone.hash() % table_size);
-
-        for (int step(0); step < table_size; ++step)
+        int idx(phone.hash() % table_size), step(0), original_idx(idx);
+        do
         {
             if (!table[idx])
                 break;
@@ -102,16 +98,16 @@ public:
                 table[idx] = deleted;
                 return true;
             }
-            idx = (idx + 1) % table_size; // move next
-        }
+            ++step;
+            idx = (original_idx + step * step) % table_size;
+        } while (idx != original_idx); // catch that we repeated
         return false;
     }
 
     bool get(Hash_Node &phone)
     {
-        int idx(phone.hash() % table_size);
-
-        for (int step(0); step < table_size; ++step)
+        int idx(phone.hash() % table_size), step(0), original_idx(idx);
+        do
         {
             if (!table[idx])
                 break;
@@ -120,9 +116,24 @@ public:
                 phone.data = table[idx]->data;
                 return true;
             }
-            idx = (idx + 1) % table_size; // move next
-        }
+            ++step;
+            idx = (original_idx + step * step) % table_size;
+        } while (idx != original_idx); // catch that we repeated
         return false;
+    }
+
+    void rehashing()
+    {
+        cout << "Rehashing..." << edl;
+        Hash_Table tmp(2 * table_size);
+        for (int hash(0); hash < table_size; ++hash)
+        {
+            if (table[hash] == deleted || !table[hash])
+                continue;
+            tmp.put(*table[hash]);
+        }
+        table_size *= 2;
+        table = tmp.table;
     }
 
     void print_all()
@@ -141,49 +152,3 @@ public:
         cout << "******************" << edl;
     }
 };
-
-int count_unique_substrings(const string &str, unordered_set<string> &us) // O(L^2 * log(L))
-{
-    for (int i(0); i < (int)str.size(); ++i)
-    {
-        string ans("");
-        for (int j(i); j < (int)str.size(); ++j)
-            ans = ans + str[j], us.insert(ans); // O(log(L)
-    }
-    return (int)us.size();
-
-    /* Another Solution Using Letter Tree */
-    // Note: Using a trie: we can efficiently solve it in O(L^2)
-    // Don't create the string and add to trie
-    // For every stating position: let the second loop keep inserting
-    // In trie letter by letter and mark as leaf
-    // Hence overall only 2 loops
-}
-
-int count_substrings_match(const string &str1, const string &str2)
-{
-    unordered_set<string> us1, us2;
-    count_unique_substrings(str1, us1);
-    count_unique_substrings(str2, us2);
-    int cnt(0);
-    for (auto &it : us1)
-        cnt += us2.count(it);
-    return cnt;
-}
-
-int count_anagram_substrings(const string &str) // O(L^3 * log(L))
-{
-    unordered_set<string> us;
-    for (int i(0); i < (int)str.size(); ++i)
-    {
-        string ans("");
-        for (int j(i); j < (int)str.size(); ++j)
-        {
-            ans = ans + str[j];
-            sort(ans.begin(), ans.end()); // O(L* log(L))
-            us.insert(ans);               // O(log(L))
-        }
-    }
-    return (int)us.size();
-    // can be implemented in O(L^3) by representing each string as a freq of letters;
-}

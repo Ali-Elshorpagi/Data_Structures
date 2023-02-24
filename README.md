@@ -24,6 +24,7 @@
 - Priority Queue AVL Tree Based
 - Letter Tree ( Trie )
 - > Hash Table
-  - Hash Table LinkedList Based ( Chaining Technique )
-  - Hash Table Vector Based ( Chaining Technique )
-  - Hash Table Vector Based ( Linear Probing Technique )
+    - Hash Table LinkedList Based ( Chaining Technique )
+    - Hash Table Vector Based ( Chaining Technique )
+    - Hash Table Vector Based ( Linear Probing Technique )
+    - Hash Table Vector Based ( Quadratic Probing Technique )
