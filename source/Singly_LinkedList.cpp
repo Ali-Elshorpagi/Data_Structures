@@ -8,9 +8,9 @@ Singly_LinkedList<type>::~Singly_LinkedList()
 {
     while (head)
     {
-        S_Node<type> *current(head->next);
+        S_Node<type> *cur(head->next);
         delete head;
-        head = current;
+        head = cur;
     }
     head = nullptr;
     tail = nullptr;

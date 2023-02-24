@@ -79,15 +79,7 @@ public:
     ~Hash_Table()
     {
         for (int i(0); i < table_size; ++i)
-        {
-            LinkedHashEntry *entry(table[i]);
-            while (entry)
-            {
-                LinkedHashEntry *prev(entry);
-                entry = entry->next;
-                delete prev;
-            }
-        }
+            delete[] table[i];
         delete[] table;
     }
     void put(Hash_Node phone)
