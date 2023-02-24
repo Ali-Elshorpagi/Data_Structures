@@ -147,13 +147,13 @@ public:
     }
 };
 
-int count_unique_substrings(const string &str, unordered_set<string> &us)
-{ // O(L^2) but insert function takes O(log(L))
+int count_unique_substrings(const string &str, unordered_set<string> &us) // O(L^2 * log(L))
+{
     for (int i(0); i < (int)str.size(); ++i)
     {
         string ans("");
         for (int j(i); j < (int)str.size(); ++j)
-            ans = ans + str[j], us.insert(ans);
+            ans = ans + str[j], us.insert(ans); // O(log(L)
     }
     return (int)us.size();
 
@@ -190,4 +190,5 @@ int count_anagram_substrings(const string &str) // O(L^3 * log(L))
         }
     }
     return (int)us.size();
+    // can be implemented in O(L^3) by representing each string as a freq of letters;
 }
