@@ -2,6 +2,7 @@
 #include <vector>
 #include <cassert>
 #include <unordered_set>
+#include <algorithm>
 
 using namespace std;
 #define edl '\n'
@@ -146,9 +147,8 @@ public:
     }
 };
 
-int count_unique_substrings(const string &str) // O(L^2) but insert function takes O(log(L))
-{
-    unordered_set<string> us;
+int count_unique_substrings(const string &str, unordered_set<string> &us)
+{ // O(L^2) but insert function takes O(log(L))
     for (int i(0); i < (int)str.size(); ++i)
     {
         string ans("");
@@ -167,31 +167,27 @@ int count_unique_substrings(const string &str) // O(L^2) but insert function tak
 
 int count_substrings_match(const string &str1, const string &str2)
 {
-    unordered_set<string> us_str1, us_str2;
-    for (int i(0); i < (int)str1.size(); ++i)
-    {
-        string ans("");
-        for (int j(i); j < (int)str1.size(); ++j)
-            ans = ans + str1[j], us_str1.insert(ans);
-    }
-    for (int i(0); i < (int)str2.size(); ++i)
-    {
-        string ans("");
-        for (int j(i); j < (int)str2.size(); ++j)
-            ans = ans + str2[j], us_str2.insert(ans);
-    }
+    unordered_set<string> us1, us2;
+    count_unique_substrings(str1, us1);
+    count_unique_substrings(str2, us2);
     int cnt(0);
-    for (auto &it : us_str1)
-        cnt += us_str2.count(it);
+    for (auto &it : us1)
+        cnt += us2.count(it);
     return cnt;
 }
 
-int main()
+int count_anagram_substrings(const string &str) // O(L^3 * log(L))
 {
-    cout << count_substrings_match("aaab", "aa") << "\n";     // 2
-    cout << count_substrings_match("aaab", "ab") << "\n";     // 3
-    cout << count_substrings_match("aaaaa", "xy") << "\n";    // 0
-    cout << count_substrings_match("aaaaa", "aaaaa") << "\n"; // 5
-
-    return 0;
+    unordered_set<string> us;
+    for (int i(0); i < (int)str.size(); ++i)
+    {
+        string ans("");
+        for (int j(i); j < (int)str.size(); ++j)
+        {
+            ans = ans + str[j];
+            sort(ans.begin(), ans.end()); // O(L* log(L))
+            us.insert(ans);               // O(log(L))
+        }
+    }
+    return (int)us.size();
 }
