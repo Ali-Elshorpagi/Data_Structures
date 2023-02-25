@@ -10,13 +10,14 @@ template <class type>
 class Vector
 {
     type *arr{nullptr};
-    int size{0};
+    int size{};
     int capacity{};
 
 public:
     Vector(int sz);
     ~Vector();
     void expand_capacity();
+    type &operator[](const int idx);
     int get_size();
     type get_value(int idx);
     type get_front();

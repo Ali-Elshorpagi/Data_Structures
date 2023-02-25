@@ -28,6 +28,13 @@ void Vector<type>::expand_capacity()
 }
 
 template <class type>
+type &Vector<type>::operator[](const int idx)
+{
+    assert(idx < size);
+    return arr[idx];
+}
+
+template <class type>
 int Vector<type>::get_size()
 {
     return size;

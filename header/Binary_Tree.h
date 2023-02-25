@@ -9,6 +9,7 @@
 #include <queue>
 #include <deque>
 #include <sstream> // ostringstream
+#include <math.h>
 
 using namespace std;
 #define edl '\n'
