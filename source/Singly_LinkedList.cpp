@@ -1,4 +1,4 @@
-#include "..\\header\Singly_LinkedList.h"
+#include "../header/Singly_LinkedList.h"
 
 template <class type>
 Singly_LinkedList<type>::Singly_LinkedList() {}
@@ -17,7 +17,7 @@ Singly_LinkedList<type>::~Singly_LinkedList()
 }
 
 template <class type>
-unsigned long long Singly_LinkedList<type>::get_length()
+int Singly_LinkedList<type>::get_length()
 {
     return length;
 }
@@ -31,7 +31,7 @@ S_Node<type> *Singly_LinkedList<type>::get_head()
 template <class type>
 void Singly_LinkedList<type>::insert_end(type val)
 {
-    S_Node<type> *item = new S_Node<type>(val);
+    S_Node<type> *item(new S_Node<type>(val));
     if (!head)
         head = tail = item;
     else
@@ -39,18 +39,28 @@ void Singly_LinkedList<type>::insert_end(type val)
         tail->next = item;
         tail = item;
     }
+    // tail->next = nullptr; // it depends on the compiler
     ++length;
 }
 
 template <class type>
 void Singly_LinkedList<type>::insert_front(type val)
 {
-    S_Node<type> *item = new S_Node<type>(val);
+    S_Node<type> *item(new S_Node<type>(val));
     ++length;
     item->next = head;
     head = item;
     if (length == 1)
         tail = head;
+}
+
+template <class type>
+void Singly_LinkedList<type>::insert_after(S_Node<type> *src, S_Node<type> *target)
+{
+    assert(src && target);
+    target->next = src->next;
+    src->next = target;
+    ++length;
 }
 
 template <class type>
@@ -66,7 +76,7 @@ void Singly_LinkedList<type>::insert_sorted(type val)
         {
             if (cur->data >= val)
             {
-                S_Node<type> *item = (new S_Node<type>(val));
+                S_Node<type> *item(new S_Node<type>(val));
                 ++length;
                 item->next = prv->next;
                 prv->next = item;
@@ -77,12 +87,12 @@ void Singly_LinkedList<type>::insert_sorted(type val)
 }
 
 template <class type>
-S_Node<type> *Singly_LinkedList<type>::find(S_Node<type> *head, type val)
+S_Node<type> *Singly_LinkedList<type>::find(type val)
 {
-    for (S_Node<type> *i(head); i; i = i->next)
+    for (S_Node<type> *cur(head); cur; cur = cur->next)
     {
-        if (i->data == val)
-            return i;
+        if (cur->data == val)
+            return cur;
     }
     return nullptr;
 }
@@ -90,8 +100,8 @@ S_Node<type> *Singly_LinkedList<type>::find(S_Node<type> *head, type val)
 template <class type>
 void Singly_LinkedList<type>::print()
 {
-    for (S_Node<type> *i(head); i; i = i->next)
-        cout << i->data << ' ';
+    for (S_Node<type> *cur(head); cur; cur = cur->next)
+        cout << cur->data << ' ';
     cout << edl;
 }
 
@@ -120,25 +130,27 @@ void Singly_LinkedList<type>::print_recr_rever(S_Node<type> *h)
 }
 
 template <class type>
-unsigned long long Singly_LinkedList<type>::get_size()
-{
-    return length;
-}
-
-template <class type>
 S_Node<type> *Singly_LinkedList<type>::get_nth(int n)
 {
     for (S_Node<type> *cur(head); cur; cur = cur->next)
-        if (--n == 0)
+        if (!(--n))
             return cur;
     return nullptr;
+}
+
+template <class type>
+S_Node<type> *Singly_LinkedList<type>::get_nth_from_back(int idx)
+{
+    if (idx > length)
+        return nullptr;
+    return get_nth(length - idx + 1);
 }
 
 template <class type>
 int Singly_LinkedList<type>::search(type val)
 {
     int idx(0);
-    for (S_Node<type> *cur(head); cur; cur = cur->next, idx++)
+    for (S_Node<type> *cur(head); cur; cur = cur->next, ++idx)
         if (cur->data == val)
             return idx;
     return -1;
@@ -149,7 +161,7 @@ int Singly_LinkedList<type>::search_improved(type val)
 {
     int idx(0);
     S_Node<type> *prv(nullptr);
-    for (S_Node<type> *cur(head); cur; cur = cur->next, idx++)
+    for (S_Node<type> *cur(head); cur; cur = cur->next, ++idx)
     {
         if (cur->data == val)
         {
@@ -182,14 +194,6 @@ int Singly_LinkedList<type>::search_improved_v2(type val) // commonly used
 }
 
 template <class type>
-S_Node<type> *Singly_LinkedList<type>::get_nth_from_back(int idx)
-{
-    if (idx > length)
-        return nullptr;
-    return get_nth(length - idx + 1);
-}
-
-template <class type>
 bool Singly_LinkedList<type>::is_same(const Singly_LinkedList<type> &list)
 {
     if (length != list.length)
@@ -204,24 +208,26 @@ bool Singly_LinkedList<type>::is_same(const Singly_LinkedList<type> &list)
     return true;
 }
 
-template <class type>
-S_Node<type> *Singly_LinkedList<type>::move_and_delete(S_Node<type> *node)
-{
-    S_Node<type> *tmp(node->next);
-    delete_node(node);
-    return tmp;
-}
+// template <class type>
+// S_Node<type> *Singly_LinkedList<type>::move_and_delete(S_Node<type> *node)
+// {
+//     S_Node<type> *tmp(node->next);
+//     delete_node(node);
+//     return tmp;
+// }
 
 template <class type>
 void Singly_LinkedList<type>::delete_node(S_Node<type> *node)
 {
-    auto it = std::find(debug_data.begin(), debug_data.end(), node);
-    if (it != debug_data.end())
-    {
-        debug_data.erase(it);
-        --length;
-        delete node;
-    }
+    // auto it = std::find(debug_data.begin(), debug_data.end(), node);
+    // if (it != debug_data.end())
+    // {
+    //     debug_data.erase(it);
+    //     --length;
+    //     delete node;
+    // }
+    --length;
+    delete node;
 }
 
 template <class type>
@@ -240,7 +246,7 @@ void Singly_LinkedList<type>::delete_first()
 template <class type>
 void Singly_LinkedList<type>::delete_last()
 {
-    if (length <= 1)
+    if (length < 2)
     {
         delete_first();
         return;
@@ -285,18 +291,75 @@ template <class type>
 void Singly_LinkedList<type>::delete_node_with_key(type val)
 {
     if (!length)
-        cout << "list is Empty" << edl;
+        cout << "List is Empty" << edl;
     else if (head->data == val)
         delete_first();
     else
     {
-        for (S_Node<type> *cur(head), *prev = nullptr; cur; prev = cur, cur = cur->next)
+        for (S_Node<type> *cur(head), *prev(nullptr); cur; prev = cur, cur = cur->next)
         {
             if (cur->data == val)
             {
                 delete_next_node(prev);
                 break;
             }
+        }
+    }
+}
+
+template <class type>
+void Singly_LinkedList<type>::delete_even_positions()
+{
+    if (length < 2)
+        return;
+    for (S_Node<type> *cur(head->next), *prv(head); cur;)
+    {
+        delete_next_node(prv);
+        if (!prv->next)
+            break;
+        cur = prv->next->next;
+        prv = prv->next;
+    }
+}
+
+template <class type>
+void Singly_LinkedList<type>::delete_last_occurrence_not_sorted(type key)
+{
+    if (!length)
+        return;
+    S_Node<type> *delete_node(nullptr);
+    bool flag(false);
+    for (S_Node<type> *cur(head), *prv(nullptr); cur; prv = cur, cur = cur->next)
+    {
+        if (cur->data == key)
+            flag = true, delete_node = prv;
+    }
+    if (flag)
+    {
+        if (delete_node)
+            delete_next_node(delete_node);
+        else
+            delete_first();
+    }
+}
+
+template <class type>
+void Singly_LinkedList<type>::remove_duplicates_not_sorted()
+{
+    if (length < 2)
+        return;
+
+    for (S_Node<type> *cur1(head); cur1; cur1 = cur1->next)
+    {
+        for (S_Node<type> *cur2(cur1->next), *prv(cur1); cur2;)
+        {
+            if (cur1->data == cur2->data)
+            {
+                delete_next_node(prv);
+                cur2 = prv->next;
+            }
+            else
+                prv = cur2, cur2 = cur2->next;
         }
     }
 }
@@ -317,36 +380,20 @@ void Singly_LinkedList<type>::swap_repairs()
 template <class type>
 void Singly_LinkedList<type>::reverse()
 {
-    if (length <= 1)
+    if (length < 2)
         return;
+    S_Node<type> *prev(nullptr);
+    S_Node<type> *cur(head);
+    while (cur)
+    {
+        S_Node<type> *nxt(cur->next);
+        cur->next = prev;
+        prev = cur;
+        cur = nxt;
+    }
     tail = head;
-    S_Node<type> *prv(head);
-    head = head->next;
-    while (head)
-    {
-        S_Node<type> *next(head->next);
-        head->next = prv;
-        prv = head;
-        head = next;
-    }
-    head = prv;
-    tail->next = nullptr;
-}
-
-template <class type>
-void Singly_LinkedList<type>::delete_even_positions()
-{
-    if (length <= 1)
-        return;
-
-    for (S_Node<type> *cur(head->next), *prv = head; cur;)
-    {
-        delete_next_node(prv);
-        if (!prv->next)
-            break;
-        cur = prv->next->next;
-        prv = prv->next;
-    }
+    head = prev;
+    // tail->next = nullptr; // it depends on the compiler
 }
 
 template <class type>
@@ -363,7 +410,7 @@ S_Node<type> *Singly_LinkedList<type>::get_previous(S_Node<type> *node)
 template <class type>
 void Singly_LinkedList<type>::swap_head_tail()
 {
-    if (length <= 1)
+    if (length < 2)
         return;
     S_Node<type> *prv(get_previous(tail));
     tail->next = head->next;
@@ -376,7 +423,7 @@ template <class type>
 void Singly_LinkedList<type>::left_rotate(int key)
 {
     key %= length;
-    if (!key || length <= 1)
+    if (!key || length < 2)
         return;
     S_Node<type> *cur(get_nth(key));
     tail->next = head;
@@ -386,66 +433,23 @@ void Singly_LinkedList<type>::left_rotate(int key)
 }
 
 template <class type>
-void Singly_LinkedList<type>::remove_duplicates_not_sorted()
-{
-    if (length <= 1)
-        return;
-
-    for (S_Node<type> *cur1(head); cur1; cur1 = cur1->next)
-    {
-        for (S_Node<type> *cur2(cur1->next), *prv(cur1); cur2;)
-        {
-            if (cur1->data == cur2->data)
-            {
-                delete_next_node(prv);
-                cur2 = prv->next;
-            }
-            else
-                prv = cur2, cur2 = cur2->next;
-        }
-    }
-}
-
-template <class type>
-void Singly_LinkedList<type>::delete_last_occurrence_not_sorted(type key)
-{
-    if (!length)
-        return;
-    S_Node<type> *delete_node(nullptr);
-    bool flag(0);
-
-    for (S_Node<type> *cur(head), *prv(nullptr); cur; prv = cur, cur = cur->next)
-    {
-        if (cur->data == key)
-            flag = 1, delete_node = prv;
-    }
-    if (flag)
-    {
-        if (delete_node)
-            delete_next_node(delete_node);
-        else
-            delete_first();
-    }
-}
-
-template <class type>
 S_Node<type> *Singly_LinkedList<type>::move_to_end(S_Node<type> *cur, S_Node<type> *prv)
 {
-    S_Node<type> *next(cur->next);
+    S_Node<type> *nxt(cur->next);
     tail->next = cur;
     if (prv)
-        prv->next = next;
+        prv->next = nxt;
     else
-        head = next;
+        head = nxt;
     tail = cur;
     tail->next = nullptr;
-    return next;
+    return nxt;
 }
 
 template <class type>
 void Singly_LinkedList<type>::move_key_occurance_to_end_not_sorted(type key)
 {
-    if (length <= 1)
+    if (length < 2)
         return;
     int len(length);
     for (S_Node<type> *cur(head), *prv(nullptr); len--;)
@@ -458,21 +462,49 @@ void Singly_LinkedList<type>::move_key_occurance_to_end_not_sorted(type key)
 }
 
 template <class type>
-int Singly_LinkedList<type>::max_node(S_Node<type> *h, S_Node<type> *mx)
+S_Node<type> *Singly_LinkedList<type>::max_node(S_Node<type> *h)
 {
-    if (!length)
-        return INT_MIN;
     if (!h)
-        return mx->data;
-    if (h->data > mx->data)
-        mx = h;
-    return max_node(h->next, mx);
+        return nullptr;
+    else
+    {
+        S_Node<type> *mx_node(max_node(h->next));
+        if (!mx_node || h->data > mx_node->data)
+            mx_node = h;
+        return mx_node;
+    }
+}
+
+template <class type>
+S_Node<type> *Singly_LinkedList<type>::min_node(S_Node<type> *h)
+{
+    if (!h)
+        return nullptr;
+    else
+    {
+        S_Node<type> *mn_node(min_node(h->next));
+        if (!mn_node || h->data < mn_node->data)
+            mn_node = h;
+        return mn_node;
+    }
+}
+
+template <class type>
+type Singly_LinkedList<type>::max_value()
+{
+    return max_node(head)->data;
+}
+
+template <class type>
+type Singly_LinkedList<type>::min_value()
+{
+    return min_node(head)->data;
 }
 
 template <class type>
 void Singly_LinkedList<type>::arrange_odd_pos_even_pos()
 {
-    if (length <= 2)
+    if (length < 3)
         return;
     S_Node<type> *first_even(head->next), *cur_odd(head);
     while (cur_odd->next && cur_odd->next->next)
@@ -502,15 +534,6 @@ type Singly_LinkedList<type>::middle_value()
         slow = slow->next;
     }
     return slow->data;
-}
-
-template <class type>
-void Singly_LinkedList<type>::insert_after(S_Node<type> *src, S_Node<type> *target)
-{
-    assert(src && target);
-    target->next = src->next;
-    src->next = target;
-    ++length;
 }
 
 template <class type>
@@ -578,7 +601,7 @@ void Singly_LinkedList<type>::add_num(Singly_LinkedList<type> &other)
 template <class type>
 void Singly_LinkedList<type>::remove_all_repeated_from_sorted_list()
 {
-    if (length <= 1)
+    if (length < 2)
         return;
     // Add dummy head for easier prv linking
     insert_front(-1234);
@@ -588,7 +611,6 @@ void Singly_LinkedList<type>::remove_all_repeated_from_sorted_list()
 
     while (cur)
     {
-
         bool any_removed(false);
         while (cur && cur->next && cur->data == cur->next->data)
         {

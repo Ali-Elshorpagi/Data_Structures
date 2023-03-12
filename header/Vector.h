@@ -12,11 +12,11 @@ class Vector
     type *arr{nullptr};
     int size{};
     int capacity{};
+    void expand_capacity();
 
 public:
     Vector(int sz);
     ~Vector();
-    void expand_capacity();
     type &operator[](const int idx);
     int get_size();
     type get_value(int idx);

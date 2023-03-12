@@ -1,4 +1,6 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -18,11 +20,11 @@ typedef vector<char> vc;
 #define cl(v) ((v).clear())
 #define edl '\n'
 #define fr(i, x, n) for (int i(x); i < n; ++i)
-#define fl(i, x, n) for (int i(x); i >= n; --i)
+#define fl(i, x, n) for (int i(x); i > n; --i)
 #define fc(it, v) for (auto &(it) : (v))
 #define sq(x) (x) * (x)
-#define yes cout << "YES" << edl
-#define no cout << "NO" << edl
+#define yes cout << "YES\n"
+#define no cout << "NO\n"
 
 void Solve()
 {
@@ -32,10 +34,10 @@ int main()
 {
     Mesh_Ali;
     // freopen("input.txt", "r", stdin);
-    // freopen("output.txt", "w", stdout);
+    freopen("output.txt", "w", stdout);
     int tc(1);
-    // cin >> tc;
+    // scanf("%d", &tc);
     while (tc--)
         Solve();
-    return 0;
+    return (0);
 }
