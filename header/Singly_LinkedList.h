@@ -2,7 +2,6 @@
 
 #include <iostream>
 #include <cassert>
-#include <vector>
 #include <algorithm>
 
 using namespace std;
@@ -23,12 +22,11 @@ class Singly_LinkedList
     S_Node<type> *head{};
     S_Node<type> *tail{};
     int length{};
-    vector<S_Node<type> *> debug_data;
     S_Node<type> *find(type val);
     void delete_node(S_Node<type> *node);
     S_Node<type> *get_previous(S_Node<type> *node);
     S_Node<type> *move_to_end(S_Node<type> *cur, S_Node<type> *prv);
-    pair<S_Node<type> *, pair<S_Node<type> *, S_Node<type> *>> reverse_subchain(S_Node<type> *cur_head, int k);
+    S_Node<type> *move_and_delete(S_Node<type> *node);
     S_Node<type> *max_node(S_Node<type> *h);
     S_Node<type> *min_node(S_Node<type> *h);
 
@@ -39,7 +37,6 @@ public:
 
     Singly_LinkedList();
     ~Singly_LinkedList();
-    S_Node<type> *get_head();
     int get_length();
     void insert_end(type val);
     void insert_front(type val);
@@ -54,7 +51,6 @@ public:
     int search_improved(type val);
     int search_improved_v2(type val);
     bool is_same(const Singly_LinkedList<type> &list);
-    // S_Node<type> *move_and_delete(S_Node<type> *node);
     void delete_first();
     void delete_last();
     void delete_nth_node(int n);
@@ -71,10 +67,6 @@ public:
     type max_value();
     type min_value();
     type middle_value();
-
     void arrange_odd_pos_even_pos();
     void insert_alternate(Singly_LinkedList<type> &other);
-    void add_num(Singly_LinkedList<type> &other);
-    void remove_all_repeated_from_sorted_list();
-    void reverse_chains(int k);
 };

@@ -23,12 +23,6 @@ int Singly_LinkedList<type>::get_length()
 }
 
 template <class type>
-S_Node<type> *Singly_LinkedList<type>::get_head()
-{
-    return head;
-}
-
-template <class type>
 void Singly_LinkedList<type>::insert_end(type val)
 {
     S_Node<type> *item(new S_Node<type>(val));
@@ -208,24 +202,17 @@ bool Singly_LinkedList<type>::is_same(const Singly_LinkedList<type> &list)
     return true;
 }
 
-// template <class type>
-// S_Node<type> *Singly_LinkedList<type>::move_and_delete(S_Node<type> *node)
-// {
-//     S_Node<type> *tmp(node->next);
-//     delete_node(node);
-//     return tmp;
-// }
+template <class type>
+S_Node<type> *Singly_LinkedList<type>::move_and_delete(S_Node<type> *node)
+{
+    S_Node<type> *tmp(node->next);
+    delete_node(node);
+    return tmp;
+}
 
 template <class type>
 void Singly_LinkedList<type>::delete_node(S_Node<type> *node)
 {
-    // auto it = std::find(debug_data.begin(), debug_data.end(), node);
-    // if (it != debug_data.end())
-    // {
-    //     debug_data.erase(it);
-    //     --length;
-    //     delete node;
-    // }
     --length;
     delete node;
 }
@@ -502,27 +489,6 @@ type Singly_LinkedList<type>::min_value()
 }
 
 template <class type>
-void Singly_LinkedList<type>::arrange_odd_pos_even_pos()
-{
-    if (length < 3)
-        return;
-    S_Node<type> *first_even(head->next), *cur_odd(head);
-    while (cur_odd->next && cur_odd->next->next)
-    {
-        S_Node<type> *next_even(cur_odd->next);
-        // connect odd with odd and even with even
-        cur_odd->next = cur_odd->next->next;
-        next_even->next = next_even->next->next;
-        cur_odd = cur_odd->next;
-        // for odd length, tail is changed to last even node
-        if (length % 2 == 1)
-            tail = next_even;
-    }
-    // connect last odd with the first even
-    cur_odd->next = first_even;
-}
-
-template <class type>
 type Singly_LinkedList<type>::middle_value()
 {
     // based on The Tortoise and the Hare Algorithm
@@ -537,6 +503,27 @@ type Singly_LinkedList<type>::middle_value()
 }
 
 template <class type>
+void Singly_LinkedList<type>::arrange_odd_pos_even_pos()
+{
+    if (length < 3)
+        return;
+    S_Node<type> *first_even(head->next), *cur_odd(head);
+    while (cur_odd->next && cur_odd->next->next)
+    {
+        S_Node<type> *next_even(cur_odd->next);
+        // connect odd with odd and even with even
+        cur_odd->next = cur_odd->next->next;
+        next_even->next = next_even->next->next;
+        cur_odd = cur_odd->next;
+        // for odd length, tail is changed to last even node
+        if (length & 1)
+            tail = next_even;
+    }
+    // connect last odd with the first even
+    cur_odd->next = first_even;
+}
+
+template <class type>
 void Singly_LinkedList<type>::insert_alternate(Singly_LinkedList<type> &other)
 {
     if (!other.length)
@@ -546,138 +533,26 @@ void Singly_LinkedList<type>::insert_alternate(Singly_LinkedList<type> &other)
         head = other.head;
         tail = other.tail;
         length = other.length;
-        debug_data = other.debug_data;
     }
     else
     {
-        S_Node<type> *cur2(other.head);
-        for (S_Node<type> *cur1(head); cur1 && cur2;)
+        S_Node<type> *his_cur(other.head);
+        for (S_Node<type> *my_cur(head); my_cur && his_cur;)
         {
-            S_Node<type> *cur2_next_temp(cur2->next);
-            insert_after(cur1, cur2);
+            S_Node<type> *his_cur_next_tmp(his_cur->next);
+            insert_after(my_cur, his_cur);
             --other.length;
-            cur2 = cur2_next_temp;
-            if (cur1 == tail)
+            his_cur = his_cur_next_tmp;
+            if (my_cur == tail)
             {
                 tail = other.tail;
-                cur1->next->next = cur2;
+                my_cur->next->next = his_cur;
                 length += other.length;
                 break;
             }
-            cur1 = cur1->next->next;
+            my_cur = my_cur->next->next;
         }
     }
     other.head = other.tail = nullptr;
     other.length = 0;
-    other.debug_data.clear();
-}
-
-template <class type>
-void Singly_LinkedList<type>::add_num(Singly_LinkedList<type> &other)
-{
-    if (!other.length)
-        return;
-    S_Node<type> *my_cur(head), *his_cur(other.head);
-    int carry(0), my_val, his_val;
-    while (my_cur || his_cur)
-    {
-        my_val = 0, his_val = 0;
-        if (my_cur)
-            my_val = my_cur->data;
-        if (his_cur)
-            his_val = his_cur->data, his_cur = his_cur->next;
-        my_val += his_val + carry;
-        carry = my_val / 10;
-        my_val %= 10;
-        if (my_cur)
-            my_cur->data = my_val, my_cur = my_cur->next;
-        else
-            insert_end(my_val);
-    }
-    if (carry)
-        insert_end(carry);
-}
-
-template <class type>
-void Singly_LinkedList<type>::remove_all_repeated_from_sorted_list()
-{
-    if (length < 2)
-        return;
-    // Add dummy head for easier prv linking
-    insert_front(-1234);
-    tail = head;
-    S_Node<type> *previous(head);
-    S_Node<type> *cur(head->next);
-
-    while (cur)
-    {
-        bool any_removed(false);
-        while (cur && cur->next && cur->data == cur->next->data)
-        {
-            type block_value(cur->data);
-            any_removed = true;
-            while (cur && cur->data == block_value)
-                cur = move_and_delete(cur);
-        }
-        if (any_removed)
-        {
-            if (!cur)
-                tail = previous;
-            previous->next = cur;
-            previous = cur;
-        }
-        else
-        {
-            tail = cur;
-            previous = cur;
-            cur = cur->next;
-        }
-    }
-    previous = head->next;
-    delete_first();
-    head = previous;
-    if (!head)
-        tail = head;
-}
-
-template <class type>
-pair<S_Node<type> *, pair<S_Node<type> *, S_Node<type> *>> Singly_LinkedList<type>::reverse_subchain(S_Node<type> *cur_head, int k)
-{
-    S_Node<type> *cur_tail(cur_head);
-    S_Node<type> *prv(cur_head);
-    cur_head = cur_head->next;
-    for (int s(0); s < k - 1 && cur_head; ++s)
-    {
-        S_Node<type> *next(cur_head->next);
-        cur_head->next = prv;
-        prv = cur_head;
-        cur_head = next;
-    }
-    // return: current chain head, current chain tail, next head
-    return make_pair(prv, make_pair(cur_tail, cur_head));
-}
-
-template <class type>
-void Singly_LinkedList<type>::reverse_chains(int k)
-{
-    if (length <= 1 || k == 1)
-        return;
-    S_Node<type> *last_tail(nullptr);
-    S_Node<type> *next_chain_head(head);
-    head = nullptr;
-
-    while (next_chain_head)
-    {
-        pair<S_Node<type> *, pair<S_Node<type> *, S_Node<type> *>> p(reverse_subchain(next_chain_head, k));
-        S_Node<type> *chain_head(p.first);
-        S_Node<type> *chain_tail(p.second.first);
-        next_chain_head = p.second.second;
-        tail = chain_tail;
-        if (!head)
-            head = chain_head;
-        else
-            last_tail->next = chain_head;
-        last_tail = chain_tail;
-    }
-    tail->next = nullptr;
 }
