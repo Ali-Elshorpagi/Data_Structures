@@ -1,7 +1,8 @@
 #include "../header/Binary_Search_Tree.h"
 
-template <class type>
-Binary_Search_Tree<type>::Binary_Search_Tree(type data) : data(data) {}
+// template <class type>
+// Binary_Search_Tree<type>::Binary_Search_Tree(type data) : data(data) {}
+
 template <class type>
 Binary_Search_Tree<type>::Binary_Search_Tree(type d, Binary_Search_Tree<type> *l, Binary_Search_Tree<type> *r) : data(d), left(l), right(r) {}
 
@@ -338,16 +339,16 @@ type Binary_Search_Tree<type>::kth_smallest_0(int &k)
 template <class type>
 type Binary_Search_Tree<type>::kth_smallest_1(int &k)
 {
-    if (k == 0)
+    if (!k)
         return -1234;
     if (left)
     {
         type res(left->kth_smallest_1(k));
-        if (k == 0)
+        if (!k)
             return res;
     }
     --k;
-    if (k == 0)
+    if (!k)
         return data;
     if (right)
         return right->kth_smallest_1(k);
@@ -413,7 +414,7 @@ void Binary_Search_Tree<type>::delete_value_successor(type val)
 {
     if (val == data && !left && !right)
         return; // can't remove root in this structure
-    delete_node(val, this);
+    delete_node(val, this); // this is in V2;
 }
 
 template <class type>

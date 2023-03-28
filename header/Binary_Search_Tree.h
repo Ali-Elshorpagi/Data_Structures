@@ -28,7 +28,7 @@ class Binary_Search_Tree
     Binary_Search_Tree<type> *max_node();
 
 public:
-    Binary_Search_Tree(type data);
+    // Binary_Search_Tree(type data);
     Binary_Search_Tree(deque<type> &preorder, type min = INT_MIN, type max = INT_MAX);
     Binary_Search_Tree(deque<type> level_order);
     Binary_Search_Tree(type d, Binary_Search_Tree<type> *l = nullptr, Binary_Search_Tree<type> *r = nullptr);

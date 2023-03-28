@@ -30,7 +30,6 @@ int main()
 	// freopen("test/input.txt", "r", stdin);
 	freopen("test/output.txt", "w", stdout);
 	Binary_Search_Tree<int> *tree = GetTree();
-	cout << tree->min_value() << ' ' << tree->max_value() << edl;
 
 	cout << edl << "DONE" << edl;
 	return (0);
