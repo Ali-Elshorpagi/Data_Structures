@@ -22,6 +22,7 @@ class Singly_LinkedList
     S_Node<type> *head{};
     S_Node<type> *tail{};
     int length{};
+
     S_Node<type> *find(type val);
     void delete_node(S_Node<type> *node);
     S_Node<type> *get_previous(S_Node<type> *node);
@@ -29,6 +30,8 @@ class Singly_LinkedList
     S_Node<type> *move_and_delete(S_Node<type> *node);
     S_Node<type> *max_node(S_Node<type> *h);
     S_Node<type> *min_node(S_Node<type> *h);
+    S_Node<type> *get_nth(int n);
+    S_Node<type> *get_nth_from_back(int idx);
 
 public:
     // Below 2 deletes prevent copy and assign to avoid this mistake
@@ -45,8 +48,6 @@ public:
     void print();
     void print_recr(S_Node<type> *h);
     void print_recr_rever(S_Node<type> *h);
-    S_Node<type> *get_nth(int n);
-    S_Node<type> *get_nth_from_back(int idx);
     int search(type val);
     int search_improved(type val);
     int search_improved_v2(type val);
@@ -69,4 +70,6 @@ public:
     type middle_value();
     void arrange_odd_pos_even_pos();
     void insert_alternate(Singly_LinkedList<type> &other);
+    S_Node<type> *merge_two_lists_iterative(S_Node<type> &head1, S_Node<type> &head2);
+    S_Node<type> *merge_two_lists_recursive(S_Node<type> &head1, S_Node<type> &head2);
 };

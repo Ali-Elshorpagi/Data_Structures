@@ -1,4 +1,4 @@
-#include "..\\header\Circular_Queue.h"
+#include "../header/Circular_Queue.h"
 
 template <class type>
 Circular_Queue<type>::Circular_Queue(int sz) : size(sz)
@@ -10,6 +10,7 @@ template <class type>
 Circular_Queue<type>::~Circular_Queue()
 {
     delete[] arr;
+    arr = nullptr;
 }
 
 template <class type>
@@ -58,7 +59,7 @@ type Circular_Queue<type>::dequeue()
 template <class type>
 void Circular_Queue<type>::print()
 {
-    cout << "Front " << front << " - rear " << rear << "\t";
+    cout << "Front " << front << " - Rear " << rear << '\t';
     if (is_full())
         cout << "Full" << edl;
     else if (is_empty())
@@ -68,6 +69,6 @@ void Circular_Queue<type>::print()
     }
     cout << edl;
     for (int cur(front), step(0); step < added_elements; ++step, cur = next(cur))
-        cout << arr[cur] << " ";
+        cout << arr[cur] << ' ';
     cout << edl << edl;
 }

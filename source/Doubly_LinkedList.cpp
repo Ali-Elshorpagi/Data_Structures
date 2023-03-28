@@ -1,4 +1,4 @@
-#include "..\\header\Doubly_LinkedList.h"
+#include "../header/Doubly_LinkedList.h"
 
 template <class type>
 Doubly_LinkedList<type>::Doubly_LinkedList() {}
@@ -17,13 +17,6 @@ Doubly_LinkedList<type>::~Doubly_LinkedList()
 }
 
 template <class type>
-void Doubly_LinkedList<type>::add_node(D_Node<type> *node)
-{
-    debug_data.emplace_back(node);
-    ++length;
-}
-
-template <class type>
 void Doubly_LinkedList<type>::link(D_Node<type> *first, D_Node<type> *second)
 {
     if (first)
@@ -35,9 +28,8 @@ void Doubly_LinkedList<type>::link(D_Node<type> *first, D_Node<type> *second)
 template <class type>
 void Doubly_LinkedList<type>::add_node_between_node_and_next(D_Node<type> *node_before, type val)
 {
-    D_Node<type> *middle = new D_Node<type>(val);
+    D_Node<type> *middle(new D_Node<type>(val));
     ++length;
-    debug_data.emplace_back(middle);
     D_Node<type> *node_after(node_before->next);
     link(node_before, middle);
     if (!node_after)
@@ -49,11 +41,6 @@ void Doubly_LinkedList<type>::add_node_between_node_and_next(D_Node<type> *node_
 template <class type>
 void Doubly_LinkedList<type>::delete_node(D_Node<type> *node)
 {
-    auto it = std::find(debug_data.begin(), debug_data.end(), node);
-    if (it == debug_data.end())
-        cout << "Node does not exist" << edl;
-    else
-        debug_data.erase(it);
     --length;
     delete node;
 }
@@ -75,26 +62,10 @@ void Doubly_LinkedList<type>::delete_and_link_v2(D_Node<type> *cur)
 }
 
 template <class type>
-void Doubly_LinkedList<type>::print()
-{
-    for (D_Node<type> *cur(head); cur; cur = cur->next)
-        cout << cur->data << " ";
-    cout << edl;
-}
-
-template <class type>
-void Doubly_LinkedList<type>::print_reversed()
-{
-    for (D_Node<type> *cur(tail); cur; cur = cur->prev)
-        cout << cur->data << " ";
-    cout << edl;
-}
-
-template <class type>
 void Doubly_LinkedList<type>::insert_end(type val)
 {
-    D_Node<type> *item = new D_Node<type>(val);
-    add_node(item);
+    D_Node<type> *item(new D_Node<type>(val));
+    ++length;
     if (!head)
         head = tail = item;
     else
@@ -102,13 +73,14 @@ void Doubly_LinkedList<type>::insert_end(type val)
         link(tail, item);
         tail = item;
     }
+    // tail->next = nullptr; // it depends on the compiler
 }
 
 template <class type>
 void Doubly_LinkedList<type>::insert_front(type val)
 {
-    D_Node<type> *item = new D_Node<type>(val);
-    add_node(item);
+    D_Node<type> *item(new D_Node<type>(val));
+    ++length;
     if (!head)
         head = tail = item;
     else
@@ -116,6 +88,7 @@ void Doubly_LinkedList<type>::insert_front(type val)
         link(item, head);
         head = item;
     }
+    // head->prev = nullptr; // it depends on the compiler
 }
 
 template <class type>
@@ -136,6 +109,22 @@ void Doubly_LinkedList<type>::insert_sorted(type val)
             }
         }
     }
+}
+
+template <class type>
+void Doubly_LinkedList<type>::print()
+{
+    for (D_Node<type> *cur(head); cur; cur = cur->next)
+        cout << cur->data << ' ';
+    cout << edl;
+}
+
+template <class type>
+void Doubly_LinkedList<type>::print_reversed()
+{
+    for (D_Node<type> *cur(tail); cur; cur = cur->prev)
+        cout << cur->data << ' ';
+    cout << edl;
 }
 
 template <class type>
@@ -205,13 +194,13 @@ void Doubly_LinkedList<type>::delete_all_nodes_with_key(type val)
         else
             cur = cur->next;
     }
-    delete_front();
+    delete_front(); // delete the dummy value;
 }
 
 template <class type>
 void Doubly_LinkedList<type>::delete_even_positions()
 {
-    if (length <= 1)
+    if (length < 2)
         return;
     for (D_Node<type> *cur(head); cur && cur->next; cur = cur->next)
     {
@@ -226,16 +215,16 @@ void Doubly_LinkedList<type>::delete_odd_positions()
 {
     insert_front(-1);
     delete_even_positions();
-    delete_front();
+    delete_front(); // delete the dummy value;
 }
 
 template <class type>
 bool Doubly_LinkedList<type>::is_palindrome()
 {
-    if (length <= 1)
+    if (length < 2)
         return true;
     D_Node<type> *start(head), *end(tail);
-    int len(length / 2);
+    int len(length >> 1);
     while (len--)
     {
         if (start->data != end->data)
@@ -272,7 +261,7 @@ type Doubly_LinkedList<type>::middle_value_1()
 template <class type>
 void Doubly_LinkedList<type>::reverse()
 {
-    if (length <= 1)
+    if (length < 2)
         return;
     D_Node<type> *first(head), *second(head->next);
     while (second)

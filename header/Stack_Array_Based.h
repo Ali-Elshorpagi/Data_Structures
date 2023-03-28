@@ -2,7 +2,6 @@
 
 #include <iostream>
 #include <cassert>
-#include <vector>
 
 using namespace std;
 #define edl '\n'

@@ -12,6 +12,7 @@ class Vector
     type *arr{nullptr};
     int size{};
     int capacity{};
+
     void expand_capacity();
 
 public:

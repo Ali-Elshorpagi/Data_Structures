@@ -1,4 +1,4 @@
-#include "..\\header\Deque.h"
+#include "../header/Deque.h"
 
 template <class type>
 Deque<type>::Deque(int sz) : size(sz)
@@ -10,6 +10,7 @@ template <class type>
 Deque<type>::~Deque()
 {
     delete[] array;
+    array = nullptr;
 }
 
 template <class type>
@@ -77,7 +78,7 @@ bool Deque<type>::is_full()
 template <class type>
 void Deque<type>::print()
 {
-    cout << "Front " << front << " - rear " << rear << "\t";
+    cout << "Front " << front << " - rear " << rear << '\t';
     if (is_full())
         cout << "Full";
     else if (is_empty())
@@ -86,8 +87,7 @@ void Deque<type>::print()
         return;
     }
     cout << edl;
-
     for (int cur(front), step(0); step < added_elements; ++step, cur = next(cur))
-        cout << array[cur] << " ";
+        cout << array[cur] << ' ';
     cout << edl << edl;
 }

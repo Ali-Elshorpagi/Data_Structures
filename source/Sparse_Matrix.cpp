@@ -1,4 +1,4 @@
-#include "..\\header\Sparse_Matrix.h"
+#include "../header/Sparse_Matrix.h"
 
 template <class type>
 Sparse_Matrix<type>::Sparse_Matrix(int rows, int cols) : rows(rows), cols(cols)
@@ -12,6 +12,8 @@ Sparse_Matrix<type>::~Sparse_Matrix()
 {
     for (Row_Node<type> *cur(head->next); cur; cur = cur->next)
         cur->list.~Spare_Array();
+    head = nullptr;
+    tail = nullptr;
 }
 
 template <class type>
@@ -54,8 +56,8 @@ Row_Node<type> *Sparse_Matrix<type>::add_node_between_node_and_next(Row_Node<typ
 template <class type>
 void Sparse_Matrix<type>::set_value(type data, int row, int col)
 {
-    assert(0 <= row && row < rows);
-    assert(0 <= col && col < cols);
+    assert(-1 < row && row < rows);
+    assert(-1 < col && col < cols);
     Row_Node<type> *item(get_row(row, true));
     item->list.set_value(data, col);
 }
@@ -63,8 +65,8 @@ void Sparse_Matrix<type>::set_value(type data, int row, int col)
 template <class type>
 type Sparse_Matrix<type>::get_value(int row, int col)
 {
-    assert(0 <= row && row < rows);
-    assert(0 <= col && col < cols);
+    assert(-1 < row && row < rows);
+    assert(-1 < col && col < cols);
     Row_Node<type> *item(get_row(row, false));
     if (!item)
         return 0;

@@ -20,23 +20,26 @@ class Binary_Tree
     type data{};
     Binary_Tree<type> *left{};
     Binary_Tree<type> *right{};
+    string to_str(type n);
+    void clear();
 
 public:
     Binary_Tree(type data);
     ~Binary_Tree();
-    void clear();
     void add(vector<type> values, vector<char> direction);
     void print_in_order();
     void print_pre_order();
     void print_post_order();
     type tree_max();
-    int tree_height();
+    int tree_height_0();
+    int tree_height_1();
     int total_nodes();
     int no_leaf_nodes();
     bool is_exists(type value);
     bool is_perfect(int h = -1);
     bool is_perfect_fomula();
-    void print_inorder_iterative();
+    void print_inorder_iterative_0();
+    void print_inorder_iterative_1();
     void traverse_left_boundry();
     pair<int, int> tree_diameter();
     void level_order_traversal_0();
@@ -51,7 +54,6 @@ public:
     void build_preorder(queue<pair<type, type>> &preorder_queue);
 
     void print_preorder_complete();
-    string to_str(type n);
     string parenthesize_0(bool left_first = true);
     string parenthesize_canonical();
     bool is_mirror(Binary_Tree<type> *first, Binary_Tree<type> *second);

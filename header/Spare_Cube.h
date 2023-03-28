@@ -18,10 +18,11 @@ class Spare_Cube
 {
     Height_Node<type> *head{};
     Height_Node<type> *tail{};
-    int length = 0;
+    int length{};
     int rows{};
     int cols{};
     int heights{};
+
     Height_Node<type> *get_height(int height, bool flag);
     void link(Height_Node<type> *first, Height_Node<type> *second);
     Height_Node<type> *add_node_between_node_and_next(Height_Node<type> *node_before, int height);

@@ -1,4 +1,4 @@
-#include "..\\header\Spare_Cube.h"
+#include "../header/Spare_Cube.h"
 
 template <class type>
 Spare_Cube<type>::Spare_Cube(int row, int col, int height) : rows(row), cols(col), heights(height)
@@ -12,6 +12,8 @@ Spare_Cube<type>::~Spare_Cube()
 {
     for (Height_Node<type> *cur(head->next); cur; cur = cur->next)
         cur->matrix.~SparseMatrix();
+    head = nullptr;
+    tail = nullptr;
 }
 
 template <class type>
@@ -54,9 +56,9 @@ Height_Node<type> *Spare_Cube<type>::add_node_between_node_and_next(Height_Node<
 template <class type>
 void Spare_Cube<type>::set_value(type data, int row, int col, int height)
 {
-    assert(0 <= row && row < rows);
-    assert(0 <= col && col < cols);
-    assert(0 <= height && height < heights);
+    assert(-1 < row && row < rows);
+    assert(-1 < col && col < cols);
+    assert(-1 < height && height < heights);
     Height_Node<type> *item(get_height(height, true));
     item->matrix.set_value(data, row, col);
 }
@@ -64,9 +66,9 @@ void Spare_Cube<type>::set_value(type data, int row, int col, int height)
 template <class type>
 type Spare_Cube<type>::get_value(int row, int col, int height)
 {
-    assert(0 <= row && row < rows);
-    assert(0 <= col && col < cols);
-    assert(0 <= height && height < heights);
+    assert(-1 < row && row < rows);
+    assert(-1 < col && col < cols);
+    assert(-1 < height && height < heights);
     Height_Node<type> *item(get_height(height, false));
     if (!item)
         return 0;

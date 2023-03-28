@@ -1,7 +1,9 @@
-#include "..\\header\Binary_Search_Tree.h"
+#include "../header/Binary_Search_Tree.h"
 
 template <class type>
 Binary_Search_Tree<type>::Binary_Search_Tree(type data) : data(data) {}
+template <class type>
+Binary_Search_Tree<type>::Binary_Search_Tree(type d, Binary_Search_Tree<type> *l, Binary_Search_Tree<type> *r) : data(d), left(l), right(r) {}
 
 template <class type>
 Binary_Search_Tree<type>::Binary_Search_Tree(deque<type> &preorder, type min, type max)
@@ -247,7 +249,7 @@ deque<type> Binary_Search_Tree<type>::level_order_traversal()
             if (cur->right)
                 nodes_queue.push(cur->right);
         }
-        level++;
+        ++level;
     }
     return level_order;
 }
@@ -255,19 +257,13 @@ deque<type> Binary_Search_Tree<type>::level_order_traversal()
 template <class type>
 type Binary_Search_Tree<type>::min_value()
 {
-    Binary_Search_Tree<type> *cur(this);
-    while (cur && cur->left)
-        cur = cur->left;
-    return cur->data;
+    return min_node()->data;
 }
 
 template <class type>
 type Binary_Search_Tree<type>::max_value()
 {
-    Binary_Search_Tree<type> *cur(this);
-    while (cur && cur->right)
-        cur = cur->right;
-    return cur->data;
+    return max_node()->data;
 }
 
 template <class type>
@@ -306,16 +302,17 @@ bool Binary_Search_Tree<type>::is_bst_1()
     get_in_order(inorder_values);
     int len((int)inorder_values.size());
     for (int i(1); i < len; ++i)
+    {
         if (inorder_values[i] < inorder_values[i - 1])
             return false;
-
+    }
     return true;
 }
 
 template <class type>
 Binary_Search_Tree<type> *Binary_Search_Tree<type>::build_balanced_bst_tree(vector<type> &values, int str, int end)
 {
-    if (end == -1)
+    if (end == -1) // first call
         end = (int)values.size() - 1;
     if (str > end)
         return nullptr;
@@ -381,7 +378,7 @@ bool Binary_Search_Tree<type>::find_chain(vector<Binary_Search_Tree<type> *> &an
 template <class type>
 Binary_Search_Tree<type> *Binary_Search_Tree<type>::get_next(vector<Binary_Search_Tree<type> *> &ancestors)
 {
-    if (ancestors.size() == 0)
+    if (!ancestors.size())
         return nullptr;
     Binary_Search_Tree<type> *node(ancestors.back());
     ancestors.pop_back();

@@ -9,8 +9,8 @@ template <class type>
 class Deque
 {
     int size{};
-    int front{0};
-    int rear{0};
+    int front{};
+    int rear{};
     int added_elements{};
     type *array{};
 

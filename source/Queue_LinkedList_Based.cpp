@@ -1,10 +1,13 @@
-#include "..\\header\Queue_LinkedList_Based.h"
+#include "../header/Queue_LinkedList_Based.h"
 
 template <class type>
 Queue_LinkedList_Based<type>::Queue_LinkedList_Based() {}
 
 template <class type>
-Queue_LinkedList_Based<type>::~Queue_LinkedList_Based() {}
+Queue_LinkedList_Based<type>::~Queue_LinkedList_Based()
+{
+    list.~Singly_LinkedList();
+}
 
 template <class type>
 bool Queue_LinkedList_Based<type>::is_empty()

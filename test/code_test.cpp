@@ -1,6 +1,4 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
+#include <bits/stdc++.h>
 
 using namespace std;
 
@@ -28,6 +26,7 @@ typedef vector<char> vc;
 
 void Solve()
 {
+    cout << edl << "DONE" << edl;
 }
 
 int main()
@@ -36,7 +35,7 @@ int main()
     // freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
     int tc(1);
-    // scanf("%d", &tc);
+    // cin >> tc;
     while (tc--)
         Solve();
     return (0);

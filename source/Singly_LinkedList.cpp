@@ -102,7 +102,7 @@ void Singly_LinkedList<type>::print()
 template <class type>
 void Singly_LinkedList<type>::print_recr(S_Node<type> *h)
 {
-    if (h == nullptr)
+    if (!h)
     {
         cout << edl;
         return;
@@ -114,7 +114,7 @@ void Singly_LinkedList<type>::print_recr(S_Node<type> *h)
 template <class type>
 void Singly_LinkedList<type>::print_recr_rever(S_Node<type> *h)
 {
-    if (h == nullptr)
+    if (!h)
     {
         cout << edl;
         return;
@@ -369,11 +369,10 @@ void Singly_LinkedList<type>::reverse()
 {
     if (length < 2)
         return;
-    S_Node<type> *prev(nullptr);
-    S_Node<type> *cur(head);
+    S_Node<type> *cur(head), *prev(nullptr), *nxt(nullptr);
     while (cur)
     {
-        S_Node<type> *nxt(cur->next);
+        nxt = cur->next;
         cur->next = prev;
         prev = cur;
         cur = nxt;
@@ -555,4 +554,40 @@ void Singly_LinkedList<type>::insert_alternate(Singly_LinkedList<type> &other)
     }
     other.head = other.tail = nullptr;
     other.length = 0;
+}
+
+template <class type>
+S_Node<type> *Singly_LinkedList<type>::merge_two_lists_iterative(S_Node<type> &head1, S_Node<type> &head2)
+{
+    S_Node<type> *dummy(new S_Node<type>(-1));
+    S_Node<type> *ptr(dummy);
+    while (head1 && head2)
+    {
+        if (head1->data < head2->data)
+            ptr->next = head1, head1 = head1->next;
+        else
+            ptr->next = head2, head2 = head2->next;
+        ptr = ptr->next;
+    }
+    ptr->next = (head1 ? head1 : head2);
+    // while (head1)
+    //     ptr->next = head1, ptr = ptr->next, head1 = head1->next;
+    // while (head2)
+    //     ptr->next = head2, ptr = ptr->next, head2 = head2->next;
+    return dummy->next;
+}
+
+template <class type>
+S_Node<type> *Singly_LinkedList<type>::merge_two_lists_recursive(S_Node<type> &head1, S_Node<type> &head2)
+{
+    if (!head1)
+        return head2;
+    if (!head2)
+        return head1;
+    S_Node<type> *ans;
+    if (head1->data < head2->data)
+        ans = head1, ans->next = merge_two_lists_recursive(head1->next, head2);
+    else
+        ans = head2, ans->next = merge_two_lists_recursive(head1, head2->next);
+    return ans;
 }

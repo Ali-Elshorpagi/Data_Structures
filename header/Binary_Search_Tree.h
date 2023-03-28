@@ -31,6 +31,7 @@ public:
     Binary_Search_Tree(type data);
     Binary_Search_Tree(deque<type> &preorder, type min = INT_MIN, type max = INT_MAX);
     Binary_Search_Tree(deque<type> level_order);
+    Binary_Search_Tree(type d, Binary_Search_Tree<type> *l = nullptr, Binary_Search_Tree<type> *r = nullptr);
     ~Binary_Search_Tree();
     void get_in_order(vector<type> &inorder_values);
     void get_pre_order(deque<type> &preorder_queue);

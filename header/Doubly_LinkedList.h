@@ -28,9 +28,8 @@ class Doubly_LinkedList
 {
     D_Node<type> *head{};
     D_Node<type> *tail{};
-    int length = 0;
-    vector<D_Node<type> *> debug_data;
-    void add_node(D_Node<type> *node);
+    int length{};
+
     void delete_node(D_Node<type> *node);
     void link(D_Node<type> *first, D_Node<type> *second);
     void add_node_between_node_and_next(D_Node<type> *node_before, type val);
@@ -42,11 +41,11 @@ public:
     ~Doubly_LinkedList();
     Doubly_LinkedList(const Doubly_LinkedList &) = delete;
     Doubly_LinkedList &operator=(const Doubly_LinkedList &another) = delete;
-    void print();
-    void print_reversed();
     void insert_end(type val);
     void insert_front(type val);
     void insert_sorted(type val);
+    void print();
+    void print_reversed();
     void delete_front();
     void delete_end();
     void delete_node_with_key(type val);

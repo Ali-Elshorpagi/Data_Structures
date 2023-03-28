@@ -18,9 +18,10 @@ class Sparse_Matrix
 {
     Row_Node<type> *head{};
     Row_Node<type> *tail{};
-    int length = 0;
+    int length{};
     int rows{};
     int cols{};
+
     Row_Node<type> *get_row(int row, bool flag);
     void link(Row_Node<type> *first, Row_Node<type> *second);
     Row_Node<type> *add_node_between_node_and_next(Row_Node<type> *node_before, int row);

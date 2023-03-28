@@ -1,4 +1,4 @@
-#include "..\\header\Stack_LinkedList_Based.h"
+#include "../header/Stack_LinkedList_Based.h"
 
 template <class type>
 Stack_LinkedList_Based<type>::Stack_LinkedList_Based() {}
@@ -19,7 +19,7 @@ type Stack_LinkedList_Based<type>::is_empty()
 template <class type>
 void Stack_LinkedList_Based<type>::push(type val)
 {
-    SDL_Node<type> *item = new SDL_Node<type>(val);
+    SDL_Node<type> *item(new SDL_Node<type>(val));
     item->next = head;
     head = item;
 }
@@ -29,9 +29,9 @@ type Stack_LinkedList_Based<type>::pop()
 {
     assert(!is_empty());
     type element(head->data);
-    SDL_Node<type> *temp(head);
+    SDL_Node<type> *tmp(head);
     head = head->next;
-    delete temp;
+    delete tmp;
     return element;
 }
 
@@ -39,8 +39,7 @@ template <class type>
 type Stack_LinkedList_Based<type>::peek()
 {
     assert(!is_empty());
-    type element(head->data);
-    return element;
+    return head->data;
 }
 
 template <class type>

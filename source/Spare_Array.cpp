@@ -1,4 +1,4 @@
-#include "..\\header\Spare_Array.h"
+#include "../header/Spare_Array.h"
 
 template <class type>
 Spare_Array<type>::Spare_Array(int cols) : cols(cols)
@@ -32,9 +32,9 @@ void Spare_Array<type>::link(Col_Node<type> *first, Col_Node<type> *second)
 template <class type>
 Col_Node<type> *Spare_Array<type>::add_node_between_node_and_next(Col_Node<type> *node_before, type data, int col)
 {
-    Col_Node<type> *middle = new Col_Node<type>(data, col);
+    Col_Node<type> *middle(new Col_Node<type>(data, col));
     ++length;
-    Col_Node<type> *node_after = node_before->next;
+    Col_Node<type> *node_after(node_before->next);
     link(node_before, middle);
     if (!node_after)
         tail = middle;
@@ -49,7 +49,7 @@ Col_Node<type> *Spare_Array<type>::get_col(int col, bool is_create_if_missing)
     Col_Node<type> *prev_col(head);
     while (prev_col->next && prev_col->next->col < col)
         prev_col = prev_col->next;
-    bool found = prev_col->next && prev_col->next->col == col;
+    bool found(prev_col->next && (prev_col->next->col == col));
     if (found)
         return prev_col->next;
     if (!is_create_if_missing)
@@ -103,7 +103,7 @@ void Spare_Array<type>::add(Spare_Array<type> &other)
     assert(cols == other.cols);
     for (Col_Node<type> *other_cur(other.head->next); other_cur; other_cur = other_cur->next)
     {
-        Col_Node<type> *this_col = get_col(other_cur->col, true);
+        Col_Node<type> *this_col(get_col(other_cur->col, true));
         this_col->data += other_cur->data;
     }
 }

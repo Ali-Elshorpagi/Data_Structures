@@ -1,4 +1,4 @@
-#include "..\\header\Stack_Array_Based.h"
+#include "../header/Stack_Array_Based.h"
 
 template <class type>
 Stack_Array_Based<type>::Stack_Array_Based(int sz) : size(sz), top(-1)
@@ -10,6 +10,7 @@ template <class type>
 Stack_Array_Based<type>::~Stack_Array_Based()
 {
     delete[] arr;
+    arr = nullptr;
 }
 
 template <class type>
@@ -49,7 +50,7 @@ template <class type>
 void Stack_Array_Based<type>::print()
 {
     for (int i(top); i > -1; --i)
-        cout << arr[i] << " ";
+        cout << arr[i] << ' ';
     cout << edl;
 }
 
@@ -57,8 +58,8 @@ template <class type>
 string Stack_Array_Based<type>::reverse_subwords(string line)
 {
     line += ' ';
-    string ans = "";
-    int len(line.size());
+    string ans("");
+    int len((int)line.size());
     Stack_Array_Based<char> st(len);
     for (int i(0); i < len; ++i)
     {
@@ -79,11 +80,10 @@ int Stack_Array_Based<type>::reverse_num(int num)
 {
     if (!num)
         return 0;
-    int ans(0), i(1);
     Stack_Array_Based<int> st(51);
     while (num)
         st.push(num % 10), num /= 10;
-
+    int ans(0), i(1);
     while (!st.is_empty())
         ans = st.pop() * i + ans, i *= 10;
     return ans;
@@ -140,7 +140,7 @@ void Stack_Array_Based<type>::asteroid_collision(vector<type> &asteroids)
     for (int i(0); i < len; ++i)
     {
         int flag(0);
-        while (!st.is_empty() && asteroids[i] < 0 && st.peek() >= 0)
+        while (!st.is_empty() && asteroids[i] < 0 && st.peek() > -1)
         {
             if (st.peek() < -asteroids[i])
             {

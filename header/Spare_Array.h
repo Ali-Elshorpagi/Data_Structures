@@ -21,8 +21,9 @@ class Spare_Array
 {
     Col_Node<type> *head{};
     Col_Node<type> *tail{};
-    int length = 0;
+    int length{};
     int cols{};
+
     void link(Col_Node<type> *first, Col_Node<type> *second);
     Col_Node<type> *add_node_between_node_and_next(Col_Node<type> *node_before, type data, int col);
     Col_Node<type> *get_col(int col, bool is_create_if_missing);
