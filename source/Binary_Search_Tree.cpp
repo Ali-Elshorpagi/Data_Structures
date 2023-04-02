@@ -1,8 +1,5 @@
 #include "../header/Binary_Search_Tree.h"
 
-// template <class type>
-// Binary_Search_Tree<type>::Binary_Search_Tree(type data) : data(data) {}
-
 template <class type>
 Binary_Search_Tree<type>::Binary_Search_Tree(type d, Binary_Search_Tree<type> *l, Binary_Search_Tree<type> *r) : data(d), left(l), right(r) {}
 
@@ -317,7 +314,7 @@ Binary_Search_Tree<type> *Binary_Search_Tree<type>::build_balanced_bst_tree(vect
         end = (int)values.size() - 1;
     if (str > end)
         return nullptr;
-    int mid((str + end) >> 1);
+    int mid((str + end) >> 1); // mid(str + ((end - str) >> 1));
     Binary_Search_Tree<type> *left(build_balanced_bst_tree(values, str, mid - 1));
     Binary_Search_Tree<type> *right(build_balanced_bst_tree(values, mid + 1, end));
     Binary_Search_Tree<type> *root(new Binary_Search_Tree<type>(values[mid], left, right));
@@ -413,7 +410,7 @@ template <class type>
 void Binary_Search_Tree<type>::delete_value_successor(type val)
 {
     if (val == data && !left && !right)
-        return; // can't remove root in this structure
+        return;             // can't remove root in this structure
     delete_node(val, this); // this is in V2;
 }
 
