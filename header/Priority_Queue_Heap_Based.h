@@ -9,7 +9,7 @@ using namespace std;
 template <class type>
 class Priority_Queue_Heap_Based
 {
-    int capacity{1000};
+    int capacity{1};
     type *key{};
     type *value{};
     int size{};
@@ -19,6 +19,7 @@ class Priority_Queue_Heap_Based
     int parent(int pos);
     void heapify_up(int child_pos);
     void heapify_down(int parent_pos);
+    void expand_capacity();
 
 public:
     Priority_Queue_Heap_Based();

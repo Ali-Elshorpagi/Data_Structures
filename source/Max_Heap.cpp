@@ -1,21 +1,32 @@
-#include "..\\header\Max_Heap.h"
+#include "../header/Max_Heap.h"
 
 template <class type>
 Max_Heap<type>::Max_Heap()
 {
     array = new type[capacity]{};
-    size = 0;
 }
 
 template <class type>
 Max_Heap<type>::Max_Heap(const vector<type> &vec)
 {
-    assert((int)vec.size() <= capacity);
+    if ((int)vec.size() >= capacity)
+        expand_capacity();
     array = new type[capacity]{};
-    size = vec.size();
+    size = (int)vec.size();
     for (int i(0); i < (int)vec.size(); ++i)
         array[i] = vec[i];
     heapify();
+}
+
+template <class type>
+void Max_Heap<type>::expand_capacity()
+{
+    capacity <<= 1;
+    type *tmp(new type[capacity]{});
+    for (int i(0); i < size; ++i)
+        tmp[i] = array[i];
+    swap(array, tmp);
+    delete[] tmp;
 }
 
 template <class type>
@@ -42,7 +53,7 @@ int Max_Heap<type>::right(int pos)
 template <class type>
 int Max_Heap<type>::parent(int pos)
 {
-    return pos == 0 ? -1 : ((pos - 1) >> 1);
+    return (!pos ? -1 : ((pos - 1) >> 1));
 }
 
 template <class type>
@@ -76,14 +87,15 @@ void Max_Heap<type>::heapify_down(int parent_pos) // O(logn)
 template <class type>
 void Max_Heap<type>::heapify() // O(n)
 {
-    for (int i((size >> 1) - 1); i >= 0; --i)
+    for (int i((size >> 1) - 1); i > -1; --i)
         heapify_down(i);
 }
 
 template <class type>
 void Max_Heap<type>::push(type val)
 {
-    assert(size + 1 <= capacity);
+    if (size == capacity)
+        expand_capacity();
     array[size++] = val;
     heapify_up(size - 1);
 }

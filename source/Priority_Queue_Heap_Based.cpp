@@ -1,11 +1,10 @@
-#include "..\\header\Priority_Queue_Heap_Based.h"
+#include "../header/Priority_Queue_Heap_Based.h"
 
 template <class type>
 Priority_Queue_Heap_Based<type>::Priority_Queue_Heap_Based()
 {
     key = new type[capacity]{};
     value = new type[capacity]{};
-    size = 0;
 }
 
 template <class type>
@@ -13,6 +12,20 @@ Priority_Queue_Heap_Based<type>::~Priority_Queue_Heap_Based()
 {
     delete[] key;
     delete[] value;
+    key = nullptr, value = nullptr;
+}
+
+template <class type>
+void Priority_Queue_Heap_Based<type>::expand_capacity()
+{
+    capacity <<= 1;
+    type *tmp1(new type[capacity]{});
+    type *tmp2(new type[capacity]{});
+    for (int i(0); i < size; ++i)
+        tmp1[i] = key[i], tmp2[i] = value[i];
+    swap(key, tmp1), swap(value, tmp2);
+    delete[] tmp1;
+    delete[] tmp2;
 }
 
 template <class type>
@@ -32,7 +45,7 @@ int Priority_Queue_Heap_Based<type>::right(int pos)
 template <class type>
 int Priority_Queue_Heap_Based<type>::parent(int pos)
 {
-    return pos == 0 ? -1 : ((pos - 1) >> 1);
+    return (!pos ? -1 : ((pos - 1) >> 1));
 }
 
 template <class type>
@@ -74,7 +87,8 @@ bool Priority_Queue_Heap_Based<type>::is_empty()
 template <class type>
 void Priority_Queue_Heap_Based<type>::enqueue(type val, int priority)
 {
-    assert(size + 1 <= capacity);
+    if (size == capacity)
+        expand_capacity();
     value[size] = val;
     key[size++] = priority;
     heapify_up(size - 1);

@@ -12,6 +12,5 @@ int main()
 	// freopen("test/input.txt", "r", stdin);
 	freopen("test/output.txt", "w", stdout);
 
-	cout << edl << "DONE" << edl;
 	return (0);
 }

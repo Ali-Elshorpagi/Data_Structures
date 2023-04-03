@@ -11,7 +11,8 @@ template <class type>
 class Min_Heap
 {
     type *array{};
-    int size{}, capacity{1000}; // we can make expand the capacity
+    int size{};
+    int capacity{1}; // we made capacity trick like vector;
     int left(int pos);
     int right(int pos);
     int parent(int pos);
@@ -19,6 +20,7 @@ class Min_Heap
     void heapify_down(int parent_pos);
     void heapify();
     bool is_heap(int parent_pos);
+    void expand_capacity();
 
 public:
     Min_Heap();
@@ -31,6 +33,5 @@ public:
     bool is_empty();
     void print_less_than(type val, int pos = 0);
     bool is_heap_array(type *p, int n);
-    void heap_sort_0(type *p, int n);
-    void heap_sort_1(type *p, int n);
+    void heap_sort(type *p, int n);
 };

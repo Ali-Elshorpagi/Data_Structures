@@ -4,15 +4,15 @@ template <class type>
 Min_Heap<type>::Min_Heap()
 {
     array = new type[capacity]{};
-    size = 0;
 }
 
 template <class type>
-Min_Heap<type>::Min_Heap(const vector<type> &vec)
+Min_Heap<type>::Min_Heap(const vector<type> &vec) // Floyd Algorithm
 {
-    assert((int)vec.size() <= capacity);
+    if ((int)vec.size() >= capacity)
+        expand_capacity();
     array = new type[capacity]{};
-    size = vec.size();
+    size = (int)vec.size();
     for (int i(0); i < (int)vec.size(); ++i)
         array[i] = vec[i];
     heapify();
@@ -26,22 +26,40 @@ Min_Heap<type>::~Min_Heap()
 }
 
 template <class type>
+void Min_Heap<type>::expand_capacity()
+{
+    capacity <<= 1;
+    type *tmp(new type[capacity]{});
+    for (int i(0); i < size; ++i)
+        tmp[i] = array[i];
+    swap(array, tmp);
+    delete[] tmp;
+}
+
+template <class type>
 int Min_Heap<type>::left(int pos)
 {
-    int p((pos << 1) + 1);
-    return p >= size ? -1 : p;
+    // pos = parent's pos
+    // p_left = (2 * pos) + 1;
+    int p_left((pos << 1) + 1);
+    return p_left >= size ? -1 : p_left;
 }
 
 template <class type>
 int Min_Heap<type>::right(int pos)
 {
-    int p((pos << 1) + 2);
-    return p >= size ? -1 : p;
+    // pos = parent's pos
+    // p_right = (2 * pos) + 2;
+    int p_right((pos << 1) + 2);
+    return p_right >= size ? -1 : p_right;
 }
 
 template <class type>
 int Min_Heap<type>::parent(int pos)
 {
+    // pos = child's pos
+    // p_parent = floor((pos - 1) / 2);
+    // we don't need floor cus the integer;
     return (!pos ? -1 : ((pos - 1) >> 1));
 }
 
@@ -60,10 +78,10 @@ void Min_Heap<type>::heapify_down(int parent_pos) // O(logn)
 {
     int child_pos(left(parent_pos)), right_child(right(parent_pos));
 
-    if (child_pos == -1)
+    if (child_pos == -1) // no children
         return;
 
-    if (right_child != -1 && array[right_child] < array[child_pos])
+    if (right_child != -1 && array[right_child] < array[child_pos]) // is right smaller than left?
         child_pos = right_child;
 
     if (array[parent_pos] > array[child_pos])
@@ -76,6 +94,8 @@ void Min_Heap<type>::heapify_down(int parent_pos) // O(logn)
 template <class type>
 void Min_Heap<type>::heapify() // O(n)
 {
+    // if we have N nodes, so clearly we have floor(N / 2) non-leaf nodes;
+    // so the formula wil be (N / 2 - 1) cus it 's 0-based and integer so we don' t need floor;
     for (int i((size >> 1) - 1); i > -1; --i)
         heapify_down(i);
 }
@@ -100,7 +120,8 @@ bool Min_Heap<type>::is_heap(int parent_pos) // O(n)
 template <class type>
 void Min_Heap<type>::push(type val)
 {
-    assert(size + 1 <= capacity);
+    if (size == capacity)
+        expand_capacity();
     array[size++] = val;
     heapify_up(size - 1);
 }
@@ -147,42 +168,21 @@ bool Min_Heap<type>::is_heap_array(type *p, int n)
 {
     type *old_arr(array);
     int old_size(size);
-    array = p;
-    size = n;
+    array = p, size = n;
     bool result(is_heap(0));
-    size = old_size;
-    array = old_arr;
+    size = old_size, array = old_arr;
     return result;
 }
 
 template <class type>
-void Min_Heap<type>::heap_sort_0(type *p, int n)
+void Min_Heap<type>::heap_sort(type *p, int n) // O(nlogn)
 {
     if (n < 2)
         return;
+
     type *old_arr(array);
     int old_size(size);
-
-    for (int i(0); i < n; ++i)
-        push(p[i]);
-
-    int j(0);
-    while (!is_empty())
-        p[j++] = top(), pop();
-
-    size = old_size;
-    array = old_arr;
-}
-
-template <class type>
-void Min_Heap<type>::heap_sort_1(type *p, int n) // O(nlogn)
-{
-    if (n < 2)
-        return;
-    type *old_arr(array);
-    int old_size(size);
-    size = n;
-    array = p;
+    size = n, array = p;
 
     heapify();     // O(n)
     while (size--) // O(nlogn)
@@ -191,9 +191,8 @@ void Min_Heap<type>::heap_sort_1(type *p, int n) // O(nlogn)
         heapify_down(0);
     }
 
-    for (int i(0); i < (n >> 1); ++i)
+    for (int i(0); i < (n >> 1); ++i) // reverse the array
         swap(array[i], array[n - i - 1]);
 
-    size = old_size;
-    array = old_arr;
+    size = old_size, array = old_arr;
 }
