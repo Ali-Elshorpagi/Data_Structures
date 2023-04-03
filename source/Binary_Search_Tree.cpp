@@ -78,7 +78,7 @@ bool Binary_Search_Tree<type>::next_between(deque<type> &preorder, type min, typ
 template <class type>
 pair<Binary_Search_Tree<type> *, pair<type, type>> Binary_Search_Tree<type>::range(Binary_Search_Tree<type> *node, type mn, type mx)
 {
-    pair<type, type> range = make_pair(mn, mx);
+    pair<type, type> range(make_pair(mn, mx));
     return make_pair(node, range);
 }
 
@@ -410,8 +410,8 @@ template <class type>
 void Binary_Search_Tree<type>::delete_value_successor(type val)
 {
     if (val == data && !left && !right)
-        return;             // can't remove root in this structure
-    delete_node(val, this); // this is in V2;
+        return; // can't remove root in this structure
+    delete_node_s(val, this);
 }
 
 template <class type>

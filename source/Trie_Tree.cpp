@@ -1,8 +1,8 @@
-#include "..\\header\Letter_Tree.h"
+#include "../header/Trie_Tree.h"
 
-Letter_Tree::Letter_Tree() {}
+Trie_Tree::Trie_Tree() {}
 
-Letter_Tree::~Letter_Tree()
+Trie_Tree::~Trie_Tree()
 {
     for (auto &it : child)
     {
@@ -11,7 +11,7 @@ Letter_Tree::~Letter_Tree()
     }
 }
 
-void Letter_Tree::insert_recursive(string str, int idx)
+void Trie_Tree::insert_recursive(string str, int idx)
 {
     if (idx == (int)str.size())
         is_leaf = 1;
@@ -19,25 +19,25 @@ void Letter_Tree::insert_recursive(string str, int idx)
     {
         int cur(str[idx] - 'a');
         if (!child[cur])
-            child[cur] = new Letter_Tree();
+            child[cur] = new Trie_Tree();
         child[cur]->insert_recursive(str, idx + 1);
     }
 }
 
-void Letter_Tree::insert_iterative(string str)
+void Trie_Tree::insert_iterative(string str)
 {
-    Letter_Tree *cur(this);
+    Trie_Tree *cur(this);
     for (auto &it : str)
     {
         int idx(it - 'a');
         if (!cur->child[idx])
-            cur->child[idx] = new Letter_Tree();
+            cur->child[idx] = new Trie_Tree();
         cur = cur->child[idx];
     }
     cur->is_leaf = true;
 }
 
-bool Letter_Tree::word_exist_recursive(string str, int idx)
+bool Trie_Tree::word_exist_recursive(string str, int idx)
 {
     if (idx == (int)str.size())
         return is_leaf;
@@ -49,9 +49,9 @@ bool Letter_Tree::word_exist_recursive(string str, int idx)
     return child[cur]->word_exist_recursive(str, idx + 1);
 }
 
-bool Letter_Tree::word_exist_iterative(string str)
+bool Trie_Tree::word_exist_iterative(string str)
 {
-    Letter_Tree *cur(this);
+    Trie_Tree *cur(this);
     for (auto &it : str)
     {
         int idx(it - 'a');
@@ -62,7 +62,7 @@ bool Letter_Tree::word_exist_iterative(string str)
     return cur->is_leaf;
 }
 
-bool Letter_Tree::prefix_exist(string str, int idx)
+bool Trie_Tree::prefix_exist(string str, int idx)
 {
     if (idx == (int)str.size())
         return true;
@@ -74,9 +74,9 @@ bool Letter_Tree::prefix_exist(string str, int idx)
     return child[cur]->prefix_exist(str, idx + 1);
 }
 
-string Letter_Tree::first_word_prefix(const string &str)
+string Trie_Tree::first_word_prefix(const string &str)
 {
-    Letter_Tree *cur(this);
+    Trie_Tree *cur(this);
     int len((int)str.size());
     for (int i(0); i < len; ++i)
     {
@@ -91,7 +91,7 @@ string Letter_Tree::first_word_prefix(const string &str)
     return str;
 }
 
-void Letter_Tree::get_all_strings(vector<string> &res, string cur_str)
+void Trie_Tree::get_all_strings(vector<string> &res, string cur_str)
 {
     if (is_leaf)
         res.emplace_back(cur_str);
@@ -100,7 +100,7 @@ void Letter_Tree::get_all_strings(vector<string> &res, string cur_str)
             it.second->get_all_strings(res, cur_str + (char)(it.first + 'a'));
 }
 
-void Letter_Tree::auto_complete_0(const string &str, vector<string> &res)
+void Trie_Tree::auto_complete_0(const string &str, vector<string> &res)
 {
     vector<string> tmp;
     get_all_strings(tmp);
@@ -113,9 +113,9 @@ void Letter_Tree::auto_complete_0(const string &str, vector<string> &res)
     }
 }
 
-void Letter_Tree::auto_complete_1(const string &str, vector<string> &res)
+void Trie_Tree::auto_complete_1(const string &str, vector<string> &res)
 {
-    Letter_Tree *cur(this);
+    Trie_Tree *cur(this);
     int len((int)str.size());
     for (auto &it : str)
     {
@@ -127,7 +127,7 @@ void Letter_Tree::auto_complete_1(const string &str, vector<string> &res)
     cur->get_all_strings(res, str);
 }
 
-bool Letter_Tree::word_exist_with_1_change(string str)
+bool Trie_Tree::word_exist_with_1_change(string str)
 {
     for (auto &it : str)
     {

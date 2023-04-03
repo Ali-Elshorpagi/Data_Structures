@@ -1,4 +1,4 @@
-#include "..\\header\Min_Heap.h"
+#include "../header/Min_Heap.h"
 
 template <class type>
 Min_Heap<type>::Min_Heap()
@@ -42,7 +42,7 @@ int Min_Heap<type>::right(int pos)
 template <class type>
 int Min_Heap<type>::parent(int pos)
 {
-    return pos == 0 ? -1 : ((pos - 1) >> 1);
+    return (!pos ? -1 : ((pos - 1) >> 1));
 }
 
 template <class type>
@@ -76,7 +76,7 @@ void Min_Heap<type>::heapify_down(int parent_pos) // O(logn)
 template <class type>
 void Min_Heap<type>::heapify() // O(n)
 {
-    for (int i((size >> 1) - 1); i >= 0; --i)
+    for (int i((size >> 1) - 1); i > -1; --i)
         heapify_down(i);
 }
 
@@ -158,7 +158,7 @@ bool Min_Heap<type>::is_heap_array(type *p, int n)
 template <class type>
 void Min_Heap<type>::heap_sort_0(type *p, int n)
 {
-    if (n <= 1)
+    if (n < 2)
         return;
     type *old_arr(array);
     int old_size(size);
@@ -177,7 +177,7 @@ void Min_Heap<type>::heap_sort_0(type *p, int n)
 template <class type>
 void Min_Heap<type>::heap_sort_1(type *p, int n) // O(nlogn)
 {
-    if (n <= 1)
+    if (n < 2)
         return;
     type *old_arr(array);
     int old_size(size);

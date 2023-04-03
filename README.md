@@ -22,7 +22,7 @@
 - AVL Tree ( Binary Node )
 - AVL Tree 
 - Priority Queue AVL Tree Based
-- Letter Tree ( Trie )
+- Trie Tree ( Letter )
 - > Hash Table
     - Hash Table LinkedList Based ( Chaining Technique )
     - Hash Table Vector Based ( Chaining Technique )

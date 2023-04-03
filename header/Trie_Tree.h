@@ -10,14 +10,14 @@ using namespace std;
 // if you need to build a Suffix Trie
 // it's same idea but just need to reverse the input
 
-class Letter_Tree
+class Trie_Tree
 {
-    map<int, Letter_Tree *> child;
+    map<int, Trie_Tree *> child;
     bool is_leaf{};
 
 public:
-    Letter_Tree();
-    ~Letter_Tree();
+    Trie_Tree();
+    ~Trie_Tree();
     void insert_recursive(string str, int idx = 0);
     void insert_iterative(string str);
     bool word_exist_recursive(string str, int idx = 0);

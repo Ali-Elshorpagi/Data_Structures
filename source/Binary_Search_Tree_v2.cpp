@@ -1,4 +1,4 @@
-#include "..\\header\Binary_Search_Tree_v2.h"
+#include "../header/Binary_Search_Tree_v2.h"
 
 template <class type>
 Binary_Search_Tree_v2<type>::Binary_Search_Tree_v2() {}
