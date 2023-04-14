@@ -24,19 +24,26 @@ typedef vector<char> vc;
 #define yes cout << "YES\n"
 #define no cout << "NO\n"
 
-void Solve()
+class Solution
 {
-    cout << edl << "DONE" << edl;
-}
+public:
+    Solution() { Mesh_Ali; }
+
+    void Solve() {}
+};
 
 int main()
 {
-    Mesh_Ali;
-    // freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
+    Solution sol;
+    freopen("test/input.txt", "r", stdin);
+    freopen("test/output.txt", "w", stdout);
     int tc(1);
-    // cin >> tc;
+    cin >> tc;
     while (tc--)
-        Solve();
+    {
+        cout << "Case #" << tc + 1 << edl;
+        sol.Solve();
+        cout << edl << "DONE" << edl;
+    }
     return (0);
 }

@@ -134,7 +134,7 @@ bool Trie_Tree::word_exist_with_1_change(string str)
         char cpy(it);
         for (char ch('a'); ch <= 'z'; ++ch)
         {
-            if (ch == cpy) // Must do a change
+            if (ch == cpy) // must do a change
                 continue;
             it = ch;
             if (word_exist_iterative(str))

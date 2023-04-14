@@ -1,4 +1,4 @@
-#include "..\\header\AVL_Tree_v2.h"
+#include "../header/AVL_Tree_v2.h"
 
 template <class type>
 AVL_Tree_v2<type>::AVL_Tree_v2(type data) : data(data) {}
@@ -235,6 +235,6 @@ bool AVL_Tree_v2<type>::is_bst()
 template <class type>
 void AVL_Tree_v2<type>::verify()
 {
-    assert(abs(balance_factor()) <= 1);
+    assert(abs(balance_factor()) < 2);
     assert(is_bst());
 }

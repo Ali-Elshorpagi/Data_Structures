@@ -27,6 +27,7 @@ class AVL_Tree_v2
     AVL_Tree_v2<type> *delete_node(type val, AVL_Tree_v2<type> *node);
     void re_root(AVL_Tree_v2<type> *node);
     void clear();
+    void verify();
 
 public:
     AVL_Tree_v2(type data);
@@ -35,5 +36,4 @@ public:
     void delete_value(type val);
     void level_order_traversal();
     bool is_bst();
-    void verify();
 };

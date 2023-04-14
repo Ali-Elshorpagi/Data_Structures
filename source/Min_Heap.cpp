@@ -175,7 +175,7 @@ bool Min_Heap<type>::is_heap_array(type *p, int n)
 }
 
 template <class type>
-void Min_Heap<type>::heap_sort(type *p, int n) // O(nlogn)
+void Min_Heap<type>::heap_sort(type *p, int n) // O(N* log(N)) time
 {
     if (n < 2)
         return;
