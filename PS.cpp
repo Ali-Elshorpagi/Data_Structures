@@ -49,6 +49,10 @@ class Solution
 {
 public:
     Solution() { Mesh_Ali; }
+    string longestCommonPrefix(vector<string> &strs)
+    {
+        // use the trie tree;
+    }
     void TEST() {}
 };
 
@@ -60,10 +64,7 @@ int main()
     int tc(1);
     cin >> tc;
     while (tc--)
-    {
-        cout << "Case #" << tc + 1 << edl;
-        sol.TEST();
-        cout << edl << "DONE" << edl;
-    }
+        cout << "Case #" << tc + 1 << edl, sol.TEST();
+    cout << edl << "DONE" << edl;
     return (0);
 }
