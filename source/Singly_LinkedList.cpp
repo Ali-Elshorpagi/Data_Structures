@@ -591,3 +591,26 @@ S_Node<type> *Singly_LinkedList<type>::merge_two_lists_recursive(S_Node<type> &h
         ans = head2, ans->next = merge_two_lists_recursive(head1, head2->next);
     return ans;
 }
+
+template <class type>
+bool Singly_LinkedList<type>::recursive_check(S_Node<type> *cur_head)
+{
+    if (cur_head)
+    {
+        if (!recursive_check(cur_head->next))
+            return false;
+        if (frontptr->data != cur_head->data)
+            return false;
+        frontptr = frontptr->next;
+    }
+    return true;
+}
+
+template <class type>
+bool Singly_LinkedList<type>::is_palindrome()
+{
+    // see the slides here
+    // https://leetcode.com/problems/palindrome-linked-list/editorial/
+    frontptr = head;
+    return recursive_check(head);
+}
