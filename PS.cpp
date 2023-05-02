@@ -45,13 +45,38 @@ struct ListNode
     ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
 
+class Trie_Tree
+{
+    map<int, Trie_Tree *> child;
+    bool is_leaf{};
+
+public:
+    void insert(string str, int idx = 0)
+    {
+        if (idx == sz(str))
+            is_leaf = 1;
+        else
+        {
+            int cur(str[idx] - 'a');
+            if (!child[cur])
+                child[cur] = new Trie_Tree();
+            child[cur]->insert(str, idx + 1);
+        }
+    }
+};
+
 class Solution
 {
 public:
     Solution() { Mesh_Ali; }
     string longestCommonPrefix(vector<string> &strs)
     {
-        // use the trie tree;
+        if (!sz(strs))
+            return "";
+        if (sz(strs) == 1)
+            return strs[0];
+        Trie_Tree *trie = new Trie_Tree();
+        fc(it, strs) trie->insert(it);
     }
     void TEST() {}
 };

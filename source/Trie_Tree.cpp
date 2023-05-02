@@ -13,7 +13,7 @@ Trie_Tree::~Trie_Tree()
 
 void Trie_Tree::insert_recursive(string str, int idx)
 {
-    if (idx == (int)str.size())
+    if (idx == sz(str))
         is_leaf = 1;
     else
     {
@@ -39,7 +39,7 @@ void Trie_Tree::insert_iterative(string str)
 
 bool Trie_Tree::word_exist_recursive(string str, int idx)
 {
-    if (idx == (int)str.size())
+    if (idx == sz(str))
         return is_leaf;
 
     int cur(str[idx] - 'a');
@@ -64,7 +64,7 @@ bool Trie_Tree::word_exist_iterative(string str)
 
 bool Trie_Tree::prefix_exist(string str, int idx)
 {
-    if (idx == (int)str.size())
+    if (idx == sz(str))
         return true;
 
     int cur(str[idx] - 'a');
@@ -77,7 +77,7 @@ bool Trie_Tree::prefix_exist(string str, int idx)
 string Trie_Tree::first_word_prefix(const string &str)
 {
     Trie_Tree *cur(this);
-    int len((int)str.size());
+    int len(sz(str));
     for (int i(0); i < len; ++i)
     {
         int ch(str[i] - 'a');
@@ -96,15 +96,17 @@ void Trie_Tree::get_all_strings(vector<string> &res, string cur_str)
     if (is_leaf)
         res.emplace_back(cur_str);
     for (auto &it : child)
+    {
         if (it.second)
             it.second->get_all_strings(res, cur_str + (char)(it.first + 'a'));
+    }
 }
 
 void Trie_Tree::auto_complete_0(const string &str, vector<string> &res)
 {
     vector<string> tmp;
     get_all_strings(tmp);
-    int len((int)str.size());
+    int len(sz(str));
     for (auto &it : tmp)
     {
         string s(it.substr(0, len));
@@ -116,7 +118,7 @@ void Trie_Tree::auto_complete_0(const string &str, vector<string> &res)
 void Trie_Tree::auto_complete_1(const string &str, vector<string> &res)
 {
     Trie_Tree *cur(this);
-    int len((int)str.size());
+    int len(sz(str));
     for (auto &it : str)
     {
         int idx(it - 'a');
