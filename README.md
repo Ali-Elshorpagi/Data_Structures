@@ -1,6 +1,7 @@
 # Data Structures in C++
 
-> All of these Data Structures were built using Templates
+###### All of these Data Structures were built using Templates
+###### Function that written in that README is the basic function only
 
 - > **Vector**
      - Push Back
