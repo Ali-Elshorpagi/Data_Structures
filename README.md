@@ -3,7 +3,11 @@
 ###### All of these Data Structures were built using Templates
 ###### `Function that written in that README is the basic function only`
 
-- > [**Vector**](header/Vector.h)
+ - **Table of Contents:**
+   1. [Hash Table](#10)  
+
+     
+- > <a id='1' ></a>[**Vector**](header/Vector.h)
      - Push Back
      - Insert
      - Pop
@@ -113,7 +117,7 @@
      - Insert
      - Word Exist
      - Prefix Exist
-- > [**Hash Table**]()
+- > <a id="10" ></a>[**Hash Table**]()
     - Hash Table LinkedList Based ( Chaining Technique )
     - Hash Table Vector Based ( Chaining Technique )
     - Hash Table Vector Based ( Linear Probing Technique )
