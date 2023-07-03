@@ -1,39 +1,119 @@
 # Data Structures in C++
 
 ###### All of these Data Structures were built using Templates
-###### Function that written in that README is the basic function only
+###### `Function that written in that README is the basic function only`
 
-- > **Vector**
+- > [**Vector**](header/Vector.h)
      - Push Back
      - Insert
      - Pop
      - Rotate (Left - Right)
      - Find
      - Find Transposition
-- > **Singly LinkedList**
+- > [**Singly LinkedList**](header/Singly_LinkedList.h)
      - Insert (End - Front - After - Alternative)
      - Search
      - Delete (First - Last)
-- > **Doubly LinkedList**
-- > **Spare Array Using LinkedList**
-- > **Spare Matrix Using LinkedList**
-- > **Spare Cube Using LinkedList**
-- > Stack Array Based
-- > Stack LinkedList Based
-- > Circular Queue
-- > Queue LinkedList Based
-- > Deque
-- > Binary Tree
-- > Binary Search Tree ( Binary Node )
-- > Binary Search Tree 
-- > Min Binary Heap
-- > Max Binary Heap
-- > Priority Queue Heap Based
-- > AVL Tree ( Binary Node )
-- > AVL Tree 
-- > Priority Queue AVL Tree Based
-- > Trie Tree ( Letter )
-- > Hash Table
+- > [**Doubly LinkedList**](header/Doubly_LinkedList.h)
+     - Insert (End - Front - Sorted)
+     - Delete (Front - End)
+     - Is Palindrom
+     - Middle Value
+- > [**Spare Array Using LinkedList**](header/Spare_Array.h)
+     - Print Row
+     - Print Row Non zero
+- > [**Spare Matrix Using LinkedList**](header/Sparse_Matrix.h)
+     - Print Matrix
+     - Print Matrix Non zero
+- > [**Spare Cube Using LinkedList**](header/Spare_Cube.h)
+     - Print Cube
+     - Print Cube Non zero
+- > [**Stack Array Based**](header/Stack_Array_Based.h)
+     - Is Full
+     - Is Empty
+     - Push
+     - Pop
+     - Peek
+     - Reverse (Subwords - Num)
+     - Remove Adjacent Duplicates
+     - Reverse
+     - Insert at Bottom
+- > [**Stack LinkedList Based**](header/Stack_LinkedList_Based.h)
+     - Push
+     - Pop
+     - Peek
+- > [**Circular Queue**](header/Circular_Queue.h)
+     - Is Full
+     - Is Empty
+     - Next
+     - Enqueue
+     - Dequeue
+- > [**Queue LinkedList Based**](header/Queue_LinkedList_Based.h)
+     - Is Empty
+     - Enqueue
+     - Dequeue
+- > [**Deque**](header/Deque.h)
+     - Next
+     - Prev
+     - Enqueue (Rear - Front)
+     - Dequeue (Rear - Front)
+     - Is Empty
+     - Is Full
+- > [**Binary Tree**](header/Binary_Tree.h)
+     - Print (Pre order - Post order - In order)
+     - Tree max
+     - Tree Height
+     - Is exists
+     - Is Perfect
+     - Traverse
+     - Level order Traversal
+     - Is Mirror
+     - Is symmetric
+     - Is Flip
+- > [**Binary Search Tree ( Binary Node )**](header/Binary_Search_Tree_v2.h)
+     - Insert
+     - Search
+     - Level Order Traversal
+- > [**Binary Search Tree**](header/Binary_Search_Tree.h)
+     - Insert
+     - Search
+     - Delete
+     - Get (In Order - Pre Order)
+- > [**Min Binary Heap**](header/Min_Heap.h)
+     - Push
+     - Pop
+     - Is empty
+     - Heap Sort
+- > [**Max Binary Heap**](header/Max_Heap.h)
+     - Push
+     - Pop
+     - Top
+     - Is Empty
+- > [**Priority Queue Heap Based**](header/Priority_Queue_Heap_Based.h)
+     - Is Empty
+     - Enqueue
+     - Dequeue
+- > [**Priority Queue AVL Tree Based**](header/Priority_Queue_AVLT_Based.h)
+     - Is Empty
+     - Enqueue
+     - Dequeue
+- > [**AVL Tree ( Binary Node )**](header/AVL_Tree.h)
+     - Insert
+     - Search
+     - Delete
+     - Level Order Traversal
+     - Lower Bound
+     - Upper Bound
+     - Prefix Exist
+- > [**AVL Tree**](header/AVL_Tree_v2.h)
+     - Insert
+     - Delete
+     - Level Order Traversal
+- > [**Trie Tree ( Letter )**](header/Trie_Tree.h)
+     - Insert
+     - Word Exist
+     - Prefix Exist
+- > [**Hash Table**]()
     - Hash Table LinkedList Based ( Chaining Technique )
     - Hash Table Vector Based ( Chaining Technique )
     - Hash Table Vector Based ( Linear Probing Technique )
