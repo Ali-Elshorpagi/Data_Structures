@@ -1,33 +1,35 @@
 # Data Structures in C++
 
-###### All of these Data Structures were built using Templates
-###### `Function that written in that README is the basic function only`
+```py
+- All of these Data Structures were built using Templates
+- Functions that written in that README are the basic function only
+```
 
- ### Table of Contents:
-   - [Vector](#1) 
-   - [Singly LinkedList](#2) 
-   - [Doubly LinkedList](#3) 
-   - [Spare Array Using LinkedList](#4) 
-   - [Spare Matrix Using LinkedList](#5) 
-   - [Spare Cube Using LinkedList](#6) 
-   - [Stack Array Based](#7) 
-   - [Stack LinkedList Based](#8) 
-   - [Circular Queue](#9) 
-   - [Queue LinkedList Based](#10) 
-   - [Deque](#11) 
-   - [Binary Tree](#12) 
-   - [Binary Search Tree ( Binary Node )](#13) 
-   - [Binary Search Tree](#14) 
-   - [Min Binary Heap](#15) 
-   - [Max Binary Heap](#16) 
-   - [Priority Queue Heap Based](#17) 
-   - [Priority Queue AVL Tree Based](#18) 
-   - [AVL Tree ( Binary Node )](#19) 
-   - [AVL Tree](#20) 
-   - [Trie Tree ( Letter )](#21) 
-   - [Hash Table](#22) 
+## Table of Contents:
+   1. [Vector](#1) 
+   1. [Singly LinkedList](#2) 
+   1. [Doubly LinkedList](#3) 
+   1. [Spare Array Using LinkedList](#4) 
+   1. [Spare Matrix Using LinkedList](#5) 
+   1. [Spare Cube Using LinkedList](#6) 
+   1. [Stack Array Based](#7) 
+   1. [Stack LinkedList Based](#8) 
+   1. [Circular Queue](#9) 
+   1. [Queue LinkedList Based](#10) 
+   1. [Deque](#11) 
+   1. [Binary Tree](#12) 
+   1. [Binary Search Tree ( Binary Node )](#13) 
+   1. [Binary Search Tree](#14) 
+   1. [Min Binary Heap](#15) 
+   1. [Max Binary Heap](#16) 
+   1. [Priority Queue Heap Based](#17) 
+   1. [Priority Queue AVL Tree Based](#18) 
+   1. [AVL Tree ( Binary Node )](#19) 
+   1. [AVL Tree](#20) 
+   1. [Trie Tree ( Letter )](#21) 
+   1. [Hash Table](#22) 
 
-### Contents:
+## Contents:
 
 - > <a id="1"></a>[**Vector**](header/Vector.h)
      - Push Back
