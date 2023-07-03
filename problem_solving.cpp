@@ -11,7 +11,6 @@ typedef vector<ll> vll;
 typedef vector<vll> vvll;
 typedef vector<pii> vpii;
 typedef vector<char> vc;
-typedef map<int, int> mpii;
 
 #define _CRT_SECURE_NO_DEPRECATE
 #define Mesh_Ali (ios_base::sync_with_stdio(false), cin.tie(NULL))
@@ -45,39 +44,10 @@ struct ListNode
     ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
 
-class Trie_Tree
-{
-    map<int, Trie_Tree *> child;
-    bool is_leaf{};
-
-public:
-    void insert(string str, int idx = 0)
-    {
-        if (idx == sz(str))
-            is_leaf = 1;
-        else
-        {
-            int cur(str[idx] - 'a');
-            if (!child[cur])
-                child[cur] = new Trie_Tree();
-            child[cur]->insert(str, idx + 1);
-        }
-    }
-};
-
 class Solution
 {
 public:
     Solution() { Mesh_Ali; }
-    string longestCommonPrefix(vector<string> &strs)
-    {
-        if (!sz(strs))
-            return "";
-        if (sz(strs) == 1)
-            return strs[0];
-        Trie_Tree *trie = new Trie_Tree();
-        fc(it, strs) trie->insert(it);
-    }
     void TEST() {}
 };
 
