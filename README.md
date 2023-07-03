@@ -3,7 +3,16 @@
 > All of these Data Structures were built using Templates
 
 - > **Vector**
+     - Push Back
+     - Insert
+     - Pop
+     - Rotate (Left - Right)
+     - Find
+     - Find Transposition
 - > **Singly LinkedList**
+     - Insert (End - Front - After - Alternative)
+     - Search
+     - Delete (First - Last)
 - > **Doubly LinkedList**
 - > **Spare Array Using LinkedList**
 - > **Spare Matrix Using LinkedList**
