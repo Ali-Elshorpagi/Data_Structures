@@ -1,9 +1,14 @@
-# Data Structures in C++
+# Data Structures in `C++`
 
 ```py
 - All of these Data Structures were built using Templates
-- Functions that written in that README are the basic function only
+- Functions in README are the basic functions only
 ```
+
+<h3 align="center"><img align="center" src="https://img.icons8.com/?size=512&id=114499&format=png" height="56" width="56"> Hope you find this repo helpful, Have a nice time diving in
+
+<img src="https://github.com/Govindv7555/Govindv7555/blob/main/49e76e0596857673c5c80c85b84394c1.gif" width=1100px height=95px>
+
 
 ## Table of Contents:
    1. [Vector](#1) 
