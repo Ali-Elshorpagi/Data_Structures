@@ -5,7 +5,10 @@
 - Functions in README are the basic functions only
 ```
 
-<h3 align="center"><img align="center" src="https://img.icons8.com/?size=512&id=114499&format=png" height="56" width="56"> Hope you find this repo helpful, Have a nice time diving in <img align="center" src="https://img.icons8.com/?size=512&id=114499&format=png" height="56" width="56">
+<h3 align="center"><img align="center" src="https://img.icons8.com/?size=512&id=114499&format=png" height="56" width="56"> Hope you find this repository helpful, Have a nice time diving in <img align="center" src="https://img.icons8.com/?size=512&id=114499&format=png" height="56" width="56">
+
+<h3 align="center"><img align="center" src="https://img.icons8.com/?size=512&id=114499&format=png" height="56" width="56"> You can have a look to my <a href="https://github.com/Ali-Elshorpagi/math_algorithms"> Math Algorithms </a> also <img align="center" src="https://img.icons8.com/?size=512&id=114499&format=png" height="56" width="56">
+<h3 align="center"><img align="center" src="https://img.icons8.com/?size=512&id=21501&format=png" height="56" width="56"> Wait for Algorithms
 
 <img src="https://github.com/Govindv7555/Govindv7555/blob/main/49e76e0596857673c5c80c85b84394c1.gif" width=1100px height=95px>
 
