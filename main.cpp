@@ -1,4 +1,4 @@
-#include "test/include.cpp"
+#include "problem_solving/test/include.cpp"
 
 using namespace std;
 
@@ -19,8 +19,8 @@ public:
 int main()
 {
 	Data_Structures DS;
-	// freopen("test/input.txt", "r", stdin);
-	freopen("test/output.txt", "w", stdout);
+	// freopen("problem_solving/test/input.txt", "r", stdin);
+	freopen("problem_solving/test/output.txt", "w", stdout);
 	int tc(1);
 	// cin >> tc;
 	while (tc--)

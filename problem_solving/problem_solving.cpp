@@ -54,10 +54,10 @@ public:
 int main()
 {
     Solution sol;
-    freopen("test/input.txt", "r", stdin);
+    // freopen("test/input.txt", "r", stdin);
     freopen("test/output.txt", "w", stdout);
     int tc(1);
-    cin >> tc;
+    // cin >> tc;
     while (tc--)
         cout << "Case #" << tc + 1 << edl, sol.TEST();
     cout << edl << "DONE" << edl;
