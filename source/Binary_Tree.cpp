@@ -256,12 +256,12 @@ void Binary_Tree<type>::level_order_traversal_1()
 {
     queue<Binary_Tree<type> *> nodes_queue;
     nodes_queue.push(this);
-    int level(0), sz;
+    int level(0), sze;
     while (!nodes_queue.empty())
     {
-        sz = (int)nodes_queue.size();
+        sze = (int)nodes_queue.size();
         cout << "Level " << level << ": ";
-        while (sz--)
+        while (sze--)
         {
             Binary_Tree<type> *cur(nodes_queue.front());
             nodes_queue.pop();
@@ -298,8 +298,8 @@ void Binary_Tree<type>::level_order_traversal_sorted()
     heaps[flag].push(make_pair(data, this));
     while (!heaps[flag].empty())
     {
-        int sz(heaps[flag].size());
-        while (sz--)
+        int sze(heaps[flag].size());
+        while (sze--)
         {
             pair<type, Binary_Tree<type> *> cur_pair(heaps[flag].top());
             heaps[flag].pop();
@@ -331,9 +331,9 @@ void Binary_Tree<type>::level_order_traversal_spiral()
     int level(0), flag(1);
     while (!nodes_deque.empty())
     {
-        int sz(nodes_deque.size());
+        int sze(nodes_deque.size());
         cout << "Level " << level << ": ";
-        while (sz--)
+        while (sze--)
         {
             Binary_Tree<type> *cur;
             if (flag)
@@ -369,8 +369,8 @@ bool Binary_Tree<type>::is_complete()
     bool no_more_allowed(false);
     while (!nodes_queue.empty())
     {
-        int sz(nodes_queue.size());
-        while (sz--)
+        int sze(nodes_queue.size());
+        while (sze--)
         {
             Binary_Tree<type> *cur(nodes_queue.front());
             nodes_queue.pop();

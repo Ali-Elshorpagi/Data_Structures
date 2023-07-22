@@ -5,7 +5,6 @@
 #include <queue>
 
 using namespace std;
-#define edl '\n'
 
 template <class T>
 struct AVL_Node

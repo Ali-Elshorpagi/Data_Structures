@@ -170,9 +170,9 @@ void Binary_Search_Tree_v2<type>::level_order_traversal()
     int level(0);
     while (!nodes_queue.empty())
     {
-        int sz(nodes_queue.size());
+        int sze(nodes_queue.size());
         cout << "Level " << level << ": ";
-        while (sz--)
+        while (sze--)
         {
             BST_Node<type> *cur(nodes_queue.front());
             nodes_queue.pop();

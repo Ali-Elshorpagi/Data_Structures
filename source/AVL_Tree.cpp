@@ -272,9 +272,9 @@ void AVL_Tree<type>::level_order_traversal()
     int level(0);
     while (!nodes_queue.empty())
     {
-        int sz(nodes_queue.size());
+        int sze(nodes_queue.size());
         cout << "Level " << level << ": ";
-        while (sz--)
+        while (sze--)
         {
             AVL_Node<type> *cur(nodes_queue.front());
             nodes_queue.pop();

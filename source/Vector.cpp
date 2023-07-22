@@ -35,28 +35,34 @@ type &Vector<type>::operator[](const int idx)
 }
 
 template <class type>
-int Vector<type>::get_size()
+int Vector<type>::get_size() const
 {
     return size;
 }
 
 template <class type>
-type Vector<type>::get_value(int idx)
+type Vector<type>::get_value(int idx) const
 {
     assert(idx > -1 && idx < size);
     return arr[idx];
 }
 
 template <class type>
-type Vector<type>::get_front()
+type Vector<type>::get_front() const
 {
     return arr[0];
 }
 
 template <class type>
-type Vector<type>::get_back()
+type Vector<type>::get_back() const
 {
     return arr[size - 1];
+}
+
+template <class type>
+bool Vector<type>::is_empty() const
+{
+    return size == 0;
 }
 
 template <class type>
@@ -67,7 +73,7 @@ void Vector<type>::set_value(int idx, type val)
 }
 
 template <class type>
-void Vector<type>::print()
+void Vector<type>::print() const
 {
     for (int i(0); i < size; ++i)
         cout << arr[i] << ' ';
@@ -75,7 +81,7 @@ void Vector<type>::print()
 }
 
 template <class type>
-int Vector<type>::find(type val)
+int Vector<type>::find(type val) const
 {
     for (int i(0); i < size; ++i)
         if (arr[i] == val)
@@ -89,6 +95,35 @@ void Vector<type>::push_back(type val)
     if (size == capacity)
         expand_capacity();
     arr[size++] = val;
+}
+
+template <class type>
+void Vector<type>::pop_back()
+{
+    assert(size > 0);
+    --size;
+    arr[size].~type();
+}
+
+template <class type>
+type Vector<type>::pop(int idx)
+{
+    assert(idx > -1 && idx < size);
+    type val(arr[idx]);
+    for (int i(idx + 1); i < size; ++i)
+        arr[i - 1] = arr[i];
+    --size;
+    return val;
+}
+
+template <class type>
+void Vector<type>::remove(type val)
+{
+    for (int i(0); i < size; ++i)
+    {
+        if (arr[i] == val)
+            pop(i), --i; // since items will shift, recheck this index
+    }
 }
 
 template <class type>
@@ -127,17 +162,6 @@ void Vector<type>::right_rotate(int times)
     times %= size;
     while (times--)
         right_rotate();
-}
-
-template <class type>
-type Vector<type>::pop(int idx)
-{
-    assert(idx > -1 && idx < size);
-    type val(arr[idx]);
-    for (int i(idx + 1); i < size; ++i)
-        arr[i - 1] = arr[i];
-    --size;
-    return val;
 }
 
 template <class type>

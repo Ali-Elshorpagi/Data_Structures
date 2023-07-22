@@ -1,10 +1,5 @@
 #include "imports/test/include.cpp"
-
-using namespace std;
-
-#define _CRT_SECURE_NO_DEPRECATE
-#define Mesh_Ali (ios_base::sync_with_stdio(false), cin.tie(NULL))
-#define edl '\n'
+// this include.cpp for me,so u don't have to use it, but also u can modify them
 
 class Data_Structures
 {

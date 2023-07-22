@@ -23,8 +23,8 @@ Binary_Search_Tree<type>::Binary_Search_Tree(deque<type> level_order)
     nodes_queue.push(range(this, INT_MIN, INT_MAX));
     while (!nodes_queue.empty())
     {
-        int sz(nodes_queue.size());
-        while (sz--)
+        int sze(nodes_queue.size());
+        while (sze--)
         {
             Binary_Search_Tree<type> *cur(nodes_queue.front().first);
             type mn(nodes_queue.front().second.first);
@@ -236,8 +236,8 @@ deque<type> Binary_Search_Tree<type>::level_order_traversal()
     int level(0);
     while (!nodes_queue.empty())
     {
-        int sz(nodes_queue.size());
-        while (sz--)
+        int sze(nodes_queue.size());
+        while (sze--)
         {
             Binary_Search_Tree<type> *cur(nodes_queue.front());
             nodes_queue.pop();

@@ -8,6 +8,7 @@ using namespace std;
 #define sz(v) ((int)((v).size()))
 #define edl '\n'
 
+
 // if you need to build a Suffix Trie
 // it's same idea but just need to reverse the input
 
