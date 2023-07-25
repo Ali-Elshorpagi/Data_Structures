@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STACK_ARRAY_BASED_H
+#define STACK_ARRAY_BASED_H
 
 #include <iostream>
 #include <cassert>
@@ -31,3 +32,4 @@ public:
     void insert_at_bottom(type val);
     void reverse();
 };
+#endif

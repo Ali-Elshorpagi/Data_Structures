@@ -1,3 +1,6 @@
+#ifndef SPARSE_MATRIX_CPP
+#define SPARSE_MATRIX_CPP
+
 #include "../header/Sparse_Matrix.h"
 
 template <class type>
@@ -12,8 +15,7 @@ Sparse_Matrix<type>::~Sparse_Matrix()
 {
     for (Row_Node<type> *cur(head->next); cur; cur = cur->next)
         cur->list.~Spare_Array();
-    head = nullptr;
-    tail = nullptr;
+    head = nullptr, tail = nullptr;
 }
 
 template <class type>
@@ -112,3 +114,4 @@ void Sparse_Matrix<type>::print_matrix_nonzero()
     for (Row_Node<type> *cur(head->next); cur; cur = cur->next)
         cur->list.print_row_nonzero();
 }
+#endif

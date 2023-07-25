@@ -1,4 +1,5 @@
-#pragma once
+#ifndef SINGLY_LINKEDLIST_H
+#define SINGLY_LINKEDLIST_H
 
 #include <iostream>
 #include <cassert>
@@ -75,3 +76,4 @@ public:
     S_Node<type> *merge_two_lists_recursive(S_Node<type> &head1, S_Node<type> &head2);
     bool is_palindrome();
 };
+#endif

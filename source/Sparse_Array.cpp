@@ -1,14 +1,17 @@
-#include "../header/Spare_Array.h"
+#ifndef SPARSE_ARRAY_CPP
+#define SPARSE_ARRAY_CPP
+
+#include "../header/Sparse_Array.h"
 
 template <class type>
-Spare_Array<type>::Spare_Array(int cols) : cols(cols)
+Sparse_Array<type>::Sparse_Array(int cols) : cols(cols)
 {
     tail = head = new Col_Node<type>(0, -1);
     ++length;
 }
 
 template <class type>
-Spare_Array<type>::~Spare_Array()
+Sparse_Array<type>::~Sparse_Array()
 {
     while (head)
     {
@@ -21,7 +24,7 @@ Spare_Array<type>::~Spare_Array()
 }
 
 template <class type>
-void Spare_Array<type>::link(Col_Node<type> *first, Col_Node<type> *second)
+void Sparse_Array<type>::link(Col_Node<type> *first, Col_Node<type> *second)
 {
     if (first)
         first->next = second;
@@ -30,7 +33,7 @@ void Spare_Array<type>::link(Col_Node<type> *first, Col_Node<type> *second)
 }
 
 template <class type>
-Col_Node<type> *Spare_Array<type>::add_node_between_node_and_next(Col_Node<type> *node_before, type data, int col)
+Col_Node<type> *Sparse_Array<type>::add_node_between_node_and_next(Col_Node<type> *node_before, type data, int col)
 {
     Col_Node<type> *middle(new Col_Node<type>(data, col));
     ++length;
@@ -44,7 +47,7 @@ Col_Node<type> *Spare_Array<type>::add_node_between_node_and_next(Col_Node<type>
 }
 
 template <class type>
-Col_Node<type> *Spare_Array<type>::get_col(int col, bool is_create_if_missing)
+Col_Node<type> *Sparse_Array<type>::get_col(int col, bool is_create_if_missing)
 {
     Col_Node<type> *prev_col(head);
     while (prev_col->next && prev_col->next->col < col)
@@ -58,7 +61,7 @@ Col_Node<type> *Spare_Array<type>::get_col(int col, bool is_create_if_missing)
 }
 
 template <class type>
-void Spare_Array<type>::print_row()
+void Sparse_Array<type>::print_row()
 {
     Col_Node<type> *cur(head->next);
     for (int c(0); c < cols; ++c)
@@ -75,7 +78,7 @@ void Spare_Array<type>::print_row()
 }
 
 template <class type>
-void Spare_Array<type>::print_row_nonzero()
+void Sparse_Array<type>::print_row_nonzero()
 {
     for (Col_Node<type> *cur(head->next); cur; cur = cur->next)
         cout << cur->data << ' ';
@@ -83,13 +86,13 @@ void Spare_Array<type>::print_row_nonzero()
 }
 
 template <class type>
-void Spare_Array<type>::set_value(type data, int col)
+void Sparse_Array<type>::set_value(type data, int col)
 {
     get_col(col, true)->data = data;
 }
 
 template <class type>
-type Spare_Array<type>::get_value(int col)
+type Sparse_Array<type>::get_value(int col)
 {
     Col_Node<type> *node(get_col(col, false));
     if (!node)
@@ -98,7 +101,7 @@ type Spare_Array<type>::get_value(int col)
 }
 
 template <class type>
-void Spare_Array<type>::add(Spare_Array<type> &other)
+void Sparse_Array<type>::add(Sparse_Array<type> &other)
 {
     assert(cols == other.cols);
     for (Col_Node<type> *other_cur(other.head->next); other_cur; other_cur = other_cur->next)
@@ -107,3 +110,4 @@ void Spare_Array<type>::add(Spare_Array<type> &other)
         this_col->data += other_cur->data;
     }
 }
+#endif

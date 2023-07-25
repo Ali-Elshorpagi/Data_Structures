@@ -1,4 +1,6 @@
-#pragma once
+#ifndef DEQUE_H
+#define DEQUE_H
+
 #include <iostream>
 #include <cassert>
 
@@ -27,3 +29,4 @@ public:
     bool is_full();
     void print();
 };
+#endif

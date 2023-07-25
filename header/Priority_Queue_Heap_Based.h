@@ -1,4 +1,5 @@
-#pragma once
+#ifndef PRIORITY_QUEUE_HEAP_BASED_H
+#define PRIORITY_QUEUE_HEAP_BASED_H
 
 #include <iostream>
 #include <cassert>
@@ -29,3 +30,4 @@ public:
     type dequeue();
     type top();
 };
+#endif

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef SPARSE_ARRAY_H
+#define SPARSE_ARRAY_H
 
 #include <iostream>
 #include <cassert>
@@ -17,7 +18,7 @@ struct Col_Node
 };
 
 template <class type>
-class Spare_Array
+class Sparse_Array
 {
     Col_Node<type> *head{};
     Col_Node<type> *tail{};
@@ -29,11 +30,12 @@ class Spare_Array
     Col_Node<type> *get_col(int col, bool is_create_if_missing);
 
 public:
-    Spare_Array(int cols);
-    ~Spare_Array();
+    Sparse_Array(int cols);
+    ~Sparse_Array();
     void print_row();
     void print_row_nonzero();
     void set_value(type data, int col);
     type get_value(int col);
-    void add(Spare_Array<type> &other);
+    void add(Sparse_Array<type> &other);
 };
+#endif

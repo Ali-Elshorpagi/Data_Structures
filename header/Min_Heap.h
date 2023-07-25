@@ -1,4 +1,5 @@
-#pragma once
+#ifndef MIN_HEAP_H
+#define MIN_HEAP_H
 
 #include <iostream>
 #include <cassert>
@@ -35,3 +36,4 @@ public:
     bool is_heap_array(type *p, int n);
     void heap_sort(type *p, int n);
 };
+#endif

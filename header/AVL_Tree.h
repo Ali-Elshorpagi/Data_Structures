@@ -1,4 +1,5 @@
-#pragma once
+#ifndef AVL_TREE_H
+#define AVL_TREE_H
 
 #include <iostream>
 #include <cassert>
@@ -66,3 +67,4 @@ public:
     int avl_nodes_iterative(int height);
     bool prefix_exist(string prefix);
 };
+#endif

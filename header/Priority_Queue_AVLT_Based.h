@@ -1,4 +1,5 @@
-#pragma once
+#ifndef PRIORITY_QUEUE_AVLT_BASED_H
+#define PRIORITY_QUEUE_AVLT_BASED_H
 
 #include <iostream>
 #include <cassert>
@@ -59,3 +60,4 @@ public:
     type dequeue();
     bool is_empty();
 };
+#endif

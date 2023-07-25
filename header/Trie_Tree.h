@@ -1,4 +1,5 @@
-#pragma once
+#ifndef TRIE_TREE_H
+#define TRIE_TREE_H
 
 #include <iostream>
 #include <vector>
@@ -7,7 +8,6 @@
 using namespace std;
 #define sz(v) ((int)((v).size()))
 #define edl '\n'
-
 
 // if you need to build a Suffix Trie
 // it's same idea but just need to reverse the input
@@ -31,3 +31,4 @@ public:
     void auto_complete_1(const string &str, vector<string> &res);
     bool word_exist_with_1_change(string str);
 };
+#endif

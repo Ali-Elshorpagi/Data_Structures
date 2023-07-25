@@ -1,3 +1,6 @@
+#ifndef SINGLY_LINKEDLIST_CPP
+#define SINGLY_LINKEDLIST_CPP
+
 #include "../header/Singly_LinkedList.h"
 
 template <class type>
@@ -614,3 +617,4 @@ bool Singly_LinkedList<type>::is_palindrome()
     frontptr = head;
     return recursive_check(head);
 }
+#endif

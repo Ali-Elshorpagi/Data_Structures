@@ -1,4 +1,5 @@
-#pragma once
+#ifndef BINARY_SEARCH_TREE_V2_H
+#define BINARY_SEARCH_TREE_V2_H
 
 #include <iostream>
 #include <vector>
@@ -43,3 +44,4 @@ public:
     void delete_value(type val);
     void level_order_traversal();
 };
+#endif

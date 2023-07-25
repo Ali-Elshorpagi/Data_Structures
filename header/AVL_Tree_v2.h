@@ -1,4 +1,5 @@
-#pragma once
+#ifndef AVL_TREE_V2_H
+#define AVL_TREE_V2_H
 
 #include <iostream>
 #include <cassert>
@@ -37,3 +38,4 @@ public:
     void level_order_traversal();
     bool is_bst();
 };
+#endif

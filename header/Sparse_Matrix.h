@@ -1,13 +1,13 @@
-#pragma once
+#ifndef SPARSE_MATRIX_H
+#define SPARSE_MATRIX_H
 
-#include "Spare_Array.h"
-#include "../source/Spare_Array.cpp"
+#include "../source/Sparse_Array.cpp"
 
 template <class T>
 struct Row_Node
 {
     int row;
-    Spare_Array<T> list;
+    Sparse_Array<T> list;
     Row_Node<T> *next{};
     Row_Node<T> *prev{};
     Row_Node(int r, int c) : row(r), list(c) {}
@@ -35,3 +35,4 @@ public:
     void print_matrix();
     void print_matrix_nonzero();
 };
+#endif

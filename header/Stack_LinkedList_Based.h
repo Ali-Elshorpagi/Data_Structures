@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STACK_LINKEDLIST_BASED_H
+#define STACK_LINKEDLIST_BASED_H
 
 #include <iostream>
 #include <cassert>
@@ -28,3 +29,4 @@ public:
     type peek();
     void print();
 };
+#endif

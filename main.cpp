@@ -1,13 +1,20 @@
-#include "imports/test/include.cpp"
+#include "imports/test/include.h"
 // this include.cpp for me,so u don't have to use it, but also u can modify them
+
+using namespace std;
+
+#define edl '\n'
 
 class Data_Structures
 {
 public:
-	Data_Structures() { Mesh_Ali; }
+	Data_Structures() {}
 	void TEST()
 	{
 		// test the DSs here;
+		Vector<int> vec;
+		fr(i, 1, 11) vec.push_back(i * 5);
+		vec.print();
 	}
 };
 

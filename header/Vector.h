@@ -1,4 +1,5 @@
-#pragma once
+#ifndef VECTOR_H
+#define VECTOR_H
 
 #include <iostream>
 #include <cassert>
@@ -55,3 +56,4 @@ public:
     // shift it one step to the left
     int find_transposition(type val);
 };
+#endif

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef BINARY_SEARCH_TREE_H
+#define BINARY_SEARCH_TREE_H
 
 #include <iostream>
 #include <vector>
@@ -52,3 +53,4 @@ public:
     void delete_value_successor(type val);
     void delete_value_predecessor(type val);
 };
+#endif

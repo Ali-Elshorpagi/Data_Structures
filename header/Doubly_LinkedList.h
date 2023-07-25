@@ -1,4 +1,5 @@
-#pragma once
+#ifndef DOUBLY_LINKEDLIST_H
+#define DOUBLY_LINKEDLIST_H
 
 #include <iostream>
 #include <cassert>
@@ -57,3 +58,4 @@ public:
     type middle_value_1();
     void reverse();
 };
+#endif

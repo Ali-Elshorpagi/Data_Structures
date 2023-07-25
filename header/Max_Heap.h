@@ -1,4 +1,5 @@
-#pragma once
+#ifndef MAX_HEAP_H
+#define MAX_HEAP_H
 
 #include <iostream>
 #include <cassert>
@@ -38,3 +39,4 @@ public:
     int get_size();
     bool is_empty();
 };
+#endif

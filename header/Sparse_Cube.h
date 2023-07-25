@@ -1,6 +1,6 @@
-#pragma once
+#ifndef SPARSE_CUBE_H
+#define SPARSE_CUBE_H
 
-#include "Sparse_Matrix.h"
 #include "../source/Sparse_Matrix.cpp"
 
 template <class T>
@@ -14,7 +14,7 @@ struct Height_Node
 };
 
 template <class type>
-class Spare_Cube
+class Sparse_Cube
 {
     Height_Node<type> *head{};
     Height_Node<type> *tail{};
@@ -28,11 +28,12 @@ class Spare_Cube
     Height_Node<type> *add_node_between_node_and_next(Height_Node<type> *node_before, int height);
 
 public:
-    Spare_Cube(int row, int col, int height);
-    ~Spare_Cube();
+    Sparse_Cube(int row, int col, int height);
+    ~Sparse_Cube();
     void set_value(type data, int row, int col, int height);
     type get_value(int row, int col, int height);
-    void add(Spare_Cube<type> &other);
+    void add(Sparse_Cube<type> &other);
     void print_cube();
     void print_cube_nonzero();
 };
+#endif

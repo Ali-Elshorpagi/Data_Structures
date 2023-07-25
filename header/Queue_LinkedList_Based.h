@@ -1,4 +1,6 @@
-#pragma once
+#ifndef QUEUE_LINKEDLIST_H
+#define QUEUE_LINKEDLIST_H
+
 #include "Singly_LinkedList.h"
 #include "../source/Singly_LinkedList.cpp"
 
@@ -15,3 +17,4 @@ public:
     void dequeue();
     void print();
 };
+#endif

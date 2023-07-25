@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CIRCULAR_QUEUE_H
+#define CIRCULAR_QUEUE_H
 
 #include <iostream>
 #include <cassert>
@@ -26,3 +27,4 @@ public:
     type dequeue();
     void print();
 };
+#endif

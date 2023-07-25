@@ -1,4 +1,5 @@
-#pragma once
+#ifndef BINARY_TREE_H
+#define BINARY_TREE_H
 
 #include <iostream>
 #include <cassert>
@@ -64,3 +65,4 @@ public:
     string parenthesize_1(vector<string> &all_repres);
     void print_duplicate_subtrees();
 };
+#endif
