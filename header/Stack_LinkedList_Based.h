@@ -19,10 +19,12 @@ template <class type>
 class Stack_LinkedList_Based
 {
     SDL_Node<type> *head{};
+    int size{};
 
 public:
     Stack_LinkedList_Based();
     ~Stack_LinkedList_Based();
+    const int get_size();
     type is_empty();
     void push(type val);
     type pop();

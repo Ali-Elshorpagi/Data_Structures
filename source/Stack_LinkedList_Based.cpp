@@ -11,6 +11,13 @@ Stack_LinkedList_Based<type>::~Stack_LinkedList_Based()
 {
     while (is_empty())
         pop();
+    head = nullptr;
+}
+
+template <class type>
+const int Stack_LinkedList_Based<type>::get_size()
+{
+    return size;
 }
 
 template <class type>
@@ -25,6 +32,7 @@ void Stack_LinkedList_Based<type>::push(type val)
     SDL_Node<type> *item(new SDL_Node<type>(val));
     item->next = head;
     head = item;
+    ++size;
 }
 
 template <class type>
