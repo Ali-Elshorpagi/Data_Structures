@@ -5,7 +5,6 @@
 #include <cassert>
 #include <vector>
 
-using namespace std;
 #define edl '\n'
 
 /*
@@ -31,12 +30,13 @@ class Max_Heap
 
 public:
     Max_Heap();
-    Max_Heap(const vector<type> &vec);
+    Max_Heap(const std::vector<type> &vec);
     ~Max_Heap();
     void push(type val);
     void pop();
     type top();
-    int get_size();
+    const int get_size();
     bool is_empty();
+    bool search(int val);
 };
 #endif

@@ -7,7 +7,7 @@ template <class type>
 Binary_Search_Tree<type>::Binary_Search_Tree(type d, Binary_Search_Tree<type> *l, Binary_Search_Tree<type> *r) : data(d), left(l), right(r) {}
 
 template <class type>
-Binary_Search_Tree<type>::Binary_Search_Tree(deque<type> &preorder, type min, type max)
+Binary_Search_Tree<type>::Binary_Search_Tree(std::deque<type> &preorder, type min, type max)
 {
     data = preorder[0];
     preorder.pop_front();
@@ -18,9 +18,9 @@ Binary_Search_Tree<type>::Binary_Search_Tree(deque<type> &preorder, type min, ty
 }
 
 template <class type>
-Binary_Search_Tree<type>::Binary_Search_Tree(deque<type> level_order)
+Binary_Search_Tree<type>::Binary_Search_Tree(std::deque<type> level_order)
 {
-    queue<pair<Binary_Search_Tree<type> *, pair<int, int>>> nodes_queue;
+    std::queue<std::pair<Binary_Search_Tree<type> *, std::pair<int, int>>> nodes_queue;
     data = level_order[0];
     level_order.pop_front();
     nodes_queue.push(range(this, INT_MIN, INT_MAX));
@@ -71,7 +71,7 @@ void Binary_Search_Tree<type>::clear()
 
 // Check if the next element in the preorder is in the range
 template <class type>
-bool Binary_Search_Tree<type>::next_between(deque<type> &preorder, type min, type max)
+bool Binary_Search_Tree<type>::next_between(std::deque<type> &preorder, type min, type max)
 {
     if (preorder.empty())
         return false;
@@ -79,9 +79,9 @@ bool Binary_Search_Tree<type>::next_between(deque<type> &preorder, type min, typ
 }
 
 template <class type>
-pair<Binary_Search_Tree<type> *, pair<type, type>> Binary_Search_Tree<type>::range(Binary_Search_Tree<type> *node, type mn, type mx)
+std::pair<Binary_Search_Tree<type> *, std::pair<type, type>> Binary_Search_Tree<type>::range(Binary_Search_Tree<type> *node, type mn, type mx)
 {
-    pair<type, type> range(make_pair(mn, mx));
+    std::pair<type, type> range(make_pair(mn, mx));
     return make_pair(node, range);
 }
 
@@ -172,7 +172,7 @@ Binary_Search_Tree<type> *Binary_Search_Tree<type>::delete_node_p(type target, B
 }
 
 template <class type>
-void Binary_Search_Tree<type>::get_in_order(vector<type> &inorder_values)
+void Binary_Search_Tree<type>::get_in_order(std::vector<type> &inorder_values)
 {
     if (left)
         left->get_in_order(inorder_values);
@@ -182,7 +182,7 @@ void Binary_Search_Tree<type>::get_in_order(vector<type> &inorder_values)
 }
 
 template <class type>
-void Binary_Search_Tree<type>::get_pre_order(deque<type> &preorder_values)
+void Binary_Search_Tree<type>::get_pre_order(std::deque<type> &preorder_values)
 {
     preorder_values.push_back(data);
     if (left)
@@ -196,7 +196,7 @@ void Binary_Search_Tree<type>::print_in_order()
 {
     if (left)
         left->print_in_order();
-    cout << data << ' ';
+    std::cout << data << ' ';
     if (right)
         right->print_in_order();
 }
@@ -231,11 +231,11 @@ bool Binary_Search_Tree<type>::search(type val)
 }
 
 template <class type>
-deque<type> Binary_Search_Tree<type>::level_order_traversal()
+std::deque<type> Binary_Search_Tree<type>::level_order_traversal()
 {
-    queue<Binary_Search_Tree<type> *> nodes_queue;
+    std::queue<Binary_Search_Tree<type> *> nodes_queue;
     nodes_queue.push(this);
-    deque<type> level_order;
+    std::deque<type> level_order;
     int level(0);
     while (!nodes_queue.empty())
     {
@@ -299,7 +299,7 @@ bool Binary_Search_Tree<type>::is_bst_0(type mn, type mx)
 template <class type>
 bool Binary_Search_Tree<type>::is_bst_1()
 {
-    vector<type> inorder_values;
+    std::vector<type> inorder_values;
     get_in_order(inorder_values);
     int len((int)inorder_values.size());
     for (int i(1); i < len; ++i)
@@ -311,7 +311,7 @@ bool Binary_Search_Tree<type>::is_bst_1()
 }
 
 template <class type>
-Binary_Search_Tree<type> *Binary_Search_Tree<type>::build_balanced_bst_tree(vector<type> &values, int str, int end)
+Binary_Search_Tree<type> *Binary_Search_Tree<type>::build_balanced_bst_tree(std::vector<type> &values, int str, int end)
 {
     if (end == -1) // first call
         end = (int)values.size() - 1;
@@ -327,7 +327,7 @@ Binary_Search_Tree<type> *Binary_Search_Tree<type>::build_balanced_bst_tree(vect
 template <class type>
 type Binary_Search_Tree<type>::kth_smallest_0(int &k)
 {
-    vector<type> vals;
+    std::vector<type> vals;
     get_in_order(vals);
     int len((int)vals.size());
     if (k >= len)
@@ -366,7 +366,7 @@ type Binary_Search_Tree<type>::LCA(type x, type y)
 }
 
 template <class type>
-bool Binary_Search_Tree<type>::find_chain(vector<Binary_Search_Tree<type> *> &ancestors, type val)
+bool Binary_Search_Tree<type>::find_chain(std::vector<Binary_Search_Tree<type> *> &ancestors, type val)
 {
     ancestors.push_back(this);
     if (val == data)
@@ -377,7 +377,7 @@ bool Binary_Search_Tree<type>::find_chain(vector<Binary_Search_Tree<type> *> &an
 }
 
 template <class type>
-Binary_Search_Tree<type> *Binary_Search_Tree<type>::get_next(vector<Binary_Search_Tree<type> *> &ancestors)
+Binary_Search_Tree<type> *Binary_Search_Tree<type>::get_next(std::vector<Binary_Search_Tree<type> *> &ancestors)
 {
     if (!ancestors.size())
         return nullptr;
@@ -387,17 +387,17 @@ Binary_Search_Tree<type> *Binary_Search_Tree<type>::get_next(vector<Binary_Searc
 }
 
 template <class type>
-pair<bool, type> Binary_Search_Tree<type>::successor(type val)
+std::pair<bool, type> Binary_Search_Tree<type>::successor(type val)
 {
-    vector<Binary_Search_Tree<type> *> ancestors;
+    std::vector<Binary_Search_Tree<type> *> ancestors;
 
     if (!find_chain(ancestors, val))
-        return make_pair(false, -1);
+        return std::make_pair(false, -1);
 
     Binary_Search_Tree<type> *child(get_next(ancestors));
 
     if (child->right)
-        return make_pair(true, child->right->min_value());
+        return std::make_pair(true, child->right->min_value());
 
     Binary_Search_Tree<type> *parent(get_next(ancestors));
 
@@ -405,8 +405,8 @@ pair<bool, type> Binary_Search_Tree<type>::successor(type val)
         child = parent, parent = get_next(ancestors);
 
     if (parent)
-        return make_pair(true, parent->data);
-    return make_pair(false, -1);
+        return std::make_pair(true, parent->data);
+    return std::make_pair(false, -1);
 }
 
 template <class type>

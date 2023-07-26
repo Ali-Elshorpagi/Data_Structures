@@ -10,7 +10,7 @@ Max_Heap<type>::Max_Heap()
 }
 
 template <class type>
-Max_Heap<type>::Max_Heap(const vector<type> &vec)
+Max_Heap<type>::Max_Heap(const std::vector<type> &vec)
 {
     if ((int)vec.size() >= capacity)
         expand_capacity();
@@ -28,7 +28,7 @@ void Max_Heap<type>::expand_capacity()
     type *tmp(new type[capacity]{});
     for (int i(0); i < size; ++i)
         tmp[i] = array[i];
-    swap(array, tmp);
+    std::swap(array, tmp);
     delete[] tmp;
 }
 
@@ -65,7 +65,7 @@ void Max_Heap<type>::heapify_up(int child_pos)
     int par_pos(parent(child_pos));
     if (!child_pos || array[par_pos] > array[child_pos])
         return;
-    swap(array[child_pos], array[par_pos]);
+    std::swap(array[child_pos], array[par_pos]);
     heapify_up(par_pos);
 }
 
@@ -82,7 +82,7 @@ void Max_Heap<type>::heapify_down(int parent_pos) // O(logn)
 
     if (array[parent_pos] < array[child_pos])
     {
-        swap(array[parent_pos], array[child_pos]);
+        std::swap(array[parent_pos], array[child_pos]);
         heapify_down(child_pos);
     }
 }
@@ -119,7 +119,7 @@ type Max_Heap<type>::top()
 }
 
 template <class type>
-int Max_Heap<type>::get_size()
+const int Max_Heap<type>::get_size()
 {
     return size;
 }
@@ -128,5 +128,16 @@ template <class type>
 bool Max_Heap<type>::is_empty()
 {
     return size == 0;
+}
+
+template <class type>
+bool Max_Heap<type>::search(int val)
+{
+    for (int i(0); i < size; ++i)
+    {
+        if (array[i] == val)
+            return true;
+    }
+    return false;
 }
 #endif
