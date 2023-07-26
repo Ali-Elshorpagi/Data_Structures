@@ -42,13 +42,15 @@ public:
     ~Doubly_LinkedList();
     Doubly_LinkedList(const Doubly_LinkedList &) = delete;
     Doubly_LinkedList &operator=(const Doubly_LinkedList &another) = delete;
+    const int get_length();
+    const type get_value(int idx);
     void insert_end(type val);
     void insert_front(type val);
     void insert_sorted(type val);
     void print();
     void print_reversed();
-    void delete_front();
-    void delete_end();
+    type pop_front();
+    type pop_back();
     void delete_node_with_key(type val);
     void delete_all_nodes_with_key(type val);
     void delete_even_positions();

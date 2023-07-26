@@ -15,8 +15,8 @@ Doubly_LinkedList<type>::~Doubly_LinkedList()
         delete head;
         head = current;
     }
-    head = nullptr;
-    tail = nullptr;
+    head = tail = nullptr;
+    length = 0;
 }
 
 template <class type>
@@ -62,6 +62,23 @@ void Doubly_LinkedList<type>::delete_and_link_v2(D_Node<type> *cur)
 {
     link(cur->prev, cur->next);
     delete_node(cur);
+}
+
+template <class type>
+const int Doubly_LinkedList<type>::get_length()
+{
+    return length;
+}
+
+template <class type>
+const type Doubly_LinkedList<type>::get_value(int idx)
+{
+    assert(idx >= 0 || idx < length);
+    D_Node<type> *cur(head);
+    int cur_idx(0);
+    while (cur_idx < idx)
+        cur = cur->next, ++cur_idx;
+    return cur->data;
 }
 
 template <class type>
@@ -131,10 +148,10 @@ void Doubly_LinkedList<type>::print_reversed()
 }
 
 template <class type>
-void Doubly_LinkedList<type>::delete_front()
+type Doubly_LinkedList<type>::pop_front()
 {
-    if (!head)
-        return;
+    assert(head);
+    type val(head->data);
     D_Node<type> *cur(head->next);
     delete_node(head);
     head = cur;
@@ -142,13 +159,14 @@ void Doubly_LinkedList<type>::delete_front()
         head->prev = nullptr;
     else if (!length)
         tail = nullptr;
+    return val;
 }
 
 template <class type>
-void Doubly_LinkedList<type>::delete_end()
+type Doubly_LinkedList<type>::pop_back()
 {
-    if (!head)
-        return;
+    assert(head);
+    type val(tail->data);
     D_Node<type> *cur(tail->prev);
     delete_node(tail);
     tail = cur;
@@ -156,6 +174,7 @@ void Doubly_LinkedList<type>::delete_end()
         tail->next = nullptr;
     else if (!length)
         head = nullptr;
+    return val;
 }
 
 template <class type>
@@ -164,7 +183,7 @@ void Doubly_LinkedList<type>::delete_node_with_key(type val)
     if (!length)
         return;
     if (head->data == val)
-        delete_front();
+        pop_front();
     else
     {
         for (D_Node<type> *cur(head); cur; cur = cur->next)
@@ -197,7 +216,7 @@ void Doubly_LinkedList<type>::delete_all_nodes_with_key(type val)
         else
             cur = cur->next;
     }
-    delete_front(); // delete the dummy value;
+    pop_front(); // delete the dummy value;
 }
 
 template <class type>
@@ -218,7 +237,7 @@ void Doubly_LinkedList<type>::delete_odd_positions()
 {
     insert_front(-1);
     delete_even_positions();
-    delete_front(); // delete the dummy value;
+    pop_front(); // delete the dummy value;
 }
 
 template <class type>

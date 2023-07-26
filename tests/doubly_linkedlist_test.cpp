@@ -1,8 +1,8 @@
-#include "../source/Singly_LinkedList.cpp"
+#include "../source/Doubly_LinkedList.cpp"
 
 const void test_get_length()
 {
-    Singly_LinkedList<int> list;
+    Doubly_LinkedList<int> list;
     for (int i(1); i < 11; ++i)
         list.insert_end(i);
     assert(list.get_length() == 10);
@@ -10,7 +10,7 @@ const void test_get_length()
 
 const void test_pop_front()
 {
-    Singly_LinkedList<int> list;
+    Doubly_LinkedList<int> list;
     for (int i(1); i < 11; ++i)
         list.insert_end(i);
     int popped1(list.pop_front());
@@ -22,7 +22,7 @@ const void test_pop_front()
 
 const void test_pop_back()
 {
-    Singly_LinkedList<int> list;
+    Doubly_LinkedList<int> list;
     for (int i(1); i < 11; ++i)
         list.insert_end(i);
     int popped1(list.pop_back());
@@ -32,9 +32,24 @@ const void test_pop_back()
     assert(popped2 == -4);
 }
 
+const void test_delete_all_nodes_with_key()
+{
+    Doubly_LinkedList<int> list;
+    list.insert_end(-1);
+    list.insert_end(1);
+    list.insert_end(-1);
+    list.insert_end(5);
+    list.insert_end(-1);
+    list.insert_end(8);
+    list.delete_all_nodes_with_key(-1);
+    assert(list.get_value(0) == 1);
+    assert(list.get_value(1) == 5);
+    assert(list.get_value(2) == 8);
+}
+
 const void test_get_value()
 {
-    Singly_LinkedList<int> list;
+    Doubly_LinkedList<int> list;
     for (int i(5); i < 10; ++i)
         list.insert_end(i);
     assert(list.get_value(0) == 5);
@@ -46,7 +61,7 @@ const void test_get_value()
 
 const void test_reverse()
 {
-    Singly_LinkedList<int> list;
+    Doubly_LinkedList<int> list;
     for (int i(1); i < 6; ++i)
         list.insert_end(i);
     list.reverse();
@@ -57,27 +72,23 @@ const void test_reverse()
     assert(list.get_value(4) == 1);
 }
 
-const void test_min_and_middle_and_max_value()
+const void test_middle_value()
 {
-    Singly_LinkedList<int> list;
+    Doubly_LinkedList<int> list;
     for (int i(11); i < 21; ++i)
-        list.insert_end(i);
-    assert(list.min_value() == 11);
-    assert(list.max_value() == 20);
-    assert(list.middle_value() == 16);
-    list.pop_front(), list.pop_back();
-    assert(list.min_value() == 12);
-    assert(list.max_value() == 19);
-    assert(list.middle_value() == 16);
+        list.insert_front(i);
+    assert(list.middle_value_0() == 15);
+    list.pop_back(), list.pop_back();
+    assert(list.middle_value_1() == 16);
 }
 
 const void test_is_palindrome()
 {
-    Singly_LinkedList<int> list;
+    Doubly_LinkedList<int> list;
     for (int i(11); i < 21; ++i)
         list.insert_end(i);
     assert(list.is_palindrome() == false);
-    list.~Singly_LinkedList();
+    list.~Doubly_LinkedList();
     list.insert_end(1);
     list.insert_end(2);
     list.insert_end(2);
@@ -91,9 +102,10 @@ int main()
     test_get_length();
     test_pop_front();
     test_pop_back();
+    test_delete_all_nodes_with_key();
     test_get_value();
     test_reverse();
-    test_min_and_middle_and_max_value();
+    test_middle_value();
     test_is_palindrome();
     cout << edl << "DONE" << edl;
     // you must see 'DONE' in output
