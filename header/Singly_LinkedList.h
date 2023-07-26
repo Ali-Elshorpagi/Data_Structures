@@ -42,7 +42,8 @@ public:
 
     Singly_LinkedList();
     ~Singly_LinkedList();
-    int get_length();
+    const type get_value(int idx);
+    const int get_length();
     void insert_end(type val);
     void insert_front(type val);
     void insert_after(S_Node<type> *src, S_Node<type> *target);
@@ -54,8 +55,8 @@ public:
     int search_improved(type val);
     int search_improved_v2(type val);
     bool is_same(const Singly_LinkedList<type> &list);
-    void delete_first();
-    void delete_last();
+    type pop_front();
+    type pop_back();
     void delete_nth_node(int n);
     void delete_next_node(S_Node<type> *node);
     void delete_node_with_key(type val);

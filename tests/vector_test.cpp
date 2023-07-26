@@ -3,7 +3,7 @@
 const void test_get_size()
 {
     Vector<int> tester(3);
-    assert(tester.get_size() != 0);
+    assert(tester.get_size() == 3);
     int elements_added(5);
     for (int i(0); i < elements_added; ++i)
         tester.push_back(i + 1);

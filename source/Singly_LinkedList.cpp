@@ -15,12 +15,23 @@ Singly_LinkedList<type>::~Singly_LinkedList()
         delete head;
         head = cur;
     }
-    head = nullptr;
-    tail = nullptr;
+    head = tail = nullptr;
+    length = 0;
 }
 
 template <class type>
-int Singly_LinkedList<type>::get_length()
+const type Singly_LinkedList<type>::get_value(int idx)
+{
+    assert(idx >= 0 || idx < length);
+    S_Node<type> *cur(head);
+    int cur_idx(0);
+    while (cur_idx < idx)
+        cur = cur->next, ++cur_idx;
+    return cur->data;
+}
+
+template <class type>
+const int Singly_LinkedList<type>::get_length()
 {
     return length;
 }
@@ -221,30 +232,29 @@ void Singly_LinkedList<type>::delete_node(S_Node<type> *node)
 }
 
 template <class type>
-void Singly_LinkedList<type>::delete_first()
+type Singly_LinkedList<type>::pop_front()
 {
-    if (head)
-    {
-        S_Node<type> *cur(head);
-        head = head->next;
-        delete_node(cur);
-        if (!head)
-            tail = nullptr;
-    }
+    assert(head);
+    S_Node<type> *cur(head);
+    type val(cur->data);
+    head = head->next;
+    delete_node(cur);
+    if (!head)
+        tail = nullptr;
+    return val;
 }
 
 template <class type>
-void Singly_LinkedList<type>::delete_last()
+type Singly_LinkedList<type>::pop_back()
 {
     if (length < 2)
-    {
-        delete_first();
-        return;
-    }
+        return pop_front();
     S_Node<type> *previous(get_nth(length - 1));
+    type val(tail->data);
     delete_node(tail);
     tail = previous;
     tail->next = nullptr;
+    return val;
 }
 
 template <class type>
@@ -253,7 +263,7 @@ void Singly_LinkedList<type>::delete_nth_node(int n)
     if (n < 1 || n > length)
         cout << "Error. No such nth node" << edl;
     else if (n == 1)
-        delete_first();
+        pop_front();
     else
     {
         S_Node<type> *before_nth(get_nth(n - 1));
@@ -283,7 +293,7 @@ void Singly_LinkedList<type>::delete_node_with_key(type val)
     if (!length)
         cout << "List is Empty" << edl;
     else if (head->data == val)
-        delete_first();
+        pop_front();
     else
     {
         for (S_Node<type> *cur(head), *prev(nullptr); cur; prev = cur, cur = cur->next)
@@ -329,7 +339,7 @@ void Singly_LinkedList<type>::delete_last_occurrence_not_sorted(type key)
         if (delete_node)
             delete_next_node(delete_node);
         else
-            delete_first();
+            pop_front();
     }
 }
 
