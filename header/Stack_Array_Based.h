@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <cassert>
+#include <vector>
 
 using namespace std;
 #define edl '\n'
@@ -10,13 +11,14 @@ using namespace std;
 template <class type>
 class Stack_Array_Based
 {
-    int size{};
     type *arr{};
+    int size{};
     int top{};
 
 public:
     Stack_Array_Based(int sz);
     ~Stack_Array_Based();
+    const int get_size();
     bool is_full();
     bool is_empty();
     void push(type val);

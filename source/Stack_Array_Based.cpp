@@ -17,6 +17,12 @@ Stack_Array_Based<type>::~Stack_Array_Based()
 }
 
 template <class type>
+const int Stack_Array_Based<type>::get_size()
+{
+    return size;
+}
+
+template <class type>
 bool Stack_Array_Based<type>::is_full()
 {
     return top == size - 1;
