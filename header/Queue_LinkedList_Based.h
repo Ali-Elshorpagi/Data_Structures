@@ -8,13 +8,15 @@ template <class type>
 class Queue_LinkedList_Based
 {
     Singly_LinkedList<type> list;
+    int size{};
 
 public:
     Queue_LinkedList_Based();
     ~Queue_LinkedList_Based();
+    const int get_size();
     bool is_empty();
     void enqueue(type val);
-    void dequeue();
+    type dequeue();
     void print();
 };
 #endif
