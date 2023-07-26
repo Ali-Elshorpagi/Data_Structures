@@ -1,3 +1,6 @@
+// #ifndef VECTOR_CPP
+// #define VECTOR_CPP
+
 #include "../header/Vector.h"
 
 template <class type>
@@ -35,32 +38,32 @@ type &Vector<type>::operator[](const int idx)
 }
 
 template <class type>
-int Vector<type>::get_size() const
+const int Vector<type>::get_size()
 {
     return size;
 }
 
 template <class type>
-type Vector<type>::get_value(int idx) const
+const type Vector<type>::get_value(int idx)
 {
     assert(idx > -1 && idx < size);
     return arr[idx];
 }
 
 template <class type>
-type Vector<type>::get_front() const
+const type Vector<type>::get_front()
 {
     return arr[0];
 }
 
 template <class type>
-type Vector<type>::get_back() const
+const type Vector<type>::get_back()
 {
     return arr[size - 1];
 }
 
 template <class type>
-bool Vector<type>::is_empty() const
+const bool Vector<type>::is_empty()
 {
     return size == 0;
 }
@@ -73,7 +76,7 @@ void Vector<type>::set_value(int idx, type val)
 }
 
 template <class type>
-void Vector<type>::print() const
+const void Vector<type>::print()
 {
     for (int i(0); i < size; ++i)
         cout << arr[i] << ' ';
@@ -81,7 +84,7 @@ void Vector<type>::print() const
 }
 
 template <class type>
-int Vector<type>::find(type val) const
+const int Vector<type>::find(type val)
 {
     for (int i(0); i < size; ++i)
         if (arr[i] == val)
@@ -177,3 +180,4 @@ int Vector<type>::find_transposition(type val)
         }
     return -1;
 }
+// #endif

@@ -1,3 +1,6 @@
+#ifndef BINARY_SEARCH_TREE_V2_CPP
+#define BINARY_SEARCH_TREE_V2_CPP
+
 #include "../header/Binary_Search_Tree_v2.h"
 
 template <class type>
@@ -186,3 +189,4 @@ void Binary_Search_Tree_v2<type>::level_order_traversal()
         cout << edl;
     }
 }
+#endif

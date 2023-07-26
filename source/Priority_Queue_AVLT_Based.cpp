@@ -1,4 +1,7 @@
-#include "..\\header\Priority_Queue_AVLT_Based.h"
+#ifndef PRIORITY_QUEUE_AVLT_BASED_CPP
+#define PRIORITY_QUEUE_AVLT_BASED_CPP
+
+#include "../header/Priority_Queue_AVLT_Based.h"
 
 template <class type>
 Priority_Queue_AVLT_Based<type>::Priority_Queue_AVLT_Based() {}
@@ -175,3 +178,4 @@ bool Priority_Queue_AVLT_Based<type>::is_empty()
 {
     return root == nullptr;
 }
+#endif

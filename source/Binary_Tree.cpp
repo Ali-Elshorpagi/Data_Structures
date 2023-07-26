@@ -1,3 +1,6 @@
+#ifndef BINARY_TREE_CPP
+#define BINARY_TREE_CPP
+
 #include "../header/Binary_Tree.h"
 
 template <class type>
@@ -611,3 +614,4 @@ void Binary_Tree<type>::print_duplicate_subtrees()
         i = j;
     }
 }
+#endif

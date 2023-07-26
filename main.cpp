@@ -1,5 +1,5 @@
 #include "imports/test/include.h"
-// this include.cpp for me,so u don't have to use it, but also u can modify them
+// this include.h for me,so u don't have to use it, but also u can modify them
 
 using namespace std;
 
@@ -12,9 +12,6 @@ public:
 	void TEST()
 	{
 		// test the DSs here;
-		Vector<int> vec;
-		fr(i, 1, 11) vec.push_back(i * 5);
-		vec.print();
 	}
 };
 

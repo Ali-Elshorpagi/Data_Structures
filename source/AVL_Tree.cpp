@@ -1,3 +1,6 @@
+#ifndef AVL_TREE_CPP
+#define AVL_TREE_CPP
+
 #include "../header/AVL_Tree.h"
 
 template <class type>
@@ -347,3 +350,4 @@ bool AVL_Tree<type>::prefix_exist(string prefix)
         return prefix_exist_node(prefix, root);
     return false;
 }
+#endif

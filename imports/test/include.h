@@ -1,11 +1,12 @@
-#include "../Elshorpagi.h"
+// #include "../Elshorpagi.h"
+#include <iostream>
 
 #include "../../source/AVL_Tree_v2.cpp"
 #include "../../source/AVL_Tree.cpp"
 #include "../../source/Binary_Search_Tree_v2.cpp"
 #include "../../source/Binary_Search_Tree.cpp"
 #include "../../source/Binary_Tree.cpp"
-#include "../../source/Circular_Queue.cpp" // this file was compiled in another file
+#include "../../source/Circular_Queue.cpp"
 #include "../../source/Deque.cpp"
 #include "../../source/Doubly_Linkedlist.cpp"
 #include "../../source/Trie_Tree.cpp"
@@ -14,10 +15,10 @@
 #include "../../source/Priority_Queue_AVLT_Based.cpp"
 #include "../../source/Priority_Queue_Heap_Based.cpp"
 #include "../../source/Queue_Linkedlist_Based.cpp"
-#include "../../source/Singly_Linkedlist.cpp" // this file was compiled in another file
-#include "../../source/Sparse_Array.cpp"      // this file was compiled in another file
+#include "../../source/Singly_Linkedlist.cpp"
+#include "../../source/Sparse_Array.cpp"
 #include "../../source/Sparse_Cube.cpp"
-#include "../../source/Sparse_Matrix.cpp" // this file was compiled in another file
+#include "../../source/Sparse_Matrix.cpp"
 #include "../../source/Stack_Array_Based.cpp"
 #include "../../source/Stack_Linkedlist_Based.cpp"
 #include "../../source/Vector.cpp"

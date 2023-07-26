@@ -1,3 +1,6 @@
+#ifndef MAX_HEAP_CPP
+#define MAX_HEAP_CPP
+
 #include "../header/Max_Heap.h"
 
 template <class type>
@@ -126,3 +129,4 @@ bool Max_Heap<type>::is_empty()
 {
     return size == 0;
 }
+#endif

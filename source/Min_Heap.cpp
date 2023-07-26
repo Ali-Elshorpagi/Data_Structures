@@ -1,3 +1,6 @@
+#ifndef MIN_HEAP_CPP
+#define MIN_HEAP_CPP
+
 #include "../header/Min_Heap.h"
 
 template <class type>
@@ -196,3 +199,4 @@ void Min_Heap<type>::heap_sort(type *p, int n) // O(N* log(N)) time
 
     size = old_size, array = old_arr;
 }
+#endif

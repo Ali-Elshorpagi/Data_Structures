@@ -1,3 +1,6 @@
+#ifndef CIRCULAR_QUEUE_CPP
+#define CIRCULAR_QUEUE_CPP
+
 #include "../header/Circular_Queue.h"
 
 template <class type>
@@ -72,3 +75,4 @@ void Circular_Queue<type>::print()
         cout << arr[cur] << ' ';
     cout << edl << edl;
 }
+#endif

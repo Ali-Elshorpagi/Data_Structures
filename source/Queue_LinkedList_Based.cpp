@@ -1,3 +1,6 @@
+#ifndef QUEUE_LINKEDLIST_CPP
+#define QUEUE_LINKEDLIST_CPP
+
 #include "../header/Queue_LinkedList_Based.h"
 
 template <class type>
@@ -32,3 +35,4 @@ void Queue_LinkedList_Based<type>::print()
 {
     list.print();
 }
+#endif

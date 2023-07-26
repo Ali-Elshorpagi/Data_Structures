@@ -1,3 +1,6 @@
+#ifndef DOUBLY_LINKEDLIST_CPP
+#define DOUBLY_LINKEDLIST_CPP
+
 #include "../header/Doubly_LinkedList.h"
 
 template <class type>
@@ -273,3 +276,4 @@ void Doubly_LinkedList<type>::reverse()
     swap(head, tail);
     head->prev = tail->next = nullptr;
 }
+#endif

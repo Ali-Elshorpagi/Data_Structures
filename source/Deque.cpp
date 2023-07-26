@@ -1,3 +1,6 @@
+#ifndef BDEQUE_CPP
+#define DEQUE_CPP
+
 #include "../header/Deque.h"
 
 template <class type>
@@ -91,3 +94,4 @@ void Deque<type>::print()
         cout << array[cur] << ' ';
     cout << edl << edl;
 }
+#endif

@@ -1,3 +1,6 @@
+#ifndef BINARY_SEARCH_TREE_CPP
+#define BINARY_SEARCH_TREE_CPP
+
 #include "../header/Binary_Search_Tree.h"
 
 template <class type>
@@ -421,3 +424,4 @@ void Binary_Search_Tree<type>::delete_value_predecessor(type val)
         return; // can't remove root in this structure
     delete_node_p(val, this);
 }
+#endif

@@ -1,3 +1,6 @@
+#ifndef TRIE_TREE_CPP
+#define TRIE_TREE_CPP
+
 #include "../header/Trie_Tree.h"
 
 Trie_Tree::Trie_Tree() {}
@@ -146,3 +149,4 @@ bool Trie_Tree::word_exist_with_1_change(string str)
     }
     return false;
 }
+#endif

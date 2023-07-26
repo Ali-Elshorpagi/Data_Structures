@@ -1,3 +1,6 @@
+#ifndef PRIORITY_QUEUE_HEAP_BASED_CPP
+#define PRIORITY_QUEUE_HEAP_BASED_CPP
+
 #include "../header/Priority_Queue_Heap_Based.h"
 
 template <class type>
@@ -111,3 +114,4 @@ type Priority_Queue_Heap_Based<type>::top()
     assert(!is_empty());
     return value[0];
 }
+#endif

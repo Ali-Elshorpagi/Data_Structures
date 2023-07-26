@@ -1,3 +1,6 @@
+#ifndef STACK_LINKEDLIST_BASED_CPP
+#define STACK_LINKEDLIST_BASED_CPP
+
 #include "../header/Stack_LinkedList_Based.h"
 
 template <class type>
@@ -49,3 +52,4 @@ void Stack_LinkedList_Based<type>::print()
         cout << cur->data << ' ';
     cout << edl;
 }
+#endif

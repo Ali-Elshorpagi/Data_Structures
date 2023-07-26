@@ -1,3 +1,6 @@
+#ifndef AVL_TREE_V2_CPP
+#define AVL_TREE_V2_CPP
+
 #include "../header/AVL_Tree_v2.h"
 
 template <class type>
@@ -238,3 +241,4 @@ void AVL_Tree_v2<type>::verify()
     assert(abs(balance_factor()) < 2);
     assert(is_bst());
 }
+#endif

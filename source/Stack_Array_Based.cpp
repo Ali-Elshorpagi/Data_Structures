@@ -1,3 +1,6 @@
+#ifndef STACK_ARRAY_BASED_CPP
+#define STACK_ARRAY_BASED_CPP
+
 #include "../header/Stack_Array_Based.h"
 
 template <class type>
@@ -182,3 +185,4 @@ void Stack_Array_Based<type>::reverse()
     reverse();
     insert_at_bottom(cur);
 }
+#endif
