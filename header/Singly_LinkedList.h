@@ -34,7 +34,7 @@ class Singly_LinkedList
     S_Node<type> *get_nth(int n);
     S_Node<type> *get_nth_from_back(int idx);
     bool recursive_check(S_Node<type> *cur_head);
-    S_Node<type> frontptr{}; // used in palindrome function
+    S_Node<type> *frontptr{}; // used in palindrome function
 public:
     // Below 2 deletes prevent copy and assign to avoid this mistake
     Singly_LinkedList<type>(const Singly_LinkedList<type> &) = delete;
