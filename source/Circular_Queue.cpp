@@ -14,6 +14,7 @@ Circular_Queue<type>::~Circular_Queue()
 {
     delete[] arr;
     arr = nullptr;
+    size = 0;
 }
 
 template <class type>
@@ -29,7 +30,7 @@ bool Circular_Queue<type>::is_empty()
 }
 
 template <class type>
-int Circular_Queue<type>::get_size()
+const int Circular_Queue<type>::get_size()
 {
     return size;
 }

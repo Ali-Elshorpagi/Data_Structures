@@ -15,14 +15,14 @@ class Circular_Queue
     int size{};
     int added_elements{};
     type *arr{};
+    int next(int pos);
 
 public:
     Circular_Queue(int sz);
     ~Circular_Queue();
     bool is_full();
     bool is_empty();
-    int get_size();
-    int next(int pos);
+    const int get_size();
     void enqueue(type val);
     type dequeue();
     void print();
