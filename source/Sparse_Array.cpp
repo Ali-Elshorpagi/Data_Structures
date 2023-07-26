@@ -19,8 +19,7 @@ Sparse_Array<type>::~Sparse_Array()
         delete head;
         head = current;
     }
-    head = nullptr;
-    tail = nullptr;
+    head = tail = nullptr;
 }
 
 template <class type>
@@ -68,21 +67,21 @@ void Sparse_Array<type>::print_row()
     {
         if (cur && cur->col == c)
         {
-            cout << cur->data << ' ';
+            std::cout << cur->data << ' ';
             cur = cur->next;
         }
         else
-            cout << "0 ";
+            std::cout << "0 ";
     }
-    cout << edl;
+    std::cout << edl;
 }
 
 template <class type>
 void Sparse_Array<type>::print_row_nonzero()
 {
     for (Col_Node<type> *cur(head->next); cur; cur = cur->next)
-        cout << cur->data << ' ';
-    cout << edl;
+        std::cout << cur->data << ' ';
+    std::cout << edl;
 }
 
 template <class type>

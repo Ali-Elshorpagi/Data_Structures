@@ -4,7 +4,6 @@
 #include <iostream>
 #include <cassert>
 
-using namespace std;
 #define edl '\n'
 
 template <class T>

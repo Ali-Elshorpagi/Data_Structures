@@ -5,7 +5,6 @@
 #include <cassert>
 #include <algorithm>
 
-using namespace std;
 #define edl '\n'
 
 template <class T>
@@ -14,7 +13,7 @@ struct S_Node
     T data{};
     S_Node<T> *next{};
     S_Node(T data) : data(data) {}
-    // ~Node() { cout << "Value Deleted: " << data << " at Address: " << this << edl; }
+    // ~Node() { std::cout << "Value Deleted: " << data << " at Address: " << this << edl; }
 };
 
 template <class type>

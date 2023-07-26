@@ -14,7 +14,7 @@ template <class type>
 Sparse_Matrix<type>::~Sparse_Matrix()
 {
     for (Row_Node<type> *cur(head->next); cur; cur = cur->next)
-        cur->list.~Spare_Array();
+        cur->list.~Sparse_Array();
     head = nullptr, tail = nullptr;
 }
 
@@ -89,7 +89,7 @@ void Sparse_Matrix<type>::add(Sparse_Matrix<type> &other)
 template <class type>
 void Sparse_Matrix<type>::print_matrix()
 {
-    cout << edl << "Print Matrix: " << rows << " x " << cols << edl;
+    std::cout << edl << "Print Matrix: " << rows << " x " << cols << edl;
     Row_Node<type> *cur(head->next);
     for (int i(0); i < rows; ++i)
     {
@@ -101,8 +101,8 @@ void Sparse_Matrix<type>::print_matrix()
         else
         {
             for (int j(0); j < cols; ++j)
-                cout << "0 ";
-            cout << edl;
+                std::cout << "0 ";
+            std::cout << edl;
         }
     }
 }
@@ -110,7 +110,7 @@ void Sparse_Matrix<type>::print_matrix()
 template <class type>
 void Sparse_Matrix<type>::print_matrix_nonzero()
 {
-    cout << edl << "Print Matrix: " << rows << " x " << cols << edl;
+    std::cout << edl << "Print Matrix: " << rows << " x " << cols << edl;
     for (Row_Node<type> *cur(head->next); cur; cur = cur->next)
         cur->list.print_row_nonzero();
 }

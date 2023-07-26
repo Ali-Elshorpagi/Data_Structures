@@ -109,8 +109,8 @@ template <class type>
 void Singly_LinkedList<type>::print()
 {
     for (S_Node<type> *cur(head); cur; cur = cur->next)
-        cout << cur->data << ' ';
-    cout << edl;
+        std::cout << cur->data << ' ';
+    std::cout << edl;
 }
 
 template <class type>
@@ -118,10 +118,10 @@ void Singly_LinkedList<type>::print_recr(S_Node<type> *h)
 {
     if (!h)
     {
-        cout << edl;
+        std::cout << edl;
         return;
     }
-    cout << h->data << ' ';
+    std::cout << h->data << ' ';
     print_recr(h->next);
 }
 
@@ -130,11 +130,11 @@ void Singly_LinkedList<type>::print_recr_rever(S_Node<type> *h)
 {
     if (!h)
     {
-        cout << edl;
+        std::cout << edl;
         return;
     }
     print_recr(h->next);
-    cout << h->data << ' ';
+    std::cout << h->data << ' ';
 }
 
 template <class type>
@@ -261,7 +261,7 @@ template <class type>
 void Singly_LinkedList<type>::delete_nth_node(int n)
 {
     if (n < 1 || n > length)
-        cout << "Error. No such nth node" << edl;
+        std::cout << "Error. No such nth node" << edl;
     else if (n == 1)
         pop_front();
     else
@@ -291,7 +291,7 @@ template <class type>
 void Singly_LinkedList<type>::delete_node_with_key(type val)
 {
     if (!length)
-        cout << "List is Empty" << edl;
+        std::cout << "List is Empty" << edl;
     else if (head->data == val)
         pop_front();
     else

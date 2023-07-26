@@ -46,13 +46,13 @@
 #ifdef DS_SINGLY_LINKEDLIST
 #include "../../source/Singly_Linkedlist.cpp"
 #endif
-#ifdef DS_SPARE_ARRAY
+#ifdef DS_SPARSE_ARRAY
 #include "../../source/Sparse_Array.cpp"
 #endif
-#ifdef DS_SPARE_CUBE
+#ifdef DS_SPARSE_CUBE
 #include "../../source/Sparse_Cube.cpp"
 #endif
-#ifdef DS_SPARE_MATRIX
+#ifdef DS_SPARSE_MATRIX
 #include "../../source/Sparse_Matrix.cpp"
 #endif
 #ifdef DS_STACK_ARRAY_BASED

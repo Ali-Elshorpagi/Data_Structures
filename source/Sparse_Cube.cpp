@@ -14,9 +14,8 @@ template <class type>
 Sparse_Cube<type>::~Sparse_Cube()
 {
     for (Height_Node<type> *cur(head->next); cur; cur = cur->next)
-        cur->matrix.~SparseMatrix();
-    head = nullptr;
-    tail = nullptr;
+        cur->matrix.~Sparse_Matrix();
+    head = tail = nullptr;
 }
 
 template <class type>
@@ -92,8 +91,7 @@ void Sparse_Cube<type>::add(Sparse_Cube<type> &other)
 template <class type>
 void Sparse_Cube<type>::print_cube()
 {
-    cout << edl << "Print Cube: " << rows << " x " << cols << " x " << heights << edl;
-
+    std::cout << edl << "Print Cube: " << rows << " x " << cols << " x " << heights << edl;
     Height_Node<type> *cur(head->next);
     for (int i(0); i < heights; ++i)
     {
@@ -105,8 +103,11 @@ void Sparse_Cube<type>::print_cube()
         else
         {
             for (int j(0); j < rows; ++j)
-                cout << "0 ";
-            cout << edl;
+            {
+                for (int k(0); k < cols; ++k)
+                    std::cout << "0 ";
+                std::cout << edl;
+            }
         }
     }
 }
@@ -114,7 +115,7 @@ void Sparse_Cube<type>::print_cube()
 template <class type>
 void Sparse_Cube<type>::print_cube_nonzero()
 {
-    cout << edl << "Print Cube: " << rows << " x " << cols << " x " << heights << edl;
+    std::cout << edl << "Print Cube: " << rows << " x " << cols << " x " << heights << edl;
     for (Height_Node<type> *cur(head->next); cur; cur = cur->next)
         cur->matrix.print_matrix_nonzero();
 }

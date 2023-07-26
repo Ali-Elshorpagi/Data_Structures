@@ -135,16 +135,16 @@ template <class type>
 void Doubly_LinkedList<type>::print()
 {
     for (D_Node<type> *cur(head); cur; cur = cur->next)
-        cout << cur->data << ' ';
-    cout << edl;
+        std::cout << cur->data << ' ';
+    std::cout << edl;
 }
 
 template <class type>
 void Doubly_LinkedList<type>::print_reversed()
 {
     for (D_Node<type> *cur(tail); cur; cur = cur->prev)
-        cout << cur->data << ' ';
-    cout << edl;
+        std::cout << cur->data << ' ';
+    std::cout << edl;
 }
 
 template <class type>

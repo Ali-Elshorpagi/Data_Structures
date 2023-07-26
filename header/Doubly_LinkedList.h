@@ -6,7 +6,6 @@
 #include <vector>
 #include <algorithm>
 
-using namespace std;
 #define edl '\n'
 
 template <class T>
@@ -21,7 +20,7 @@ struct D_Node
         this->next = next;
         this->prev = prev;
     }
-    // ~D_Node() { cout << "Destroy value: " << data << " at address " << this << edl; }
+    // ~D_Node() { std::cout << "Destroy value: " << data << " at address " << this << edl; }
 };
 
 template <class type>

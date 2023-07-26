@@ -26,7 +26,7 @@ void Vector<type>::expand_capacity()
     type *tmp(new type[capacity]{});
     for (int i(0); i < size; ++i)
         tmp[i] = arr[i];
-    swap(arr, tmp);
+    std::swap(arr, tmp);
     delete[] tmp;
 }
 
@@ -79,8 +79,8 @@ template <class type>
 const void Vector<type>::print()
 {
     for (int i(0); i < size; ++i)
-        cout << arr[i] << ' ';
-    cout << edl;
+        std::cout << arr[i] << ' ';
+    std::cout << edl;
 }
 
 template <class type>
@@ -175,7 +175,7 @@ int Vector<type>::find_transposition(type val)
         {
             if (!i)
                 return 0;
-            swap(arr[i], arr[i - 1]);
+            std::swap(arr[i], arr[i - 1]);
             return i - 1;
         }
     return -1;
