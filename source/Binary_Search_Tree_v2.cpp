@@ -107,7 +107,7 @@ void Binary_Search_Tree_v2<type>::print_in_order_node(BST_Node<type> *node)
     if (!node)
         return;
     print_in_order_node(node->left);
-    cout << node->data << ' ';
+    std::cout << node->data << ' ';
     print_in_order_node(node->right);
 }
 
@@ -167,26 +167,26 @@ void Binary_Search_Tree_v2<type>::level_order_traversal()
 {
     if (!root)
         return;
-    cout << "********************" << edl;
-    queue<BST_Node<type> *> nodes_queue;
+    std::cout << "********************" << edl;
+    std::queue<BST_Node<type> *> nodes_queue;
     nodes_queue.push(root);
     int level(0);
     while (!nodes_queue.empty())
     {
         int sze(nodes_queue.size());
-        cout << "Level " << level << ": ";
+        std::cout << "Level " << level << ": ";
         while (sze--)
         {
             BST_Node<type> *cur(nodes_queue.front());
             nodes_queue.pop();
-            cout << cur->data << ' ';
+            std::cout << cur->data << ' ';
             if (cur->left)
                 nodes_queue.push(cur->left);
             if (cur->right)
                 nodes_queue.push(cur->right);
         }
         ++level;
-        cout << edl;
+        std::cout << edl;
     }
 }
 #endif

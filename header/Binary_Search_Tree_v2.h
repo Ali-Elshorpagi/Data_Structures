@@ -8,7 +8,6 @@
 #include <queue>
 #include <utility>
 
-using namespace std;
 #define edl '\n'
 
 template <class T>
