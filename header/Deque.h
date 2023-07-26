@@ -15,12 +15,13 @@ class Deque
     int rear{};
     int added_elements{};
     type *array{};
+    int next(int pos);
+    int prev(int pos);
 
 public:
     Deque(int size);
     ~Deque();
-    int next(int pos);
-    int prev(int pos);
+    const int get_size();
     void enqueue_rear(type val);
     void enqueue_front(type val);
     type dequeue_front();

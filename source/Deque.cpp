@@ -14,6 +14,7 @@ Deque<type>::~Deque()
 {
     delete[] array;
     array = nullptr;
+    size = added_elements = 0;
 }
 
 template <class type>
@@ -26,6 +27,12 @@ template <class type>
 int Deque<type>::prev(int pos)
 {
     return (pos - 1 + size) % size;
+}
+
+template <class type>
+const int Deque<type>::get_size()
+{
+    return added_elements;
 }
 
 template <class type>

@@ -14,7 +14,7 @@ Circular_Queue<type>::~Circular_Queue()
 {
     delete[] arr;
     arr = nullptr;
-    size = 0;
+    size = added_elements = 0;
 }
 
 template <class type>
