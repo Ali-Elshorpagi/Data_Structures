@@ -5,7 +5,6 @@
 #include <cassert>
 #include <vector>
 
-using namespace std;
 #define edl '\n'
 
 template <class type>
@@ -25,15 +24,16 @@ class Min_Heap
 
 public:
     Min_Heap();
-    Min_Heap(const vector<type> &vec);
+    Min_Heap(const std::vector<type> &vec);
     ~Min_Heap();
     void push(type val);
     void pop();
     type top();
-    int get_size();
+    const int get_size();
     bool is_empty();
     void print_less_than(type val, int pos = 0);
     bool is_heap_array(type *p, int n);
     void heap_sort(type *p, int n);
+    bool search(type val);
 };
 #endif

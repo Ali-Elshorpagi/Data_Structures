@@ -37,6 +37,6 @@ public:
     type top();
     const int get_size();
     bool is_empty();
-    bool search(int val);
+    bool search(type val);
 };
 #endif

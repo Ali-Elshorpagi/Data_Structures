@@ -131,7 +131,7 @@ bool Max_Heap<type>::is_empty()
 }
 
 template <class type>
-bool Max_Heap<type>::search(int val)
+bool Max_Heap<type>::search(type val)
 {
     for (int i(0); i < size; ++i)
     {

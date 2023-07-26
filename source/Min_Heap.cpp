@@ -10,7 +10,7 @@ Min_Heap<type>::Min_Heap()
 }
 
 template <class type>
-Min_Heap<type>::Min_Heap(const vector<type> &vec) // Floyd Algorithm
+Min_Heap<type>::Min_Heap(const std::vector<type> &vec) // Floyd Algorithm
 {
     if ((int)vec.size() >= capacity)
         expand_capacity();
@@ -35,7 +35,7 @@ void Min_Heap<type>::expand_capacity()
     type *tmp(new type[capacity]{});
     for (int i(0); i < size; ++i)
         tmp[i] = array[i];
-    swap(array, tmp);
+    std::swap(array, tmp);
     delete[] tmp;
 }
 
@@ -72,7 +72,7 @@ void Min_Heap<type>::heapify_up(int child_pos)
     int par_pos(parent(child_pos));
     if (!child_pos || array[par_pos] < array[child_pos])
         return;
-    swap(array[child_pos], array[par_pos]);
+    std::swap(array[child_pos], array[par_pos]);
     heapify_up(par_pos);
 }
 
@@ -89,7 +89,7 @@ void Min_Heap<type>::heapify_down(int parent_pos) // O(logn)
 
     if (array[parent_pos] > array[child_pos])
     {
-        swap(array[parent_pos], array[child_pos]);
+        std::swap(array[parent_pos], array[child_pos]);
         heapify_down(child_pos);
     }
 }
@@ -145,7 +145,7 @@ type Min_Heap<type>::top()
 }
 
 template <class type>
-int Min_Heap<type>::get_size()
+const int Min_Heap<type>::get_size()
 {
     return size;
 }
@@ -161,7 +161,7 @@ void Min_Heap<type>::print_less_than(type val, int pos)
 {
     if (array[pos] >= val || pos == -1)
         return;
-    cout << array[pos] << ' ';
+    std::cout << array[pos] << ' ';
     print_less_than(val, left(pos));
     print_less_than(val, right(pos));
 }
@@ -190,13 +190,24 @@ void Min_Heap<type>::heap_sort(type *p, int n) // O(N* log(N)) time
     heapify();     // O(n)
     while (size--) // O(nlogn)
     {
-        swap(array[0], array[size]);
+        std::swap(array[0], array[size]);
         heapify_down(0);
     }
 
     for (int i(0); i < (n >> 1); ++i) // reverse the array
-        swap(array[i], array[n - i - 1]);
+        std::swap(array[i], array[n - i - 1]);
 
     size = old_size, array = old_arr;
+}
+
+template <class type>
+bool Min_Heap<type>::search(type val)
+{
+    for (int i(0); i < size; ++i)
+    {
+        if (array[i] == val)
+            return true;
+    }
+    return false;
 }
 #endif
