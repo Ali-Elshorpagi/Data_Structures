@@ -13,9 +13,8 @@ Priority_Queue_Heap_Based<type>::Priority_Queue_Heap_Based()
 template <class type>
 Priority_Queue_Heap_Based<type>::~Priority_Queue_Heap_Based()
 {
-    delete[] key;
-    delete[] value;
-    key = nullptr, value = nullptr;
+    delete[] key, delete[] value;
+    key = value = nullptr;
 }
 
 template <class type>
@@ -26,9 +25,8 @@ void Priority_Queue_Heap_Based<type>::expand_capacity()
     type *tmp2(new type[capacity]{});
     for (int i(0); i < size; ++i)
         tmp1[i] = key[i], tmp2[i] = value[i];
-    swap(key, tmp1), swap(value, tmp2);
-    delete[] tmp1;
-    delete[] tmp2;
+    std::swap(key, tmp1), std::swap(value, tmp2);
+    delete[] tmp1, delete[] tmp2;
 }
 
 template <class type>
@@ -57,8 +55,8 @@ void Priority_Queue_Heap_Based<type>::heapify_up(int child_pos)
     int par_pos(parent(child_pos));
     if (!child_pos || key[par_pos] > key[child_pos])
         return;
-    swap(key[child_pos], key[par_pos]);
-    swap(value[child_pos], value[par_pos]);
+    std::swap(key[child_pos], key[par_pos]);
+    std::swap(value[child_pos], value[par_pos]);
     heapify_up(par_pos);
 }
 
@@ -75,10 +73,16 @@ void Priority_Queue_Heap_Based<type>::heapify_down(int parent_pos) // O(logn)
 
     if (key[parent_pos] < key[child_pos])
     {
-        swap(key[parent_pos], key[child_pos]);
-        swap(value[parent_pos], value[child_pos]);
+        std::swap(key[parent_pos], key[child_pos]);
+        std::swap(value[parent_pos], value[child_pos]);
         heapify_down(child_pos);
     }
+}
+
+template <class type>
+const int Priority_Queue_Heap_Based<type>::get_size()
+{
+    return size;
 }
 
 template <class type>

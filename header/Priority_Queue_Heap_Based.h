@@ -4,7 +4,6 @@
 #include <iostream>
 #include <cassert>
 
-using namespace std;
 #define edl '\n'
 
 template <class type>
@@ -25,6 +24,7 @@ class Priority_Queue_Heap_Based
 public:
     Priority_Queue_Heap_Based();
     ~Priority_Queue_Heap_Based();
+    const int get_size();
     bool is_empty();
     void enqueue(type val, int priority);
     type dequeue();
