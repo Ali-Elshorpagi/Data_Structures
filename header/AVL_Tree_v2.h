@@ -5,7 +5,6 @@
 #include <cassert>
 #include <queue>
 
-using namespace std;
 #define edl '\n'
 
 template <class type>
@@ -37,5 +36,8 @@ public:
     void delete_value(type val);
     void level_order_traversal();
     bool is_bst();
+    type min_value();
+    type max_value();
+    bool search(type val);
 };
 #endif

@@ -32,7 +32,7 @@ int AVL_Tree_v2<type>::ch_height(AVL_Tree_v2<type> *node)
 template <class type>
 int AVL_Tree_v2<type>::update_height()
 {
-    return height = 1 + max(ch_height(left), ch_height(right));
+    return height = 1 + std::max(ch_height(left), ch_height(right));
 }
 
 template <class type>
@@ -44,7 +44,7 @@ int AVL_Tree_v2<type>::balance_factor()
 template <class type>
 AVL_Tree_v2<type> *AVL_Tree_v2<type>::right_rotation(AVL_Tree_v2<type> *Q)
 {
-    // cout << "right_rotation " << Q->data << edl;
+    // std::cout << "right_rotation " << Q->data << edl;
     AVL_Tree_v2<type> *P(Q->left);
     Q->left = P->right;
     P->right = Q;
@@ -56,7 +56,7 @@ AVL_Tree_v2<type> *AVL_Tree_v2<type>::right_rotation(AVL_Tree_v2<type> *Q)
 template <class type>
 AVL_Tree_v2<type> *AVL_Tree_v2<type>::left_rotation(AVL_Tree_v2<type> *P)
 {
-    // cout << "left_rotation " << P->data << edl;
+    // std::cout << "left_rotation " << P->data << edl;
     AVL_Tree_v2<type> *Q(P->right);
     P->right = Q->left;
     Q->left = P;
@@ -152,18 +152,18 @@ void AVL_Tree_v2<type>::re_root(AVL_Tree_v2<type> *node)
     if (node == this)
         return;
 
-    swap(this->data, node->data);
-    swap(this->height, node->height);
+    std::swap(this->data, node->data);
+    std::swap(this->height, node->height);
 
     if (this == node->left)
     {
-        swap(node->right, this->right);
+        std::swap(node->right, this->right);
         node->left = this->left;
         this->left = node;
     }
     else if (this == node->right)
     {
-        swap(node->left, this->left);
+        std::swap(node->left, this->left);
         node->right = this->right;
         this->right = node;
     }
@@ -172,25 +172,25 @@ void AVL_Tree_v2<type>::re_root(AVL_Tree_v2<type> *node)
 template <class type>
 void AVL_Tree_v2<type>::level_order_traversal()
 {
-    queue<AVL_Tree_v2<type> *> nodes_queue;
+    std::queue<AVL_Tree_v2<type> *> nodes_queue;
     nodes_queue.push(this);
     int level(0);
     while (!nodes_queue.empty())
     {
         int sze(nodes_queue.size());
-        cout << "Level " << level << ": ";
+        std::cout << "Level " << level << ": ";
         while (sze--)
         {
             AVL_Tree_v2<type> *cur(nodes_queue.front());
             nodes_queue.pop();
-            cout << cur->data << " ";
+            std::cout << cur->data << " ";
             if (cur->left)
                 nodes_queue.push(cur->left);
             if (cur->right)
                 nodes_queue.push(cur->right);
         }
         ++level;
-        cout << edl;
+        std::cout << edl;
     }
 }
 
@@ -240,5 +240,33 @@ void AVL_Tree_v2<type>::verify()
 {
     assert(abs(balance_factor()) < 2);
     assert(is_bst());
+}
+
+template <class type>
+type AVL_Tree_v2<type>::min_value()
+{
+    return min_node()->data;
+}
+
+template <class type>
+type AVL_Tree_v2<type>::max_value()
+{
+    return max_node()->data;
+}
+
+template <class type>
+bool AVL_Tree_v2<type>::search(type val)
+{
+    AVL_Tree_v2<type> *cur(this);
+    while (cur)
+    {
+        if (cur->data == val)
+            return true;
+        else if (val < cur->data)
+            cur = cur->left;
+        else
+            cur = cur->right;
+    }
+    return false;
 }
 #endif
