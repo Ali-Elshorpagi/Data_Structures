@@ -5,7 +5,6 @@
 #include <cassert>
 #include <vector>
 
-using namespace std;
 #define edl '\n'
 
 template <class T>
@@ -13,7 +12,7 @@ struct PQ_Node
 {
     int priority{};
     int height{};
-    vector<T> task_ids{};
+    std::vector<T> task_ids{};
     PQ_Node<T> *left{};
     PQ_Node<T> *right{};
 
@@ -30,7 +29,7 @@ struct PQ_Node
     }
     int update_height()
     {
-        return height = 1 + max(ch_height(left), ch_height(right));
+        return height = 1 + std::max(ch_height(left), ch_height(right));
     }
     int balance_factor()
     {
@@ -42,7 +41,6 @@ template <class type>
 class Priority_Queue_AVLT_Based
 {
     PQ_Node<type> *root{};
-
     bool search(type target, PQ_Node<type> *node);
     PQ_Node<type> *right_rotation(PQ_Node<type> *Q);
     PQ_Node<type> *left_rotation(PQ_Node<type> *P);
