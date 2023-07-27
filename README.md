@@ -29,11 +29,11 @@
    1. [Binary Search Tree ( Binary Node )](#13) 
    1. [Binary Search Tree](#14) 
    1. [Min Binary Heap](#15) 
-   1. [Max Binary Heap](#16) 
-   1. [Priority Queue Heap Based](#17) 
-   1. [Priority Queue AVL Tree Based](#18) 
-   1. [AVL Tree ( Binary Node )](#19) 
-   1. [AVL Tree](#20) 
+   1. [Max Binary Heap](#16)
+   1. [AVL Tree ( Binary Node )](#17) 
+   1. [AVL Tree](#18) 
+   1. [Priority Queue Heap Based](#19) 
+   1. [Priority Queue AVL Tree Based](#20) 
    1. [Trie Tree ( Letter )](#21) 
    1. [Hash Table](#22) 
 
@@ -125,15 +125,7 @@
      - Pop
      - Top
      - Is Empty
-- > <a id="17"></a>[**Priority Queue Heap Based**](header/Priority_Queue_Heap_Based.h)
-     - Is Empty
-     - Enqueue
-     - Dequeue
-- > <a id="18"></a>[**Priority Queue AVL Tree Based**](header/Priority_Queue_AVLT_Based.h)
-     - Is Empty
-     - Enqueue
-     - Dequeue
-- > <a id="19"></a>[**AVL Tree ( Binary Node )**](header/AVL_Tree.h)
+- > <a id="17"></a>[**AVL Tree ( Binary Node )**](header/AVL_Tree.h)
      - Insert
      - Search
      - Delete
@@ -141,10 +133,18 @@
      - Lower Bound
      - Upper Bound
      - Prefix Exist
-- > <a id="20"></a>[**AVL Tree**](header/AVL_Tree_v2.h)
+- > <a id="18"></a>[**AVL Tree**](header/AVL_Tree_v2.h)
      - Insert
      - Delete
      - Level Order Traversal
+- > <a id="19"></a>[**Priority Queue Heap Based**](header/Priority_Queue_Heap_Based.h)
+     - Is Empty
+     - Enqueue
+     - Dequeue
+- > <a id="20"></a>[**Priority Queue AVL Tree Based**](header/Priority_Queue_AVLT_Based.h)
+     - Is Empty
+     - Enqueue
+     - Dequeue
 - > <a id="21"></a>[**Trie Tree ( Letter )**](header/Trie_Tree.h)
      - Insert
      - Word Exist
