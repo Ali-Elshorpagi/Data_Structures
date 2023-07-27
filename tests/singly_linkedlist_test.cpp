@@ -95,7 +95,7 @@ int main()
     test_reverse();
     test_min_and_middle_and_max_value();
     test_is_palindrome();
-    cout << edl << "DONE" << edl;
+    std::cout << edl << "DONE" << edl;
     // you must see 'DONE' in output
     return (0);
 }

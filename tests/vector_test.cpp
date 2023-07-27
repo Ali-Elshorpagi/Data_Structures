@@ -131,7 +131,7 @@ int main()
     test_set_value();
     test_find();
     test_insert();
-    cout << edl << "DONE" << edl;
+    std::cout << edl << "DONE" << edl;
     // you must see 'DONE' in output
     return (0);
 }

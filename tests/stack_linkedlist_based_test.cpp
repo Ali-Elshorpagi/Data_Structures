@@ -46,7 +46,7 @@ int main()
     test_is_empty();
     test_pop();
     test_peek();
-    cout << edl << "DONE" << edl;
+    std::cout << edl << "DONE" << edl;
     // you must see 'DONE' in output
     return (0);
 }

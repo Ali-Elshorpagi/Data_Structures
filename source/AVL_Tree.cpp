@@ -38,7 +38,7 @@ bool AVL_Tree<type>::search_node(type val, AVL_Node<type> *node)
 template <class type>
 AVL_Node<type> *AVL_Tree<type>::right_rotation(AVL_Node<type> *Q)
 {
-    // cout << "right_rotation " << Q->data << edl;
+    // std::cout << "right_rotation " << Q->data << edl;
     AVL_Node<type> *P(Q->left);
     Q->left = P->right;
     P->right = Q;
@@ -50,7 +50,7 @@ AVL_Node<type> *AVL_Tree<type>::right_rotation(AVL_Node<type> *Q)
 template <class type>
 AVL_Node<type> *AVL_Tree<type>::left_rotation(AVL_Node<type> *P)
 {
-    // cout << "left_rotation " << P->data << edl;
+    // std::cout << "left_rotation " << P->data << edl;
     AVL_Node<type> *Q(P->right);
     P->right = Q->left;
     Q->left = P;
@@ -124,7 +124,7 @@ void AVL_Tree<type>::print_in_order_node(AVL_Node<type> *node)
     if (!node)
         return;
     print_in_order_node(node->left);
-    cout << node->data << ' ';
+    std::cout << node->data << ' ';
     print_in_order_node(node->right);
 }
 
@@ -211,9 +211,9 @@ AVL_Node<type> *AVL_Tree<type>::upper_bound_node(type val, AVL_Node<type> *node)
 }
 
 template <class type>
-bool AVL_Tree<type>::prefix_exist_node(string prefix, AVL_Node<type> *node)
+bool AVL_Tree<type>::prefix_exist_node(std::string prefix, AVL_Node<type> *node)
 {
-    string str(node->data.substr(0, min(node->data.size(), prefix.size())));
+    std::string str(node->data.substr(0, std::min(node->data.size(), prefix.size())));
     if (prefix == str)
         return true;
     if (prefix < str)
@@ -270,52 +270,52 @@ void AVL_Tree<type>::level_order_traversal()
 {
     if (!root)
         return;
-    queue<AVL_Node<type> *> nodes_queue;
+    std::queue<AVL_Node<type> *> nodes_queue;
     nodes_queue.push(root);
     int level(0);
     while (!nodes_queue.empty())
     {
         int sze(nodes_queue.size());
-        cout << "Level " << level << ": ";
+        std::cout << "Level " << level << ": ";
         while (sze--)
         {
             AVL_Node<type> *cur(nodes_queue.front());
             nodes_queue.pop();
-            cout << cur->data << ' ';
+            std::cout << cur->data << ' ';
             if (cur->left)
                 nodes_queue.push(cur->left);
             if (cur->right)
                 nodes_queue.push(cur->right);
         }
         ++level;
-        cout << edl;
+        std::cout << edl;
     }
 }
 
 template <class type>
-pair<bool, type> AVL_Tree<type>::lower_bound(type val)
+std::pair<bool, type> AVL_Tree<type>::lower_bound(type val)
 {
     if (root)
     {
         AVL_Node<type> *ans(lower_bound_node(val, root));
         if (!ans)
-            return make_pair(false, -123);
-        return make_pair(true, ans->data);
+            return std::make_pair(false, -123);
+        return std::make_pair(true, ans->data);
     }
-    return make_pair(false, -123);
+    return std::make_pair(false, -123);
 }
 
 template <class type>
-pair<bool, type> AVL_Tree<type>::upper_bound(type val)
+std::pair<bool, type> AVL_Tree<type>::upper_bound(type val)
 {
     if (root)
     {
         AVL_Node<type> *ans(upper_bound_node(val, root));
         if (!ans)
-            return make_pair(false, -123);
-        return make_pair(true, ans->data);
+            return std::make_pair(false, -123);
+        return std::make_pair(true, ans->data);
     }
-    return make_pair(false, -123);
+    return std::make_pair(false, -123);
 }
 
 template <class type>
@@ -344,7 +344,7 @@ int AVL_Tree<type>::avl_nodes_iterative(int height)
 }
 
 template <class type>
-bool AVL_Tree<type>::prefix_exist(string prefix)
+bool AVL_Tree<type>::prefix_exist(std::string prefix)
 {
     if (root)
         return prefix_exist_node(prefix, root);

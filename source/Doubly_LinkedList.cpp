@@ -292,7 +292,7 @@ void Doubly_LinkedList<type>::reverse()
         link(second, first);
         first = first_temp, second = second_temp;
     }
-    swap(head, tail);
+    std::swap(head, tail);
     head->prev = tail->next = nullptr;
 }
 #endif
