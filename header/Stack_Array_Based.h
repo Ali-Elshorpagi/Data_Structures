@@ -5,7 +5,6 @@
 #include <cassert>
 #include <vector>
 
-using namespace std;
 #define edl '\n'
 
 template <class type>
@@ -25,12 +24,12 @@ public:
     type pop();
     type peek();
     void print();
-    string reverse_subwords(string line);
+    std::string reverse_subwords(std::string line);
     int reverse_num(int num);
     char get_open_match(char ch);
-    bool valid_parentheses(string str);
-    string remove_all_adjacent_duplicates(string str);
-    void asteroid_collision(vector<type> &asteroids);
+    bool valid_parentheses(std::string str);
+    std::string remove_all_adjacent_duplicates(std::string str);
+    void asteroid_collision(std::vector<type> &asteroids);
     void insert_at_bottom(type val);
     void reverse();
 };

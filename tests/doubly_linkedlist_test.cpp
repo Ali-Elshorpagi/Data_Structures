@@ -1,18 +1,19 @@
 #include "../source/Doubly_LinkedList.cpp"
 
+Doubly_LinkedList<int> list;
+const void initializing()
+{
+    for (int i(1); i < 21; ++i)
+        list.insert_end(i);
+}
+
 const void test_get_length()
 {
-    Doubly_LinkedList<int> list;
-    for (int i(1); i < 11; ++i)
-        list.insert_end(i);
-    assert(list.get_length() == 10);
+    assert(list.get_length() == 20);
 }
 
 const void test_pop_front()
 {
-    Doubly_LinkedList<int> list;
-    for (int i(1); i < 11; ++i)
-        list.insert_end(i);
     int popped1(list.pop_front());
     assert(popped1 == 1);
     list.insert_front(-4);
@@ -22,71 +23,54 @@ const void test_pop_front()
 
 const void test_pop_back()
 {
-    Doubly_LinkedList<int> list;
-    for (int i(1); i < 11; ++i)
-        list.insert_end(i);
     int popped1(list.pop_back());
-    assert(popped1 == 10);
+    assert(popped1 == 20);
     list.insert_end(-4);
     int popped2(list.pop_back());
     assert(popped2 == -4);
 }
 
-const void test_delete_all_nodes_with_key()
-{
-    Doubly_LinkedList<int> list;
-    list.insert_end(-1);
-    list.insert_end(1);
-    list.insert_end(-1);
-    list.insert_end(5);
-    list.insert_end(-1);
-    list.insert_end(8);
-    list.delete_all_nodes_with_key(-1);
-    assert(list.get_value(0) == 1);
-    assert(list.get_value(1) == 5);
-    assert(list.get_value(2) == 8);
-}
-
 const void test_get_value()
 {
-    Doubly_LinkedList<int> list;
-    for (int i(5); i < 10; ++i)
-        list.insert_end(i);
-    assert(list.get_value(0) == 5);
-    assert(list.get_value(1) == 6);
-    assert(list.get_value(2) == 7);
-    assert(list.get_value(3) == 8);
-    assert(list.get_value(4) == 9);
+    assert(list.get_value(0) == 2);
+    assert(list.get_value(1) == 3);
+    assert(list.get_value(2) == 4);
+    assert(list.get_value(3) == 5);
+    assert(list.get_value(4) == 6);
+}
+
+const void test_delete_all_nodes_with_key()
+{
+    list.insert_front(-1);
+    list.insert_front(-1);
+    list.insert_end(-1);
+    list.delete_all_nodes_with_key(-1);
+    assert(list.get_value(0) == 2);
+    assert(list.get_value(1) == 3);
 }
 
 const void test_reverse()
 {
-    Doubly_LinkedList<int> list;
+    Doubly_LinkedList<int> list1;
     for (int i(1); i < 6; ++i)
-        list.insert_end(i);
-    list.reverse();
-    assert(list.get_value(0) == 5);
-    assert(list.get_value(1) == 4);
-    assert(list.get_value(2) == 3);
-    assert(list.get_value(3) == 2);
-    assert(list.get_value(4) == 1);
+        list1.insert_end(i);
+    list1.reverse();
+    assert(list1.get_value(0) == 5);
+    assert(list1.get_value(1) == 4);
+    assert(list1.get_value(2) == 3);
+    assert(list1.get_value(3) == 2);
+    assert(list1.get_value(4) == 1);
 }
 
 const void test_middle_value()
 {
-    Doubly_LinkedList<int> list;
-    for (int i(11); i < 21; ++i)
-        list.insert_front(i);
-    assert(list.middle_value_0() == 15);
+    assert(list.middle_value_0() == 11);
     list.pop_back(), list.pop_back();
-    assert(list.middle_value_1() == 16);
+    assert(list.middle_value_1() == 10);
 }
 
 const void test_is_palindrome()
 {
-    Doubly_LinkedList<int> list;
-    for (int i(11); i < 21; ++i)
-        list.insert_end(i);
     assert(list.is_palindrome() == false);
     list.~Doubly_LinkedList();
     list.insert_end(1);
@@ -99,11 +83,12 @@ const void test_is_palindrome()
 int main()
 {
     freopen("../imports/test/output.txt", "w", stdout);
+    initializing();
     test_get_length();
     test_pop_front();
     test_pop_back();
-    test_delete_all_nodes_with_key();
     test_get_value();
+    test_delete_all_nodes_with_key();
     test_reverse();
     test_middle_value();
     test_is_palindrome();

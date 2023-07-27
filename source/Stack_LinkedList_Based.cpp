@@ -57,7 +57,7 @@ template <class type>
 void Stack_LinkedList_Based<type>::print()
 {
     for (SDL_Node<type> *cur(head); cur; cur = cur->next)
-        cout << cur->data << ' ';
-    cout << edl;
+        std::cout << cur->data << ' ';
+    std::cout << edl;
 }
 #endif

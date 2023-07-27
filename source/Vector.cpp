@@ -1,5 +1,5 @@
-// #ifndef VECTOR_CPP
-// #define VECTOR_CPP
+#ifndef VECTOR_CPP
+#define VECTOR_CPP
 
 #include "../header/Vector.h"
 
@@ -180,4 +180,4 @@ int Vector<type>::find_transposition(type val)
         }
     return -1;
 }
-// #endif
+#endif

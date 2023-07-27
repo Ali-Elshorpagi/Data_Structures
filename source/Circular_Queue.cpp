@@ -63,17 +63,17 @@ type Circular_Queue<type>::dequeue()
 template <class type>
 void Circular_Queue<type>::print()
 {
-    cout << "Front " << front << " - Rear " << rear << '\t';
+    std::cout << "Front " << front << " - Rear " << rear << '\t';
     if (is_full())
-        cout << "Full" << edl;
+        std::cout << "Full" << edl;
     else if (is_empty())
     {
-        cout << "Empty" << edl << edl;
+        std::cout << "Empty" << edl << edl;
         return;
     }
-    cout << edl;
+    std::cout << edl;
     for (int cur(front), step(0); step < added_elements; ++step, cur = next(cur))
-        cout << arr[cur] << ' ';
-    cout << edl << edl;
+        std::cout << arr[cur] << ' ';
+    std::cout << edl << edl;
 }
 #endif

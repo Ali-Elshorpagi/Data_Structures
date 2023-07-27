@@ -59,15 +59,15 @@ template <class type>
 void Stack_Array_Based<type>::print()
 {
     for (int i(top); i > -1; --i)
-        cout << arr[i] << ' ';
-    cout << edl;
+        std::cout << arr[i] << ' ';
+    std::cout << edl;
 }
 
 template <class type>
-string Stack_Array_Based<type>::reverse_subwords(string line)
+std::string Stack_Array_Based<type>::reverse_subwords(std::string line)
 {
     line += ' ';
-    string ans("");
+    std::string ans("");
     int len((int)line.size());
     Stack_Array_Based<char> st(len);
     for (int i(0); i < len; ++i)
@@ -109,7 +109,7 @@ char Stack_Array_Based<type>::get_open_match(char ch)
 }
 
 template <class type>
-bool Stack_Array_Based<type>::valid_parentheses(string str)
+bool Stack_Array_Based<type>::valid_parentheses(std::string str)
 {
     int len(str.size());
     Stack_Array_Based<char> st(len);
@@ -124,7 +124,7 @@ bool Stack_Array_Based<type>::valid_parentheses(string str)
 }
 
 template <class type>
-string Stack_Array_Based<type>::remove_all_adjacent_duplicates(string str)
+std::string Stack_Array_Based<type>::remove_all_adjacent_duplicates(std::string str)
 {
     int len(str.size());
     Stack_Array_Based<char> st(len);
@@ -142,7 +142,7 @@ string Stack_Array_Based<type>::remove_all_adjacent_duplicates(string str)
 }
 
 template <class type>
-void Stack_Array_Based<type>::asteroid_collision(vector<type> &asteroids)
+void Stack_Array_Based<type>::asteroid_collision(std::vector<type> &asteroids)
 {
     int len(asteroids.size());
     Stack_Array_Based<type> st(len);
@@ -165,8 +165,8 @@ void Stack_Array_Based<type>::asteroid_collision(vector<type> &asteroids)
             st.push(asteroids[i]);
     }
     for (int i(0); i <= top; ++i)
-        cout << st.arr[i] << ' ';
-    cout << edl;
+        std::cout << st.arr[i] << ' ';
+    std::cout << edl;
 }
 
 template <class type>

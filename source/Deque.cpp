@@ -88,17 +88,17 @@ bool Deque<type>::is_full()
 template <class type>
 void Deque<type>::print()
 {
-    cout << "Front " << front << " - rear " << rear << '\t';
+    std::cout << "Front " << front << " - rear " << rear << '\t';
     if (is_full())
-        cout << "Full";
+        std::cout << "Full";
     else if (is_empty())
     {
-        cout << "Empty" << edl << edl;
+        std::cout << "Empty" << edl << edl;
         return;
     }
-    cout << edl;
+    std::cout << edl;
     for (int cur(front), step(0); step < added_elements; ++step, cur = next(cur))
-        cout << array[cur] << ' ';
-    cout << edl << edl;
+        std::cout << array[cur] << ' ';
+    std::cout << edl << edl;
 }
 #endif

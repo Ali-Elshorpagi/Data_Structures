@@ -1,47 +1,44 @@
 #include "../source/Stack_LinkedList_Based.cpp"
 
+Stack_LinkedList_Based<int> stack;
+const void initializing()
+{
+    for (int i(11); i < 20; ++i)
+        stack.push(i);
+}
+
 const void test_get_size()
 {
-    Stack_LinkedList_Based<int> stack;
-    for (int i(1); i < 10; ++i)
-        stack.push(i);
     assert(stack.get_size() == 9);
 }
 
 const void test_is_empty()
 {
-    Stack_LinkedList_Based<int> stack;
-    stack.push(4);
-    assert(!stack.is_empty());
+    assert(stack.is_empty() == false);
 }
 
 const void test_pop()
 {
-    Stack_LinkedList_Based<int> stack;
-    stack.push(1), stack.push(2);
-    stack.push(3), stack.push(4);
     int popped(stack.pop());
-    assert(popped == 4);
-    stack.push(9), stack.push(8);
+    assert(popped == 19);
+    stack.push(20);
     int popped2(stack.pop());
-    assert(popped2 == 8);
+    assert(popped2 == 20);
 }
 
 const void test_peek()
 {
-    Stack_LinkedList_Based<int> stack;
-    stack.push(-1), stack.push(2);
-    stack.push(9), stack.push(4), stack.push(-1);
-    assert(stack.peek() == -1);
+    assert(stack.peek() == 18);
     stack.pop();
-    assert(stack.peek() == 4);
+    assert(stack.peek() == 17);
     stack.pop();
-    assert(stack.peek() == 9);
+    assert(stack.peek() == 16);
 }
 
 int main()
 {
     freopen("../imports/test/output.txt", "w", stdout);
+    initializing();
     test_get_size();
     test_is_empty();
     test_pop();
