@@ -4,7 +4,6 @@
 #include <unordered_set>
 #include <algorithm>
 
-using namespace std;
 #define edl '\n'
 
 /* Probing techniques:
@@ -13,7 +12,7 @@ using namespace std;
  * Double Hashing (use 2 independent hash functions) : index = (init_hash1 + init_hash2 * i) % table_size
  */
 
-int hash_string_lower_upper_digits(string str, int n = 65407)
+int hash_string_lower_upper_digits(std::string str, int n = 65407)
 {
     int base(2 * 26 + 10); // 26-lower, 26-upper and 10-digits
     long long m(n), sum(0);
@@ -39,17 +38,17 @@ int hash_string_lower_upper_digits(string str, int n = 65407)
 struct Hash_Node
 {
     const static int INTERNAL_LIMIT = 65407;
-    string key;
-    string data;
+    std::string key;
+    std::string data;
 
-    Hash_Node(string key, string data) : key(key), data(data) {}
+    Hash_Node(std::string key, std::string data) : key(key), data(data) {}
     int hash()
     {
         return hash_string_lower_upper_digits(key, INTERNAL_LIMIT);
     }
     void print()
     {
-        cout << "(" << key << ", " << data << ")  ";
+        std::cout << "(" << key << ", " << data << ")  ";
     }
 };
 
@@ -57,7 +56,7 @@ class Hash_Table
 {
 private:
     int table_size;
-    vector<Hash_Node *> table;
+    std::vector<Hash_Node *> table;
     // to mark a cell as deleted
     Hash_Node *deleted{};
 
@@ -129,24 +128,24 @@ public:
     {
         for (int hash(0); hash < table_size; ++hash)
         {
-            cout << hash << " ";
+            std::cout << hash << " ";
             if (table[hash] == deleted)
-                cout << " X ";
+                std::cout << " X ";
             else if (!table[hash])
-                cout << " E ";
+                std::cout << " E ";
             else
                 table[hash]->print();
-            cout << edl;
+            std::cout << edl;
         }
-        cout << "******************" << edl;
+        std::cout << "******************" << edl;
     }
 };
 
-int count_unique_substrings(const string &str, unordered_set<string> &us) // O(L^2 * log(L))
+int count_unique_substrings(const std::string &str, std::unordered_set<std::string> &us) // O(L^2 * log(L))
 {
     for (int i(0); i < (int)str.size(); ++i)
     {
-        string ans("");
+        std::string ans("");
         for (int j(i); j < (int)str.size(); ++j)
             ans = ans + str[j], us.insert(ans); // O(log(L)
     }
@@ -160,9 +159,9 @@ int count_unique_substrings(const string &str, unordered_set<string> &us) // O(L
     // Hence overall only 2 loops
 }
 
-int count_substrings_match(const string &str1, const string &str2)
+int count_substrings_match(const std::string &str1, const std::string &str2)
 {
-    unordered_set<string> us1, us2;
+    std::unordered_set<std::string> us1, us2;
     count_unique_substrings(str1, us1);
     count_unique_substrings(str2, us2);
     int cnt(0);
@@ -171,17 +170,17 @@ int count_substrings_match(const string &str1, const string &str2)
     return cnt;
 }
 
-int count_anagram_substrings(const string &str) // O(L^3 * log(L))
+int count_anagram_substrings(const std::string &str) // O(L^3 * log(L))
 {
-    unordered_set<string> us;
+    std::unordered_set<std::string> us;
     for (int i(0); i < (int)str.size(); ++i)
     {
-        string ans("");
+        std::string ans("");
         for (int j(i); j < (int)str.size(); ++j)
         {
             ans = ans + str[j];
-            sort(ans.begin(), ans.end()); // O(L* log(L))
-            us.insert(ans);               // O(log(L))
+            std::sort(ans.begin(), ans.end()); // O(L* log(L))
+            us.insert(ans);                    // O(log(L))
         }
     }
     return (int)us.size();

@@ -4,7 +4,6 @@
 #include <sstream>
 #include <string>
 
-using namespace std;
 #define edl '\n'
 
 int hash_num(int value, int n = 65407)
@@ -13,7 +12,7 @@ int hash_num(int value, int n = 65407)
     return (value % m + m) % m;
 }
 
-int hash_string(string str, int n)
+int hash_string(std::string str, int n)
 {
     long long m(n), sum(0);
     for (int i(0); i < (int)str.size(); ++i)
@@ -21,7 +20,7 @@ int hash_string(string str, int n)
     return sum % m;
 }
 
-int hash_string_lower_upper_digits(string str, int n = 65407)
+int hash_string_lower_upper_digits(std::string str, int n = 65407)
 {
     int base(2 * 26 + 10); // 26-lower, 26-upper and 10-digits
     long long m(n), sum(0);
@@ -44,12 +43,12 @@ int hash_string_lower_upper_digits(string str, int n = 65407)
     return sum;
 }
 
-int hash_string_folding(string str, int n = 65407)
+int hash_string_folding(std::string str, int n = 65407)
 {
     long long m(n), sum(0);
     for (int i(0); i < (int)str.size(); i += 4)
     {
-        string block(str.substr(i, 4));
+        std::string block(str.substr(i, 4));
         sum += hash_string_lower_upper_digits(block);
         sum %= m;
     }
@@ -59,17 +58,17 @@ int hash_string_folding(string str, int n = 65407)
 struct Hash_Node
 {
     const static int INTERNAL_LIMIT = 65407;
-    string key;
-    string data;
+    std::string key;
+    std::string data;
 
-    Hash_Node(string key, string data) : key(key), data(data) {}
+    Hash_Node(std::string key, std::string data) : key(key), data(data) {}
     int hash()
     {
         return hash_string_lower_upper_digits(key, INTERNAL_LIMIT);
     }
     void print()
     {
-        cout << "(" << key << ", " << data << ")  ";
+        std::cout << "(" << key << ", " << data << ")  ";
     }
 };
 
@@ -79,7 +78,7 @@ private:
     int table_size{};
     int added_elements{};
     double limit_load_factor{};
-    vector<vector<Hash_Node>> table;
+    std::vector<std::vector<Hash_Node>> table;
     // we can use others: e.g. list<Hash_Node>
 public:
     Hash_Table(int sz, double llf) : table_size(sz), limit_load_factor(llf)
@@ -140,7 +139,7 @@ public:
         {
             if (table[idx][i].key == phone.key)
             {
-                swap(table[idx][i], table[idx].back());
+                std::swap(table[idx][i], table[idx].back());
                 table[idx].pop_back();
                 --added_elements;
                 rehashing();
@@ -156,10 +155,10 @@ public:
             if (!table[i].size())
                 continue;
 
-            cout << "Hash " << i << ": ";
+            std::cout << "Hash " << i << ": ";
             for (int j(0); j < (int)table[i].size(); ++j)
                 table[i][j].print();
-            cout << edl;
+            std::cout << edl;
         }
     }
 };

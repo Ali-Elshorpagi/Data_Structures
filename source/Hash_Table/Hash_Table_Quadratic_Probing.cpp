@@ -3,10 +3,9 @@
 #include <set>
 #include <cassert>
 
-using namespace std;
 #define edl '\n'
 
-int hash_string_lower_upper_digits(string str, int n = 65407)
+int hash_string_lower_upper_digits(std::string str, int n = 65407)
 {
     int base(2 * 26 + 10); // 26-lower, 26-upper and 10-digits
     long long m(n), sum(0);
@@ -32,18 +31,18 @@ int hash_string_lower_upper_digits(string str, int n = 65407)
 struct Hash_Node
 {
     const static int INTERNAL_LIMIT = 65407;
-    string key;
-    string data;
+    std::string key;
+    std::string data;
 
     int hash()
     {
         return hash_string_lower_upper_digits(key, INTERNAL_LIMIT);
     }
 
-    Hash_Node(string key, string data) : key(key), data(data) {}
+    Hash_Node(std::string key, std::string data) : key(key), data(data) {}
     void print()
     {
-        cout << "(" << key << ", " << data << ")  ";
+        std::cout << "(" << key << ", " << data << ")  ";
     }
 };
 
@@ -51,7 +50,7 @@ class Hash_Table
 {
 private:
     int table_size;
-    vector<Hash_Node *> table;
+    std::vector<Hash_Node *> table;
     // to mark a cell as deleted
     Hash_Node *deleted{};
 
@@ -124,7 +123,7 @@ public:
 
     void rehashing()
     {
-        cout << "Rehashing..." << edl;
+        std::cout << "Rehashing..." << edl;
         Hash_Table tmp(2 * table_size);
         for (int hash(0); hash < table_size; ++hash)
         {
@@ -140,15 +139,15 @@ public:
     {
         for (int hash(0); hash < table_size; ++hash)
         {
-            cout << hash << " ";
+            std::cout << hash << " ";
             if (table[hash] == deleted)
-                cout << " X ";
+                std::cout << " X ";
             else if (!table[hash])
-                cout << " E ";
+                std::cout << " E ";
             else
                 table[hash]->print();
-            cout << edl;
+            std::cout << edl;
         }
-        cout << "******************" << edl;
+        std::cout << "******************" << edl;
     }
 };

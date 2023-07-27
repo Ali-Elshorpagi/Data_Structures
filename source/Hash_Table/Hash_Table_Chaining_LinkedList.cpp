@@ -1,7 +1,6 @@
 #include <iostream>
 #include <cassert>
 
-using namespace std;
 #define edl '\n'
 
 int hash_num(int value, int n = 65407)
@@ -10,7 +9,7 @@ int hash_num(int value, int n = 65407)
     return (value % m + m) % m;
 }
 
-int hash_string(string str, int n)
+int hash_string(std::string str, int n)
 {
     long long m(n), sum(0);
     for (int i(0); i < (int)str.size(); ++i)
@@ -18,7 +17,7 @@ int hash_string(string str, int n)
     return sum % m;
 }
 
-int hash_string_lower_upper_digits(string str, int n = 65407)
+int hash_string_lower_upper_digits(std::string str, int n = 65407)
 {
     int base(2 * 26 + 10); // 26-lower, 26-upper and 10-digits
     long long m(n), sum(0);
@@ -45,9 +44,9 @@ struct Hash_Node
 {
     // can change
     const static int INTERNAL_LIMIT = 2147483647;
-    string key;
-    string data;
-    Hash_Node(string k, string d) : key(k), data(d) {}
+    std::string key;
+    std::string data;
+    Hash_Node(std::string k, std::string d) : key(k), data(d) {}
 
     int hash()
     {
@@ -55,7 +54,7 @@ struct Hash_Node
     }
     void print()
     {
-        cout << "(" << key << ", " << data << ")  ";
+        std::cout << "(" << key << ", " << data << ")  ";
     }
 };
 
@@ -112,14 +111,14 @@ public:
         {
             if (!table[hash])
                 continue;
-            cout << "Hash " << hash << ": ";
+            std::cout << "Hash " << hash << ": ";
             LinkedHashEntry *tmp(table[hash]);
             while (tmp)
             {
                 tmp->item.print();
                 tmp = tmp->next;
             }
-            cout << "\n";
+            std::cout << edl;
         }
     }
 };
