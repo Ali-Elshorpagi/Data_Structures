@@ -1,8 +1,9 @@
 # Data Structures in `C++`
 
 ***Note :*** <br>
-`main.cpp in this repo use an include file that needs to be compiled manually so` <br>
-`If you will use the main.cpp included in the repo so Use the command below to compile and run the code in terminal `
+`main.cpp in this repo use an include file that needs to be compiled manually so`<br>
+`If you will use the main.cpp included in the repo so Use the command below to compile and run`<br>
+`you must compile the code in terminal manually to work`
 
 ```python
 # to compile the file
