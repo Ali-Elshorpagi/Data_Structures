@@ -1,5 +1,14 @@
 # Data Structures in `C++`
 
+***Note :*** <br>
+`main.cpp in this repo use an include file that needs to be compiled manually so
+If you will use the main.cpp included in the repo so Use the command below to compile and run the code in terminal `
+
+```py
+- g++ main.cpp -o main -D FILENAME # to compile the file (FILENAME is the file you want to use without others)
+- ./main.cpp # to run
+```
+
 ```py
 - All of these Data Structures were built using Templates
 - Functions in README are the basic functions only
