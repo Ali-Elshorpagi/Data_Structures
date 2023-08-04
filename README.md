@@ -1,17 +1,17 @@
 # Data Structures in `C++`
 
 ***Note :*** <br>
-`main.cpp in this repo use an include file that needs to be compiled manually so
-If you will use the main.cpp included in the repo so Use the command below to compile and run the code in terminal `
+`main.cpp in this repo use an include file that needs to be compiled manually so` <br>
+`If you will use the main.cpp included in the repo so Use the command below to compile and run the code in terminal `
 
-```shell
+```python
 # to compile the file
 $ g++ main.cpp -o main -D FILENAME # FILENAME is the file (specific data sturcture from include.h file) you want to use
 # to run
 $ ./main.cpp 
 ```
 
-```md
+```python
 - All of these Data Structures were built using Templates
 - Functions in README are the basic functions only
 ```
