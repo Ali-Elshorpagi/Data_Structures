@@ -102,7 +102,7 @@ public:
     S_Node<type> *merge_two_lists_iterative(S_Node<type> &head1, S_Node<type> &head2);
     // Merges two sorted linked lists recursively into a single sorted linked list.
     S_Node<type> *merge_two_lists_recursive(S_Node<type> &head1, S_Node<type> &head2);
-    // Checks if the linked list is a palindrome (reads the same forwards and backwards).
+    // Checks if the linked list is a palindrome.
     bool is_palindrome();
 };
 #endif
