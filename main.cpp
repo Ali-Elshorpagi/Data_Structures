@@ -9,7 +9,7 @@ public:
 	Data_Structures() { Sukuna; }
 	void TEST()
 	{
-		// test the DSs here;
+		// test the Data Structures here;
 	}
 };
 

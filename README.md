@@ -9,7 +9,7 @@
 # to compile the file
 $ g++ main.cpp -o main -D FILENAME # FILENAME is the file (specific data sturcture from include.h file) you want to use
 # to run
-$ ./main.cpp 
+$ ./main.exe 
 ```
 
 ```python
