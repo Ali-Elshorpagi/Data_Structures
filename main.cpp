@@ -6,7 +6,7 @@
 class Data_Structures
 {
 public:
-	Data_Structures() { Sukuna; }
+	Data_Structures() { __elshorpagi__; }
 	void TEST()
 	{
 		// test the Data Structures here;
