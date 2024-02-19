@@ -68,13 +68,13 @@ $ ./main.exe
      - Delete (Front - End)
      - Is Palindrom
      - Middle Value
-- > <a id="4"></a>[**Spare Array Using LinkedList**](header/Spare_Array.h)
+- > <a id="4"></a>[**Sparse Array Using LinkedList**](header/Sparse_Array.h)
      - Print Row
      - Print Row Non zero
-- > <a id="5"></a>[**Spare Matrix Using LinkedList**](header/Sparse_Matrix.h)
+- > <a id="5"></a>[**Sparse Matrix Using LinkedList**](header/Sparse_Matrix.h)
      - Print Matrix
      - Print Matrix Non zero
-- > <a id="6"></a>[**Spare Cube Using LinkedList**](header/Spare_Cube.h)
+- > <a id="6"></a>[**Sparse Cube Using LinkedList**](header/Sparse_Cube.h)
      - Print Cube
      - Print Cube Non zero
 - > <a id="7"></a>[**Stack Array Based**](header/Stack_Array_Based.h)
