@@ -114,10 +114,10 @@ void Binary_Search_Tree_v2<type>::print_in_order_node(BST_Node<type> *node)
 template <class type>
 bool Binary_Search_Tree_v2<type>::is_bst(BST_Node<type> *node)
 {
-    bool left_bst(!node->left || (node->data > node->left->data) && is_bst(node->left));
+    bool left_bst(!node->left || ((node->data > node->left->data) && is_bst(node->left)));
     if (!left_bst)
         return false;
-    bool right_bst(!node->right || (node->data < node->right->data) && is_bst(node->right));
+    bool right_bst(!node->right || ((node->data < node->right->data) && is_bst(node->right)));
     return right_bst;
 }
 

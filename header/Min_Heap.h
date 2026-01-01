@@ -26,14 +26,18 @@ public:
     Min_Heap();
     Min_Heap(const std::vector<type> &vec);
     ~Min_Heap();
+    // Prevent copying (Rule of Three)
+    Min_Heap(const Min_Heap&) = delete;
+    Min_Heap& operator=(const Min_Heap&) = delete;
+
     void push(type val);
     void pop();
-    type top();
-    const int get_size();
-    bool is_empty();
-    void print_less_than(type val, int pos = 0);
+    type top() const;
+    int get_size() const;
+    bool is_empty() const;
+    void print_less_than(type val, int pos = 0) const;
     bool is_heap_array(type *p, int n);
     void heap_sort(type *p, int n);
-    bool search(type val);
+    bool search(type val) const;
 };
 #endif

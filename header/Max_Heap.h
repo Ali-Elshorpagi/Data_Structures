@@ -32,11 +32,15 @@ public:
     Max_Heap();
     Max_Heap(const std::vector<type> &vec);
     ~Max_Heap();
+    // Prevent copying (Rule of Three)
+    Max_Heap(const Max_Heap&) = delete;
+    Max_Heap& operator=(const Max_Heap&) = delete;
+
     void push(type val);
     void pop();
-    type top();
-    const int get_size();
-    bool is_empty();
-    bool search(type val);
+    type top() const;
+    int get_size() const;
+    bool is_empty() const;
+    bool search(type val) const;
 };
 #endif

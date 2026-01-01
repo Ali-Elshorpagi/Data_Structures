@@ -12,8 +12,8 @@ Min_Heap<type>::Min_Heap()
 template <class type>
 Min_Heap<type>::Min_Heap(const std::vector<type> &vec) // Floyd Algorithm
 {
-    if ((int)vec.size() >= capacity)
-        expand_capacity();
+    while ((int)vec.size() >= capacity)
+        capacity <<= 1;
     array = new type[capacity]{};
     size = (int)vec.size();
     for (int i(0); i < (int)vec.size(); ++i)
@@ -138,26 +138,26 @@ void Min_Heap<type>::pop()
 }
 
 template <class type>
-type Min_Heap<type>::top()
+type Min_Heap<type>::top() const
 {
     assert(!is_empty());
     return array[0];
 }
 
 template <class type>
-const int Min_Heap<type>::get_size()
+int Min_Heap<type>::get_size() const
 {
     return size;
 }
 
 template <class type>
-bool Min_Heap<type>::is_empty()
+bool Min_Heap<type>::is_empty() const
 {
     return size == 0;
 }
 
 template <class type>
-void Min_Heap<type>::print_less_than(type val, int pos)
+void Min_Heap<type>::print_less_than(type val, int pos) const
 {
     if (array[pos] >= val || pos == -1)
         return;
@@ -201,7 +201,7 @@ void Min_Heap<type>::heap_sort(type *p, int n) // O(N* log(N)) time
 }
 
 template <class type>
-bool Min_Heap<type>::search(type val)
+bool Min_Heap<type>::search(type val) const
 {
     for (int i(0); i < size; ++i)
     {

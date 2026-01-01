@@ -92,15 +92,15 @@ void Doubly_LinkedList<type>::delete_and_link_v2(D_Node<type> *cur)
 }
 
 template <class type>
-const int Doubly_LinkedList<type>::get_length()
+int Doubly_LinkedList<type>::get_length() const
 {
   return length;
 }
 
 template <class type>
-const type Doubly_LinkedList<type>::get_value(int idx)
+type Doubly_LinkedList<type>::get_value(int idx) const
 {
-  assert(idx >= 0 || idx < length);
+  assert(idx > -1 && idx < length);
   D_Node<type> *cur(head);
   int cur_idx(0);
   while (cur_idx < idx)

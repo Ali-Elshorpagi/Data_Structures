@@ -19,11 +19,14 @@ class Circular_Queue
 public:
     Circular_Queue(int sz);
     ~Circular_Queue();
-    bool is_full();
-    bool is_empty();
-    const int get_size();
+    // Prevent copying (Rule of Three)
+    Circular_Queue(const Circular_Queue&) = delete;
+    Circular_Queue& operator=(const Circular_Queue&) = delete;
+    bool is_full() const;
+    bool is_empty() const;
+    int get_size() const;
     void enqueue(type val);
     type dequeue();
-    void print();
+    void print() const;
 };
 #endif

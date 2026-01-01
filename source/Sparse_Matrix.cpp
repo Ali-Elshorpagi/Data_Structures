@@ -13,8 +13,12 @@ Sparse_Matrix<type>::Sparse_Matrix(int rows, int cols) : rows(rows), cols(cols)
 template <class type>
 Sparse_Matrix<type>::~Sparse_Matrix()
 {
-    for (Row_Node<type> *cur(head->next); cur; cur = cur->next)
-        cur->list.~Sparse_Array();
+    while (head)
+    {
+        Row_Node<type> *cur(head->next);
+        delete head;
+        head = cur;
+    }
     head = nullptr, tail = nullptr;
 }
 

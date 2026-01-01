@@ -13,8 +13,12 @@ Sparse_Cube<type>::Sparse_Cube(int row, int col, int height) : rows(row), cols(c
 template <class type>
 Sparse_Cube<type>::~Sparse_Cube()
 {
-    for (Height_Node<type> *cur(head->next); cur; cur = cur->next)
-        cur->matrix.~Sparse_Matrix();
+    while (head)
+    {
+        Height_Node<type> *cur(head->next);
+        delete head;
+        head = cur;
+    }
     head = tail = nullptr;
 }
 

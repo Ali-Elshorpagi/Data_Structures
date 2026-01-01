@@ -22,15 +22,15 @@ public:
   ~Vector();
   type &operator[](const int idx);
   // Return the number of items stored in the vector
-  const int get_size();
+  int get_size() const;
   // Return the value stored at the given index
-  const type get_value(int idx);
+  type get_value(int idx) const;
   // Return the value stored at the front of the vector
-  const type get_front();
+  type get_front() const;
   // Return the value stored at the back of the vector
-  const type get_back();
+  type get_back() const;
   // Check if the vector is empty or not
-  const bool is_empty();
+  bool is_empty() const;
   // Append the given value to the end of the vector
   void push_back(type val);
   // Delete the last item in the vector
@@ -42,9 +42,9 @@ public:
   // Set the given value at the given index
   void set_value(int idx, type val);
   // Print all the elements in the vector
-  const void print();
+  void print() const;
   // search for value and returns first index with that value, -1 if not found
-  const int find(type val);
+  int find(type val) const;
   // Insert the given value at the given index
   void insert(int idx, type val);
   // rotate the last element to the front of the vector

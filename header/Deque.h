@@ -20,13 +20,16 @@ class Deque
 public:
     Deque(int size);
     ~Deque();
-    const int get_size();
+    // Prevent copying (Rule of Three)
+    Deque(const Deque&) = delete;
+    Deque& operator=(const Deque&) = delete;
+    int get_size() const;
     void enqueue_rear(type val);
     void enqueue_front(type val);
     type dequeue_front();
     type dequeue_rear();
-    int is_empty();
-    bool is_full();
-    void print();
+    bool is_empty() const;
+    bool is_full() const;
+    void print() const;
 };
 #endif

@@ -12,8 +12,8 @@ Max_Heap<type>::Max_Heap()
 template <class type>
 Max_Heap<type>::Max_Heap(const std::vector<type> &vec)
 {
-    if ((int)vec.size() >= capacity)
-        expand_capacity();
+    while ((int)vec.size() >= capacity)
+        capacity <<= 1;
     array = new type[capacity]{};
     size = (int)vec.size();
     for (int i(0); i < (int)vec.size(); ++i)
@@ -112,26 +112,26 @@ void Max_Heap<type>::pop()
 }
 
 template <class type>
-type Max_Heap<type>::top()
+type Max_Heap<type>::top() const
 {
     assert(!is_empty());
     return array[0];
 }
 
 template <class type>
-const int Max_Heap<type>::get_size()
+int Max_Heap<type>::get_size() const
 {
     return size;
 }
 
 template <class type>
-bool Max_Heap<type>::is_empty()
+bool Max_Heap<type>::is_empty() const
 {
     return size == 0;
 }
 
 template <class type>
-bool Max_Heap<type>::search(type val)
+bool Max_Heap<type>::search(type val) const
 {
     for (int i(0); i < size; ++i)
     {

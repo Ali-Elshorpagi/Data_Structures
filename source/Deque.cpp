@@ -30,7 +30,7 @@ int Deque<type>::prev(int pos)
 }
 
 template <class type>
-const int Deque<type>::get_size()
+int Deque<type>::get_size() const
 {
     return added_elements;
 }
@@ -74,19 +74,19 @@ type Deque<type>::dequeue_rear()
 }
 
 template <class type>
-int Deque<type>::is_empty()
+bool Deque<type>::is_empty() const
 {
     return added_elements == 0;
 }
 
 template <class type>
-bool Deque<type>::is_full()
+bool Deque<type>::is_full() const
 {
     return added_elements == size;
 }
 
 template <class type>
-void Deque<type>::print()
+void Deque<type>::print() const
 {
     std::cout << "Front " << front << " - rear " << rear << '\t';
     if (is_full())

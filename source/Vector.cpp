@@ -63,26 +63,26 @@ type &Vector<type>::operator[](const int idx)
 }
 
 template <class type>
-const int Vector<type>::get_size() { return size; }
+int Vector<type>::get_size() const { return size; }
 
 template <class type>
-const type Vector<type>::get_value(int idx)
+type Vector<type>::get_value(int idx) const
 {
   assert(idx > -1 && idx < size);
   return arr[idx];
 }
 
 template <class type>
-const type Vector<type>::get_front() { return arr[0]; }
+type Vector<type>::get_front() const { return arr[0]; }
 
 template <class type>
-const type Vector<type>::get_back()
+type Vector<type>::get_back() const
 {
   return arr[size - 1];
 }
 
 template <class type>
-const bool Vector<type>::is_empty() { return size == 0; }
+bool Vector<type>::is_empty() const { return size == 0; }
 
 template <class type>
 void Vector<type>::set_value(int idx, type val)
@@ -92,7 +92,7 @@ void Vector<type>::set_value(int idx, type val)
 }
 
 template <class type>
-const void Vector<type>::print()
+void Vector<type>::print() const
 {
   for (int i(0); i < size; ++i)
     std::cout << arr[i] << ' ';
@@ -100,7 +100,7 @@ const void Vector<type>::print()
 }
 
 template <class type>
-const int Vector<type>::find(type val)
+int Vector<type>::find(type val) const
 {
   for (int i(0); i < size; ++i)
     if (arr[i] == val)

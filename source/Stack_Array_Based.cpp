@@ -17,19 +17,19 @@ Stack_Array_Based<type>::~Stack_Array_Based()
 }
 
 template <class type>
-const int Stack_Array_Based<type>::get_size()
+int Stack_Array_Based<type>::get_size() const
 {
     return size;
 }
 
 template <class type>
-bool Stack_Array_Based<type>::is_full()
+bool Stack_Array_Based<type>::is_full() const
 {
     return top == size - 1;
 }
 
 template <class type>
-bool Stack_Array_Based<type>::is_empty()
+bool Stack_Array_Based<type>::is_empty() const
 {
     return top == -1;
 }
@@ -49,14 +49,14 @@ type Stack_Array_Based<type>::pop()
 }
 
 template <class type>
-type Stack_Array_Based<type>::peek()
+type Stack_Array_Based<type>::peek() const
 {
     assert(!is_empty());
     return arr[top];
 }
 
 template <class type>
-void Stack_Array_Based<type>::print()
+void Stack_Array_Based<type>::print() const
 {
     for (int i(top); i > -1; --i)
         std::cout << arr[i] << ' ';

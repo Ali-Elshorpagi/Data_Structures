@@ -136,9 +136,9 @@ int Binary_Tree<type>::tree_height_0()
 template <class type>
 int Binary_Tree<type>::tree_height_1()
 {
-  if (!left || !right)
+  if (!left && !right)
     return 0;
-  return 1 + std::max(left->tree_height_1(), right->tree_height_1());
+  return 1 + std::max(left ? left->tree_height_1() : 0, right ? right->tree_height_1() : 0);
 }
 
 template <class type>
@@ -178,7 +178,7 @@ template <class type>
 bool Binary_Tree<type>::is_perfect_fomula()
 {
   int height(tree_height_0()), nodes(total_nodes());
-  int res(pow(2, (height + 1)) - 1);
+  int res((1 << (height + 1)) - 1);
   return (res == nodes);
 }
 

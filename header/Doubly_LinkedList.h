@@ -42,9 +42,9 @@ public:
   Doubly_LinkedList(const Doubly_LinkedList &another);
   Doubly_LinkedList &operator=(const Doubly_LinkedList &another);
   // Returns the length (number of nodes) of the doubly linked list.
-  const int get_length();
+  int get_length() const;
   // Returns the value at the given index.
-  const type get_value(int idx);
+  type get_value(int idx) const;
   // Inserts a new node with the given value at the end of the doubly linked list.
   void insert_end(type val);
   // Inserts a new node with the given value at the beginning of the doubly linked list.

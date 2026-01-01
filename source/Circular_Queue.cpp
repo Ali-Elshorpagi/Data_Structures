@@ -18,19 +18,19 @@ Circular_Queue<type>::~Circular_Queue()
 }
 
 template <class type>
-bool Circular_Queue<type>::is_full()
+bool Circular_Queue<type>::is_full() const
 {
     return added_elements == size;
 }
 
 template <class type>
-bool Circular_Queue<type>::is_empty()
+bool Circular_Queue<type>::is_empty() const
 {
     return added_elements == 0;
 }
 
 template <class type>
-const int Circular_Queue<type>::get_size()
+int Circular_Queue<type>::get_size() const
 {
     return size;
 }
@@ -61,7 +61,7 @@ type Circular_Queue<type>::dequeue()
 }
 
 template <class type>
-void Circular_Queue<type>::print()
+void Circular_Queue<type>::print() const
 {
     std::cout << "Front " << front << " - Rear " << rear << '\t';
     if (is_full())

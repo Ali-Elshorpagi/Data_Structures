@@ -47,9 +47,9 @@ Singly_LinkedList<type>::~Singly_LinkedList()
 }
 
 template <class type>
-const type Singly_LinkedList<type>::get_value(int idx)
+type Singly_LinkedList<type>::get_value(int idx) const
 {
-  assert(idx >= 0 || idx < length);
+  assert(idx > -1 && idx < length);
   S_Node<type> *cur(head);
   int cur_idx(0);
   while (cur_idx < idx)
@@ -58,7 +58,7 @@ const type Singly_LinkedList<type>::get_value(int idx)
 }
 
 template <class type>
-const int Singly_LinkedList<type>::get_length()
+int Singly_LinkedList<type>::get_length() const
 {
   return length;
 }
@@ -90,8 +90,7 @@ void Singly_LinkedList<type>::insert_front(type val)
 }
 
 template <class type>
-void Singly_LinkedList<type>::insert_after(S_Node<type> *src,
-                                           S_Node<type> *target)
+void Singly_LinkedList<type>::insert_after(S_Node<type> *src, S_Node<type> *target)
 {
   assert(src && target);
   target->next = src->next;

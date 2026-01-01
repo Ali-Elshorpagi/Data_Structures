@@ -63,12 +63,12 @@ const void test_min_and_middle_and_max_value()
 const void test_is_palindrome()
 {
     assert(list.is_palindrome() == false);
-    list.~Singly_LinkedList();
-    list.insert_end(1);
-    list.insert_end(2);
-    list.insert_end(2);
-    list.insert_end(1);
-    assert(list.is_palindrome() == true);
+    Singly_LinkedList<int> palindrome_list;
+    palindrome_list.insert_end(1);
+    palindrome_list.insert_end(2);
+    palindrome_list.insert_end(2);
+    palindrome_list.insert_end(1);
+    assert(palindrome_list.is_palindrome() == true);
 }
 
 int main()

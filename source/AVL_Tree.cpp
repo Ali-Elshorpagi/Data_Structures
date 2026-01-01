@@ -131,12 +131,12 @@ AVL_Node<type> *AVL_Tree<type>::insert_node(type val, AVL_Node<type> *node)
 template <class type>
 bool AVL_Tree<type>::is_bst(AVL_Node<type> *node)
 {
-  bool left_bst(!node->left || node->data > node->left->data && is_bst(node->left));
+  bool left_bst(!node->left || (node->data > node->left->data && is_bst(node->left)));
 
   if (!left_bst)
     return false;
 
-  bool right_bst(!node->right || node->data < node->right->data && is_bst(node->right));
+  bool right_bst(!node->right || (node->data < node->right->data && is_bst(node->right)));
   return right_bst;
 }
 

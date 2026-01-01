@@ -42,9 +42,9 @@ public:
   Singly_LinkedList();
   ~Singly_LinkedList();
   // Returns the value at the given index.
-  const type get_value(int idx);
+  type get_value(int idx) const;
   // Returns the length (number of nodes) of the linked list.
-  const int get_length();
+  int get_length() const;
   // Inserts a new node with the given value at the end of the linked list.
   void insert_end(type val);
   // Inserts a new node with the given value at the beginning of the linked
