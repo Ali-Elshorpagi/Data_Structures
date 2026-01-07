@@ -20,21 +20,22 @@ class Max_Heap
     type *array{};
     int size{};
     int capacity{1}; // we made capacity trick like vector;
-    int left(int pos);
-    int right(int pos);
-    int parent(int pos);
+    int left(int pos) const;
+    int right(int pos) const;
+    int parent(int pos) const;
     void heapify_up(int child_pos);
     void heapify_down(int parent_pos);
     void heapify();
     void expand_capacity();
+    bool search_helper(type val, int pos) const;
 
 public:
     Max_Heap();
     Max_Heap(const std::vector<type> &vec);
     ~Max_Heap();
     // Prevent copying (Rule of Three)
-    Max_Heap(const Max_Heap&) = delete;
-    Max_Heap& operator=(const Max_Heap&) = delete;
+    Max_Heap(const Max_Heap &) = delete;
+    Max_Heap &operator=(const Max_Heap &) = delete;
 
     void push(type val);
     void pop();

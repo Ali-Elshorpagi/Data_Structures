@@ -40,21 +40,21 @@ Max_Heap<type>::~Max_Heap()
 }
 
 template <class type>
-int Max_Heap<type>::left(int pos)
+int Max_Heap<type>::left(int pos) const
 {
     int p((pos << 1) + 1);
     return p >= size ? -1 : p;
 }
 
 template <class type>
-int Max_Heap<type>::right(int pos)
+int Max_Heap<type>::right(int pos) const
 {
     int p((pos << 1) + 2);
     return p >= size ? -1 : p;
 }
 
 template <class type>
-int Max_Heap<type>::parent(int pos)
+int Max_Heap<type>::parent(int pos) const
 {
     return (!pos ? -1 : ((pos - 1) >> 1));
 }
@@ -131,13 +131,25 @@ bool Max_Heap<type>::is_empty() const
 }
 
 template <class type>
+bool Max_Heap<type>::search_helper(type val, int pos) const
+{
+    if (pos == -1 || pos >= size)
+        return false;
+
+    if (array[pos] == val)
+        return true;
+
+    // For Max_Heap: if current < val, children will be even smaller
+    if (array[pos] < val)
+        return false;
+
+    // Search left and right subtrees
+    return search_helper(val, left(pos)) || search_helper(val, right(pos));
+}
+
+template <class type>
 bool Max_Heap<type>::search(type val) const
 {
-    for (int i(0); i < size; ++i)
-    {
-        if (array[i] == val)
-            return true;
-    }
-    return false;
+    return search_helper(val, 0);
 }
 #endif

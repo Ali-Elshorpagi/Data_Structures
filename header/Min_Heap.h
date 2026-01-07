@@ -13,22 +13,23 @@ class Min_Heap
     type *array{};
     int size{};
     int capacity{1}; // we made capacity trick like vector;
-    int left(int pos);
-    int right(int pos);
-    int parent(int pos);
+    int left(int pos) const;
+    int right(int pos) const;
+    int parent(int pos) const;
     void heapify_up(int child_pos);
     void heapify_down(int parent_pos);
     void heapify();
     bool is_heap(int parent_pos);
     void expand_capacity();
+    bool search_helper(type val, int pos) const;
 
 public:
     Min_Heap();
     Min_Heap(const std::vector<type> &vec);
     ~Min_Heap();
     // Prevent copying (Rule of Three)
-    Min_Heap(const Min_Heap&) = delete;
-    Min_Heap& operator=(const Min_Heap&) = delete;
+    Min_Heap(const Min_Heap &) = delete;
+    Min_Heap &operator=(const Min_Heap &) = delete;
 
     void push(type val);
     void pop();

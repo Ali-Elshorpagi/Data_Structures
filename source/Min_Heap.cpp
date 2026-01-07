@@ -40,7 +40,7 @@ void Min_Heap<type>::expand_capacity()
 }
 
 template <class type>
-int Min_Heap<type>::left(int pos)
+int Min_Heap<type>::left(int pos) const
 {
     // pos = parent's pos
     // p_left = (2 * pos) + 1;
@@ -49,7 +49,7 @@ int Min_Heap<type>::left(int pos)
 }
 
 template <class type>
-int Min_Heap<type>::right(int pos)
+int Min_Heap<type>::right(int pos) const
 {
     // pos = parent's pos
     // p_right = (2 * pos) + 2;
@@ -58,7 +58,7 @@ int Min_Heap<type>::right(int pos)
 }
 
 template <class type>
-int Min_Heap<type>::parent(int pos)
+int Min_Heap<type>::parent(int pos) const
 {
     // pos = child's pos
     // p_parent = floor((pos - 1) / 2);
@@ -159,7 +159,7 @@ bool Min_Heap<type>::is_empty() const
 template <class type>
 void Min_Heap<type>::print_less_than(type val, int pos) const
 {
-    if (array[pos] >= val || pos == -1)
+    if (pos == -1 || array[pos] >= val)
         return;
     std::cout << array[pos] << ' ';
     print_less_than(val, left(pos));
@@ -201,13 +201,25 @@ void Min_Heap<type>::heap_sort(type *p, int n) // O(N* log(N)) time
 }
 
 template <class type>
+bool Min_Heap<type>::search_helper(type val, int pos) const
+{
+    if (pos == -1 || pos >= size)
+        return false;
+
+    if (array[pos] == val)
+        return true;
+
+    // For Min_Heap: if current > val, children will be even larger
+    if (array[pos] > val)
+        return false;
+
+    // Search left and right subtrees
+    return search_helper(val, left(pos)) || search_helper(val, right(pos));
+}
+
+template <class type>
 bool Min_Heap<type>::search(type val) const
 {
-    for (int i(0); i < size; ++i)
-    {
-        if (array[i] == val)
-            return true;
-    }
-    return false;
+    return search_helper(val, 0);
 }
 #endif
